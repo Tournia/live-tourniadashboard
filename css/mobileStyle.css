@@ -1,0 +1,435 @@
+body{
+	background-color: #f3f2f0;
+	/*line-height: 1.2vw;*/
+	overflow-y: scroll;
+}
+#parent{
+	height: 100%;
+	width: 100%;
+}
+
+a {
+	color: #43a73f;
+    text-decoration: none;
+}
+
+a:hover{
+	color:	#2c6c28;
+    text-decoration: none;
+}
+
+#tab-contents {
+	margin-top: 2px
+}
+
+.footer{
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+}
+.navbar-button{
+	white-space: normal;
+	height: 40px;
+	bottom: 0;
+}
+
+.loader {
+	border: 12px solid #f3f3f3;/* Light grey */
+	border-top: 12px solid #43a73f;
+	border-radius: 50%;
+	width: 120px;
+	height: 120px;
+	animation: spin 2s linear infinite;
+	float: left;
+	margin-left: 85px;
+	margin-top: 50px;
+}
+@keyframes spin {
+	0% { transform: rotate(0deg); }
+	100% { transform: rotate(360deg); }
+}
+
+.TournamentUrlName{
+	width: 100%;
+	display: inline-block;
+	margin-top: 20px;
+	padding-bottom: 10px;
+	text-align: center;
+	font-weight: bold;
+	/*margin-left: 35%;*/
+	font-family: courier, monospace;
+	font-size: 6vw;
+	border-bottom: .2em solid #43a73f;
+}
+/* table layout */
+.tableHeaders{
+	border: 3px solid #555555 !important;
+	/*font-size: 1.4vw;*/
+	font-weight: bold;
+	text-align: center;
+	/*line-height: 2.8vw;*/
+}
+p.tableHeaders{
+	
+}
+
+#currentMatchesTable{
+	width: 100%;
+	/*border: 3px solid #555555;*/
+	border-collapse: collapse;
+	overflow-x: auto;
+	display: block;
+}
+
+#upcomingMatchesTable{
+	/*border: 3px solid #555555;*/
+	border-collapse: collapse;
+	width: 100%;
+	overflow-x: auto;
+	display: block;
+}
+
+#postponedMatchesTable{
+	/*border: 3px solid #555555;*/
+	border-collapse: collapse;
+	width: 100%;
+	overflow-x: auto;
+	display: block;
+}
+
+#poolsOverviewTable{
+	/*border: 3px solid #555555 !important;*/
+	border-collapse: collapse;
+	width: 100%;
+	overflow-x: auto;
+	display: block;
+}
+
+#currentMatchesBox{
+	margin-bottom: 80px;
+}
+#upcomingMatchesBox{
+	margin-bottom: 80px;
+}
+#postponedMatchesBox{
+	margin-bottom: 80px;
+}
+
+#OverviewRoundsBox{
+	margin-bottom: 80px;
+}
+#TournamentUrlName{
+	width: 100%
+	display: inline-block;
+	margin-top: 30px;
+	text-align: center;
+	font-weight: bold;
+	/*font-size: 5vw;*/
+	/*margin-left: 35%;*/
+	font-family: courier, monospace;
+}
+
+#settingsButton{
+	float:left;
+	z-index: 99;
+	font-size: 6px;
+	
+}
+
+.btn-group-sm>.btn, .btn-sm {
+    padding: 5px 10px;
+    font-size: 10px;
+    line-height: 1px;
+    border-radius: 3px;
+}
+
+.ui-navbar li .ui-btn {
+    font-size: 8px;
+    display: block;
+    margin: 0;
+    border-right-width: 0;
+}
+
+#my_header{
+	width: 100%;
+	display: inline-block;
+}
+
+
+/*Tables*/
+
+th, td {
+   /* border-bottom: 2px solid #555555;*/
+    border-top: 2px solid #555555;
+	border-bottom: 2px solid #555555;
+    /*border-left: 2px solid #555555;*/
+    /*font-size: 1vw;*/
+}
+
+.playerColumn{
+	width: 100px;
+}
+td.playerColumn{
+	padding-left:3px;
+	padding-right: 3px;
+}
+
+td.playerPlayingColumn{
+	padding: 5px;
+}
+.teamColumn{
+	text-align: center;
+	width: 100px;
+	border-bottom: 3px solid #555555;
+}
+th.teamColumn{
+	/*font-size: 1vw;*/
+	/*border-right: 2px solid #555555;
+	border-left: 2px solid #555555;*/
+}
+.discColumn{
+	/*width: 140px;*/
+	border-right: 0px solid #555555;
+	border-left: 0px solid #555555;
+}
+
+.onHoldColumn{
+	border-left: 0px;
+	border-right: 0px;
+	padding-left: 5px;
+}
+.VsColum{
+	width: 10px;
+	border-right: 0px;
+	border-left: 0px;
+}
+
+.onHoldColumnVs{
+	width: 10px;
+	border-left: 0px;
+	border-right: 0px;
+}
+
+.discColumnVs{
+	width: 10px;;
+}
+.courtColumn{
+	width: 40px;
+	border-right: 2px solid #555555;
+	border-left: 3px solid #555555;
+	/*font-size: 1vw;*/
+}
+
+th.courtColumn{
+	text-align: center;
+}
+
+td.courtColumn{
+	padding-left: 3px;
+	border-left: 2px solid #555555;
+}
+
+th.poolColumn {
+	width: 150px;
+	border-left: 3px solid #555555;
+	border-right: 2px solid #555555;
+	text-align: center;
+	/*font-size: 1vw;*/
+}
+
+td.poolColumn{
+	background-color: #b3ccff;
+	/*font-size: 1vw;*/
+	border-right: 2px solid #555555;
+	padding-left: 3px;
+}
+
+.emptyPoolColumn {
+	width: 100px;
+	border-left: 2px solid #555555;
+	border-right: 2px solid #555555;
+}
+
+th.poolRoundsColumns{
+	text-align: center;
+	width: 50px;
+	border-right: 2px solid #555555;
+}
+td.poolRoundsColumns{
+	text-align:right;
+	border-right: 2px solid #555555;
+	padding-right: 5px
+}
+
+
+th.totTeamsColumn{
+	text-align: center;
+	width: 50px;
+	border-right: 2px solid #555555;
+}
+
+td.totTeamsColumn{
+	text-align:right;
+	border-right: 2px solid #555555;
+	padding-right: 5px
+}
+
+th.roundsNeededColumn{
+	text-align: center;
+	width: 50px;
+	border-right: 2px solid #555555;
+}
+
+td.roundsNeededColumn{
+	text-align:right;
+	border-right: 2px solid #555555;
+	padding-right: 5px;
+}
+
+th.roundsCreatedColumn{
+	text-align: center;
+	width: 50px;
+	border-right: 2px solid #555555;
+}
+
+td.roundsCreatedColumn{
+	text-align:right;
+	border-right: 2px solid #555555;
+	padding-right: 5px
+}
+
+th.roundsLeftColumn{
+	text-align: center;
+	width: 50px;
+	border-right: 2px solid #555555;
+}
+
+td.roundsLeftColumn{
+	text-align:right;
+	border-right: 2px solid #555555;
+	padding-right: 5px
+}
+
+.statusColumn{
+	border-left: 2px solid #555555;
+	text-align: center;
+	width: 80px;
+}
+
+.predcitedTimeColumn{
+	border-left: 2px solid #555555;
+	border-bottom: 2px solid #555555;
+}
+th.statusColumn{
+	/*font-size: 1vw;*/
+	border-right: 2px solid #555555;
+	text-align: center;
+	/*font-size: 1vw;*/
+	width: 80px;
+}
+
+td.statusColumn{
+	text-align: center
+}
+
+
+#playerStatusColumn{
+	border-right: 2px solid #555555;
+	text-align: center;
+	/*font-size: 1vw;*/
+}
+	
+#PPplayerStatusColumn{
+	border-right: 2px solid #555555;
+	text-align: center;
+	/*font-size: 1vw;*/
+}
+.vsColumn{
+	width: 1px;
+}
+
+td.vsColumn {
+}
+th.vsColumn{
+	border-left: 3px solid #555555;
+	border-right: 3px solid #555555;
+	text-align: center;
+}
+
+th.playingTimeColumn{
+	border-left: 2px solid #555555;
+	text-align: center;
+	/*font-size: 1vw;*/
+	width: 60px;
+}
+
+td.playingTimeColumn{
+	padding-left: 5px;
+	border-left: 2px solid #555555
+}
+
+th.predictedTimeColumn{
+	border-left: 2px solid #555555;
+	text-align: center;
+	/*font-size: 1vw;*/
+	width: 60px;
+	border-right: 3px solid #555555
+}
+
+td.predictedTimeColumn{
+	padding-left: 5px;
+	/*border-left: 2px solid #555555;*/
+	border-right: 3px solid #555555
+}
+th.expectedTimeColumn {
+	text-align: center;
+	/*font-size: 1vw;*/
+	width: 60px;
+	border-right: 3px solid #555555;
+}
+td.expectedTimeColumn{
+	padding-left: 5px;
+	border-right: 3px solid #555555;
+}
+
+
+.byeColumn{
+	border-left: 2px solid #555555;
+	border-right: 3px solid #555555;
+	text-align: left;
+	padding-left: 3px;
+	width: 100px
+}
+
+#currentsPoolColumn{
+	border-right: 2px solid #555555;
+	background-color: none;
+	/*font-size: 1vw;*/
+	text-align: center;
+}
+
+
+
+.note{
+	/*font-size: 0.95vw;*/
+}
+
+.showNone{
+	display: none;
+	border: 0px;
+}
+
+table.dataTable tbody th,
+table.dataTable tbody td {
+  /*padding: 1px;*/
+  text-align: center;
+}
+
+table.dataTable thead th, table.dataTable thead td {
+  /*padding: 1px;*/
+}
+
+.dataTables_info {
+	font-size: 8px;
+	padding-top: 0.5em;
+}
