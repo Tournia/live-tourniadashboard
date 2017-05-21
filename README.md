@@ -1,9 +1,11 @@
 # Live-Dashboard v 1.0
+This live dashbaord shows extended information about current, upcoming, postponed mamtches and it gives an overview of the pools. Dashboard is fully adjiustments what should be shown on the screen. This dashboard makes use of the Tournia API.
 
-v 1.0 has succefully been tested during 3 badminton tournaments
+Dashboard is created using on client-side JavaScript.
 
 For a full working demo see: http://www.tourniadashboard.nl/demo
 
+v 1.0 has succefully been tested during 3 badminton tournaments
 
 # Features:
 - Compatible for all Tournia tournaments with live/API enabled
