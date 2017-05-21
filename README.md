@@ -55,3 +55,4 @@ v 1.0 has succefully been tested during 3 badminton tournaments
 - rounds left
 - status of pool (new round planned, currently playing, pool finished, return round nr. x)
 - teams that have a bye in planned/playing round
+
