@@ -43,7 +43,7 @@
 	}
 	if(urlData[0] == "demo" || urlData[0] == "utrecht2016"){
 		localTesting = true
-		sendingDatatoDatabase = true
+		sendingDatatoDatabase = false
 	}
 	if(ifMobile == true){
 		window.location = "tournament_mobile.php?"+urlData[0]+"#upcomingMatches"
