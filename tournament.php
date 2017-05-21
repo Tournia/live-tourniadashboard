@@ -75,20 +75,20 @@
 
  <script src="js/libs/tabletop.min.js"></script>
  
- <script src="js/functions/globals.js"></script>
- <script src="js/functions/setupFunctions.js"></script>
- <script src="js/functions/options.js"></script>
- <script src="js/functions/otherFunctions.js"></script>
- <script src="js/functions/poolProperties.js"></script>
- <script src="js/functions/paginationFunctions.js"></script>
- <script src="js/functions/getAPIDataAndMakeTables.js"></script>
- <script src="js/functions/getAPIDataAndMakeTables_LOCAL.js"></script>
- <script src="js/functions/currentMatchesTable.js"></script>
- <script src="js/functions/upcomingMatchesTable.js"></script>
- <script src="js/functions/postponedMatchesTable.js"></script>
- <script src="js/functions/poolsOverviewTable.js"></script>
- <script src="js/functions/pageView.js"></script>
- <script src="js/functions/tableViews.js"></script>
+ <script src="js/globals.js"></script>
+ <script src="js/setupFunctions.js"></script>
+ <script src="js/options.js"></script>
+ <script src="js/otherFunctions.js"></script>
+ <script src="js/poolProperties.js"></script>
+ <script src="js/paginationFunctions.js"></script>
+ <script src="js/getAPIDataAndMakeTables.js"></script>
+ <script src="js/getAPIDataAndMakeTables_LOCAL.js"></script>
+ <script src="js/currentMatchesTable.js"></script>
+ <script src="js/upcomingMatchesTable.js"></script>
+ <script src="js/postponedMatchesTable.js"></script>
+ <script src="js/poolsOverviewTable.js"></script>
+ <script src="js/pageView.js"></script>
+ <script src="js/tableViews.js"></script>
  <script>
 
 	function urlSetup(){
