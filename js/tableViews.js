@@ -151,6 +151,12 @@ function tableConfigurations(){
 	} else {
 		document.getElementById("poolColumn").innerHTML = "Pools";	
 	}
+
+	if(showExpectedTimeColumn == false){
+		document.getElementById("UM_notes").style.display="none"
+	} else {
+		document.getElementById("UM_notes").style.display=""
+	}
 }
 
 function removeTables(){

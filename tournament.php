@@ -546,7 +546,7 @@
 							</tr>
 						</thead>
 					</table>
-					<div id="UM_notes" style="display: none">
+					<div id="UM_notes">
 						<div id="ExpectedTimeLeftNote" class="note">*Expected times are based on average match durations and standard deviation margins per pool of 4 editions of ISBT Utrecht.</div>
 						<div id="ExpectedTimeLeftNote2" class="note">**There is an earlier upcoming match that has an unknown expected time. This may affect this expected time. Check the postponed matches tables if information is available about these matches.</div>
 					</div>
