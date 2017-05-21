@@ -15,7 +15,7 @@ v 1.0 has succefully been tested during 3 badminton tournaments
 	- Organizers view
 		-	search filter added to all tables
 		-	long tables with all information
-	- Particpants view
+	- Participants view
 		- adjust tables according to screen height and automatically create pages
 		- automatic caroussel between pages and tables
 		- decide how long each table needs to be shown
