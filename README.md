@@ -11,7 +11,6 @@ v 1.0 has succefully been tested during 3 badminton tournaments
 - decide which tables to show or hide
 - decide which colums to show or hide
 - automatic table and font adjustments according to screen size
-- dashboard adjusted for compatible mobile-view with all information
 - 2 View presets:
 	- Organizers view
 		-	search filter added to all tables
@@ -21,6 +20,9 @@ v 1.0 has succefully been tested during 3 badminton tournaments
 		- automatic caroussel between pages and tables
 		- decide how long each table needs to be shown
 		- decide minimum page time within a table
+- save setup settings using LOcalStorage
+
+- dashboard adjusted for compatible mobile-view with all information
 
 ## Current matches table cloumns
 - Court name
