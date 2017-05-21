@@ -2,6 +2,8 @@
 
 v 1.0 has succefully been tested during 3 badminton tournaments
 
+For a full working demo see: http://www.tourniadashboard.nl/demo
+
 
 # Features:
 - Compatible for all Tournia tournaments with live/API enabled
