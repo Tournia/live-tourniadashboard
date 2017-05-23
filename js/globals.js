@@ -1,14 +1,4 @@
-//console log
-	var DEBUG_MODE = false; // Set this value to false for production
-	if(typeof(console) === 'undefined') {
-	   console = {}
-	}
-	if(!DEBUG_MODE || typeof(console.log) === 'undefined') {
-	   // FYI: Firebug might get cranky...
-	   console.log = console.error = console.info = console.debug = console.warn = console.trace = console.dir = console.dirxml = console.group = console.groupEnd = console.time =    console.timeEnd = console.assert = console.profile = function() {};
-	}
-	var log = console.log.bind(console)
-
+var log = console.log.bind(console)
 //var localTesting
 
 //var ifMobile = true
@@ -244,3 +234,36 @@ var my_UMfilterHeight
 var my_CMfilterHeight
 
 var viewChange
+
+var timeBetweenMatches
+var pauseTime
+
+//expected time vars
+var inTotCount_UM
+		var totUnavailable_UM
+				
+		var inCount_UM
+		var inReadyCount_UM
+		var inPlayCount_UM
+		var unavailable_UM
+		var Playing
+		
+		var inFirstCount_UM
+		var inSecondCount_UM
+		var expectedTimesArray
+		var predictedTimesArray
+		var totalTimesArray
+		var playersPlayingExpectedTimes
+		var smallestExpectedTimesArray
+		var shiftStartTime
+		var shiftUpcomingMatchInfoObjects
+		var shift1upcomingMatchInfoObjects
+		var ppUpcomingMatchInfoArray
+		var rtpUpcomingMatchInfoArray
+		var addIndex
+		var shift1ppCount
+		var altshift2count
+		var altshift2ppCount
+		var shift1rtp
+		var nrOfCourts
+		var freeCourtsAvailable

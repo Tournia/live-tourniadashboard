@@ -35,7 +35,7 @@
 	var urlData = query.split('&'); 
 	for (i = 0; (i < urlData.length); i++) {
 		if(urlData[i] == null || urlData[i] == undefined || urlData[i] == "" ){
-			//console.log("empty/no gSheet url")
+			console.log("empty/no gSheet url")
 			continue
 		} else {
 			urlData[i] = unescape(urlData[i]);
@@ -43,7 +43,21 @@
 	}
 	if(urlData[0] == "demo" || urlData[0] == "utrecht2016"){
 		localTesting = true
-		sendingDatatoDatabase = false
+		sendingDatatoDatabase = true
+	}
+	if(urlData[0] == "isbtamsterdam" || urlData[0] == "isbt-amsterdam-2017"){
+		localTesting = true
+		var dataSetNr =  4 //1-9
+			/*
+			1: UMBR 19 - 53 mins.
+			2: UMNR 18 - 64 mins.
+			3: UMNR 17 - 46 mins.
+			4:UMNR
+			5:
+			6: UMNR 7 - 31 mins., UMNR 10 - 12 mins
+			
+			*/
+		
 	}
 	if(ifMobile == true){
 		window.location = "tournament_mobile.php?"+urlData[0]+"#upcomingMatches"
@@ -75,20 +89,22 @@
 
  <script src="js/libs/tabletop.min.js"></script>
  
- <script src="js/globals.js"></script>
- <script src="js/setupFunctions.js"></script>
- <script src="js/options.js"></script>
- <script src="js/otherFunctions.js"></script>
- <script src="js/poolProperties.js"></script>
- <script src="js/paginationFunctions.js"></script>
- <script src="js/getAPIDataAndMakeTables.js"></script>
- <script src="js/getAPIDataAndMakeTables_LOCAL.js"></script>
- <script src="js/currentMatchesTable.js"></script>
- <script src="js/upcomingMatchesTable.js"></script>
- <script src="js/postponedMatchesTable.js"></script>
- <script src="js/poolsOverviewTable.js"></script>
- <script src="js/pageView.js"></script>
- <script src="js/tableViews.js"></script>
+ <script src="js/functions/globals.js"></script>
+ <script src="js/functions/setupFunctions.js"></script>
+ <script src="js/functions/options.js"></script>
+ <script src="js/functions/otherFunctions.js"></script>
+ <script src="js/functions/poolProperties.js"></script>
+ <script src="js/functions/paginationFunctions.js"></script>
+ <script src="js/functions/getAPIDataAndMakeTables.js"></script>
+ <script src="js/functions/amsterdamSampleData.js"></script>
+ <script src="js/functions/getAPIDataAndMakeTables_LOCAL.js"></script>
+ <script src="js/functions/currentMatchesTable.js"></script>
+ <script src="js/functions/expectedTimesScript.js"></script>
+ <script src="js/functions/upcomingMatchesTable.js"></script>
+ <script src="js/functions/postponedMatchesTable.js"></script>
+ <script src="js/functions/poolsOverviewTable.js"></script>
+ <script src="js/functions/pageView.js"></script>
+ <script src="js/functions/tableViews.js"></script>
  <script>
 
 	function urlSetup(){
@@ -150,7 +166,7 @@
 			showRoundsCreatedColumn: (localStorage.getItem("ls_my_showRoundsCreatedColumn") === 'true'),
 			showRoundsLeftColumn: (localStorage.getItem("ls_my_showRoundsLeftColumn") === 'true'),
 			showStatusColumn: (localStorage.getItem("ls_my_showStatusColumn") === 'true'),
-			showByeDataColumn: (localStorage.getItem("ls_my_showByeDataColumn") === 'true'),
+			showByeDataColummn: (localStorage.getItem("ls_my_showByeDataColumn") === 'true'),
 			ifPagingTable: (localStorage.getItem("ls_my_ifPagingTable") === 'true'),
 			ifOrganizerViewPreset: (localStorage.getItem("ls_my_ifOrganizerViewPreset") === 'true')
 		}
@@ -323,7 +339,7 @@
 					</tr>
 					<tr>
 						<td>
-							<input class="checkbox" type="checkbox" id="ifReloadTablesBo" onchange="toggleReloadTables(this.checked)" checked>
+							<input class="checkbox" type="checkbox" id="ifReloadTablesBo" onchange="toggleReloadTables(this.checked)" checked>Reload data every
 							<input class ="NRinput" type="number" id="myReloadTimeInput" value="60">secs.
 						</td>
 						<td>
@@ -335,11 +351,11 @@
 						<td>
 							<form>
 								<input type="radio" id="organizerPreset" name="tablePreset" class="radio" value="viewer" onchange="toggleOrganizerView(this.checked)">Organzier view<br>
-								<input type="radio" id="viewerPreset" name="tablePreset" class="radio" value="organizer" onchange="toggleViewerView(this.checked)" checked>Participants view
+								<input type="radio" id="viewerPreset" name="tablePreset" class="radio" value="organizer" onchange="toggleViewerView(this.checked)" checked>Players view
 							</form>
 						</td>
 						<td>
-							<a tabindex="0" class="glyphicon glyphicon-info-sign" data-container="body" data-toggle="popover" data-trigger="focus" data-placement="right" title="Page view preset" data-content="<u>Organizer view:</u><br> -all matches are shown in long tables<br> -no tables are shrinked according to screen size<br> -no automatic switch between tables possible<br><u>Participants view:</u><br> -tables are shrinked according to screen size<br> -table pages are made<br> -tables will switch automatically<br> -shrinking and pages are created according to timer and not through clicks"></a>	
+							<a tabindex="0" class="glyphicon glyphicon-info-sign" data-container="body" data-toggle="popover" data-trigger="focus" data-placement="right" title="Page view preset" data-content="<u>Organizer view:</u><br> -all matches are shown in long tables<br> -no tables are shrinked according to screen size<br> -no automatic switch between tables possible<br><u>Players view:</u><br> -tables are shrinked according to screen size<br> -table pages are made<br> -tables will switch automatically"></a>	
 						</td>
 					</tr>
 					
@@ -526,10 +542,10 @@
 					<table id = "upcomingMatchesTable" class="upcomingMatchesTable" width="100%">
 						<thead id="my_UMtHead">
 							<tr>
-								<td colspan="8" class="tableHeaders">Upcoming matches</td>
+								<td colspan="9" class="tableHeaders">Upcoming matches</td>
 							</tr>
 							<tr>
-								<!--<th class="matchNrColumn" rowspan='2' style="display: none">Upcoming match nr.</th>-->
+								<th class="matchNrColumn" rowspan='2'>Upcoming match nr.</th>
 								<th class="poolColumn" rowspan='2'>Pool</th>
 								<th colspan="2" class ="teamColumn">Team 1</th>
 								<th class="vsColumn" rowspan='2'></th>
