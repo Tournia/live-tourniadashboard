@@ -1,4 +1,4 @@
-var DEBUG_MODE = true; // Set this value to false for production
+//var DEBUG_MODE = true; // Set this value to false for production
 
 if(typeof(console) === 'undefined') {
    console = {}

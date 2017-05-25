@@ -9,7 +9,9 @@
   <script type="text/javascript">
 	//checkBrowsers()
 	var localTesting = false;
+	var DEBUG_MODE = true
 	var sendingDatatoDatabase = false
+	
 	
 	var ifMobile = false
 	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || ifMobile == true) {
