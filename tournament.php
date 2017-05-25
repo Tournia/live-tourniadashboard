@@ -43,12 +43,21 @@
 	}
 	if(urlData[0] == "demo" || urlData[0] == "utrecht2016"){
 		localTesting = true
-		sendingDatatoDatabase = true
+		sendingDatatoDatabase = false
+		
+		var dataSetNr =  1 // 1-4
+		if(typeof isNaN(dataSetNr) == true || dataSetNr < 1 || dataSetNr > 4){
+			dataSetNr = 1
+		}
 	}
 	if(urlData[0] == "isbtamsterdam" || urlData[0] == "isbt-amsterdam-2017"){
 		localTesting = true
+		
 		var dataSetNr =  4 //1-9
-			/*
+		if(typeof isNaN(dataSetNr) == true || dataSetNr < 1 || dataSetNr > 9){
+			dataSetNr = 1
+		}
+		/*
 			1: UMBR 19 - 53 mins.
 			2: UMNR 18 - 64 mins.
 			3: UMNR 17 - 46 mins.
@@ -89,22 +98,22 @@
 
  <script src="js/libs/tabletop.min.js"></script>
  
- <script src="js/functions/globals.js"></script>
- <script src="js/functions/setupFunctions.js"></script>
- <script src="js/functions/options.js"></script>
- <script src="js/functions/otherFunctions.js"></script>
- <script src="js/functions/poolProperties.js"></script>
- <script src="js/functions/paginationFunctions.js"></script>
- <script src="js/functions/getAPIDataAndMakeTables.js"></script>
- <script src="js/functions/amsterdamSampleData.js"></script>
- <script src="js/functions/getAPIDataAndMakeTables_LOCAL.js"></script>
- <script src="js/functions/currentMatchesTable.js"></script>
- <script src="js/functions/expectedTimesScript.js"></script>
- <script src="js/functions/upcomingMatchesTable.js"></script>
- <script src="js/functions/postponedMatchesTable.js"></script>
- <script src="js/functions/poolsOverviewTable.js"></script>
- <script src="js/functions/pageView.js"></script>
- <script src="js/functions/tableViews.js"></script>
+ <script src="js/globals.js"></script>
+ <script src="js/setupFunctions.js"></script>
+ <script src="js/options.js"></script>
+ <script src="js/otherFunctions.js"></script>
+ <script src="js/poolProperties.js"></script>
+ <script src="js/paginationFunctions.js"></script>
+ <script src="js/getAPIDataAndMakeTables.js"></script>
+ <script src="js/amsterdamSampleData.js"></script>
+ <script src="js/getAPIDataAndMakeTables_LOCAL.js"></script>
+ <script src="js/currentMatchesTable.js"></script>
+ <script src="js/expectedTimesScript.js"></script>
+ <script src="js/upcomingMatchesTable.js"></script>
+ <script src="js/postponedMatchesTable.js"></script>
+ <script src="js/poolsOverviewTable.js"></script>
+ <script src="js/pageView.js"></script>
+ <script src="js/tableViews.js"></script>
  <script>
 
 	function urlSetup(){
