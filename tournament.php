@@ -9,7 +9,9 @@
   <script type="text/javascript">
 	//checkBrowsers()
 	var localTesting = false;
+	var DEBUG_MODE = true
 	var sendingDatatoDatabase = false
+	
 	
 	var ifMobile = false
 	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || ifMobile == true) {
@@ -44,6 +46,29 @@
 	if(urlData[0] == "demo" || urlData[0] == "utrecht2016"){
 		localTesting = true
 		sendingDatatoDatabase = false
+		
+		var dataSetNr =  1 // 1-4
+		if(typeof isNaN(dataSetNr) == true || dataSetNr < 1 || dataSetNr > 4){
+			dataSetNr = 1
+		}
+	}
+	if(urlData[0] == "isbtamsterdam" || urlData[0] == "isbt-amsterdam-2017"){
+		localTesting = true
+		
+		var dataSetNr =  4 //1-9
+		if(typeof isNaN(dataSetNr) == true || dataSetNr < 1 || dataSetNr > 9){
+			dataSetNr = 1
+		}
+		/*
+			1: UMBR 19 - 53 mins.
+			2: UMNR 18 - 64 mins.
+			3: UMNR 17 - 46 mins.
+			4:UMNR
+			5:
+			6: UMNR 7 - 31 mins., UMNR 10 - 12 mins
+			
+			*/
+		
 	}
 	if(ifMobile == true){
 		window.location = "tournament_mobile.php?"+urlData[0]+"#upcomingMatches"
@@ -323,7 +348,7 @@
 					</tr>
 					<tr>
 						<td>
-							<input class="checkbox" type="checkbox" id="ifReloadTablesBo" onchange="toggleReloadTables(this.checked)" checked>
+							<input class="checkbox" type="checkbox" id="ifReloadTablesBo" onchange="toggleReloadTables(this.checked)" checked>Reload data every
 							<input class ="NRinput" type="number" id="myReloadTimeInput" value="60">secs.
 						</td>
 						<td>
@@ -339,7 +364,7 @@
 							</form>
 						</td>
 						<td>
-							<a tabindex="0" class="glyphicon glyphicon-info-sign" data-container="body" data-toggle="popover" data-trigger="focus" data-placement="right" title="Page view preset" data-content="<u>Organizer view:</u><br> -all matches are shown in long tables<br> -no tables are shrinked according to screen size<br> -no automatic switch between tables possible<br><u>Participants view:</u><br> -tables are shrinked according to screen size<br> -table pages are made<br> -tables will switch automatically<br> -shrinking and pages are created according to timer and not through clicks"></a>	
+							<a tabindex="0" class="glyphicon glyphicon-info-sign" data-container="body" data-toggle="popover" data-trigger="focus" data-placement="right" title="Page view preset" data-content="<u>Organizer view:</u><br> -all matches are shown in long tables<br> -no tables are shrinked according to screen size<br> -no automatic switch between tables possible<br><u>Participants view:</u><br> -tables are shrinked according to screen size<br> -table pages are made<br> -tables will switch automatically<br> -shrinking and pages are created according to timer and not through clicks"></a>
 						</td>
 					</tr>
 					
@@ -526,10 +551,10 @@
 					<table id = "upcomingMatchesTable" class="upcomingMatchesTable" width="100%">
 						<thead id="my_UMtHead">
 							<tr>
-								<td colspan="8" class="tableHeaders">Upcoming matches</td>
+								<td colspan="9" class="tableHeaders">Upcoming matches</td>
 							</tr>
 							<tr>
-								<!--<th class="matchNrColumn" rowspan='2' style="display: none">Upcoming match nr.</th>-->
+								<th class="matchNrColumn" rowspan='2'>Upcoming match nr.</th>
 								<th class="poolColumn" rowspan='2'>Pool</th>
 								<th colspan="2" class ="teamColumn">Team 1</th>
 								<th class="vsColumn" rowspan='2'></th>
