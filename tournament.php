@@ -12,7 +12,6 @@
 	var DEBUG_MODE = true
 	var sendingDatatoDatabase = false
 	
-	
 	var ifMobile = false
 	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || ifMobile == true) {
 		var ifMobile = true		
@@ -116,6 +115,7 @@
  <script src="js/poolsOverviewTable.js"></script>
  <script src="js/pageView.js"></script>
  <script src="js/tableViews.js"></script>
+ 
  <script>
 
 	function urlSetup(){

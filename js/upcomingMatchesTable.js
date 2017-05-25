@@ -259,10 +259,12 @@ function getUpcomingMatchesTable(){
 				}*/
 				
 				//expected Times column
-				var UMdataET = calculateExpectedTime(um, my_PoolName, nrOfCourts)				
+				var ET_returns = calculateExpectedTime(um, my_PoolName, poolPropertiesObject, singleUMData, nrOfCourts, my_statusText, playerNamesCurrentlyPlayingArray, playersPlayingObects, predictedTimeLeftofPlayingPlayersArray)				
 				
+				var upcomingMatchInfo = ET_returns[0]
+				singleUMData = ET_returns[1]
 				
-				allUMdata.push(UMdataET)
+				allUMdata.push(singleUMData)
 				//var my_table =  document.getElementById('upcomingMatchesTable')
 				//my_UMRows.push(my_table.rows[i].data())
 		
