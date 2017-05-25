@@ -194,6 +194,7 @@ function removeTables(){
 	document.getElementById("poolsOverviewLoader").style.display = ""
 	if (localTesting == true){
 		getLocalDataAndMakeLocalTables()
+		simpleTabChangeOnce() //directly go to upcoming matches table
 	} else {
 		getAPIDataAndMakeTables()
 	}
