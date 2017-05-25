@@ -35,7 +35,7 @@
 	var urlData = query.split('&'); 
 	for (i = 0; (i < urlData.length); i++) {
 		if(urlData[i] == null || urlData[i] == undefined || urlData[i] == "" ){
-			console.log("empty/no gSheet url")
+			//console.log("empty/no gSheet url")
 			continue
 		} else {
 			urlData[i] = unescape(urlData[i]);
@@ -175,7 +175,7 @@
 			showRoundsCreatedColumn: (localStorage.getItem("ls_my_showRoundsCreatedColumn") === 'true'),
 			showRoundsLeftColumn: (localStorage.getItem("ls_my_showRoundsLeftColumn") === 'true'),
 			showStatusColumn: (localStorage.getItem("ls_my_showStatusColumn") === 'true'),
-			showByeDataColummn: (localStorage.getItem("ls_my_showByeDataColumn") === 'true'),
+			showByeDataColumn: (localStorage.getItem("ls_my_showByeDataColumn") === 'true'),
 			ifPagingTable: (localStorage.getItem("ls_my_ifPagingTable") === 'true'),
 			ifOrganizerViewPreset: (localStorage.getItem("ls_my_ifOrganizerViewPreset") === 'true')
 		}
@@ -360,11 +360,11 @@
 						<td>
 							<form>
 								<input type="radio" id="organizerPreset" name="tablePreset" class="radio" value="viewer" onchange="toggleOrganizerView(this.checked)">Organzier view<br>
-								<input type="radio" id="viewerPreset" name="tablePreset" class="radio" value="organizer" onchange="toggleViewerView(this.checked)" checked>Players view
+								<input type="radio" id="viewerPreset" name="tablePreset" class="radio" value="organizer" onchange="toggleViewerView(this.checked)" checked>Participants view
 							</form>
 						</td>
 						<td>
-							<a tabindex="0" class="glyphicon glyphicon-info-sign" data-container="body" data-toggle="popover" data-trigger="focus" data-placement="right" title="Page view preset" data-content="<u>Organizer view:</u><br> -all matches are shown in long tables<br> -no tables are shrinked according to screen size<br> -no automatic switch between tables possible<br><u>Players view:</u><br> -tables are shrinked according to screen size<br> -table pages are made<br> -tables will switch automatically"></a>	
+							<a tabindex="0" class="glyphicon glyphicon-info-sign" data-container="body" data-toggle="popover" data-trigger="focus" data-placement="right" title="Page view preset" data-content="<u>Organizer view:</u><br> -all matches are shown in long tables<br> -no tables are shrinked according to screen size<br> -no automatic switch between tables possible<br><u>Participants view:</u><br> -tables are shrinked according to screen size<br> -table pages are made<br> -tables will switch automatically<br> -shrinking and pages are created according to timer and not through clicks"></a>
 						</td>
 					</tr>
 					
