@@ -12,6 +12,7 @@
 	var DEBUG_MODE = true
 	var sendingDatatoDatabase = false
 	
+	
 	var ifMobile = false
 	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || ifMobile == true) {
 		var ifMobile = true		
@@ -46,7 +47,9 @@
 		localTesting = true
 		sendingDatatoDatabase = false
 		
-		var dataSetNr =  4 // 1-4
+
+		var dataSetNr =  1 // 1-4
+
 		if(typeof isNaN(dataSetNr) == true || dataSetNr < 1 || dataSetNr > 4){
 			dataSetNr = 1
 		}
