@@ -103,6 +103,7 @@ function createPage(){
 	/*make tables*/
 	if (localTesting == true){
 		getLocalDataAndMakeLocalTables()
+		simpleTabChangeOnce()
 	} else {
 		$.when(checkForAPIChange())
 		.then(function(){

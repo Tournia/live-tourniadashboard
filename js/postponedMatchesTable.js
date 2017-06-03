@@ -104,7 +104,7 @@ function getPostponedMatchesTable(){
 					if(my_unavPostponedMatches[pm].team1.players.length == 0){
 						my_t1Input = "-"
 						singlePMData.teamOne1 = "-"
-						singlePMData.teamOne2 = "-"
+						singlePMData.teamOne2 = ""
 					}
 					
 					//vs column
@@ -137,7 +137,7 @@ function getPostponedMatchesTable(){
 					if(my_unavPostponedMatches[pm].team2.players.length == 0){
 						my_t2Input = "-"
 						singlePMData.teamTwo1 = "-"
-						singlePMData.teamTwo2 = "-"
+						singlePMData.teamTwo2 = ""
 					}
 					
 					//Status column

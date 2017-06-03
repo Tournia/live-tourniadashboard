@@ -47,7 +47,9 @@
 		localTesting = true
 		sendingDatatoDatabase = false
 		
+
 		var dataSetNr =  1 // 1-4
+
 		if(typeof isNaN(dataSetNr) == true || dataSetNr < 1 || dataSetNr > 4){
 			dataSetNr = 1
 		}
@@ -107,13 +109,16 @@
  <script src="js/poolProperties.js"></script>
  <script src="js/paginationFunctions.js"></script>
  <script src="js/getAPIDataAndMakeTables.js"></script>
+ <script src="js/amsterdamSampleData.js"></script>
  <script src="js/getAPIDataAndMakeTables_LOCAL.js"></script>
  <script src="js/currentMatchesTable.js"></script>
+ <script src="js/expectedTimesScript.js"></script>
  <script src="js/upcomingMatchesTable.js"></script>
  <script src="js/postponedMatchesTable.js"></script>
  <script src="js/poolsOverviewTable.js"></script>
  <script src="js/pageView.js"></script>
  <script src="js/tableViews.js"></script>
+ 
  <script>
 
 	function urlSetup(){
