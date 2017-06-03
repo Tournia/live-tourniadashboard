@@ -70,6 +70,7 @@ function findPlayersPlaying(playerArray, my_locationsList, playersPlayingObects)
 						var foundPlayer = true
 						//////console.log("in position:", position)
 						playersPlayingObects.push(my_playerObject)
+						var poolName = my_locationsList[m].pool
 						break
 						break
 					} else {
@@ -81,6 +82,7 @@ function findPlayersPlaying(playerArray, my_locationsList, playersPlayingObects)
 								var my_playerObject = my_locationsList[m]
 								//////console.log("in position:", position)
 								playersPlayingObects.push(my_playerObject)
+								var poolName = my_locationsList[m].pool
 								break
 								break
 							}
@@ -100,7 +102,9 @@ function findPlayersPlaying(playerArray, my_locationsList, playersPlayingObects)
 			my_maxPlayerStillPlayingTime = my_predictedTimeLeftArray[0]
 		}
 		//////console.log("my highest Predicted time:", my_maxPlayerStillPlayingTime)
-	return my_maxPlayerStillPlayingTime
+	var my_returns = []
+	my_returns.push(my_maxPlayerStillPlayingTime, poolName)
+	return my_returns
 }
 
 

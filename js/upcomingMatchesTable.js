@@ -25,13 +25,13 @@ function getUpcomingMatchesTable(){
 		 expectedTimesArray = []
 		 predictedTimesArray = []
 		 totalTimesArray = []
-		 playersPlayingExpectedTimes = []
+		 playersPlayingExpectedTimesArray = []
 		 smallestExpectedTimesArray = []
 		 shiftStartTime = 0
-		 shiftUpcomingMatchInfoObjects = []
+		 upcomingMatchInfoObjectsShift = []
 		 shift1upcomingMatchInfoObjects = []
-		 ppUpcomingMatchInfoArray = []
-		 rtpUpcomingMatchInfoArray = []
+		 ppUpcomingMatchInfoObjects = []
+		 rtpUpcomingMatchInfoObjects = []
 		 addIndex = 0
 		 shift1ppCount = 0
 		 altshift2count = 0
@@ -102,9 +102,9 @@ function getUpcomingMatchesTable(){
 				singleUMData.matchNr = my_upcomingMatches[um].localId
 				
 				if(ifMobile == false){
-					singleUMData.PoolName = my_PoolName 
+					singleUMData.poolName = my_PoolName 
 				} else {
-					singleUMData.PoolName = abbrPoolName 
+					singleUMData.poolName = abbrPoolName 
 				}
 				singleUMData.abbrPoolName = abbrPoolName
 				//tri.append("<td>" + my_upcomingMatches[um].localId + "</td>");
@@ -177,11 +177,14 @@ function getUpcomingMatchesTable(){
 						singleUMData.teamOne1 = my_t1Input
 					} else if (my_upcomingMatches[um].team1.players.length > 1 && my_T1count == 2){
 						singleUMData.teamOne2 = my_t1Input
+					} else if(my_upcomingMatches[um].team1.name == "-"){
+						singleUMData.teamOne1 = "-"
+						singleUMData.teamOne2 = ""
 					}
 				}
 				if(my_upcomingMatches[um].team1.players.length == 0){
-						my_t1Input = ""
-						singleUMData.teamOne1 = ""
+						my_t1Input = "-"
+						singleUMData.teamOne1 = "-"
 						singleUMData.teamOne2 = ""
 				}
 				//vs column
@@ -214,18 +217,18 @@ function getUpcomingMatchesTable(){
 					} else if (my_upcomingMatches[um].team2.players.length > 1 && my_T2count == 2){
 						singleUMData.teamTwo2 = my_t2Input
 					} else if(my_upcomingMatches[um].team2.name == "-"){
-						singleUMData.teamTwo1 = ""
+						singleUMData.teamTwo1 = "-"
 						singleUMData.teamTwo2 = ""
 					}
 				}
 				if(my_upcomingMatches[um].team2.players.length == 0){
-						my_t2Input = ""
-						singleUMData.teamTwo1 = ""
+						my_t2Input = "-"
+						singleUMData.teamTwo1 = "-"
 						singleUMData.teamTwo2 = ""
 				}
 				
 				//Status column
-				var priorityMatch = my_upcomingMatches[um].priority
+				singleUMData.priority = my_upcomingMatches[um].priority
 				var playersPlaying = inArray("player playing", statusPlayers)
 				var playersNotReady = inArray("player not ready", statusPlayers)
 					if (playersNotReady == true){
@@ -259,7 +262,7 @@ function getUpcomingMatchesTable(){
 				}*/
 				
 				//expected Times column
-				var ET_returns = calculateExpectedTime(um, my_PoolName, poolPropertiesObject, singleUMData, nrOfCourts, my_statusText, playerNamesCurrentlyPlayingArray, playersPlayingObects, predictedTimeLeftofPlayingPlayersArray)				
+				var ET_returns = calculateExpectedTime(um, my_PoolName, poolPropertiesObject, singleUMData, nrOfCourts, my_statusText, playersNotReady, playersPlaying, playerNamesCurrentlyPlayingArray, playersPlayingObects, predictedTimeLeftofPlayingPlayersArray)				
 				
 				var upcomingMatchInfo = ET_returns[0]
 				singleUMData = ET_returns[1]
@@ -295,7 +298,7 @@ function getUpcomingMatchesTable(){
 			var isoCurrentTimeS =  jsToisoDate(jsCurrentTimeS)
 			my_currentStartSingleStringsObject.isoDate = isoCurrentTimeS
 			
-			var firstExpectedTime = singleUMData.ExpectedTimeSecs //not upcomingMatchInfo object because singleUMData objects includes all numbers als oif unavailable or free court.
+			var firstExpectedTime = singleUMData.expectedTimeSecs //not upcomingMatchInfo object because singleUMData objects includes all numbers als oif unavailable or free court.
 			my_currentStartSingleStringsObject.expectedTime = firstExpectedTime 
 			
 			var ifReadytoPlayS = upcomingMatchInfo.readyToPlay
@@ -319,7 +322,7 @@ function getUpcomingMatchesTable(){
 				my_currentStringObjectsArray.push(my_currentStartSingleStringsObject)
 				mycurrentLocalIDArray.push(my_matchLocalId)
 				//////log(mycurrentLocalIDArray[arraycount])
-				mycurrentLocalIDArray.sort()
+				mycurrentLocalIDArray.sort(function(a, b){return a-b})
 			}
 			
 			my_startInputString = my_startArray.join(";")
@@ -330,8 +333,8 @@ function getUpcomingMatchesTable(){
 			if(inStartArray == false && ifUnavailableS == false){
 				mycurrentLocalIDArray.push(my_matchLocalId)
 				completeMatchIDArray.push(my_matchLocalId)
-				mycurrentLocalIDArray.sort()
-				completeMatchIDArray.sort()
+				mycurrentLocalIDArray.sort(function(a, b){return a-b})
+				completeMatchIDArray.sort(function(a, b){return a-b})
 				
 				
 				completeStartObjects.push(my_currentStartSingleStringsObject)				
@@ -358,18 +361,18 @@ function getUpcomingMatchesTable(){
 					UM_loopStartLog.push(my_startInputString)
 			}
 		
-			if(upcomingMatchInfoObjects.length == 0){
-				upcomingMatchInfoObjects.push(upcomingMatchInfo)
+			if(allUpcomingMatchInfoObjects.length == 0){
+				allUpcomingMatchInfoObjects.push(upcomingMatchInfo)
 			} else {
 				var found = false;
-				for(var umo = 0; umo < upcomingMatchInfoObjects.length; umo++) {
-					if (upcomingMatchInfoObjects[umo].localId == my_matchLocalId) {
+				for(var umo = 0; umo < allUpcomingMatchInfoObjects.length; umo++) {
+					if (allUpcomingMatchInfoObjects[umo].localId == my_matchLocalId) {
 						found = true;
 						break;
 					}
 				}
 				if(found == false){
-					upcomingMatchInfoObjects.push(upcomingMatchInfo)
+					allUpcomingMatchInfoObjects.push(upcomingMatchInfo)
 				}
 				
 				var nextum = um+1							
@@ -380,7 +383,12 @@ function getUpcomingMatchesTable(){
 			}
 		} /* */ /** end of for loop **/ /* */
 		
+		//adjust ExpectedTime
 		
+		/*var adjustedExpectedTimes = */adjustExpectedTimes(allUpcomingMatchInfoObjects, allUMdata)
+		
+		//allUMdata = adjustedExpectedTimes[1]
+	
 		//append Table
 		////log("allUMdata", allUMdata)
 		var UMremakeCount = 0
@@ -404,7 +412,7 @@ function getUpcomingMatchesTable(){
 					//pageResize: true,
 					//bAutoWidth: false,			
 					columns: [
-						{ data: 'PoolName', function (nTd, sData, oData, iRow, iCol) {
+						{ data: 'poolName', function (nTd, sData, oData, iRow, iCol) {
 																	$(nTd).css('-webkit-column-span', 'all')
 																	$(nTd).css('column-span', 'all')
 																}
@@ -452,7 +460,7 @@ function getUpcomingMatchesTable(){
 																$(nTd).css('text-align', 'center')
 															},
 						visible: localTesting },
-						{ data: 'PoolName', fnCreatedCell: 	function (nTd, sData, oData, iRow, iCol) {
+						{ data: 'poolName', fnCreatedCell: 	function (nTd, sData, oData, iRow, iCol) {
 																//$(nTd).css('border-left', '0.2vw solid #555555')
 																$(nTd).css('border-left', '3px solid #555555')
 																$(nTd).css('border-right', '0.2vw solid #555555')
@@ -554,7 +562,7 @@ function getUpcomingMatchesTable(){
 																}
 															},											
 						visible: showStatusPlayersColumn },
-						{ data: /*'shiftNrExpectedTimeSecs',*/ 'shiftNrExpectedTimeMins'/*'StdDevExpectedTime'/*my_namedFinalExpectedTimeMins*/, fnCreatedCell: 	function (nTd, sData, oData, iRow, iCol){
+						{ data: /*'shiftNrExpectedTimeSecs',*/ /*'shiftNrExpectedTimeMins'*/'StdDevExpectedTime'/*my_namedFinalExpectedTimeMins*/, fnCreatedCell: 	function (nTd, sData, oData, iRow, iCol){
 																			$(nTd).css('border-right', '3px solid #555555')
 
 																			//$(nTd).css('width', '60px')
@@ -706,7 +714,7 @@ function getUpcomingMatchesTable(){
 					logUpcomingMatch = false
 				}
 				if(arraycount > 1){
-					//////log(upcomingMatchInfoObjects)
+					//////log(allUpcomingMatchInfoObjects)
 					//////log("\n ---------- \n new load")
 					//////log("currentIDArray", mycurrentLocalIDArray)
 					
@@ -719,7 +727,10 @@ function getUpcomingMatchesTable(){
 					var my_locaIDdifferenceArray = $(prevIDArray).not(currentIDArray).get()
 					var uniqueIdsArray = [];
 					$.each(my_locaIDdifferenceArray, function(i, el){
-						if($.inArray(el, uniqueIdsArray) === -1) uniqueIdsArray.push(el);
+						if($.inArray(el, uniqueIdsArray) === -1){
+							
+						 uniqueIdsArray.push(el);
+						}
 					});
 					//////log("difference", uniqueIdsArray)
 					
@@ -741,12 +752,12 @@ function getUpcomingMatchesTable(){
 										var jsCurrentTimeF = new Date()
 										//log(jsCurrentTimeF)
 										var isoCurrentTimeF =  jsToisoDate(jsCurrentTimeF)
-										//////log("all um objects,", upcomingMatchInfoObjects)
+										//////log("all um objects,", allUpcomingMatchInfoObjects)
 										
 										//find upcoming match object with lowest UMnr
 										var filter = {localId: my_localID};
 										var matchIdUpcomingMatchesObjects = []
-										var _SmatchInfoObjects = upcomingMatchInfoObjects.filter(function(item) {
+										var _SmatchInfoObjects = allUpcomingMatchInfoObjects.filter(function(item) {
 											for(var key in filter) {
 												//log(filter)
 												if(item[key] === my_localID){

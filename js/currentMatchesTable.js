@@ -218,12 +218,19 @@ function getCurrentMatchesTable(){
 			if (alreadyPlayingTime >= averageTimePool){
 				predictedTimeLeft = 1
 				my_locationsList[m].deltaPredictedTimeLeft = predictedTimeLeft
-				predictedTimeLeftArray.push(predictedTimeLeft)
+				var predictedTimeLeftObj = {}
+				predictedTimeLeftObj.timeLeft = predictedTimeLeft
+				predictedTimeLeftObj.stdDev = poolPropertiesObject.stdDev
+				predictedTimeLeftArray.push(predictedTimeLeftObj)
 			}
 			if (alreadyPlayingTime < averageTimePool){
 				predictedTimeLeft = averageTimePool - alreadyPlayingTime
 				my_locationsList[m].deltaPredictedTimeLeft = predictedTimeLeft
-				predictedTimeLeftArray.push(predictedTimeLeft)
+				
+				var predictedTimeLeftObj = {}
+				predictedTimeLeftObj.timeLeft = predictedTimeLeft
+				predictedTimeLeftObj.stdDev = poolPropertiesObject.stdDev
+				predictedTimeLeftArray.push(predictedTimeLeftObj)
 			}
 			//////////log("PredictedTime", namePoolPlaying, predictedTimeLeft)
 			predictedTimeLeftMins = Math.ceil(predictedTimeLeft / 60)
@@ -265,9 +272,14 @@ function getCurrentMatchesTable(){
 	} /** end of for loop **/
 	
 	while(predictedTimeLeftArray.length < availableLocationsCount){
-		predictedTimeLeftArray.push(0)
+		var predictedTimeLeftObj = {}
+		predictedTimeLeftObj.timeLeft = 0
+		predictedTimeLeftObj.stdDev = poolPropertiesObject.stdDev
+		
+		predictedTimeLeftArray.push(predictedTimeLeftObj)
+		predictedTimeLeftArray.push(predictedTimeLeftArray)
 	} 
-	predictedTimeLeftArray.sort(function(a, b){return a-b})
+	predictedTimeLeftArray.sort(function(a, b){return a.timeLeft-b.timeLeft})
 	
 	//append table
 	////log("allCMdata", allCMdata)

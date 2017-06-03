@@ -162,7 +162,9 @@ var completeStartObjects = []
 var completeStopObjets = []
 var firstLoad = true
 var arraycount= 0
-var upcomingMatchInfoObjects = []
+var allUpcomingMatchInfoObjects = []
+var upcomingMatchInfoObjectsShift
+var rtpObjects = []
 
 var allCMdata
 var allUMdata
@@ -183,7 +185,6 @@ var updateCount = 0
 var prevUpdateCount = 0
 var changeDetector = true
 var ifAPIChangeDetected = true
-
 var reloadDataCount = 0
 var reloadedData = false
 var refreshCount = 0
@@ -269,13 +270,13 @@ var inTotCount_UM
 		var expectedTimesArray
 		var predictedTimesArray
 		var totalTimesArray
-		var playersPlayingExpectedTimes
+		var playersPlayingExpectedTimesArray
 		var smallestExpectedTimesArray
 		var shiftStartTime
-		var shiftUpcomingMatchInfoObjects
+		var upcomingMatchInfoObjectsShift
 		var shift1upcomingMatchInfoObjects
-		var ppUpcomingMatchInfoArray
-		var rtpUpcomingMatchInfoArray
+		var ppUpcomingMatchInfoObjects
+		var rtpUpcomingMatchInfoObjects
 		var addIndex
 		var shift1ppCount
 		var altshift2count

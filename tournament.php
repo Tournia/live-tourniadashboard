@@ -46,7 +46,7 @@
 		localTesting = true
 		sendingDatatoDatabase = false
 		
-		var dataSetNr =  1 // 1-4
+		var dataSetNr =  4 // 1-4
 		if(typeof isNaN(dataSetNr) == true || dataSetNr < 1 || dataSetNr > 4){
 			dataSetNr = 1
 		}
