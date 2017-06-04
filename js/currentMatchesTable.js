@@ -57,6 +57,7 @@ function getCurrentMatchesTable(){
 			singleCMData.onHoldReason = ""
 			singleCMData.poolPlaying = ""
 			singleCMData.abbrpoolPlaying = null
+			freeCourts +=1
 			
 		} else {
 			var namePoolPlaying = my_locationsList[m].pool
@@ -274,12 +275,11 @@ function getCurrentMatchesTable(){
 	while(predictedTimeLeftArray.length < availableLocationsCount){
 		var predictedTimeLeftObj = {}
 		predictedTimeLeftObj.timeLeft = 0
-		predictedTimeLeftObj.stdDev = poolPropertiesObject.stdDev
-		
+		predictedTimeLeftObj.stdDev = 0
 		predictedTimeLeftArray.push(predictedTimeLeftObj)
-		predictedTimeLeftArray.push(predictedTimeLeftArray)
 	} 
-	predictedTimeLeftArray.sort(function(a, b){return a.timeLeft-b.timeLeft})
+	
+	predictedTimeLeftArray.sort(function(a, b){return a.timeLeft - b.timeLeft})
 	
 	//append table
 	////log("allCMdata", allCMdata)

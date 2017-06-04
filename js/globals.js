@@ -1,31 +1,14 @@
-//console.log
-//var DEBUG_MODE = true; // Set this value to false for production
-=======
-//console log
-//var DEBUG_MODE = true; // Set this value to false for production
-
+//console.log for testing
 if(typeof(console) === 'undefined') {
    console = {}
 }
 
 if(!DEBUG_MODE || typeof(console.log) === 'undefined') {
-   // FYI: Firebug might get cranky...
-   console.log = console.error = console.info = console.debug = console.warn = console.trace = console.dir = console.dirxml = console.group = console.groupEnd = console.time =    console.timeEnd = console.assert = console.profile = function() {};
-}
-
-if(typeof(console) === 'undefined') {
-   console = {}
-}
-
-if(!DEBUG_MODE || typeof(console.log) === 'undefined') {
-   // FYI: Firebug might get cranky...
    console.log = console.error = console.info = console.debug = console.warn = console.trace = console.dir = console.dirxml = console.group = console.groupEnd = console.time =    console.timeEnd = console.assert = console.profile = function() {};
 }
 
 var log = console.log.bind(console)
-//var localTesting
 
-//var ifMobile = true
 var ifMobileConfig = (ifMobile == false)
 
 var my_tournamentInfo
@@ -41,7 +24,7 @@ var localStorageArray = []
 //ifReloadTables = true
 shrinkUpcomingsTable = false
 /**Globals and other setup variables **/
-
+var freeCourts = 0
 var poolStatisticsArray = []
 
 var noCurrentMatches = false
@@ -294,5 +277,6 @@ var inTotCount_UM
 		var altshift2count
 		var altshift2ppCount
 		var shift1rtp
+		var shift1pp
 		var nrOfCourts
 		var freeCourtsAvailable

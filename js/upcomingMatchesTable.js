@@ -37,6 +37,7 @@ function getUpcomingMatchesTable(){
 		 altshift2count = 0
 		 altshift2ppCount = 0
 		 shift1rtp = 0
+		 shift1pp = 0
 		 nrOfCourts = availableLocationsCount
 		 freeCourtsAvailable = 0
 		
@@ -56,7 +57,7 @@ function getUpcomingMatchesTable(){
 		var allStartArrays = []
 		
 		for(pt = 0; pt < predictedTimeLeftArray.length; pt++){
-			if(predictedTimeLeftArray[pt] == 0){
+			if(predictedTimeLeftArray[pt].timeLeft == 0){
 				freeCourtsAvailable +=1
 			}
 		}
@@ -385,7 +386,7 @@ function getUpcomingMatchesTable(){
 		
 		//adjust ExpectedTime
 		
-		/*var adjustedExpectedTimes = */adjustExpectedTimes(allUpcomingMatchInfoObjects, allUMdata)
+		adjustExpectedTimes(allUpcomingMatchInfoObjects, allUMdata)
 		
 		//allUMdata = adjustedExpectedTimes[1]
 	
@@ -395,7 +396,7 @@ function getUpcomingMatchesTable(){
 		var my_lengthMenu = lengthMenu(false, allUMdata) //create whole table
 		//////log(my_lengthMenu)
 			
-		if (noUpcomingMatches == true){
+		if(noUpcomingMatches == true){
 			//log("no UM")
 			
 			function makeNoUpcomingMatchesTable(my_data, ifPaging, lengthMenu){

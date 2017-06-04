@@ -97,7 +97,7 @@ function findPlayersPlaying(playerArray, my_locationsList, playersPlayingObects)
 			var my_predictedTimeLeft = playersPlayingObects[ob].deltaPredictedTimeLeft 
 			my_predictedTimeLeftArray.push(my_predictedTimeLeft)
 		}
-		var my_maxPlayerStillPlayingTime = Math.max(predictedTimeLeftArray)
+		var my_maxPlayerStillPlayingTime = Math.max(my_predictedTimeLeftArray)
 		if(isNaN(my_maxPlayerStillPlayingTime)){ //predictedTimesLeft are equal
 			my_maxPlayerStillPlayingTime = my_predictedTimeLeftArray[0]
 		}
