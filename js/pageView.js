@@ -13,7 +13,13 @@ function getTournamentTitleandPageInfo(){
 		})
 	} else {
 		my_tournamentInfo_LOCAL = {}
-		my_tournamentInfo_LOCAL.name = "ISBT Utrecht 2016"
+		if(tournament_ID == "utrecht2016"){
+			my_tournamentInfo_LOCAL.name = "ISBT Utrecht 2016"
+		} else if(tournament_ID == "isbt-amsterdam-2017"){
+			my_tournamentInfo_LOCAL.name = "ISBT Amsterdam 2017"
+		} else {
+			my_tournamentInfo_LOCAL.name = "No Tournament"
+		}
 		my_tournamentName = my_tournamentInfo_LOCAL.name
 		displayTitle()
 	}

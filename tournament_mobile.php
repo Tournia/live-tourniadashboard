@@ -13,6 +13,8 @@
 	var ifMobile = true
 	var mobileError = false
 	var localTesting = false
+	var DEBUG_MODE = true
+	
 	var loadFromUrl = true
 	var loadFromSetupWindow = false
 	var viewChange = false
@@ -134,8 +136,10 @@
  <script src="js/poolProperties.js"></script>
  <script src="js/paginationFunctions.js"></script>
  <script src="js/getAPIDataAndMakeTables.js"></script>
+ <script src="js/localSampleData.js"></script>
  <script src="js/getAPIDataAndMakeTables_LOCAL.js"></script>
  <script src="js/currentMatchesTable.js"></script>
+ <script src="js/expectedTimesScript.js"></script>
  <script src="js/upcomingMatchesTable.js"></script>
  <script src="js/postponedMatchesTable.js"></script>
  <script src="js/poolsOverviewTable.js"></script>

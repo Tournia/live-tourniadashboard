@@ -13,7 +13,7 @@
 	var sendingDatatoDatabase = false
 	
 	
-	var ifMobile = false
+	var ifMobile = true
 	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || ifMobile == true) {
 		var ifMobile = true		
 	} else {
@@ -47,15 +47,14 @@
 		localTesting = true
 		sendingDatatoDatabase = false
 		
-
 		var dataSetNr =  1 // 1-4
-
 		if(typeof isNaN(dataSetNr) == true || dataSetNr < 1 || dataSetNr > 4){
 			dataSetNr = 1
 		}
 	}
 	if(urlData[0] == "isbtamsterdam" || urlData[0] == "isbt-amsterdam-2017"){
 		localTesting = true
+		sendingDatatoDatabase = false
 		
 		var dataSetNr =  4 //1-9
 		if(typeof isNaN(dataSetNr) == true || dataSetNr < 1 || dataSetNr > 9){
@@ -109,7 +108,7 @@
  <script src="js/poolProperties.js"></script>
  <script src="js/paginationFunctions.js"></script>
  <script src="js/getAPIDataAndMakeTables.js"></script>
- <script src="js/amsterdamSampleData.js"></script>
+ <script src="js/localSampleData.js"></script>
  <script src="js/getAPIDataAndMakeTables_LOCAL.js"></script>
  <script src="js/currentMatchesTable.js"></script>
  <script src="js/expectedTimesScript.js"></script>

@@ -175,7 +175,7 @@ function _4AgetCurrentMatchesData(){
 				var noCMData = {}
 					noCMData.CourtName = "There are no courts set up."
 					noCMData.poolPlaying = ""
-					noCMData.PoolName = ""
+					noCMData.poolName = ""
 					noCMData.team1 = ""
 					noCMData.vsColumn = ""
 					noCMData.team2 = ""//noCMData.team1 = {name: "",players:[{name: ""},{name: ""}]}
@@ -229,7 +229,7 @@ function _5AgetReadyPostponedFinishedMatchesData(){
 				var noUMData = {}
 					noUMData.localId = ""
 					noUMData.matchId = ""
-					noUMData.PoolName = "There are no upcoming matches planned"
+					noUMData.poolName = "There are no upcoming matches planned"
 					noUMData.status = ""
 					noUMData.priority = ""
 					noUMData.teamOne1 = ""//noUMData.team1 = {name: "",players:[{name: ""},{name: ""}]}
