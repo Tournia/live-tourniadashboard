@@ -724,7 +724,7 @@ function calculateExpectedTime(um, my_PoolName, poolPropertiesObject, singleUMDa
 	}
 		
 	//show shiftNR in table
-	if(localTesting == true){
+	if(sampleData == true){
 		if(secondpart == true){
 			if(endShift == true){
 				var my_shiftNr = shiftNr + ". "
