@@ -106,13 +106,16 @@ function _2AgetPoolsRoundsData(){
 		if(my_Pools.length > 0){
 			for (p in my_Pools){
 				my_Pools[p].roundsCreated = 0
+				
 			}
 			for (var a=0; a < my_Pools.length; a++){
 				myTotTeams = my_Pools[a].totTeams
 				if (myTotTeams > 0){
 					my_poolsWithTeams.push(my_Pools[a])
+					poolNamesArray.push(my_Pools[a].name)
 				}	
 			}
+			calculatePoolsStats(poolNamesArray)
 		} else{
 		noPools = true
 		}

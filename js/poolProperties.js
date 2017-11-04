@@ -131,6 +131,37 @@ function getPoolProperties(){
 	]
 }
 
+function calculatePoolsStats(poolsArray){
+	var selectedPools = []
+	for (var pn  in poolsArray){
+		var poolName = poolsArray[pn]
+		var selectedPool = findPoolProperties(poolName)
+		selectedPools.push(selectedPool)
+	}
+
+	var avgTimesArray = []
+	var stdDevTimesArray = []
+	for (var p in selectedPools){
+		var averageTime = selectedPools[p].avgTime
+		var stdDevTime = selectedPools[p].stdDev
+		avgTimesArray.push(averageTime)
+		stdDevTimesArray.push(stdDevTime)
+	}
+	avgTimesArray.sort(function(a,b){return b-a})
+	stdDevTimesArray.sort(function(a,b){return b-a})
+	maxAvgTime = avgTimesArray[0]
+	maxStdDevTime = stdDevTimesArray[0]
+	minAvgTime = avgTimesArray[avgTimesArray.length - 1]
+	minStdDevTime = stdDevTimesArray[stdDevTimesArray.length - 1]
+	
+	var avgTimeTotal = 0
+	for(var i in avgTimesArray) { avgTimeTotal += avgTimesArray[i]}
+	var stdDevTimeTotal = 0
+	for(var j in stdDevTimesArray) { stdDevTimeTotal += stdDevTimesArray[j]}
+	avgAvgTime = avgTimeTotal/avgTimesArray.length
+	avgStdDevTime = stdDevTimeTotal/stdDevTimesArray.length
+}
+
 function getPoolNameAbbr(poolName){
 	var abbrpt2 = poolName.split(" ").pop()
 	if(poolName.includes("Mixed Doubles")){
