@@ -766,6 +766,7 @@ function calculateExpectedTime(um, my_PoolName, poolPropertiesObject, singleUMDa
 		singleUMData.expectedTimeMins = 9999999999999999999999999999999999999
 		singleUMData.shiftNrExpectedTimeSecsMins = my_shiftNr + "unknown"
 		singleUMData.shiftNrExpectedTimeMins = my_shiftNr + "unknown"
+		singleUMData.shiftNrExpectedTimeMinsStdDev = "unknown"
 		singleUMData.NamedExpectedTime = "unknown"
 		singleUMData.StdDevExpectedTime = "unknown"
 	} else {
@@ -776,6 +777,7 @@ function calculateExpectedTime(um, my_PoolName, poolPropertiesObject, singleUMDa
 			singleUMData.expectedTimeMins = 0
 			singleUMData.shiftNrExpectedTimeSecsMins = my_shiftNr + "free court available"
 			singleUMData.shiftNrExpectedTimeMins = my_shiftNr + "free court available"
+			singleUMData.shiftNrExpectedTimeMinsStdDev = "free court available"
 			singleUMData.NamedExpectedTime = "free court available"
 			singleUMData.StdDevExpectedTime = "free court available"
 			
@@ -786,6 +788,7 @@ function calculateExpectedTime(um, my_PoolName, poolPropertiesObject, singleUMDa
 			singleUMData.expectedTimeMins = my_finalExpectedTimeMins
 			singleUMData.shiftNrExpectedTimeSecsMins = my_shiftNr +my_finalExpectedTimeSecs+" secs., "+my_finalExpectedTimeMins +" mins."+ stars
 			singleUMData.shiftNrExpectedTimeMins = my_shiftNr +my_finalExpectedTimeMins + " mins." + stars
+			singleUMData.shiftNrExpectedTimeMinsStdDev = my_shiftNr +my_finalExpectedTimeMins + " mins. ±" + Math.ceil(my_stdDevTime/60) + stars
 			singleUMData.NamedExpectedTime = my_namedFinalExpectedTimeMins + " mins." + stars
 			singleUMData.StdDevExpectedTime = finalStdDeviationTime + " mins." + stars
 		}
@@ -870,6 +873,7 @@ function adjustExpectedTimes(allUpcomingMatchInfoObjects, allUMdata){
 		singleUMObject.shiftNrExpectedTimeSecsMins = rtpObjects[objNr].shiftNrExpectedTimeSecsMins_ad
 		singleUMObject.shiftNrExpectedTimeSecs = rtpObjects[objNr].shiftNrExpectedTimeSecs_ad
 		singleUMObject.shiftNrExpectedTimeMins = rtpObjects[objNr].shiftNrExpectedTimeMins_ad
+		singleUMData.shiftNrExpectedTimeMinsStdDev = rtpObjects[objNr].shiftNrExpectedTimeMins_ad + " ± " + Math.ceil(rtpObjects[objNr].stdDevTime/60)
 		singleUMObject.NamedExpectedTime = rtpObjects[objNr].NamedExpectedTime_ad
 		singleUMObject.stdDevTime = rtpObjects[objNr].stdDevTime_ad
 		singleUMObject.StdDevExpectedTime = rtpObjects[objNr].StdDevExpectedTime_ad
