@@ -180,7 +180,4 @@ function applyVars() {
 		my_editUrlClick.href = my_GoogleSheetEditUrl
 		my_editUrlClick.innerHTML = "view and edit table"
 		my_editBox = document.getElementById("editGSheet")
-		
-		
-		
 }
