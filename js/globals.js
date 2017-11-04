@@ -1,9 +1,9 @@
 //overrule variables
 /*ifMobile variable needs to be defined in tournament.php*/
 
-sampleData = false
-dataTesting = true
-DEBUG_MODE = true
+sampleData = true //load dat afrom online database or local sample data sets
+dataTesting = true //always show upcoming matches table for expected time script
+DEBUG_MODE = true //show console log or not
 sendingDataToDatabase = false
 
 dataSetNr = 1 //ISBT Utrecht: 1-4; ISBT Amsterdam 1-9
@@ -54,6 +54,10 @@ switch(window.location.protocol) {
 if(dataTesting == true){
 	runLocal = true
 }
+
+log("Sample Data:", sampleData)
+log("Data Testing:", dataTesting)
+
 //ifReloadTables = true
 shrinkUpcomingsTable = false
 /**Globals and other setup variables **/
