@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 function calculateExpectedTime(um, my_PoolName, poolPropertiesObject, singleUMData, nrOfCourts, my_statusText, playersNotReady, playersPlaying, playerNamesCurrentlyPlayingArray, playersPlayingObects, predictedTimeLeftofPlayingPlayersArray) {
 	try{
 		var initialFreeCourts = freeCourts
@@ -995,7 +994,7 @@ function namedExpectedTime(my_PoolName, my_finalExpectedTimeMins, my_stdDevTime)
 
 return my_returns
 }
-=======
+
 function calculateExpectedTime(um, my_PoolName, nrOfCourts){
 					var upcomingMatchNr = um + 1 // looks at first for loop [um]
 					var totalUmCount = my_upcomingMatches.length
@@ -1632,4 +1631,3 @@ function calculateExpectedTime(um, my_PoolName, nrOfCourts){
 				////log(singleUMData)	
 				}
 return singleUMData}
->>>>>>> refs/heads/Expected-Times-Script
