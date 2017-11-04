@@ -1,6 +1,7 @@
 //overrule variables
 /*ifMobile variable needs to be defined in tournament.php*/
 
+
 sampleData = true //load dat afrom online database or local sample data sets
 dataTesting = true //always show upcoming matches table for expected time script
 DEBUG_MODE = true //show console log or not
