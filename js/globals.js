@@ -56,7 +56,10 @@ if(dataTesting == true){
 }
 
 log("Sample Data:", sampleData)
+log("Tournament:", urlData[0])
 log("Data Testing:", dataTesting)
+log("Data Sample set nr:", dataSetNr)
+log("")
 
 //ifReloadTables = true
 shrinkUpcomingsTable = false
