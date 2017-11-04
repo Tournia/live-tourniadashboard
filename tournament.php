@@ -8,12 +8,11 @@
 
   <script type="text/javascript">
 	//checkBrowsers()
-	var localTesting = false;
-	var DEBUG_MODE = true
-	var sendingDatatoDatabase = false
+	var sampleData = false
+	var DEBUG_MODE = false
+	var sendingDataToDatabase = false
 	
-	
-	var ifMobile = true
+	var ifMobile = false
 	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || ifMobile == true) {
 		var ifMobile = true		
 	} else {
@@ -44,8 +43,8 @@
 		}
 	}
 	if(urlData[0] == "demo" || urlData[0] == "utrecht2016"){
-		localTesting = true
-		sendingDatatoDatabase = false
+		sampleData = true
+		sendingDataToDatabase = false
 		
 		var dataSetNr =  1 // 1-4
 		if(typeof isNaN(dataSetNr) == true || dataSetNr < 1 || dataSetNr > 4){
@@ -53,8 +52,8 @@
 		}
 	}
 	if(urlData[0] == "isbtamsterdam" || urlData[0] == "isbt-amsterdam-2017"){
-		localTesting = true
-		sendingDatatoDatabase = false
+		sampleData = true
+		sendingDataToDatabase = false
 		
 		var dataSetNr =  4 //1-9
 		if(typeof isNaN(dataSetNr) == true || dataSetNr < 1 || dataSetNr > 9){
@@ -335,7 +334,6 @@
 							<a tabindex="0" class="glyphicon glyphicon-info-sign" data-container="body" data-toggle="popover" data-trigger="focus" data-placement="right" <a data-toggle="popover" title="Tournament ID" data-content="Required. You can find your tournament ID here:<br><a><img src='images/tournamentID.png'height='25' width='250'></a><br>in the URL of your Tournia tournament homepage."></a>
 						</td>
 					</tr>
-					
 					<tr>
 						<td>
 							<div id="tableSelections">
@@ -352,14 +350,21 @@
 					</tr>
 					<tr>
 						<td>
-							<input class="checkbox" type="checkbox" id="ifReloadTablesBo" onchange="toggleReloadTables(this.checked)" checked>Reload data every
-							<input class ="NRinput" type="number" id="myReloadTimeInput" value="60">secs.
+							<table id="reloadTimeTable" class="tableTimesInput">
+								<tr>
+									<td>
+										<input class="checkbox" type="checkbox" id="ifReloadTablesBo" onchange="toggleReloadTables(this.checked)" checked>Reload data every
+									</td>
+									<td>
+										<input class ="NRinput" type="number" id="myReloadTimeInput" value="60">secs.
+									</td>
+								</tr>
+							</table>
 						</td>
 						<td>
 							<a tabindex="0" class="glyphicon glyphicon-info-sign" data-container="body" data-toggle="popover" data-trigger="focus" data-placement="right" title="Automatic reload of tables" data-content="Sets if tables will automatically reload tables new data. Set time in seconds how often tables need to reload. At the reload interval, tables are only reloaded if a change in any data is detected."></a>
 						</td>
 					</tr>
-
 					<tr>
 						<td>
 							<form>
@@ -370,8 +375,7 @@
 						<td>
 							<a tabindex="0" class="glyphicon glyphicon-info-sign" data-container="body" data-toggle="popover" data-trigger="focus" data-placement="right" title="Page view preset" data-content="<u>Organizer view:</u><br> -all matches are shown in long tables<br> -no tables are shrinked according to screen size<br> -no automatic switch between tables possible<br><u>Participants view:</u><br> -tables are shrinked according to screen size<br> -table pages are made<br> -tables will switch automatically<br> -shrinking and pages are created according to timer and not through clicks"></a>
 						</td>
-					</tr>
-					
+					</tr>	
 					<tr>
 						<td>
 							<input type="checkbox" id="if_PagingTable" class="checkbox" checked disabled>table fits to height of window and create pages
@@ -380,7 +384,6 @@
 							<a tabindex="0" class="glyphicon glyphicon-info-sign" data-container="body" data-toggle="popover" data-trigger="focus" data-placement="right" title="Shrink tables to fit height of screen." data-content="If turned on, tables will fit the height of your screen and pages will be created automatically. Otherwise, all data will be shown in all the tables that may not fit on your screen."></a>	
 						</td>
 					</tr>
-
 					<tr>
 						<td>	
 							<table id="tableTimesInput" class="tableTimesInput">
