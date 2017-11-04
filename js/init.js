@@ -6,7 +6,7 @@ var timeString = time.toString();
  $( function() { /**init**/
 	/*customized CSS**/	
 	if(urlData[0] == "demo"){
-		localTesting = true
+		sampleData = true
 	}
 	
 	var fileref = document.createElement("link");

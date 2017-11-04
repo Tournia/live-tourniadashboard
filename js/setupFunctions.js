@@ -453,7 +453,7 @@ function placeVarsInput(){
 			document.getElementById("myTournamentId").value = urlData[0]
 			var my_tournamentInfoUrl = _tourniaApiUrl + urlData[0] + "/tournament"
 				log(my_tournamentInfoUrl)
-				if(localTesting == false){
+				if(sampleData == false){
 					$.getJSON(my_tournamentInfoUrl, function(info) {
 						var my_tournamentInfo = info
 						})
@@ -686,7 +686,7 @@ function checkVariables(){
 	
 	if(my_tournamentId != ""){
 		if(loadNewTournament == true){
-			if(localTesting == false){
+			if(sampleData == false){
 				$.getJSON(_tournamentInfoUrl, function(info) {
 							my_tournamntInfo = info
 						})
@@ -754,7 +754,7 @@ function checkVariables(){
 	}
 	
 	function getTournamentData(poolsUrl, my_ifGoogleSheetLoad, GoogleSheetUrl, my_settingsVarsArray, my_settingsVarsObject, getGoogleData){
-		if(localTesting == false){
+		if(sampleData == false){
 			$.getJSON(poolsUrl, function(data) {
 						my_tourniaPools = data
 					})

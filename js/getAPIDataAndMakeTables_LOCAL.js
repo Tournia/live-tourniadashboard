@@ -1,19 +1,19 @@
-function ifEmptyValue(){
-	//log("local testing:", localTesting)
-	if(localTesting == false){
+function setIfEmptyInput(set){
+	//log("runLocal testing:", sampleData)
+	if(sampleData == false){
 		return false
 	} else {
-		//log("in else-->local testing = true")
-		var my_returnValue = false
+		//log("in else-->runLocal testing = true")
+		var my_returnValue = set
 		return my_returnValue //input
 	}
 }
 
 //my_tournamentName = "ISBT Utrecht 2016"
-var my_EmptyInputBol = ifEmptyValue()
+setIfEmptyInput(ifEmptyInput)
 //log("if emptyInput:", my_EmptyInputBol)
-//log("local testing:", localTesting)
-if(localTesting == true){
+//log("runLocal testing:", sampleData)
+if(sampleData == true){
 	//log("\n...with empty Input:", my_EmptyInputBol)
 }
 function _0getNewLocalData(tournamentID, dataSetNr){
@@ -120,15 +120,17 @@ function _2AgetPoolsRoundsData_LOCAL(){
 			for (p in my_Pools){
 				my_Pools[p].roundsCreated = 0
 				var poolStats = {}
-				poolStats.poolName = my_Pools[p].pool 
+				poolStats.poolName = my_Pools[p].pool
 			}
 			for (var a=0; a < my_Pools.length; a++){
 				myTotTeams = my_Pools[a].totTeams
 				poolStats.totTeams = myTotTeams
 				if (myTotTeams > 0){
 					my_poolsWithTeams.push(my_Pools[a])
+					poolNamesArray.push(my_Pools[a].name)
 				}	
 			}
+			calculatePoolsStats(poolNamesArray)
 			poolStatisticsArray.push(poolStats)
 		} else{
 		noPools = true

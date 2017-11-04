@@ -386,7 +386,7 @@ function getUpcomingMatchesTable(){
 		
 		//adjust ExpectedTime
 		
-		adjustExpectedTimes(allUpcomingMatchInfoObjects, allUMdata)
+		//adjustExpectedTimes()
 		
 		//allUMdata = adjustedExpectedTimes[1]
 	
@@ -460,7 +460,7 @@ function getUpcomingMatchesTable(){
 						{ data: 'UMNr', autoWidth: false, fnCreatedCell: 	function (nTd, sData, oData, iRow, iCol) {
 																$(nTd).css('text-align', 'center')
 															},
-						visible: localTesting },
+						visible: runLocal },
 						{ data: 'poolName', fnCreatedCell: 	function (nTd, sData, oData, iRow, iCol) {
 																//$(nTd).css('border-left', '0.2vw solid #555555')
 																$(nTd).css('border-left', '3px solid #555555')
@@ -563,7 +563,7 @@ function getUpcomingMatchesTable(){
 																}
 															},											
 						visible: showStatusPlayersColumn },
-						{ data: /*'shiftNrExpectedTimeSecs',*/ /*'shiftNrExpectedTimeMins'*/'StdDevExpectedTime'/*my_namedFinalExpectedTimeMins*/, fnCreatedCell: 	function (nTd, sData, oData, iRow, iCol){
+						{ data: /*'shiftNrExpectedTimeSecs',*/ 'shiftNrExpectedTimeMinsStdDev'/*'StdDevExpectedTime'/*my_namedFinalExpectedTimeMins*/, fnCreatedCell: 	function (nTd, sData, oData, iRow, iCol){
 																			$(nTd).css('border-right', '3px solid #555555')
 
 																			//$(nTd).css('width', '60px')
@@ -672,7 +672,7 @@ function getUpcomingMatchesTable(){
 							
 							if(startTab == tabTableContents[1] && timeSinceLastRefreshTime >= reloadDataTimeSecs){
 								//log("start refresh tab UM")
-								if(localTesting == false){
+								if(sampleData == false){
 									$.when(checkForAPIChange())
 									.then(function(){
 										if(ifAPIChangeDetected == true){

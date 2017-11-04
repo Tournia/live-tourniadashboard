@@ -529,7 +529,7 @@ function getCurrentMatchesTable(){
 						//log("change table detected in CM with nr.:", CMclickChange, startTab, timeSinceLastRefreshTime+">=?"+reloadDataTimeSecs)			
 						if(startTab == tabTableContents[0] && timeSinceLastRefreshTime >= reloadDataTimeSecs){
 							//log("in refresh change start tab CM")
-							if(localTesting == false){
+							if(sampleData == false){
 								$.when(checkForAPIChange())
 								.then(function(){
 									if(ifAPIChangeDetected == true){

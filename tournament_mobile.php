@@ -12,7 +12,7 @@
   <script>
 	var ifMobile = true
 	var mobileError = false
-	var localTesting = false
+	var sampleData = false
 	var DEBUG_MODE = true
 	
 	var loadFromUrl = true

@@ -192,7 +192,7 @@ function removeTables(){
 	document.getElementById("currentMatchesLoader").style.display = ""
 	document.getElementById("postponedMatchesLoader").style.display = ""
 	document.getElementById("poolsOverviewLoader").style.display = ""
-	if (localTesting == true){
+	if (sampleData == true){
 		getLocalDataAndMakeLocalTables()
 	} else {
 		getAPIDataAndMakeTables()

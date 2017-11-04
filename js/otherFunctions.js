@@ -236,7 +236,7 @@ function tableInfoLocations(){
 }
 
 function sendTimesLog(){
-  if(sendingDatatoDatabase == true){
+  if(sendingDataToDatabase == true){
 	  //log('sending times log data..')
 	  //log("data to send to database:", UM_loopLogStrings)
 	  var UM_loopLogJSON = JSON.stringify(UM_loopLogStrings)

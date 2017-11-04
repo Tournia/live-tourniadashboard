@@ -418,7 +418,7 @@ function getPostponedMatchesTable(){
 						//log("change table detected in PM with nr.:", PMclickChange)		
 							if(startTab == tabTableContents[2] && timeSinceLastRefreshTime >= reloadDataTimeSecs){
 								//log("start refresh tab PM")
-								if(localTesting == false){
+								if(sampleData == false){
 									$.when(checkForAPIChange())
 									.then(function(){
 										if(ifAPIChangeDetected == true){

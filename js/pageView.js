@@ -2,7 +2,7 @@
 function getTournamentTitleandPageInfo(){
 	log("getting tournament title...")
 	$("#TournamentUrlName").empty()
-	if(localTesting == false){
+	if(sampleData == false){
 		$.getJSON(tournamentInfoUrl, function (tournamentInfo) {
 			my_tournamentInfo = tournamentInfo
 			//log(my_tournamentInfo)
@@ -107,13 +107,18 @@ function createPage(){
 	}
 	
 	/*make tables*/
-	if (localTesting == true){
+	if (sampleData == true){
 		getLocalDataAndMakeLocalTables()
-		simpleTabChangeOnce()
+		if(runLocal == true){
+			simpleTabChangeOnce()
+		}
 	} else {
 		$.when(checkForAPIChange())
 		.then(function(){
 			getAPIDataAndMakeTables()
+			if(runLocal == true){
+				simpleTabChangeOnce()
+			}
 		})
 	}
 
@@ -179,7 +184,7 @@ function setrefreshTablesInterval(){
 			//log("..to:", reloadDataTime/1000,  "secs")
 			reloadDataInterval = setInterval(function(){	
 				//log("in interval table with interval secs:", reloadDataTime)
-				if(localTesting == false){
+				if(sampleData == false){
 					$.when(checkForAPIChange())
 					.then(function(){
 						if(ifAPIChangeDetected == true){

@@ -1,18 +1,34 @@
+//overrule variables
+/*ifMobile variable needs to be defined in tournament.php*/
+
+sampleData = false
+dataTesting = true
+DEBUG_MODE = true
+sendingDataToDatabase = false
+
+dataSetNr = 1 //ISBT Utrecht: 1-4; ISBT Amsterdam 1-9
+	//apply local datasets
+	//isbt Utrecht sample Data
+	var ifEmptyInput = false
+	if(urlData[0] == "utrecht2016" && (isNaN(dataSetNr) == true || dataSetNr < 1 || dataSetNr > 4)){
+		dataSetNr = 1
+			}
+	//isbt amsterdam sample Data
+	if(urlData[0] == "isbt-amsterdam-2017" && (isNaN(dataSetNr) == true || dataSetNr < 1 || dataSetNr > 9)){
+		dataSetNr = 1
+	}
+
 //console.log for testing
 if(typeof(console) === 'undefined') {
    console = {}
 }
-
 if(!DEBUG_MODE || typeof(console.log) === 'undefined') {
    console.log = console.error = console.info = console.debug = console.warn = console.trace = console.dir = console.dirxml = console.group = console.groupEnd = console.time =    console.timeEnd = console.assert = console.profile = function() {};
 }
-
 var log = console.log.bind(console)
 
 var ifMobileConfig = (ifMobile == false)
-
 var my_tournamentInfo
-
 var my_settingsVarsArray = []
 //var my_settingsVarsObject = {}
 var my_defaultVarsObject
@@ -21,6 +37,23 @@ var saveNewSettings = false
 
 var localStorageArray = []
 
+//running from web site or file
+switch(window.location.protocol) {
+   case 'http:':
+	 var runLocal = false
+	 break;
+   case 'https:':
+     var runLocal = false
+     break;
+   case 'file:':
+     var runLocal = true
+     break;
+   default: 
+     var runLocal = false
+}
+if(dataTesting == true){
+	runLocal = true
+}
 //ifReloadTables = true
 shrinkUpcomingsTable = false
 /**Globals and other setup variables **/
@@ -37,7 +70,7 @@ var noPools = false
 var my_pools
 var my_upcomingMatches = {};
 var my_poolInfoTable = []
-
+var poolNamesArray = []
 
 var my_GoogleSheetData = []
 var statusPool = ""
@@ -155,8 +188,9 @@ var completeStartArray = []
 var completeStopArray = []
 var completeStartObjects = []
 var completeStopObjets = []
+var adjustedStringsArray = []
 var firstLoad = true
-var arraycount= 0
+var arraycount = 0
 var allUpcomingMatchInfoObjects = []
 var upcomingMatchInfoObjectsShift
 var rtpObjects = []
@@ -250,33 +284,33 @@ var pauseTime = 5 * 60
 
 
 var inTotCount_UM
-		var shiftNr = 0
-		var prevShiftNr = 0
-		var totUnavailable_UM
-				
-		var inCount_UM
-		var inReadyCount_UM
-		var inPlayCount_UM
-		var unavailable_UM
-		var Playing
+var shiftNr = 0
+var prevShiftNr = 0
+var totUnavailable_UM
 		
-		var inFirstCount_UM
-		var inSecondCount_UM
-		var expectedTimesArray
-		var predictedTimesArray
-		var totalTimesArray
-		var playersPlayingExpectedTimesArray
-		var smallestExpectedTimesArray
-		var shiftStartTime
-		var upcomingMatchInfoObjectsShift
-		var shift1upcomingMatchInfoObjects
-		var ppUpcomingMatchInfoObjects
-		var rtpUpcomingMatchInfoObjects
-		var addIndex
-		var shift1ppCount
-		var altshift2count
-		var altshift2ppCount
-		var shift1rtp
-		var shift1pp
-		var nrOfCourts
-		var freeCourtsAvailable
+var inCount_UM
+var inReadyCount_UM
+var inPlayCount_UM
+var unavailable_UM
+var Playing
+
+var inFirstCount_UM
+var inSecondCount_UM
+var expectedTimesArray
+var predictedTimesArray
+var totalTimesArray
+var playersPlayingExpectedTimesArray
+var smallestExpectedTimesArray
+var shiftStartTime
+var upcomingMatchInfoObjectsShift
+var shift1upcomingMatchInfoObjects
+var ppUpcomingMatchInfoObjects
+var rtpUpcomingMatchInfoObjects
+var addIndex
+var shift1ppCount
+var altshift2count
+var altshift2ppCount
+var shift1rtp
+var shift1pp
+var nrOfCourts
+var freeCourtsAvailable
