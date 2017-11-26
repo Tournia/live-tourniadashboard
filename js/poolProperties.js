@@ -134,7 +134,7 @@ function getPoolProperties(){
 function calculatePoolsStats(poolsArray){
 	var selectedPools = []
 	for (var pn  in poolsArray){
-		var poolName = poolsArray[pn]
+		var poolName = poolsArray[pn].name
 		var selectedPool = findPoolProperties(poolName)
 		selectedPools.push(selectedPool)
 	}

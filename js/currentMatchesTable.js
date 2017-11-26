@@ -63,7 +63,6 @@ function getCurrentMatchesTable(){
 			var namePoolPlaying = my_locationsList[m].pool
 			var poolPropertiesObject = findPoolProperties(namePoolPlaying)
 			singleCMData.poolProperties = poolPropertiesObject
-			
 			if(poolPropertiesObject.altNames[0] == "Average Pool"){
 				var abbrPoolName = namePoolPlaying
 			} else {

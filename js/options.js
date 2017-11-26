@@ -157,6 +157,11 @@ function applyVars() {
 		listFinishedMatchesUrl = tourniaApiUrl + tournament_ID + "/matches/liststatus?_format=json&status=finished&limit=500&startPos=0&sortOrder=ASC"
 		listPlayedMatchesUrl = tourniaApiUrl + tournament_ID + "/matches/liststatus?_format=json&status=played&limit=500&startPos=0&sortOrder=ASC"
 
+		listGroupRankingsUrl = tourniaApiUrl + tournament_ID + "/rankings/groups?_format=json"
+		listPlayersRankingUrl = tourniaApiUrl + tournament_ID + "/rankings/players?_format=json"
+		//listPoolRankingsUrl = tourniaApiUrl + tournament_ID +
+		listPoolWinnersUrl = tourniaApiUrl + tournament_ID + "/rankings/poolwinners?_format=json&ranks=2"
+		
 		//Google sheet review
 		iframe = ""
 		iframe = document.createElement('iframe');

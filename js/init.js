@@ -158,6 +158,41 @@ var timeString = time.toString();
 	if(startSetupWindow == false){
 		createPage()
 	}
+	/*$(".poolSelector").select2({
+		placeholder: 'Select a pool'
+	})*/
+	$("#poolSelector").select2({
+		placeholder: 'Select a pool',
+	})
+	
+	$('#poolSelector').on("select2:select", function(e) { 
+		var my_pool = e.params.data.name
+		var my_poolId = e.params.data.poolId
+		//log(my_pool, my_poolId)
+		removeTable("poolRankingsTable", 3)
+		getPoolRankingsTable(my_pool, my_poolId)
+	});
+	
+	$('#rankingsRadioButtons').change(function(){
+		if(document.getElementById("poRankingsRb").checked == true){
+			document.getElementById("poolRankingsBox").style.display = ""
+			document.getElementById("playersRankingBox").style.display = "none"
+		} else if(document.getElementById("plRankingsRb").checked == true){
+			document.getElementById("poolRankingsBox").style.display = "none"
+			document.getElementById("playersRankingBox").style.display = ""
+		}
+	})
+	document.getElementById("poRankingsRb").checked = true
+	document.getElementById("plRankingsRb").checked = false
+	document.getElementById("poolRankingsBox").style.display = ""
+	document.getElementById("playersRankingBox").style.display = "none"
+	//$("#poolSelector").change(function(){
+		//log("test")
+		//_getPoolRankings()
+		// placeholder: 'Select a pool',
+		// data: poolNamesArray,
+		// debug: true
+	//})
 }) // end of init
 
 

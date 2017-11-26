@@ -127,7 +127,12 @@ function _2AgetPoolsRoundsData_LOCAL(){
 				poolStats.totTeams = myTotTeams
 				if (myTotTeams > 0){
 					my_poolsWithTeams.push(my_Pools[a])
-					poolNamesArray.push(my_Pools[a].name)
+					
+					var newPool = {}
+					
+					newPool.name = my_Pools[a].name
+					newPool.id = my_Pools[a].poolId
+					poolNamesArray.push(newPool)
 				}	
 			}
 			calculatePoolsStats(poolNamesArray)
@@ -326,6 +331,7 @@ function _5CgetPlayedMatchesData_LOCAL(){
 				singlePlayedMatch.my_roundNr =  my_playedMatches[p].round
 				singlePlayedMatch.my_team1NameF = my_playedMatches[p].team1.name
 				singlePlayedMatch.my_team2NameF = my_playedMatches[p].team2.name
+				singlePlayedMatch.my_deltaStartTime = my_playedMatches[p].deltaStartTime
 				//singlePlayedMatch.push(my_Poolname, my_roundNr, my_team1NameF, my_team2NameF)
 				my_listPlayedFinishedMatches.push(singlePlayedMatch)
 			}

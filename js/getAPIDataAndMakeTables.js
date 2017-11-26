@@ -24,18 +24,29 @@ function _1emptyVars(){
 	document.getElementById("currentMatchesLoader").style.display = "" 
 	document.getElementById("upcomingMatchesLoader").style.display = ""
 	document.getElementById("postponedMatchesLoader").style.display = ""
+	if(ifMobile == true){
+		document.getElementById("playedMatchesLoader").style.display = ""
+		document.getElementById("playersRankingLoader").style.display = ""
+	}
 	my_locationsList = []
 	my_playingList = []
 	my_listCurrentMatches = []
+	my_listPlayedFinishedMatches = []
 	my_teamsPlayingReadyPostponed = []
 	myPlannedPoolNames = []
 	my_unavPostponedMatches = []
 	my_poolsWithTeams = []
 	my_GoogleSheetData = []
+	my_listPlayersRanking = []
+	poolRankings = []
+	poolNamesRanked = []
+	poolRankings.push(poolNamesRanked)
+	listPlayers = []
 	
 	allCMdata = []
 	allUMdata = []
 	allPMdata = []
+	allPLMdata = []
 	allPOdata = []
 
 	reloadedData = false
@@ -112,9 +123,31 @@ function _2AgetPoolsRoundsData(){
 				myTotTeams = my_Pools[a].totTeams
 				if (myTotTeams > 0){
 					my_poolsWithTeams.push(my_Pools[a])
-					poolNamesArray.push(my_Pools[a].name)
-				}	
+					
+					var newPool = {}
+					newPool.name = my_Pools[a].name
+					newPool.text = my_Pools[a].name //for pool Rankings dropdown
+					newPool.id =  a
+					newPool.poolId = my_Pools[a].poolId
+					poolNamesArray.push(newPool)
+				}
 			}
+			
+			//var data = []
+			$("#poolSelector").select2({
+				data: poolNamesArray,
+			})
+			getPoolRankingsTable(poolNamesArray[0].name, poolNamesArray[0].poolId)
+			
+			/*for (var op = 0; op < poolNamesArray.length; op++){
+				var newOption = new Option(poolNamesArray[op].text, poolNamesArray[op].id, false, false);
+				$('.poolSelector').append(newOption)
+			}*/
+			
+						
+			/*$(".poolSelector-selected").select2({
+				data: poolNamesArray, 
+			})*/
 			calculatePoolsStats(poolNamesArray)
 		} else{
 		noPools = true
@@ -310,9 +343,11 @@ function _5CgetPlayedMatchesData(){
 				singlePlayedMatch.my_roundNr =  my_playedMatches[p].round
 				singlePlayedMatch.my_team1NameF = my_playedMatches[p].team1.name
 				singlePlayedMatch.my_team2NameF = my_playedMatches[p].team2.name
+				singlePlayedMatch.my_deltaStartTime = my_playedMatches[p].deltaStartTime
 				//singlePlayedMatch.push(my_Poolname, my_roundNr, my_team1NameF, my_team2NameF)
 				my_listPlayedFinishedMatches.push(singlePlayedMatch)
 			}
+			getPlayedMatchesTable()
 		})
 }
 
@@ -337,7 +372,63 @@ function _5DgetFinishedMatchesData(){
 		})
 }
 
-function _6finalConfigurations(){
+function _6AgetplayersRanking(){
+	return $.getJSON(listPlayersRankingUrl, function(json){
+		my_playersRanking = json })
+		.success(function(){
+			for (key in my_playersRanking){
+				var singlePlayerRanking = {}
+					
+				singlePlayerRanking.rank = my_playersRanking[key].rank
+				singlePlayerRanking.playerId = my_playersRanking[key].playerId
+				singlePlayerRanking.name = my_playersRanking[key].name
+				singlePlayerRanking.sumPoints = my_playersRanking[key].sumPoints
+				singlePlayerRanking.nrSets = my_playersRanking[key].nrSets
+				singlePlayerRanking.relative = my_playersRanking[key].relative
+				singlePlayerRanking.gender = my_playersRanking[key].gender
+				
+				if(singlePlayerRanking.gender == "M"){
+					singlePlayerRanking.gender = "Male"
+				} else if(singlePlayerRanking.gender == "F"){
+					singlePlayerRanking.gender = "Female"
+				}
+				
+				my_listPlayersRanking.push(singlePlayerRanking)
+			}
+			getPlayersRankingTable(my_listPlayersRanking)
+		})
+}
+
+function _6BgetGroupRankings(){
+	/*return $.getJSON(listPlayerRankingsUrl, function(json){
+		my_playerRankings = json })
+		.success(function(){})*/
+}
+
+function _6CgetPoolWinners(){
+	/*return $.getJSON(listPoolWinnersUrl, function(json){
+		my_poolWinners = json })
+		.success(function(){
+			log("6dF. Pool Winners:", my_poolWinners)
+			for(var w = 0; w < my_poolWinners.length; w++)
+				var singlepoolWinner = {}
+				
+				singlepoolWinner.my_matchesWon = my_poolWinners[w].matchesWon
+				singlepoolWinner.my_matchesDraw = my_poolWinners[w].matchesDraw
+				singlepoolWinner.my_matchesLost = my_poolWinners[w].matchesLost
+				singlepoolWinner.my_setsWon = my_poolWinners[w].setsWon
+				singlepoolWinner.my_setsLost = my_poolWinners[w].setsLost
+				singlepoolWinner.my_pointsWon = my_poolWinners[w].pointsWon
+				singlepoolWinner.my_pointsLost = my_poolWinners[w].poinsLost
+				singlepoolWinner.my_matchesPlayed = my_poolWinners[w].matchesPlayed
+				singlepoolWinner.my_matchesRelative = my_poolWinners[w].matchesRelative
+				singlepoolWinner.my_matchesPlayed = my_poolWinners[w].matchesRelative
+				singlepoolWinner.my_pointsRelative = my_poolWinners[w].pointsRelative
+				singlepoolWinner.my_rank = my_poolWinners[w].rank
+		})*/
+}
+
+function _7finalConfigurations(){
 	if(my_unavPostponedMatches.length == 0){
 				//log("no unavPost matches")
 				noUnavPostponedMatches = true
@@ -408,10 +499,15 @@ function getAPIDataAndMakeTables(){
 		$.when(_5AgetReadyPostponedFinishedMatchesData(), _5BgetPostponedMatchesData(), _5CgetPlayedMatchesData(), _5DgetFinishedMatchesData())
 		.then(function(){
 			//log("finished requests 5")
+		}),
+		
+		$.when(_6AgetplayersRanking(), /*_6BgetGroupRankings(), _6CgetPoolWinners()*/)
+		.then(function(){
+			//log("finished requests 6")
 		})
 
 	).then(function(){
-		_6finalConfigurations()
+		_7finalConfigurations()
 		reloadedData = true
 		reloadDataCount += 1;
 		makeTables()
