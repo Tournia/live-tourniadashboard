@@ -146,24 +146,32 @@ function _2AgetPoolsRoundsData_LOCAL(){
 function _2BgetAllMatchesData_LOCAL(){
 	//log("2bS. in get matches")
 	//return $.getJSON(listMatchesUrl, function(matches){
-		my_matches = my_matches_LOCAL //})
+		my_matchesRaw = my_matches_LOCAL
 	//.success(function(){
-		delete my_matches.iTotalDisplayRecords
-		delete my_matches.iTotalRecords
-		delete my_matches.sEcho
+		delete my_matchesRaw.iTotalDisplayRecords
+		delete my_matchesRaw.iTotalRecords
+		delete my_matchesRaw.sEcho
 		//log("2bF. all matches:", my_matches)
-		for (l in my_matches){
-			//////////log(my_matches[l], "length:", my_matches[l].length)
-			for (m in my_matches[l]){
-				var my_poolName = my_matches[l][m].pool
-				var my_roundNrFString = my_matches[l][m].round
-				var my_roundNrStr = my_roundNrFString.split(" ")
-				my_roundNrLastStr = my_roundNrStr.pop() 
-				var my_roundNr = Number(my_roundNrLastStr)
-				//////////log(my_poolName+":", my_roundNr)
-				my_nrofRoundsPerPool[my_poolName] = my_roundNr
-			}
-		//////////log(my_nrofRoundsPerPool)
+		my_matches = my_matchesRaw.aaData
+		//////////log(my_matches[l], "length:", my_matches[l].length)
+		for (m in my_matchesRaw){
+			var my_poolName = my_matches[m].pool
+			var my_roundNrFString = my_matches[m].round
+			
+			var my_roundNrStr = my_roundNrFString.split(" ")
+			my_roundNrLastStr = my_roundNrStr.pop() 
+			var my_roundNr = Number(my_roundNrLastStr)
+			//////////log(my_poolName+":", my_roundNr)
+			my_nrofRoundsPerPool[my_poolName] = my_roundNr
+			
+			var DT_RowId =  my_matches[m].DT_RowId
+			var DT_RowId1 = DT_RowId.split("-")
+			my_matches[l][m].DT_RowId = Number(DT_RowId1[1])
+			
+			var localId = my_matches[m].localId
+			var my_localId1 = localId.split("\'\)\">")
+			var my_localId2 = my_localId1[1].split("</a>")
+			my_matches[m].localId = Number(my_localId2[0])
 		}
 		//log("2. all matches loaded")
 		//log("2. done with pools with teams", my_poolsWithTeams)		

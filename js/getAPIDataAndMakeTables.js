@@ -1,7 +1,7 @@
 function checkForAPIChange(){
 	//log("detecting if there is change...")
 	return $.getJSON(updatesDetectorUrl, function (data) {
-	updateData = data })
+		updateData = data })
 	.success(function(){
 		updateCount = updateData.lastUpdateId
 		//log(updateCount, prevUpdateCount)
@@ -48,6 +48,7 @@ function _1emptyVars(){
 	allPMdata = []
 	allPLMdata = []
 	allPOdata = []
+	allPLAdata = []
 
 	reloadedData = false
 	dataRefreshCount = 0
@@ -111,7 +112,7 @@ function _2AgetPoolsRoundsData(){
 	//log("2aS. in get pools")
 	my_Pools = []
 	return $.getJSON(poolsUrl, function (pools) {
-	my_Pools = pools })
+		my_Pools = pools })
 	.success(function(){
 		//log("2aF. all pools:", my_Pools)
 		if(my_Pools.length > 0){
@@ -158,26 +159,35 @@ function _2AgetPoolsRoundsData(){
 function _2BgetAllMatchesData(){
 	//log("2bS. in get matches")
 	return $.getJSON(listMatchesUrl, function(matches){
-		my_matches = matches})
+		my_matchesRaw = matches})
 	.success(function(){
-		delete my_matches.iTotalDisplayRecords
-		delete my_matches.iTotalRecords
-		delete my_matches.sEcho
+		delete my_matchesRaw.iTotalDisplayRecords
+		delete my_matchesRaw.iTotalRecords
+		delete my_matchesRaw.sEcho
 		//log("2bF. all matches:", my_matches)
-		for (l in my_matches){
-			//////////log(my_matches[l], "length:", my_matches[l].length)
-			for (m in my_matches[l]){
-				var my_poolName = my_matches[l][m].pool
-				var my_roundNrFString = my_matches[l][m].round
-				
-				var my_roundNrStr = my_roundNrFString.split(" ")
-				my_roundNrLastStr = my_roundNrStr.pop() 
-				var my_roundNr = Number(my_roundNrLastStr)
-				//////////log(my_poolName+":", my_roundNr)
-				my_nrofRoundsPerPool[my_poolName] = my_roundNr
-			}
-		//////////log(my_nrofRoundsPerPool)
+		my_matches = my_matchesRaw.aaData
+		//////////log(my_matches[l], "length:", my_matches[l].length)
+		for (m in my_matches){
+			var my_poolName = my_matches[m].pool
+			var my_roundNrFString = my_matches[m].round
+			
+			var my_roundNrStr = my_roundNrFString.split(" ")
+			my_roundNrLastStr = my_roundNrStr.pop() 
+			var my_roundNr = Number(my_roundNrLastStr)
+			//////////log(my_poolName+":", my_roundNr)
+			my_nrofRoundsPerPool[my_poolName] = my_roundNr
+			
+			var DT_RowId =  my_matches[m].DT_RowId
+			var DT_RowId1 = DT_RowId.split("-")
+			my_matches[m].DT_RowId = Number(DT_RowId1[1])
+			
+			var localId = my_matches[m].localId
+			var my_localId1 = localId.split("\'\)\">")
+			var my_localId2 = my_localId1[1].split("</a>")
+			my_matches[m].localId = Number(my_localId2[0])
 		}
+		//////////log(my_nrofRoundsPerPool)
+		getPlayersTable("none")
 		//log("2. all matches loaded")
 		//log("2. done with pools with teams", my_poolsWithTeams)		
 	})
@@ -256,7 +266,7 @@ function _4BgetListCurrentMatchesData(){
 function _5AgetReadyPostponedFinishedMatchesData(){
 	//log("5aS. in get readypostponedFinished")
 	return $.getJSON(listReadyMatchesUrl, function(json){
-		my_upcomingMatches = json })
+			my_upcomingMatches = json })
 		.success(function(){
 			//log("5aF. Ready matches:", my_upcomingMatches)	
 			if(my_upcomingMatches.length == 0){
@@ -312,7 +322,7 @@ function _5AgetReadyPostponedFinishedMatchesData(){
 function _5BgetPostponedMatchesData(){
 	//log("5bS.in get postponed")
 	return $.getJSON(listPostponedMatchesUrl, function(json){
-				my_PostponedUpcomingMatches = json })
+			my_PostponedUpcomingMatches = json })
 		.success(function(){
 			//log("5bF. Postponed matches:", my_PostponedUpcomingMatches)
 			if(my_PostponedUpcomingMatches.length > 0){
@@ -332,7 +342,7 @@ function _5BgetPostponedMatchesData(){
 function _5CgetPlayedMatchesData(){
 	//log("5cS. in get Played")
 	return $.getJSON(listPlayedMatchesUrl, function(json){
-		my_playedMatches = json })
+			my_playedMatches = json })
 		.success(function(){
 			//log("5cF. Played matches:", my_playedMatches)
 			
@@ -354,7 +364,7 @@ function _5CgetPlayedMatchesData(){
 function _5DgetFinishedMatchesData(){
 	//log("5dS. in get Finished")
 	return $.getJSON(listFinishedMatchesUrl, function(json){
-		my_finishedMatches = json })
+			my_finishedMatches = json })
 		.success(function(){
 			//log("5dF. Finished matches:", my_finishedMatches)
 			
@@ -374,7 +384,7 @@ function _5DgetFinishedMatchesData(){
 
 function _6AgetplayersRanking(){
 	return $.getJSON(listPlayersRankingUrl, function(json){
-		my_playersRanking = json })
+			my_playersRanking = json })
 		.success(function(){
 			for (key in my_playersRanking){
 				var singlePlayerRanking = {}
