@@ -182,6 +182,14 @@ var timeString = time.toString();
 			document.getElementById("playersRankingBox").style.display = ""
 		}
 	})
+	
+	$('#playerSelector').on("select2:select", function(e) { 
+		var my_player = e.params.data.name
+		//log(my_pool, my_poolId)
+		removeTable("playersTable", 2)
+		getPlayersTable(my_player)
+	});
+	
 	document.getElementById("poRankingsRb").checked = true
 	document.getElementById("plRankingsRb").checked = false
 	document.getElementById("poolRankingsBox").style.display = ""

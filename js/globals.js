@@ -1,10 +1,12 @@
 //overrule variables
 /*ifMobile variable needs to be defined in tournament.php*/
 
-sampleData = false //load dat afrom online database or local sample data sets
-dataTesting = true //always show upcoming matches table for expected time script
+sampleData = false //load data from online database or local sample data sets
+dataTesting = true //always show upcoming matches table for expected time script testing
 DEBUG_MODE = true //show console log or not
 sendingDataToDatabase = false
+
+disableExpectedTimes = true //enable or disable expected Times script
 
 dataSetNr = 1 //ISBT Utrecht: 1-4; ISBT Amsterdam 1-9
 	//apply local datasets
@@ -183,6 +185,7 @@ var my_listCurrentMatches = []
 var my_listPlayedFinishedMatches = []
 var my_unavPostponedMatches = [] //matches with postponed players and postponed matches 
 var	my_poolsWithTeams = []
+var my_matchesRaw
 var my_matches
 var my_nrofRoundsPerPool = {}
 var my_listPlayersRanking = []
@@ -218,6 +221,7 @@ var allPLMdata
 
 var allPOdata
 var allPRdata
+var allPLAdata
 
 var CMclickChange = 0
 var UMclickChange = 0

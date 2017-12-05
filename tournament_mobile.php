@@ -16,6 +16,8 @@
 	var mobileError = false
 	var DEBUG_MODE = true
 	
+	var disableExpectedTimes = false
+	
 	var loadFromUrl = true
 	var loadFromSetupWindow = false
 	var viewChange = false
@@ -139,6 +141,7 @@
  <script src="js/paginationFunctions.js"></script>
  <script src="js/poolRankingsTable.js"></script>
  <script src="js/playersRankingTable.js"></script>
+ <script src="js/playersTable.js"></script>
  <script src="js/getAPIDataAndMakeTables.js"></script>
  <script src="js/localSampleData.js"></script>
  <script src="js/getAPIDataAndMakeTables_LOCAL.js"></script>
@@ -273,39 +276,40 @@
 <body>
 <div id="parent">
 	<div data-role="page" id="currentMatches">
-	  <div id="TournamentUrlName1" class="TournamentUrlName"></div>
-	  <div data-role="main" class="ui-content">
-		<div id="currentMatchesBox">
-			<table id="currentMatchesTable" class="display" width="100%">
-				<thead id="my_CMtHead">
-					<tr>
-						<td colspan="7" class="tableHeaders">Current matches</td>
-					</tr>
-					<tr>
-						<th class="courtColumn" >Court</th>
-						<th class="poolColumn" >Pool</th>
-						<th class="teamColumn" >Team 1</th>
-						<th class="vsColumn" ></th>
-						<th class="teamColumn" >Team 2</th>
-						<th id="alreadyplayingTimeColumn" class="playingTimeColumn" >Playing already</th>
-						<th id="predictedTimeColumn" class="predictedTimeColumn" >Predicted remaining time*</th>
-					</tr>
-				</thead>
-			</table>
-			<div id="CM_notes" class="note">*Remaing times are based on average match durations per pool of 4 previous editions of ISBT Utrecht.</div>
-			<div id="currentMatchesLoader" class="loader" style="display: none"></div>
+		<div id="TournamentUrlName1" class="TournamentUrlName"></div>
+		<div data-role="main" class="ui-content">
+			<div id="currentMatchesBox">
+				<table id="currentMatchesTable" class="display" width="100%">
+					<thead id="my_CMtHead">
+						<tr>
+							<td colspan="7" class="tableHeaders">Current matches</td>
+						</tr>
+						<tr>
+							<th class="courtColumn" >Court</th>
+							<th class="poolColumn" >Pool</th>
+							<th class="teamColumn" >Team 1</th>
+							<th class="vsColumn" ></th>
+							<th class="teamColumn" >Team 2</th>
+							<th id="alreadyplayingTimeColumn" class="playingTimeColumn" >Playing already</th>
+							<th id="predictedTimeColumn" class="predictedTimeColumn" >Predicted remaining time*</th>
+						</tr>
+					</thead>
+				</table>
+				<div id="CM_notes" class="note">*Remaing times are based on average match durations per pool of 4 previous editions of ISBT Utrecht.</div>
+				<div id="currentMatchesLoader" class="loader" style="display: none"></div>
+			</div>
 		</div>
-	  </div>
-	  <div class="footer" data-role="footer">
-		<div data-role="navbar">
-		  <ul>
-			<li><a href="#currentMatches" class="ui-btn-active ui-state-persist navbar-button">Current matches</a></li>
-			<li><a href="#upcomingMatches" class="navbar-button">Upcoming matches</a></li>
-			<li><a href="#postponedMatches" class="navbar-button">Postponed matches</a></li>
-			<li><a href="#overviewPools" class="navbar-button">Pools overview</a></li>
-			<li><a href="#overviewResults" class="navbar-button">Rankings</a></li>		  </ul>
+		<div class="footer" data-role="footer">
+			<div data-role="navbar">
+			<ul>
+				<li><a href="#currentMatches" class="ui-btn-active ui-state-persist navbar-button">Current matches</a></li>
+				<li><a href="#upcomingMatches" class="navbar-button">Upcoming matches</a></li>
+				<li><a href="#postponedMatches" class="navbar-button">Postponed matches</a></li>
+				<li><a href="#overviewPools" class="navbar-button">Pools overview</a></li>
+				<li><a href="#overviewResults" class="navbar-button">Rankings</a></li>
+			</ul>
+			</div>
 		</div>
-	  </div>
 	</div>
 	
 	<div data-role="page" id="upcomingMatches">
@@ -344,231 +348,222 @@
 	  </div>
 	   <div class="footer" data-role="footer">
 		<div data-role="navbar">
-		  <ul>
-			<li><a href="#currentMatches" class="navbar-button">Current matches</a></li>
-			<li><a href="#upcomingMatches" class="ui-btn-active ui-state-persist navbar-button">Upcoming matches</a></li>
-			<li><a href="#postponedMatches" class="navbar-button">Postponed matches</a></li>
-			<li><a href="#overviewPools" class="navbar-button">Pools overview</a></li>
-			<li><a href="#overviewResults" class="navbar-button">Rankings</a></li>		  </ul>
+			<ul>
+				<li><a href="#currentMatches" class="navbar-button">Current matches</a></li>
+				<li><a href="#upcomingMatches" class="ui-btn-active ui-state-persist navbar-button">Upcoming matches</a></li>
+				<li><a href="#postponedMatches" class="navbar-button">Postponed matches</a></li>
+				<li><a href="#overviewPools" class="navbar-button">Pools overview</a></li>
+				<li><a href="#overviewResults" class="navbar-button">Rankings</a></li>
+			</ul>
 		</div>
 	  </div>
 	</div>
 
 	
 	<div data-role="page" id="postponedMatches">
-	  <div id="TournamentUrlName3" class="TournamentUrlName"></div>
-	  <div data-role="main" class="ui-content">
-		<div id="postponedMatchesBox">
-			<table id = "postponedMatchesTable" class="display" width="100%">
-				<thead id="my_PMtHead">
-					<tr>
-						<td colspan="9" class="tableHeaders">Postponed matches</td>
-					</tr>
-					<tr>
-						<th class="vsColumn" rowspan='2'>Match nr.</th>
-						<th class="poolColumn" rowspan='2'>Pool</th>
-						<th colspan="2" class ="teamColumn">Team 1</th>
-						<th class="vsColumn" rowspan='2'></th>
-						<th colspan="2" class ="teamColumn">Team 2</th>
-						<th id ="PplayerStatusColumnPM" class="statusColumn" rowspan='2'>Status</th>
-						<th id="reasonColumn" class="expectedTimeColumn" rowspan='2'>Comment</th>
-					</tr>
-					<tr>
-						<th class="showNone" style="display: none"></th>
-						<th class="showNone" style="display: none"></th>
-						<th class="showNone" style="display: none"></th>
-						<th class="showNone" style="display: none"></th>
-						<th class="showNone" style="display: none"></th>
-					</tr>
-				</thead>
-			</table>
-			<div id="postponedMatchesLoader" class="loader" style="display: none"></div>
+		<div id="TournamentUrlName3" class="TournamentUrlName"></div>
+		<div data-role="main" class="ui-content">
+			<div id="postponedMatchesBox">
+				<table id = "postponedMatchesTable" class="display" width="100%">
+					<thead id="my_PMtHead">
+						<tr>
+							<td colspan="9" class="tableHeaders">Postponed matches</td>
+						</tr>
+						<tr>
+							<th class="vsColumn" rowspan='2'>Match nr.</th>
+							<th class="poolColumn" rowspan='2'>Pool</th>
+							<th colspan="2" class ="teamColumn">Team 1</th>
+							<th class="vsColumn" rowspan='2'></th>
+							<th colspan="2" class ="teamColumn">Team 2</th>
+							<th id ="PplayerStatusColumnPM" class="statusColumn" rowspan='2'>Status</th>
+							<th id="reasonColumn" class="expectedTimeColumn" rowspan='2'>Comment</th>
+						</tr>
+						<tr>
+							<th class="showNone" style="display: none"></th>
+							<th class="showNone" style="display: none"></th>
+							<th class="showNone" style="display: none"></th>
+							<th class="showNone" style="display: none"></th>
+							<th class="showNone" style="display: none"></th>
+						</tr>
+					</thead>
+				</table>
+				<div id="postponedMatchesLoader" class="loader" style="display: none"></div>
+			</div>
 		</div>
-	  </div>
-	  <div class="footer" data-role="footer">
-		<div data-role="navbar">
-		  <ul>
-			<li><a href="#currentMatches" class="navbar-button">Current matches</a></li>
-			<li><a href="#upcomingMatches" class="navbar-button">Upcoming matches</a></li>
-			<li><a href="#postponedMatches" class="ui-btn-active ui-state-persist navbar-button">Postponed matches</a></li>
-			<li><a href="#overviewPools" class="navbar-button">Pools overview</a></li>
-			<li><a href="#overviewResults" class="navbar-button">Rankings</a></li>		  
-		  </ul>
+		<div class="footer" data-role="footer">
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#currentMatches" class="navbar-button">Current matches</a></li>
+					<li><a href="#upcomingMatches" class="navbar-button">Upcoming matches</a></li>
+					<li><a href="#postponedMatches" class="ui-btn-active ui-state-persist navbar-button">Postponed matches</a></li>
+					<li><a href="#overviewPools" class="navbar-button">Pools overview</a></li>
+					<li><a href="#overviewResults" class="navbar-button">Rankings</a></li>		  
+				</ul>
+			</div>
 		</div>
-	  </div>
 	</div>
 
 	<div data-role="page" id="overviewPools">
-	  <div id="TournamentUrlName4" class="TournamentUrlName"></div>
-	  <div data-role="main" class="ui-content">
-		<div id="OverviewRoundsBox">
-			<table id="poolsOverviewTable" class="display" width="100%">
-				<thead id="my_POtHead">
-					<tr>
-						<td colspan="7" class="tableHeaders">Pools overview</td>
-					</tr>
-					<tr>
-						<th id="poolColumn" class="poolColumn">Pool</th>
-						<th id="totTeamsColumn" class="totTeamsColumn">Nr. of teams</th>
-						<th id ="roundsNeededColumn" class="roundsNeededColumn">Rounds needed</th>
-						<th id="roundsCreatedColumn" class="roundsCreatedColumn">Rounds so far</th>
-						<th id ="roundsLeftColumn" class="roundsLeftColumn">Rounds left</th>
-						<th id="statusColumn" class="statusColumn">Status</th>
-						<th id="byeColumn" class="byeColumn">Not playing in current/planned round</th>
-					</tr>
-				</thead>
-			</table>
-			<div id="poolsOverviewLoader" class="loader" style="display: none"></div> 
+		<div id="TournamentUrlName4" class="TournamentUrlName"></div>
+		<div data-role="main" class="ui-content">
+			<div id="OverviewRoundsBox">
+				<table id="poolsOverviewTable" class="display" width="100%">
+					<thead id="my_POtHead">
+						<tr>
+							<td colspan="7" class="tableHeaders">Pools overview</td>
+						</tr>
+						<tr>
+							<th id="poolColumn" class="poolColumn">Pool</th>
+							<th id="totTeamsColumn" class="totTeamsColumn">Nr. of teams</th>
+							<th id ="roundsNeededColumn" class="roundsNeededColumn">Rounds needed</th>
+							<th id="roundsCreatedColumn" class="roundsCreatedColumn">Rounds so far</th>
+							<th id ="roundsLeftColumn" class="roundsLeftColumn">Rounds left</th>
+							<th id="statusColumn" class="statusColumn">Status</th>
+							<th id="byeColumn" class="byeColumn">Not playing in current/planned round</th>
+						</tr>
+					</thead>
+				</table>
+				<div id="poolsOverviewLoader" class="loader" style="display: none"></div> 
+			</div>
 		</div>
-	  </div>
-	  <div class="footer" data-role="footer">
-		<div data-role="navbar">
-		  <ul>
-			<li><a href="#currentMatches" class="navbar-button">Current matches</a></li>
-			<li><a href="#upcomingMatches" class="navbar-button">Upcoming matches</a></li>
-			<li><a href="#postponedMatches" class="navbar-button">Postponed matches</a></li>
-			<li><a href="#overviewPools" class="ui-btn-active ui-state-persist navbar-button">Pools overview</a></li>
-			<li><a href="#overviewResults" class="navbar-button">Rankings</a></li>
-		  </ul>
+		<div class="footer" data-role="footer">
+			<div data-role="navbar">
+			  <ul>
+				<li><a href="#currentMatches" class="navbar-button">Current matches</a></li>
+				<li><a href="#upcomingMatches" class="navbar-button">Upcoming matches</a></li>
+				<li><a href="#postponedMatches" class="navbar-button">Postponed matches</a></li>
+				<li><a href="#overviewPools" class="ui-btn-active ui-state-persist navbar-button">Pools overview</a></li>
+				<li><a href="#overviewResults" class="navbar-button">Rankings</a></li>
+			  </ul>
+			</div>
 		</div>
-	  </div>
 	</div>
 	<div data-role="page" id="overviewResults">
-		  <div data-role="main" class="ui-content">
-			  <div id="TournamentUrlName5" class="TournamentUrlName"></div>
-					<div id="resultsRankingsPages">
-						<div id="resultsRankingsTabs" class="tab">
-							<button id="matchResultsTab" class="tablinks" onclick="openTab(event, 'matchResultsBox')">Results</button>
-							<button id="poolRankingsTab" class="tablinks" onclick="openTab(event, 'rankingsBox')">Rankings</button>
-							<button id="playerRankingsTab" class="tablinks" onclick="openTab(event, 'playersBox')">Players</button>
-						</div>
+		<div data-role="main" class="ui-content">
+			<div id="TournamentUrlName5" class="TournamentUrlName"></div>
+			<div id="resultsRankingsPages">
+				<div id="resultsRankingsTabs" class="tab">
+					<button id="matchResultsTab" class="tablinks" onclick="openTab(event, 'matchResultsBox')">Results</button>
+					<button id="poolRankingsTab" class="tablinks" onclick="openTab(event, 'rankingsBox')">Rankings</button>
+					<button id="playerRankingsTab" class="tablinks" onclick="openTab(event, 'playersBox')">Players</button>
+				</div>
 
-						<div id="matchResultsBox" class="tabcontent">
-							<h3>Match Results</h3>
-							<table id = "playedMatchesTable" class="display" width="100%">
-								<thead id="my_MRtHead">
+				<div id="matchResultsBox" class="tabcontent">
+					<h3>Match Results</h3>
+					<table id = "playedMatchesTable" class="display" width="100%">
+						<thead id="my_MRtHead">
+							<tr>
+								<td colspan="8" class="tableHeaders">Results</td>
+							</tr>
+							<tr>
+								<th class="vsColumn" rowspan='2' >Unr.</th>
+								<th class="poolColumn" rowspan='2'>Pool</th>
+								<th colspan="2" class ="teamColumn">Team 1</th>
+								<th class="vsColumn" rowspan='2'></th>
+								<th colspan="2" class ="teamColumn">Team 2</th>
+								<th id ="scores" class="statusColumn" rowspan='2'>Scores</th>
+							</tr>
+							<tr>
+								<th class="showNone" style="display: none"></th>
+								<th class="showNone" style="display: none"></th>
+								<th class="showNone" style="display: none"></th>
+								<th class="showNone" style="display: none"></th>
+								<th class="showNone" style="display: none"></th>
+							</tr>
+						</thead>
+					</table>
+					<div id="playedMatchesLoader" class="loader" style="display: none"></div>
+				</div>
+
+				<div id="rankingsBox" class="tabcontent">
+					<id id="rankingsRadioButtons">
+						<input type="radio" name="rankings" id="poRankingsRb" value="pool">Pool Rankings<br>
+						<input type="radio" name="rankings" id="plRankingsRb" value="players">Player Ranking
+					</id>
+					<div id="poolRankingsBox">
+						<div id="poolNameC">
+							<div id="poolNameText">Pool name:
+								<select id="poolSelector" data-role="none"></select>
+							</div>
+							<div id="PoolName"></div>
+						</div>
+						<table id="poolRankingsTable" class="display" width="100%">
+							<thead id="my_PRtHead">
+								<tr>
+									<td colspan="13" class="tableHeaders">Pool Rankings</td>
+								</tr>
+									<th id="rankColumn" rowspan="2" class="rankColumn">Rank</th>
+									<th id="PlayersCol" rowspan="2" class="PlayersCol">Players</th>
+									<th colspan="5" id="sCol" class="sCol">Matches</th>
+									<th colspan="3" id="sCol" class="sCol">Sets</th>
+									<th colspan="3" id="pCol" class="pCol">Points</th>
+								</tr>
+								<tr>
+									<!--<th colspan="2" id="empty" class="empty"></th>-->
+									<th id="mPlayedCol" class="mPlayedCol">Played</th>
+									<th id="mWonCol" class="mWonCol">Won</th>
+									<th id="mDrawCol" class="mDrawCol">Draw</th>
+									<th id="mLostCol" class="mLostCol">Lost</th>
+									<th id="mRelativeCol" class="mRelative">Relative</th>
+									<th id="sWonCol" class="sWonCol">Won</th>
+									<th id="sLostCol" class="sLostCol">Lost</th>
+									<th id="sRelativeCol" class="sRelative">Relative</th>
+									<th id="pWonCol" class="pWonCol">Won</th>
+									<th id="pLostCol" class="pLostCol">Lost</th>
+									<th id="pRelativeCol" class="pRelative">Relative</th>
+								</tr>
+							</thead>
+						</table>
+						<div id="poolRankingsLoader" class="loader" style="display: none"></div> 
+					</div>
+					<div id="playersRankingBox" style="display:none">
+						<table id="playersRankingTable" class="display" width="100%">
+							<thead id="my_PLRtHead">
+								<tr>
+									<td colspan="13" class="tableHeaders">Players Ranking</td>
+								</tr>
+								<tr>
+									<th id="playerRankColumn" class="playerRankColumn">Rank</th>
+									<th id="PlayerNameCol" class="PlayerNameCol">Player</th>
+									<th id="APCol" class="APCol">Average points</th>
+									<th id="TPCol" class="TPCol">Total points</th>
+									<th id="setsCol" class="setsCol">Sets</th>
+									<th id="gCol" class="gCol">Gender</th>
+								</tr>
+							</thead>
+							<div id="playersRankingLoader" class="loader" style="display: none"></div> 
+						</table>
+					</div>
+				</div>
+				<div id="playersBox" class="tabcontent">
+					<h3>Players</h3>
+						<div id="playerSelectorBox">
+							<select id="playerSelector" data-role="none">
+								<option></option>
+							</select>
+						</div>
+						<div id="playersTableBox">
+							<table id="playersTable" class="display" width="100%">
+								<thead id="my_PLAtHead">
 									<tr>
-										<td colspan="8" class="tableHeaders">Results</td>
+										<td colspan="8" class="tableHeaders">Players</td>
 									</tr>
 									<tr>
-										<th class="vsColumn" rowspan='2' >Unr.</th>
-										<th class="poolColumn" rowspan='2'>Pool</th>
-										<th colspan="2" class ="teamColumn">Team 1</th>
-										<th class="vsColumn" rowspan='2'></th>
-										<th colspan="2" class ="teamColumn">Team 2</th>
-										<th id ="scores" class="statusColumn" rowspan='2'>Scores</th>
-									</tr>
-									<tr>
-										<th class="showNone" style="display: none"></th>
-										<th class="showNone" style="display: none"></th>
-										<th class="showNone" style="display: none"></th>
-										<th class="showNone" style="display: none"></th>
-										<th class="showNone" style="display: none"></th>
+										<th class="vsColumn">Match nr.</th>
+										<th class="teamColumn">Team 1</th>
+										<th class="vsColumn"></th>
+										<th class="teamColumn">Team 2</th>
+										<th class="poolColumn">Pool</th>
+										<th class="poolColumn">Round</th>
+										<th class="expectedTimeColumn">Score</th>
+										<th class="statusColumn">Status</th>	
 									</tr>
 								</thead>
 							</table>
-							<div id="playedMatchesLoader" class="loader" style="display: none"></div>
 						</div>
-
-						<div id="rankingsBox" class="tabcontent">
-							<id id="rankingsRadioButtons">
-								<input type="radio" name="rankings" id="poRankingsRb" value="pool">Pool Rankings<br>
-								<input type="radio" name="rankings" id="plRankingsRb" value="players">Player Ranking
-							</id>
-							<div id="poolRankingsBox">
-								<div id="poolNameC">
-									<div id="poolNameText">Pool name:
-										<select id="poolSelector" data-role="none"></select>
-									</div>
-									<div id="PoolName"></div>
-								</div>
-								<table id="poolRankingsTable" class="display" width="100%">
-									<thead id="my_PRtHead">
-										<tr>
-											<td colspan="13" class="tableHeaders">Pool Rankings</td>
-										</tr>
-											<th id="rankColumn" rowspan="2" class="rankColumn">Rank</th>
-											<th id="PlayersCol" rowspan="2" class="PlayersCol">Players</th>
-											<th colspan="5" id="sCol" class="sCol">Matches</th>
-											<th colspan="3" id="sCol" class="sCol">Sets</th>
-											<th colspan="3" id="pCol" class="pCol">Points</th>
-										</tr>
-										<tr>
-											<!--<th colspan="2" id="empty" class="empty"></th>-->
-											<th id="mPlayedCol" class="mPlayedCol">Played</th>
-											<th id="mWonCol" class="mWonCol">Won</th>
-											<th id="mDrawCol" class="mDrawCol">Draw</th>
-											<th id="mLostCol" class="mLostCol">Lost</th>
-											<th id="mRelativeCol" class="mRelative">Relative</th>
-											<th id="sWonCol" class="sWonCol">Won</th>
-											<th id="sLostCol" class="sLostCol">Lost</th>
-											<th id="sRelativeCol" class="sRelative">Relative</th>
-											<th id="pWonCol" class="pWonCol">Won</th>
-											<th id="pLostCol" class="pLostCol">Lost</th>
-											<th id="pRelativeCol" class="pRelative">Relative</th>
-										</tr>
-									</thead>
-								</table>
-								<div id="poolRankingsLoader" class="loader" style="display: none"></div> 
-							</div>
-							<div id="playersRankingBox" style="display:none">
-								<table id="playersRankingTable" class="display" width="100%">
-									<thead id="my_PLtHead">
-										<tr>
-											<td colspan="13" class="tableHeaders">Players Ranking</td>
-										</tr>
-										<tr>
-											<th id="playerRankColumn" class="playerRankColumn">Rank</th>
-											<th id="PlayerNameCol" class="PlayerNameCol">Player</th>
-											<th id="APCol" class="APCol">Average points</th>
-											<th id="TPCol" class="TPCol">Total points</th>
-											<th id="setsCol" class="setsCol">Sets</th>
-											<th id="gCol" class="gCol">Gender</th>
-										</tr>
-									</thead>
-									<div id="playersRankingLoader" class="loader" style="display: none"></div> 
-								</table>
-							</div>
-						</div>
-						<div id="playersBox" class="tabcontent">
-							<h3>Players</h3>
-								<div id="playerSelectorBox">
-									<select id="playerSelector" data-role="none">
-										<option></option>
-									</select>
-								</div>
-								<div id="playersTableBox">
-									<table id="playersTable" class="display" width="100%">
-										<thead id="my_PltHead">
-											<tr>
-												<td colspan="13" class="tableHeaders">Players</td>
-											</tr>
-												<th id="rankColumn" rowspan="2" class="rankColumn">Rank</th>
-												<th id="PlayersCol" rowspan="2" class="PlayersCol">Players</th>
-												<th colspan="5" id="sCol" class="sCol">Matches</th>
-												<th colspan="3" id="sCol" class="sCol">Sets</th>
-												<th colspan="3" id="pCol" class="pCol">Points</th>
-											</tr>
-											<tr>
-												<!--<th colspan="2" id="empty" class="empty"></th>-->
-												<th id="mPlayedCol" class="mPlayedCol">Played</th>
-												<th id="mWonCol" class="mWonCol">Won</th>
-												<th id="mDrawCol" class="mDrawCol">Draw</th>
-												<th id="mLostCol" class="mLostCol">Lost</th>
-												<th id="mRelativeCol" class="mRelative">Relative</th>
-												<th id="sWonCol" class="sWonCol">Won</th>
-												<th id="sLostCol" class="sLostCol">Lost</th>
-												<th id="sRelativeCol" class="sRelative">Relative</th>
-												<th id="pWonCol" class="pWonCol">Won</th>
-												<th id="pLostCol" class="pLostCol">Lost</th>
-												<th id="pRelativeCol" class="pRelative">Relative</th>
-											</tr>
-										</thead>
-									</table>
-								</div>
-							<div id="playersLoader" class="loader" style="display: none"></div>
-						</div>
-					</div>
+					<div id="playersLoader" class="loader" style="display: none"></div>
+				</div>
+			</div>
 		</div>
 		<div class="footer" data-role="footer">
 			<div data-role="navbar">
