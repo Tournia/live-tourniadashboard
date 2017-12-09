@@ -12,7 +12,7 @@
 	var DEBUG_MODE
 	var sendingDataToDatabase
 	
-	var ifMobile = true
+	var ifMobile = false //set to true if you want to work only in the mobile pages
 	
 	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || ifMobile == true) {
 		var ifMobile = true		

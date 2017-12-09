@@ -10,19 +10,19 @@ function getPoolRankingsTable(pool, poolId){
 	} catch (err){
 		////log(err)		
 	}
-	var poolSelector = $('#select2-poolSelector-container').val()
+	var poolSelector = $('#select2-poolSelector-container').value
 	if(noPools == true){
 		var PRrow_id = 0
 		tr = $('<tr id=' + PRrow_id + '/>');
 		tr.append("<td colspan='18' class='noUpcomingMatchesRow'>" + "No Pools have been set up." + "</td>")
 		$('#poolRankingsTable').append(tr)
 		document.getElementById("poolRankingsLoader").style.display = "none"
-	} else if(poolSelector =='Select a pool' || poolSelector ==''){
+	} else if(poolSelector =='Select a pool' || poolSelector =='' || poolSelector == undefined){
 		tr = $('<tr id=' + PRrow_id + '/>');
 		tr.append("<td colspan='18' class='noUpcomingMatchesRow'>" + "No pool selected." + "</td>")
 		$('#poolRankingsTable').append(tr)
 		document.getElementById("poolRankingsLoader").style.display = "none"
-	} else{ // pool selected
+	} else { // pool selected
 		var poolRankingsUrl = tourniaApiUrl + tournament_ID + "/rankings/pool/" + poolId
 		getPoolRankingData(pool, poolId, poolRankingsUrl)
 	}			
