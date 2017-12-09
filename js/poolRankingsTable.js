@@ -10,7 +10,7 @@ function getPoolRankingsTable(pool, poolId){
 	} catch (err){
 		////log(err)		
 	}
-	var poolSelector = $('#select2-poolSelector-container').value
+	var poolSelector = $('#poolSelector :selected').text()
 	if(noPools == true){
 		var PRrow_id = 0
 		tr = $('<tr id=' + PRrow_id + '/>');
