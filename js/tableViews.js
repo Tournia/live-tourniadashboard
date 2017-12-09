@@ -168,7 +168,8 @@ function removeTables(){
 	removeTable('currentMatchesTable', 2)
 	removeTable('upcomingMatchesTable', 3)
 	removeTable('postponedMatchesTable', 3)
-	
+	removeTable('playedMatchesTable', 2)
+	removeTable('playersRankingTable', 2)
 	
 	try{
 		my_poolsOverviewTable.page(0).draw('page')
@@ -192,6 +193,11 @@ function removeTables(){
 	document.getElementById("currentMatchesLoader").style.display = ""
 	document.getElementById("postponedMatchesLoader").style.display = ""
 	document.getElementById("poolsOverviewLoader").style.display = ""
+	if(ifMobile == true){
+		document.getElementById("playedMatchesLoader").style.display = ""
+		document.getElementById("playersRankingLoader").style.display = ""
+		document.getElementById("playersLoader").style.display = ""
+	}
 	if (sampleData == true){
 		getLocalDataAndMakeLocalTables()
 	} else {

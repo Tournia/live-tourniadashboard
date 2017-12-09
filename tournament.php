@@ -8,16 +8,18 @@
 
   <script type="text/javascript">
 	//checkBrowsers()
-	var sampleData = false
-	var DEBUG_MODE = false
-	var sendingDataToDatabase = false
+	var sampleData
+	var DEBUG_MODE
+	var sendingDataToDatabase
 	
-	var ifMobile = false
+	var ifMobile = false //set to true if you want to work only in the mobile pages
+	
 	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || ifMobile == true) {
 		var ifMobile = true		
 	} else {
 		var mobileError = false
 		var cssPath = "css/style.css";
+		//var cssPath2 = "css/tables_mobileStyle.css";
 	}
 	var loadFromUrl = false
 	var loadFromSetupWindow
@@ -78,7 +80,8 @@
  
  <link rel="stylesheet" href="https://cdn.datatables.net/v/bs-3.3.7/jqc-1.12.4/dt-1.10.13/b-1.2.4/b-colvis-1.2.4/fh-3.1.2/r-2.1.1/datatables.min.css">
  <!--<link rel="stylesheet" href="css/libs/DataTables_Bootstrap.css">-->
- 
+ <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/css/select2.min.css" rel="stylesheet" />
+
  
  <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.css">
@@ -97,7 +100,7 @@
  <script type="text/javascript" src="https://cdn.datatables.net/v/bs-3.3.7/jqc-1.12.4/dt-1.10.13/b-1.2.4/b-colvis-1.2.4/fh-3.1.2/r-2.1.1/datatables.min.js"></script>
  <!--<script type="text/javascript" src="https://momentjs.com/downloads/moment.js"></script>-->
  <!--<script src="js/libs/DataTables_Bootstrap.js"></script>-->
-
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/js/select2.min.js"></script>
  <script src="js/libs/tabletop.min.js"></script>
  
  <script src="js/globals.js"></script>
@@ -106,6 +109,9 @@
  <script src="js/otherFunctions.js"></script>
  <script src="js/poolProperties.js"></script>
  <script src="js/paginationFunctions.js"></script>
+ <script src="js/poolRankingsTable.js"></script>
+ <script src="js/playersRankingTable.js"></script>
+ <script src="js/playersTable.js"></script>
  <script src="js/getAPIDataAndMakeTables.js"></script>
  <script src="js/localSampleData.js"></script>
  <script src="js/getAPIDataAndMakeTables_LOCAL.js"></script>
@@ -113,8 +119,9 @@
  <script src="js/expectedTimesScript.js"></script>
  <script src="js/upcomingMatchesTable.js"></script>
  <script src="js/postponedMatchesTable.js"></script>
+ <script src="js/playedMatchesTable.js"></script>
  <script src="js/poolsOverviewTable.js"></script>
- <script src="js/pageView.js"></script>
+ <script src="js/page_View.js"></script>
  <script src="js/tableViews.js"></script>
  
  <script>

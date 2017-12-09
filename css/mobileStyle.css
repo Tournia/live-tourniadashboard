@@ -61,49 +61,7 @@ a:hover{
 	font-size: 6vw;
 	border-bottom: .2em solid #43a73f;
 }
-/* table layout */
-.tableHeaders{
-	border: 3px solid #555555 !important;
-	/*font-size: 1.4vw;*/
-	font-weight: bold;
-	text-align: center;
-	/*line-height: 2.8vw;*/
-}
-p.tableHeaders{
-	
-}
 
-#currentMatchesTable{
-	width: 100%;
-	/*border: 3px solid #555555;*/
-	border-collapse: collapse;
-	overflow-x: auto;
-	display: block;
-}
-
-#upcomingMatchesTable{
-	/*border: 3px solid #555555;*/
-	border-collapse: collapse;
-	width: 100%;
-	overflow-x: auto;
-	display: block;
-}
-
-#postponedMatchesTable{
-	/*border: 3px solid #555555;*/
-	border-collapse: collapse;
-	width: 100%;
-	overflow-x: auto;
-	display: block;
-}
-
-#poolsOverviewTable{
-	/*border: 3px solid #555555 !important;*/
-	border-collapse: collapse;
-	width: 100%;
-	overflow-x: auto;
-	display: block;
-}
 
 #currentMatchesBox{
 	margin-bottom: 80px;
@@ -116,6 +74,10 @@ p.tableHeaders{
 }
 
 #OverviewRoundsBox{
+	margin-bottom: 80px;
+}
+
+#resultsRankingsBox{
 	margin-bottom: 80px;
 }
 #TournamentUrlName{
@@ -144,7 +106,7 @@ p.tableHeaders{
 }
 
 .ui-navbar li .ui-btn {
-    font-size: 8px;
+    font-size: 0.6em;
     display: block;
     margin: 0;
     border-right-width: 0;
@@ -155,261 +117,6 @@ p.tableHeaders{
 	display: inline-block;
 }
 
-
-/*Tables*/
-
-th, td {
-   /* border-bottom: 2px solid #555555;*/
-    border-top: 2px solid #555555;
-	border-bottom: 2px solid #555555;
-    /*border-left: 2px solid #555555;*/
-    /*font-size: 1vw;*/
-}
-
-.playerColumn{
-	width: 100px;
-}
-td.playerColumn{
-	padding-left:3px;
-	padding-right: 3px;
-}
-
-td.playerPlayingColumn{
-	padding: 5px;
-}
-.teamColumn{
-	text-align: center;
-	width: 100px;
-	border-bottom: 3px solid #555555;
-}
-th.teamColumn{
-	/*font-size: 1vw;*/
-	/*border-right: 2px solid #555555;
-	border-left: 2px solid #555555;*/
-}
-.discColumn{
-	/*width: 140px;*/
-	border-right: 0px solid #555555;
-	border-left: 0px solid #555555;
-}
-
-.onHoldColumn{
-	border-left: 0px;
-	border-right: 0px;
-	padding-left: 5px;
-}
-.VsColum{
-	width: 10px;
-	border-right: 0px;
-	border-left: 0px;
-}
-
-.onHoldColumnVs{
-	width: 10px;
-	border-left: 0px;
-	border-right: 0px;
-}
-
-.discColumnVs{
-	width: 10px;;
-}
-.courtColumn{
-	width: 40px;
-	border-right: 2px solid #555555;
-	border-left: 3px solid #555555;
-	/*font-size: 1vw;*/
-}
-
-th.courtColumn{
-	text-align: center;
-}
-
-td.courtColumn{
-	padding-left: 3px;
-	border-left: 2px solid #555555;
-}
-
-th.poolColumn {
-	width: 150px;
-	border-left: 3px solid #555555;
-	border-right: 2px solid #555555;
-	text-align: center;
-	/*font-size: 1vw;*/
-}
-
-td.poolColumn{
-	background-color: #b3ccff;
-	/*font-size: 1vw;*/
-	border-right: 2px solid #555555;
-	padding-left: 3px;
-}
-
-.emptyPoolColumn {
-	width: 100px;
-	border-left: 2px solid #555555;
-	border-right: 2px solid #555555;
-}
-
-th.poolRoundsColumns{
-	text-align: center;
-	width: 50px;
-	border-right: 2px solid #555555;
-}
-td.poolRoundsColumns{
-	text-align:right;
-	border-right: 2px solid #555555;
-	padding-right: 5px
-}
-
-
-th.totTeamsColumn{
-	text-align: center;
-	width: 50px;
-	border-right: 2px solid #555555;
-}
-
-td.totTeamsColumn{
-	text-align:right;
-	border-right: 2px solid #555555;
-	padding-right: 5px
-}
-
-th.roundsNeededColumn{
-	text-align: center;
-	width: 50px;
-	border-right: 2px solid #555555;
-}
-
-td.roundsNeededColumn{
-	text-align:right;
-	border-right: 2px solid #555555;
-	padding-right: 5px;
-}
-
-th.roundsCreatedColumn{
-	text-align: center;
-	width: 50px;
-	border-right: 2px solid #555555;
-}
-
-td.roundsCreatedColumn{
-	text-align:right;
-	border-right: 2px solid #555555;
-	padding-right: 5px
-}
-
-th.roundsLeftColumn{
-	text-align: center;
-	width: 50px;
-	border-right: 2px solid #555555;
-}
-
-td.roundsLeftColumn{
-	text-align:right;
-	border-right: 2px solid #555555;
-	padding-right: 5px
-}
-
-.statusColumn{
-	border-left: 2px solid #555555;
-	text-align: center;
-	width: 80px;
-}
-
-.predcitedTimeColumn{
-	border-left: 2px solid #555555;
-	border-bottom: 2px solid #555555;
-}
-th.statusColumn{
-	/*font-size: 1vw;*/
-	border-right: 2px solid #555555;
-	text-align: center;
-	/*font-size: 1vw;*/
-	width: 80px;
-}
-
-td.statusColumn{
-	text-align: center
-}
-
-
-#playerStatusColumn{
-	border-right: 2px solid #555555;
-	text-align: center;
-	/*font-size: 1vw;*/
-}
-	
-#PPplayerStatusColumn{
-	border-right: 2px solid #555555;
-	text-align: center;
-	/*font-size: 1vw;*/
-}
-.vsColumn{
-	width: 1px;
-}
-
-td.vsColumn {
-}
-th.vsColumn{
-	border-left: 3px solid #555555;
-	border-right: 3px solid #555555;
-	text-align: center;
-}
-
-th.playingTimeColumn{
-	border-left: 2px solid #555555;
-	text-align: center;
-	/*font-size: 1vw;*/
-	width: 60px;
-}
-
-td.playingTimeColumn{
-	padding-left: 5px;
-	border-left: 2px solid #555555
-}
-
-th.predictedTimeColumn{
-	border-left: 2px solid #555555;
-	text-align: center;
-	/*font-size: 1vw;*/
-	width: 60px;
-	border-right: 3px solid #555555
-}
-
-td.predictedTimeColumn{
-	padding-left: 5px;
-	/*border-left: 2px solid #555555;*/
-	border-right: 3px solid #555555
-}
-th.expectedTimeColumn {
-	text-align: center;
-	/*font-size: 1vw;*/
-	width: 60px;
-	border-right: 3px solid #555555;
-}
-td.expectedTimeColumn{
-	padding-left: 5px;
-	border-right: 3px solid #555555;
-}
-
-
-.byeColumn{
-	border-left: 2px solid #555555;
-	border-right: 3px solid #555555;
-	text-align: left;
-	padding-left: 3px;
-	width: 100px
-}
-
-#currentsPoolColumn{
-	border-right: 2px solid #555555;
-	background-color: none;
-	/*font-size: 1vw;*/
-	text-align: center;
-}
-
-
-
 .note{
 	/*font-size: 0.95vw;*/
 }
@@ -419,17 +126,53 @@ td.expectedTimeColumn{
 	border: 0px;
 }
 
-table.dataTable tbody th,
-table.dataTable tbody td {
-  /*padding: 1px;*/
-  text-align: center;
+
+
+/**Results & Rankings**/
+
+/* Style the tab */
+div.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
 }
 
-table.dataTable thead th, table.dataTable thead td {
-  /*padding: 1px;*/
+/* Style the buttons inside the tab */
+div.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
 }
 
-.dataTables_info {
-	font-size: 8px;
-	padding-top: 0.5em;
+/* Change background color of buttons on hover */
+div.tab button:hover {
+    background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+div.tab button.active {
+    background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+}
+
+.ui-page-theme-a .ui-btn.ui-btn-active, html .ui-bar-a .ui-btn.ui-btn-active, html .ui-body-a .ui-btn.ui-btn-active, html body .ui-group-theme-a .ui-btn.ui-btn-active, html head+body .ui-btn.ui-btn-a.ui-btn-active, .ui-page-theme-a .ui-checkbox-on:after, html .ui-bar-a .ui-checkbox-on:after, html .ui-body-a .ui-checkbox-on:after, html body .ui-group-theme-a .ui-checkbox-on:after, .ui-btn.ui-checkbox-on.ui-btn-a:after, .ui-page-theme-a .ui-flipswitch-active, html .ui-bar-a .ui-flipswitch-active, html .ui-body-a .ui-flipswitch-active, html body .ui-group-theme-a .ui-flipswitch-active, html body .ui-flipswitch.ui-bar-a.ui-flipswitch-active, .ui-page-theme-a .ui-slider-track .ui-btn-active, html .ui-bar-a .ui-slider-track .ui-btn-active, html .ui-body-a .ui-slider-track .ui-btn-active, html body .ui-group-theme-a .ui-slider-track .ui-btn-active, html body div.ui-slider-track.ui-body-a .ui-btn-active {
+    background-color: #43a73f;
+    border-color: #3c7539;
+    color: #fff;
+    text-shadow: 0 1px 0 #3c7539;
+}
+
+.ui-page-theme-a .ui-radio-on:after, html .ui-bar-a .ui-radio-on:after, html .ui-body-a .ui-radio-on:after, html body .ui-group-theme-a .ui-radio-on:after, .ui-btn.ui-radio-on.ui-btn-a:after {
+    border-color: #3c7539;
 }

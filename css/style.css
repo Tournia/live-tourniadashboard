@@ -117,7 +117,17 @@ p.tableHeaders{
 	position: relative;
 }
 
+#playedMatchesTable{
+	width: 100%;
+	border: 0.3vw solid #555555;
+	border-collapse: collapse;
+}
 
+#poolRankingsTable{
+	width: 100%;
+	border: 0.3vw solid #555555;
+	border-collapse: collapse;
+}
 
 #TournamentUrlName{
 	width: 100%;
@@ -712,7 +722,62 @@ input[type=radio]{
 Transparent Button With Visible Text
 
 #invisibleButton {
-
     background: transparent;
     border: none !important;
 }​
+
+
+#resultsRankingsPages{
+	display: inline-block;
+	width: 100%
+}
+
+#matchResultsTab{
+	display: inline-block;
+	width: 30%;
+	position: relative;
+}
+
+#poolRankingsTab{
+	display: inline-block;
+	width: 30%;
+	position: relative;
+}
+
+#playerRankingsTab{
+	display: inline-block;
+	width: 30%;
+	position: relative;
+}
+
+#poolNameC{
+	display: inline-block;
+}
+#poolNameText{
+	float: left;
+	display: inline-block;
+}
+#poolSelector{
+	display: inline-block;
+}
+
+#poRankingsRb{
+	display: inline-block;
+}
+#plRankingsRb{
+	display: inline-block
+}
+
+.ui-radio{
+	display: inline-block 
+ }
+/* .ui-btn{ */
+	/* display: in-line; */
+/* } */
+
+#rankingsRadioButtons{
+	display: inline-block;
+	width: 200px;
+	height: 50px;
+	position: relative;
+}
