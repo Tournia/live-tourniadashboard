@@ -15,6 +15,8 @@ function checkForAPIChange(){
 	})
 	.error(function(){
 		ifAPIChangeDetected = true
+		my_tournamentId_pr = prompt("Incorrect tournament id. Make sure live access is turned or try another id:")
+		window.location.href = "/tournament.php?"+my_tournamentId_pr
 	})	
 }
 
