@@ -78,7 +78,7 @@ var logUpcomingMatch = true
 var noPools = false
 var my_pools
 var my_upcomingMatches = {};
-var my_poolInfoTable = []
+var my_poolInfoTable = [];
 var poolNamesArray = []
 var poolRankings = []
 var poolNamesRanked = []

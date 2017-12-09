@@ -413,6 +413,10 @@ function getUpcomingMatchesTable(){
 					//pageResize: true,
 					//bAutoWidth: false,			
 					columns: [
+						{ data: 'localId', autoWidth: false, fnCreatedCell: 	function (nTd, sData, oData, iRow, iCol) {
+																$(nTd).css('text-align', 'center')
+															},
+						visible: runLocal },
 						{ data: 'poolName', function (nTd, sData, oData, iRow, iCol) {
 																	$(nTd).css('-webkit-column-span', 'all')
 																	$(nTd).css('column-span', 'all')

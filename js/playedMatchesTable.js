@@ -227,17 +227,18 @@ function getPlayedMatchesTable(){
 						{ data: 'teamOne2', fnCreatedCell:  function (nTd, sData, oData, iRow, iCol) {
 																$(nTd).css('padding-left', '5px')
 																$(nTd).css('text-align', 'left')
-																//////log(sData)
+																$(nTd).css('border-right', '0.2vw solid #555555')
 															}											
 						},
-						{ data: 'scores', sWidth: '90px', fnCreatedCell:	function (nTd, sData, oData, iRow, iCol) {
+						{ data: 'scores', width: '60px', fnCreatedCell:	function (nTd, sData, oData, iRow, iCol) {
 																	$(nTd).css('font-weight', 'bold')
 															}
 						},
 						{ data: 'teamTwo1', fnCreatedCell:  function (nTd, sData, oData, iRow, iCol) {
 																$(nTd).css('padding-left', '5px')
 																$(nTd).css('text-align', 'left')
-																//////log(sData)
+																$(nTd).css('border-left', '0.2vw solid #555555')
+
 															}												
 						},
 						{ data: 'teamTwo2', fnCreatedCell:  function (nTd, sData, oData, iRow, iCol) {
@@ -245,13 +246,10 @@ function getPlayedMatchesTable(){
 																$(nTd).css('text-align', 'left')
 																//////log(sData)
 																//////log("arrays:", playerNamesReadyToPlayArray, playerNamesCurrentlyPlayingArray, playerNamesCurrentlyUnavailableArray)
+																$(nTd).css('border-right', '3px solid #555555')
+
 															}												
-						},
-						{ data: 'scores', sWidth: '80px', fnCreatedCell:	function (nTd, sData, oData, iRow, iCol) {
-																$(nTd).css('border-left', '0.2vw solid #555555')
-																//////log(sData)										
-															}
-						,visible: false}															
+						}															
 					]
 				})
 			return my_PLMTable}				

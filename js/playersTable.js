@@ -171,7 +171,7 @@ function getPlayersTable(player){
 			//pageResize: true,
 			//bAutoWidth: false,			
 			columns: [
-				{ data: 'matchNr', sWidth: '15px', autoWidth: false, fnCreatedCell: 	function (nTd, sData, oData, iRow, iCol) {
+				{ data: 'matchNr', autoWidth: false, fnCreatedCell: 	function (nTd, sData, oData, iRow, iCol) {
 														$(nTd).css('border-left', '3px solid #555555')
 														$(nTd).css('text-align', 'center')
 													}
@@ -183,18 +183,18 @@ function getPlayersTable(player){
 													}
 												
 				},
-				{ data: 'vsColumn', sWidth: '90px', fnCreatedCell:	function (nTd, sData, oData, iRow, iCol) {
+				{ data: 'vsColumn', fnCreatedCell:	function (nTd, sData, oData, iRow, iCol) {
 															$(nTd).css('font-weight', 'bold')
 													}
 				},
 				{ data: 'team2', fnCreatedCell:  function (nTd, sData, oData, iRow, iCol) {
 														$(nTd).css('padding-left', '5px')
 														$(nTd).css('text-align', 'left')
-														//////log(sData)
+														$(nTd).css('border-right', '0.2vw solid #555555')
+
 													}												
 				},
-				{ data: 'PoolName', sWidth: '150px', autoWidth: true, fnCreatedCell: 	function (nTd, sData, oData, iRow, iCol) {
-														$(nTd).css('border-left', '0.2vw solid #555555')
+				{ data: 'PoolName', autoWidth: true, fnCreatedCell: 	function (nTd, sData, oData, iRow, iCol) {
 														$(nTd).css('border-right', '0.2vw solid #555555')
 														$(nTd).css('background-color', '#b3ccff')
 														$(nTd).css('padding-left', '5px')
@@ -205,29 +205,19 @@ function getPlayersTable(player){
 																	$(nTd).css('padding-left', '5px')
 																	$(nTd).css('text-align', 'left')
 																	$(nTd).css('width', '60px')
-																	$(nTd).css('border-right', '3px solid #555555')
+																	$(nTd).css('border-right', '0.2vw solid #555555')
 																}
 				},						
 				{ data: 'scoresComment', fnCreatedCell: 	function (nTd, sData, oData, iRow, iCol){
 																	$(nTd).css('padding-left', '5px')
 																	$(nTd).css('text-align', 'left')
 																	$(nTd).css('width', '60px')
-																	$(nTd).css('border-right', '3px solid #555555')
+																	$(nTd).css('border-right', '0.2vw solid #555555')
 																}
 				},
-				{ data: 'status', sWidth: '80px', fnCreatedCell:	function (nTd, sData, oData, iRow, iCol) {
-															$(nTd).css('border-left', '0.2vw solid #555555')
-															//////log(sData)
-															/*if (sData == postponedMatch){
-																$(nTd).css('background-color', '#ff8080')
-																$(nTd).css('text-decoration', 'underline')
-															} else if (sData == playersCurrentlyPlaying ){
-																$(nTd).css('background-color', '#ffffb3')
-															} else if (sData == playersUnavailable ){
-																$(nTd).css('background-color', '#ff8080')
-															} else if (sData == readyToPlay){
-																$(nTd).css('background-color', '#71da71')
-															} else {}*/
+				{ data: 'status', fnCreatedCell:	function (nTd, sData, oData, iRow, iCol) {
+															$(nTd).css('border-right', '3px solid #555555')
+															
 														}											
 				}						
 			]

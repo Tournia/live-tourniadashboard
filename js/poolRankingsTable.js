@@ -10,14 +10,14 @@ function getPoolRankingsTable(pool, poolId){
 	} catch (err){
 		////log(err)		
 	}
-		
+	var poolSelector = $('#select2-poolSelector-container').val()
 	if(noPools == true){
 		var PRrow_id = 0
 		tr = $('<tr id=' + PRrow_id + '/>');
 		tr.append("<td colspan='18' class='noUpcomingMatchesRow'>" + "No Pools have been set up." + "</td>")
 		$('#poolRankingsTable').append(tr)
 		document.getElementById("poolRankingsLoader").style.display = "none"
-	} else if($('#select2-poolSelector-container').value =='Select a pool'){
+	} else if(poolSelector =='Select a pool' || poolSelector ==''){
 		tr = $('<tr id=' + PRrow_id + '/>');
 		tr.append("<td colspan='18' class='noUpcomingMatchesRow'>" + "No pool selected." + "</td>")
 		$('#poolRankingsTable').append(tr)
@@ -26,7 +26,6 @@ function getPoolRankingsTable(pool, poolId){
 		var poolRankingsUrl = tourniaApiUrl + tournament_ID + "/rankings/pool/" + poolId
 		getPoolRankingData(pool, poolId, poolRankingsUrl)
 	}			
-	
 	
 	function getPoolRankingData(pool, poolId, poolRankingsUrl){
 		$.getJSON(poolRankingsUrl, function (data) {
@@ -55,24 +54,26 @@ function getPoolRankingsTable(pool, poolId){
 		})
 	}
 	
-	
 	function poolRankingsTable(pool, poolRankingData){
 		//////////log("pools with teams", my_poolsWithTeams)
-		document.getElementById("poolsOverviewLoader").style.display = ""
+		document.getElementById("poolRankingsLoader").style.display = ""
 		allPRdata = poolRankingData
 		for(var pRk = 0; pRk < allPRdata.length; pRk++){
 			var players = []
+			var cleanPlayers = []
 			var all_players = allPRdata[pRk].players
 			for (key in all_players){
 				if (all_players.hasOwnProperty(key)){
-				players.push(all_players[key]);
+					var cleanPlayerName = all_players[key].replace(/".*"/, "")
+					players.push(all_players[key]);
+					cleanPlayers.push(cleanPlayerName);
 				}
 			}
 			
 			var pRkrow_id = pRk + 1
 			var pRkrow_id = "pRkrow-" + pRkrow_id 
 	
-			var my_players = players.join(" & ")
+			var my_players = cleanPlayers.join(" & ")
 			allPRdata[pRk].my_players = my_players
 			/*var singlePRData = {}
 			singlePRData.my_matchesWon = poolRankingData[PRk].matchesWon
@@ -111,7 +112,7 @@ function getPoolRankingsTable(pool, poolId){
 				//pageResize: true,
 				//bAutoWidth: false,			
 				columns: [
-					{ data: 'rank'/*sWidth: '150px'*/, fnCreatedCell: 	function (nTd, sData, oData, iRow, iCol) {
+					{ data: 'rank', fnCreatedCell: 	function (nTd, sData, oData, iRow, iCol) {
 															$(nTd).css('border-left', '3px solid #555555')
 															$(nTd).css('border-right', '0.2vw solid #555555')
 															$(nTd).css('padding-left', '5px')
@@ -122,7 +123,8 @@ function getPoolRankingsTable(pool, poolId){
 																$(nTd).css('text-align', 'left')
 																$(nTd).css('border-right', '0.2vw solid #555555')
 															}
-					},{ data: 'matchesPlayed', fnCreatedCell:  function (nTd, sData, oData, iRow, iCol) {
+					},
+					{ data: 'matchesPlayed', fnCreatedCell:  function (nTd, sData, oData, iRow, iCol) {
 																$(nTd).css('padding-right', '5px')
 																$(nTd).css('text-align', 'right')
 																$(nTd).css('border-right', '0.2vw solid #555555')
@@ -137,18 +139,19 @@ function getPoolRankingsTable(pool, poolId){
 					{ data: 'matchesDraw', fnCreatedCell:  	function (nTd, sData, oData, iRow, iCol) {
 															$(nTd).css('padding-left', '5px')
 															$(nTd).css('text-align', 'right')
-															$(nTd).css('border-right', '3px solid #555555')
+															$(nTd).css('border-right', '0.2vw solid #555555')
 														}
 					},
 					{ data: 'matchesLost', fnCreatedCell:  	function (nTd, sData, oData, iRow, iCol) {
 															$(nTd).css('padding-left', '5px')
 															$(nTd).css('text-align', 'right')
-															$(nTd).css('border-right', '3px solid #555555')
+															$(nTd).css('border-right', '0.2vw solid #555555')
 														}
 					},
 					{ data: 'matchesRelative', fnCreatedCell:  	function (nTd, sData, oData, iRow, iCol) {
 															$(nTd).css('padding-left', '5px')
 															$(nTd).css('text-align', 'right')
+															$(nTd).css('border-right', '0.2vw solid #555555')
 															$(nTd).css('border-right', '3px solid #555555')
 														}							
 					},
@@ -168,6 +171,7 @@ function getPoolRankingsTable(pool, poolId){
 																	$(nTd).css('padding-right', '5px')
 																	$(nTd).css('text-align', 'right')
 																	$(nTd).css('border-right', '0.2vw solid #555555')
+																	$(nTd).css('border-right', '3px solid #555555')
 																}	
 					},
 					{ data: 'pointsWon', fnCreatedCell:  	function (nTd, sData, oData, iRow, iCol) {
@@ -185,7 +189,7 @@ function getPoolRankingsTable(pool, poolId){
 					{ data: 'pointsRelative', fnCreatedCell:  	function (nTd, sData, oData, iRow, iCol) {
 																$(nTd).css('padding-right', '5px')
 																$(nTd).css('text-align', 'right')
-																$(nTd).css('border-right', '0.2vw solid #555555')
+																$(nTd).css('border-right', '3px solid #555555')
 															}
 					}
 				]

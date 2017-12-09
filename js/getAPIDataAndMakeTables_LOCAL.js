@@ -239,9 +239,9 @@ function _5AgetReadyPostponedFinishedMatchesData_LOCAL(){
 				noUpcomingMatches = true
 				//logUpcomingMatch = false
 				var noUMData = {}
-					noUMData.localId = ""
+					noUMData.localId = "There are no upcoming matches planned"
 					noUMData.matchId = ""
-					noUMData.PoolName = "There are no upcoming matches planned."
+					noUMData.PoolName = ""
 					noUMData.status = ""
 					noUMData.priority = ""
 					noUMData.teamOne1 = ""//noUMData.team1 = {name: "",players:[{name: ""},{name: ""}]}

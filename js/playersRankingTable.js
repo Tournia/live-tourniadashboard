@@ -18,7 +18,8 @@ function getPlayersRankingTable(my_listPlayersRanking){
 			var plRrow_id = "plRrow-" + plRrow_id
 			var newPlayer = {}
 			newPlayer.name = my_listPlayersRanking[plR].name
-			newPlayer.text = my_listPlayersRanking[plR].name
+			newPlayer.cleanName = my_listPlayersRanking[plR].name.replace(/".*"/, "")
+			newPlayer.text = my_listPlayersRanking[plR].name.replace(/".*"/, "")
 			newPlayer.id = plR
 			listPlayers.push(newPlayer)
 		} /** end of for loop **/
@@ -45,14 +46,14 @@ function getPlayersRankingTable(my_listPlayersRanking){
 				//pageResize: true,
 				//bAutoWidth: false,			
 				columns: [
-					{ data: 'rank'/*sWidth: '150px'*/, fnCreatedCell: 	function (nTd, sData, oData, iRow, iCol) {
+					{ data: 'rank', fnCreatedCell: 	function (nTd, sData, oData, iRow, iCol) {
 															$(nTd).css('border-left', '3px solid #555555')
 															$(nTd).css('border-right', '0.2vw solid #555555')
 															$(nTd).css('padding-left', '5px')
 															$(nTd).css('padding-right', '5px')
 														}
 					},
-					{ data: 'name', fnCreatedCell:  	function (nTd, sData, oData, iRow, iCol) {
+					{ data: 'cleanName', fnCreatedCell:  	function (nTd, sData, oData, iRow, iCol) {
 																$(nTd).css('padding-right', '5px')
 																$(nTd).css('text-align', 'left')
 																$(nTd).css('border-right', '0.2vw solid #555555')
@@ -73,7 +74,7 @@ function getPlayersRankingTable(my_listPlayersRanking){
 					{ data: 'nrSets', fnCreatedCell:  	function (nTd, sData, oData, iRow, iCol) {
 															$(nTd).css('padding-left', '5px')
 															$(nTd).css('text-align', 'right')
-															$(nTd).css('border-right', '3px solid #555555')
+															$(nTd).css('border-right', '0.2vw solid #555555')
 														}
 					},
 					{ data: 'gender', fnCreatedCell:  	function (nTd, sData, oData, iRow, iCol) {

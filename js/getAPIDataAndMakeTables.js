@@ -136,9 +136,10 @@ function _2AgetPoolsRoundsData(){
 			
 			//var data = []
 			$("#poolSelector").select2({
+				placeholder: 'select a pool',
 				data: poolNamesArray,
 			})
-			getPoolRankingsTable(poolNamesArray[0].name, poolNamesArray[0].poolId)
+			getPoolRankingsTable("", "")
 			
 			/*for (var op = 0; op < poolNamesArray.length; op++){
 				var newOption = new Option(poolNamesArray[op].text, poolNamesArray[op].id, false, false);
@@ -273,9 +274,9 @@ function _5AgetReadyPostponedFinishedMatchesData(){
 				noUpcomingMatches = true
 				//logUpcomingMatch = false
 				var noUMData = {}
-					noUMData.localId = ""
+					noUMData.localId = "There are no upcoming matches planned"
 					noUMData.matchId = ""
-					noUMData.poolName = "There are no upcoming matches planned"
+					noUMData.poolName = ""
 					noUMData.status = ""
 					noUMData.priority = ""
 					noUMData.teamOne1 = ""//noUMData.team1 = {name: "",players:[{name: ""},{name: ""}]}
@@ -392,6 +393,7 @@ function _6AgetplayersRanking(){
 				singlePlayerRanking.rank = my_playersRanking[key].rank
 				singlePlayerRanking.playerId = my_playersRanking[key].playerId
 				singlePlayerRanking.name = my_playersRanking[key].name
+				singlePlayerRanking.cleanName = my_playersRanking[key].name.replace(/".*"/, "")
 				singlePlayerRanking.sumPoints = my_playersRanking[key].sumPoints
 				singlePlayerRanking.nrSets = my_playersRanking[key].nrSets
 				singlePlayerRanking.relative = my_playersRanking[key].relative
