@@ -1,10 +1,12 @@
 //overrule variables
 /*ifMobile variable needs to be defined in tournament.php*/
 
-sampleData = true //load dat afrom online database or local sample data sets
-dataTesting = true //always show upcoming matches table for expected time script
+sampleData = false //load data from online database or local sample data sets
+dataTesting = true //always show upcoming matches table for expected time script testing
 DEBUG_MODE = true //show console log or not
 sendingDataToDatabase = false
+
+disableExpectedTimes = true //enable or disable expected Times script
 
 dataSetNr = 1 //ISBT Utrecht: 1-4; ISBT Amsterdam 1-9
 	//apply local datasets
@@ -59,7 +61,7 @@ log("Sample Data:", sampleData)
 log("Tournament:", urlData[0])
 log("Data Testing:", dataTesting)
 log("Data Sample set nr:", dataSetNr)
-log("")
+log("if Mobile:", ifMobile,"\n\n")
 
 //ifReloadTables = true
 shrinkUpcomingsTable = false
@@ -76,8 +78,11 @@ var logUpcomingMatch = true
 var noPools = false
 var my_pools
 var my_upcomingMatches = {};
-var my_poolInfoTable = []
+var my_poolInfoTable = [];
 var poolNamesArray = []
+var poolRankings = []
+var poolNamesRanked = []
+poolRankings.push(poolNamesRanked)
 
 var my_GoogleSheetData = []
 var statusPool = ""
@@ -105,6 +110,10 @@ var my_currentMatchesTable
 var my_upcomingMatchesTable
 var my_postponedMatchesTable
 var my_poolsOverviewTable
+var my_playedMatchesTable
+var my_poolRankingsTable
+var my_playersRankingTable
+var my_playersTable
 
 var tabTableIds = ["currentMatchesTable", "upcomingMatchesTable", "postponedMatchesTable"]
 var tabTableContents = ["currentmatches-tab-content", "upcomingmatches-tab-content", "postponedmatches-tab-content"]
@@ -176,9 +185,11 @@ var my_listCurrentMatches = []
 var my_listPlayedFinishedMatches = []
 var my_unavPostponedMatches = [] //matches with postponed players and postponed matches 
 var	my_poolsWithTeams = []
+var my_matchesRaw
 var my_matches
 var my_nrofRoundsPerPool = {}
-
+var my_listPlayersRanking = []
+var listPlayers = []
 var startTab
 var goToUpcomingMatchesTab
 var goToCurrentMatchesTab
@@ -205,7 +216,12 @@ var rtpObjects = []
 var allCMdata
 var allUMdata
 var allPMdata
+var allPLMdata
+
+
 var allPOdata
+var allPRdata
+var allPLAdata
 
 var CMclickChange = 0
 var UMclickChange = 0

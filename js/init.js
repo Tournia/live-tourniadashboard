@@ -10,11 +10,19 @@ var timeString = time.toString();
 	}
 	
 	var fileref = document.createElement("link");
-
+	var fileref2 = document.createElement("link");
+	
 	fileref.setAttribute("rel", "stylesheet");
 	fileref.setAttribute("type", "text/css");
 	fileref.setAttribute("href", cssPath)
 	document.getElementsByTagName("head")[0].appendChild(fileref)
+	
+	var fileref2 = document.createElement("link");
+	
+	fileref2.setAttribute("rel", "stylesheet");
+	fileref2.setAttribute("type", "text/css");
+	fileref2.setAttribute("href", cssPath2)
+	document.getElementsByTagName("head")[0].appendChild(fileref2)
 	
 	/*plasce old URL */
 	//setTournialiveUrl(mytID)
@@ -158,6 +166,64 @@ var timeString = time.toString();
 	if(startSetupWindow == false){
 		createPage()
 	}
+	$("#poolSelector").select2({
+		placeholder: 'Select a pool',
+	})
+	
+	$('#poolSelector').on("select2:select", function(e) { 
+		var my_pool = e.params.data.name
+		var my_poolId = e.params.data.poolId
+		//log(my_pool, my_poolId)
+		removeTable("poolRankingsTable", 3)
+		getPoolRankingsTable(my_pool, my_poolId)
+	});
+	$('#resultsRankingsRbs').change(function(){
+		log("change", document.getElementById("resultsRb").checked, document.getElementById("rankingsRb").checked, document.getElementById("playersRb").checked == true)
+		if(document.getElementById("resultsRb").checked == true){
+			document.getElementById("matchResultsBox").style.display = ""
+			document.getElementById("rankingsBox").style.display = "none"
+			document.getElementById("playersBox").style.display = "none"
+		} else if(document.getElementById("rankingsRb").checked == true){
+			document.getElementById("matchResultsBox").style.display = "none"
+			document.getElementById("rankingsBox").style.display = ""
+			document.getElementById("playersBox").style.display = "none"
+		} else if(document.getElementById("playersRb").checked == true){
+			document.getElementById("matchResultsBox").style.display = "none"
+			document.getElementById("rankingsBox").style.display = "none"
+			document.getElementById("playersBox").style.display = ""
+		}
+	})
+	
+	$('#rankingsRadioButtons').change(function(){
+		if(document.getElementById("poRankingsRb").checked == true){
+			document.getElementById("poolRankingsBox").style.display = ""
+			document.getElementById("playersRankingBox").style.display = "none"
+		} else if(document.getElementById("plRankingsRb").checked == true){
+			document.getElementById("poolRankingsBox").style.display = "none"
+			document.getElementById("playersRankingBox").style.display = ""
+		}
+	})
+	
+	$('#playerSelector').on("select2:select", function(e) { 
+		var my_player = e.params.data.name
+		//log(my_pool, my_poolId)
+		removeTable("playersTable", 2)
+		getPlayersTable(my_player)
+	});
+	
+	document.getElementById("poRankingsRb").checked = true
+	document.getElementById("plRankingsRb").checked = false
+	document.getElementById("poolRankingsBox").style.display = ""
+	document.getElementById("playersRankingBox").style.display = "none"
+	document.getElementById("rankingsBox").style.display = "none"
+	document.getElementById("playersBox").style.display = "none"
+	//$("#poolSelector").change(function(){
+		//log("test")
+		//_getPoolRankings()
+		// placeholder: 'Select a pool',
+		// data: poolNamesArray,
+		// debug: true
+	//})
 }) // end of init
 
 

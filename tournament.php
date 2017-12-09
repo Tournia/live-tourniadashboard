@@ -8,11 +8,12 @@
 
   <script type="text/javascript">
 	//checkBrowsers()
-	var sampleData = false
-	var DEBUG_MODE = false
-	var sendingDataToDatabase = false
+	var sampleData
+	var DEBUG_MODE
+	var sendingDataToDatabase
 	
-	var ifMobile = false
+	var ifMobile = true
+	
 	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || ifMobile == true) {
 		var ifMobile = true		
 	} else {
@@ -114,7 +115,7 @@
  <script src="js/upcomingMatchesTable.js"></script>
  <script src="js/postponedMatchesTable.js"></script>
  <script src="js/poolsOverviewTable.js"></script>
- <script src="js/pageView.js"></script>
+ <script src="js/page_View.js"></script>
  <script src="js/tableViews.js"></script>
  
  <script>
