@@ -3,7 +3,7 @@
 
 sampleData = false //load data from online database or local sample data sets
 dataTesting = true //always show upcoming matches table for expected time script testing
-DEBUG_MODE = true //show console log or not
+DEBUG_MODE = true //show console log
 sendingDataToDatabase = false
 
 disableExpectedTimes = true //enable or disable expected Times script
@@ -43,6 +43,7 @@ var localStorageArray = []
 switch(window.location.protocol) {
    case 'http:':
 	 var runLocal = false
+	 
 	 break;
    case 'https:':
      var runLocal = false

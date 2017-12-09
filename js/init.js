@@ -8,23 +8,13 @@ var timeString = time.toString();
 	if(urlData[0] == "demo"){
 		sampleData = true
 	}
-	
 	var fileref = document.createElement("link");
-	var fileref2 = document.createElement("link");
-	
 	fileref.setAttribute("rel", "stylesheet");
 	fileref.setAttribute("type", "text/css");
 	fileref.setAttribute("href", cssPath)
 	document.getElementsByTagName("head")[0].appendChild(fileref)
 	
-	var fileref2 = document.createElement("link");
-	
-	fileref2.setAttribute("rel", "stylesheet");
-	fileref2.setAttribute("type", "text/css");
-	fileref2.setAttribute("href", cssPath2)
-	document.getElementsByTagName("head")[0].appendChild(fileref2)
-	
-	/*plasce old URL */
+	/*place old URL */
 	//setTournialiveUrl(mytID)
 	
 	/*check Browser*/
@@ -51,6 +41,18 @@ var timeString = time.toString();
 		placeVarsInput()
 	} else { //mobile == true
 		//$('table.display').DataTable()
+		var fileref2 = document.createElement("link");
+		fileref2.setAttribute("rel", "stylesheet");
+		fileref2.setAttribute("type", "text/css");
+		fileref2.setAttribute("href", cssPath2)
+		document.getElementsByTagName("head")[0].appendChild(fileref2)
+		
+		document.getElementById("poRankingsRb").checked = true
+		document.getElementById("plRankingsRb").checked = false
+		document.getElementById("poolRankingsBox").style.display = ""
+		document.getElementById("playersRankingBox").style.display = "none"
+		document.getElementById("rankingsBox").style.display = "none"
+		document.getElementById("playersBox").style.display = "none"
 	}
 	
 	/*settings page*/
@@ -211,12 +213,7 @@ var timeString = time.toString();
 		getPlayersTable(my_player)
 	});
 	
-	document.getElementById("poRankingsRb").checked = true
-	document.getElementById("plRankingsRb").checked = false
-	document.getElementById("poolRankingsBox").style.display = ""
-	document.getElementById("playersRankingBox").style.display = "none"
-	document.getElementById("rankingsBox").style.display = "none"
-	document.getElementById("playersBox").style.display = "none"
+	
 	//$("#poolSelector").change(function(){
 		//log("test")
 		//_getPoolRankings()

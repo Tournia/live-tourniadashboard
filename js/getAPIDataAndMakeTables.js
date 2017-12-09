@@ -135,12 +135,13 @@ function _2AgetPoolsRoundsData(){
 			}
 			
 			//var data = []
-			$("#poolSelector").select2({
-				placeholder: 'select a pool',
-				data: poolNamesArray,
-			})
-			getPoolRankingsTable("", "")
-			
+			if(ifMobile == true){
+				$("#poolSelector").select2({
+					placeholder: 'select a pool',
+					data: poolNamesArray,
+				})
+				getPoolRankingsTable("", "")
+			}
 			/*for (var op = 0; op < poolNamesArray.length; op++){
 				var newOption = new Option(poolNamesArray[op].text, poolNamesArray[op].id, false, false);
 				$('.poolSelector').append(newOption)
@@ -188,7 +189,9 @@ function _2BgetAllMatchesData(){
 			my_matches[m].localId = Number(my_localId2[0])
 		}
 		//////////log(my_nrofRoundsPerPool)
-		getPlayersTable("none")
+		if(ifMobile == true){
+			getPlayersTable("none")
+		}
 		//log("2. all matches loaded")
 		//log("2. done with pools with teams", my_poolsWithTeams)		
 	})
@@ -358,7 +361,9 @@ function _5CgetPlayedMatchesData(){
 				//singlePlayedMatch.push(my_Poolname, my_roundNr, my_team1NameF, my_team2NameF)
 				my_listPlayedFinishedMatches.push(singlePlayedMatch)
 			}
-			getPlayedMatchesTable()
+			if(ifMobile == true){
+				getPlayedMatchesTable()
+			}
 		})
 }
 
@@ -407,7 +412,9 @@ function _6AgetplayersRanking(){
 				
 				my_listPlayersRanking.push(singlePlayerRanking)
 			}
-			getPlayersRankingTable(my_listPlayersRanking)
+			if(ifMobile == true){
+				getPlayersRankingTable(my_listPlayersRanking)
+			}
 		})
 }
 
