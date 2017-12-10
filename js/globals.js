@@ -2,11 +2,12 @@
 /*ifMobile variable needs to be defined in tournament.php*/
 
 sampleData = false //load data from online database or local sample data sets
-dataTesting = true //always show upcoming matches table for expected time script testing
 DEBUG_MODE = true //show console log
 sendingDataToDatabase = false
 
-disableExpectedTimes = true //enable or disable expected Times script
+expectedTimesFunctionality = true //enable or disable expected Times functionality
+predictedTimesFunctionality = true //enable or disable predicted Times functionality
+expectedTimesDataTesting = true //always show upcoming matches table for expected time script testing
 
 dataSetNr = 1 //ISBT Utrecht: 1-4; ISBT Amsterdam 1-9
 	//apply local datasets
@@ -54,13 +55,13 @@ switch(window.location.protocol) {
    default: 
      var runLocal = false
 }
-if(dataTesting == true){
+if(expectedTimesDataTesting == true){
 	runLocal = true
 }
 
 log("Sample Data:", sampleData)
 log("Tournament:", urlData[0])
-log("Data Testing:", dataTesting)
+log("Data Testing:", expectedTimesDataTesting)
 log("Data Sample set nr:", dataSetNr)
 log("if Mobile:", ifMobile,"\n\n")
 
@@ -185,6 +186,8 @@ var my_PostponedUpcomingMatches = [] //postponed mathes
 var my_listCurrentMatches = []
 var my_listPlayedFinishedMatches = []
 var my_unavPostponedMatches = [] //matches with postponed players and postponed matches 
+var my_postponedPlayers = []
+var my_postponedTeamNames = []
 var	my_poolsWithTeams = []
 var my_matchesRaw
 var my_matches
