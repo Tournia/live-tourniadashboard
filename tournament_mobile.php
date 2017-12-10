@@ -16,8 +16,6 @@
 	var mobileError = false
 	var DEBUG_MODE = true
 	
-	var disableExpectedTimes = false
-	
 	var loadFromUrl = true
 	var loadFromSetupWindow = false
 	var viewChange = false

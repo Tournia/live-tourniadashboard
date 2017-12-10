@@ -461,7 +461,9 @@
 					<tr>
 						<td>
 							<input type="checkbox" id="playingTimeColumn" class="checkbox" checked>Playing time so far<br>
-							<input type="checkbox" id="predictedTimeColumn" class="checkbox" checked>Predicted time left
+							<div id="predictedTimesOption">
+								<input type="checkbox" id="predictedTimeColumn" class="checkbox" value="Predicted time left" checked>Predicted time left
+							</div>
 						</td>
 						<td>
 							<a tabindex="0" class="glyphicon glyphicon-info-sign" data-container="body" data-toggle="popover" data-trigger="focus" data-placement="right" title="Select current matches columns" data-content="Turn on and off certain column. For each column inforation will be shown for each match. A custom preset is also possible."></a>
@@ -470,7 +472,9 @@
 					<tr>
 						<td>
 							<input type="checkbox" id="umStatusColumn" class="checkbox" checked>Status of players<br>
-							<input type="checkbox" id="ExpectedTimeBo" class="checkbox" checked>Expected time before play
+							<div id="expectedTimesOption">
+								<input type="checkbox" id="ExpectedTimeBo" class="checkbox" value="Expected time before play" checked>Expected times before play
+							</div>
 						</td>
 						<td>
 							<a tabindex="0" class="glyphicon glyphicon-info-sign" data-container="body" data-toggle="popover" data-trigger="focus" data-placement="right" title="Select upcoming matches columns" data-content="Turn on and off certain column. For each column inforation will be shown for each match. A custom preset is also possible."></a>
