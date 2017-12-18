@@ -37,6 +37,8 @@ function displayTitle(){
 	} else { //if no mobile
 		//var ifPlayersViewPreset = (ifPlayersViewPreset == false
 		document.getElementById('TournamentUrlName').innerHTML = my_tournamentName
+		var anouncementText = "Go to tourniadashboard.nl/"+tournament_ID+" to check all the info on your mobile."
+		document.getElementById('announcements').innerHTML = anouncementText
 	}
 }
 
@@ -214,7 +216,11 @@ function setrefreshTablesInterval(){
 			}, reloadDataTime)
 	} else {
 		if(ifMobile == false){
-			log("autrefresh is done through paging")
+			if(turnOnAutoRefresh == true){
+				log("autrefresh is done through paging")
+			} else {
+				log("autorefresh is turned off")
+			}
 		}
 	}
 }
