@@ -37,7 +37,15 @@ function displayTitle(){
 	} else { //if no mobile
 		//var ifPlayersViewPreset = (ifPlayersViewPreset == false
 		document.getElementById('TournamentUrlName').innerHTML = my_tournamentName
-		var anouncementText = "Go to tourniadashboard.nl/"+tournament_ID+" to check all the info on your mobile."
+		
+		if(tournament_ID == "Helios-kersttoernooi-2017"){
+			var tournament_shortcut = "helioskersttoernooi"
+		} else if (tournament_ID == "isbt-enschede-2017"){
+			var tournament_shortcut = "isbtenschede"
+		} else {
+			var tournament_shortcut = tournament_ID
+		}
+		var anouncementText = "Go to tourniadashboard.nl/"+tournament_shortcut+" to check all the info on your mobile including results and rankings."
 		document.getElementById('announcements').innerHTML = anouncementText
 	}
 }
