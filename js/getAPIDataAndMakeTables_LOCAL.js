@@ -37,6 +37,8 @@ function _1emptyVars_LOCAL(){
 	my_playingList = []
 	my_listCurrentMatches = []
 	my_teamsPlayingReadyPostponed = []
+	my_postponedPlayers = []
+	my_postponedTeamNames = []
 	myPlannedPoolNames = []
 	my_unavPostponedMatches = []
 	my_poolsWithTeams = []
@@ -154,7 +156,7 @@ function _2BgetAllMatchesData_LOCAL(){
 		//log("2bF. all matches:", my_matches)
 		my_matches = my_matchesRaw.aaData
 		//////////log(my_matches[l], "length:", my_matches[l].length)
-		for (m in my_matchesRaw){
+		for (m in my_matches){
 			var my_poolName = my_matches[m].pool
 			var my_roundNrFString = my_matches[m].round
 			
@@ -166,7 +168,7 @@ function _2BgetAllMatchesData_LOCAL(){
 			
 			var DT_RowId =  my_matches[m].DT_RowId
 			var DT_RowId1 = DT_RowId.split("-")
-			my_matches[l][m].DT_RowId = Number(DT_RowId1[1])
+			my_matches[m].DT_RowId = Number(DT_RowId1[1])
 			
 			var localId = my_matches[m].localId
 			var my_localId1 = localId.split("\'\)\">")
@@ -300,6 +302,19 @@ function _5BgetPostponedMatchesData_LOCAL(){
 					my_teamsPlayingReadyPostponed.push(my_Team1Name)
 					my_teamsPlayingReadyPostponed.push(my_Team2Name)
 					my_unavPostponedMatches.push(my_PostponedUpcomingMatches[i2])
+				
+					for (plyrs1 in my_PostponedUpcomingMatches[i2].team1.players){
+						if(my_PostponedUpcomingMatches[i2].team1.players[plyrs1].ready == false){
+							my_postponedPlayers.push(my_PostponedUpcomingMatches[i2].team1.players[plyrs1].name)
+							my_postponedTeamNames.push(my_PostponedUpcomingMatches[i2].team1.name)
+						}
+					}
+					for (plyrs2 in my_PostponedUpcomingMatches[i2].team2.players){
+						if(my_PostponedUpcomingMatches[i2].team2.players[plyrs2].ready == false){
+							my_postponedPlayers.push(my_PostponedUpcomingMatches[i2].team2.players[plyrs2].name)
+							my_postponedTeamNames.push(my_PostponedUpcomingMatches[i2].team2.name) 						
+						}
+					}
 				}
 			} else {}
 			

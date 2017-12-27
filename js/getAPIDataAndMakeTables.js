@@ -37,6 +37,8 @@ function _1emptyVars(){
 	my_teamsPlayingReadyPostponed = []
 	myPlannedPoolNames = []
 	my_unavPostponedMatches = []
+	my_postponedPlayers = []
+	my_postponedTeamNames = []
 	my_poolsWithTeams = []
 	my_GoogleSheetData = []
 	my_listPlayersRanking = []
@@ -340,6 +342,18 @@ function _5BgetPostponedMatchesData(){
 					my_teamsPlayingReadyPostponed.push(my_Team1Name)
 					my_teamsPlayingReadyPostponed.push(my_Team2Name)
 					my_unavPostponedMatches.push(my_PostponedUpcomingMatches[i2])
+					for (plyrs1 in my_PostponedUpcomingMatches[i2].team1.players){
+						if(my_PostponedUpcomingMatches[i2].team1.players[plyrs1].ready == false){
+							my_postponedPlayers.push(my_PostponedUpcomingMatches[i2].team1.players[plyrs1].name)
+							my_postponedTeamNames.push(my_PostponedUpcomingMatches[i2].team1.name)
+						}
+					}
+					for (plyrs2 in my_PostponedUpcomingMatches[i2].team2.players){
+						if(my_PostponedUpcomingMatches[i2].team2.players[plyrs2].ready == false){
+							my_postponedPlayers.push(my_PostponedUpcomingMatches[i2].team2.players[plyrs2].name)
+							my_postponedTeamNames.push(my_PostponedUpcomingMatches[i2].team2.name) 						
+						}
+					}
 				}
 			} else {}
 		})
@@ -533,4 +547,24 @@ function getAPIDataAndMakeTables(){
 		reloadDataCount += 1;
 		makeTables()
 	})
+}
+
+function getCurrentDataSet(){
+	my_tournamentInfoString = JSON.stringify(my_tournamentInfo)
+	my_upcomingMatchesString = JSON.stringify(my_upcomingMatches)
+	my_locationsListString = JSON.stringify(my_locationsList)
+	my_playingListString = JSON.stringify(my_playingList)
+	my_matchesString = JSON.stringify(my_matches)
+
+	my_PoolsString = JSON.stringify(my_Pools)
+	my_PostponedUpcomingMatchesString = JSON.stringify(my_unavPostponedMatches)
+	my_playedMatchesString = JSON.stringify(my_playedMatches)
+	my_listPlayedFinishedMatchesString = JSON.stringify(my_listPlayedFinishedMatches)
+	my_playersRankingString = JSON.stringify(my_playersRanking)
+	
+	log(reloadDataCount, "\n\n")
+	if(reloadDataCount == 0 || reloadDataCount == 1){
+		log("var my_tournamentInfoData =", my_tournamentInfoString ,"\n\n")
+	}
+	log("var my_upcomingMatchesData =", my_upcomingMatchesString, "\n\n","var locationsListData =", my_locationsListString, "\n\n", "var playingListData =", my_playingListString ,"\n\n", "var my_matchesData =", my_matchesString, "\n\n", "var my_PoolsData =", my_PoolsString,"\n\n", "var my_PostponedUpcomingMatchesData =", my_PostponedUpcomingMatchesString, "\n\n", "var my_playedMatchesData =", my_playedMatchesString, "\n\n", "var my_finishedMatchesData =", my_listPlayedFinishedMatchesString, "\n\n", "var my_playersRankingData =", my_playersRankingString)
 }

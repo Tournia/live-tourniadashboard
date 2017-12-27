@@ -608,6 +608,18 @@ function getVars(){
 	my_ifPagingTable = document.getElementById("if_PagingTable").checked
 	my_IfOrganizerViewPreset = document.getElementById("organizerPreset").checked
 	
+	if(expectedTimesFunctionality == false){
+		my_showExpectedTimeColumn = false
+		showExpectedTimeColumn = false
+		document.getElementById("ExpectedTimeBo").checked = false
+		document.getElementById("expectedTimesOption").style.display = "none"
+	}
+	if(predictedTimesFunctionality == false){
+		my_showPredictedTimeColumn = false
+		showPredictedTimeColumn = false
+		document.getElementById("predictedTimeColumn").checked = false
+		document.getElementById("predictedTimesOption").style.display = "none"
+	}
 	
 	//vars array push order for url
 	if(my_GoogleSheetUrl == null || my_GoogleSheetUrl == undefined || my_GoogleSheetUrl == ""){
@@ -618,6 +630,8 @@ function getVars(){
 	}
 	
 	//my_settingsVarsArray.push(my_tournamentId, my_GoogleSheetUrl)//, my_urlSetupVariables, my_ifCurrentTable, my_ifUpcomingTable, my_ifPostponedTable, my_ifPoolsTable, my_ifReloadTables, my_reloadTime, my_ifChangeTabs, my_minPageTime, my_upcomingTime, my_currentTime, my_postponedTime, my_ifGoogleSheetLoad, my_ifCustomSorting, my_showStatusPlayers, my_my_settingsVarsObject.showExpectedTimeColumn, my_showPlayingTimeColumn, my_showPredictedTimeColumn, my_showTotTeamsColumn, my_showRoundsNeededColumn, my_showRoundsCreatedColumn, my_showRoundsLeftColumn, my_showStatusColumn,my_showByeDataColumn, my_ifPagingTable, my_IfOrganizerViewPreset)
+	
+	//expectedTimes Controller
 	
 	//push values to object
 	my_settingsVarsObject.settingsVariables = my_urlSetupVariables;

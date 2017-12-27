@@ -781,3 +781,33 @@ Transparent Button With Visible Text
 	height: 50px;
 	position: relative;
 }
+
+#announcements{
+	text-align: center;
+	margin: auto;
+	padding-top: 10px;
+	padding-left: 20px;
+	font-size: 22px;
+	color:#555555;	
+}
+
+.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
+    z-index: 3;
+    color: #fff;
+    cursor: default;
+    background-color: #43a73f !important;
+    border-color: #43a73f !important;
+}
+
+.pagination>.active>a:hover{
+	color: #fff;
+	background-color: #43a73f !important;
+}
+
+
+.pagination>li>a:focus, .pagination>li>a:hover, .pagination>li>span:focus, .pagination>li>span:hover {
+    z-index: 2;
+    color: #43a73f !important;
+    background-color: #eee;
+    border-color: #ddd;
+}

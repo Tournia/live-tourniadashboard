@@ -83,7 +83,9 @@ function setVars() { //from settings
 	showByeColumn = my_settingsVarsObject.showByeDataColumn;
 	ifPaging = my_settingsVarsObject.ifPagingTable;
 	ifOrganizerViewPreset = my_settingsVarsObject.ifOrganizerViewPreset;
-
+	
+	
+	
 	log("my_settingsVarsObject:", my_settingsVarsObject)
 	/*var tournamentUrL_input = "utrecht2016" //"bc-drop-shot-wintertoernooi-2017"
 

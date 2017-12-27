@@ -221,6 +221,19 @@ var timeString = time.toString();
 		// data: poolNamesArray,
 		// debug: true
 	//})
+	
+	//turn predicted / expected Times on or off
+	if(expectedTimesFunctionality == false){
+		showExpectedTimeColumn = false
+		document.getElementById("ExpectedTimeBo").checked = false
+		document.getElementById("expectedTimesOption").style.display = "none"
+	}
+	if(predictedTimesFunctionality == false){
+		showPredictedTimeColumn = false
+		document.getElementById("predictedTimeColumn").checked = false
+		document.getElementById("predictedTimesOption").style.display = "none"
+	}
+	
 }) // end of init
 
 

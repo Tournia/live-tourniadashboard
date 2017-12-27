@@ -250,19 +250,31 @@ function getPoolsOverviewTable(){
 					if(postByeData == true){
 							////log("true", PoolName)
 							//////////log("in difference")
-							let difference = IndivPoolArrayName.filter(x => my_teamsPlayingReadyPostponed.indexOf(x) == -1);
-							//////////log("Difference found in", PoolName+":", difference)
-							my_ByeData = difference
-							//////log(my_ByeData)
+							var difference = IndivPoolArrayName.filter(x => my_teamsPlayingReadyPostponed.indexOf(x) == -1);
+							var duplicates  = IndivPoolArrayName.filter(function(val) {
+							  return my_postponedTeamNames.indexOf(val) != -1;
+							});
+							for (di in difference){
+								my_ByeData.push(difference[di])
+							}
+							for (du in duplicates){
+								my_ByeData.push(duplicates[du])
+							}
+							if(PoolName == "Mixed Doubles C" || PoolName == "Men Singles A"){
+								//log("indiv:", IndivPoolArrayName)
+								//log("Difference found in", PoolName+":", difference)
+								//log("duplicates:", duplicates)
+								//log("bye data:", my_ByeData)
+							}
 							
 							var filteredMatches = []
 							var filteredTeams = []
 							var filteredRounds = []
 							
 							for (var filt = 0; filt <my_listPlayedFinishedMatches.length; filt++){
-								//////log("filtering", PoolName)
+								//log("filtering", PoolName)
 								if (my_listPlayedFinishedMatches[filt].my_Poolname == PoolName){
-								filteredMatches.push(my_listPlayedFinishedMatches[filt]);
+									filteredMatches.push(my_listPlayedFinishedMatches[filt]);
 								}
 							}
 							////////log("filtered matches", filteredMatches)
@@ -270,7 +282,7 @@ function getPoolsOverviewTable(){
 								////////log("roundsnr.", my_RoundsNumber)
 								var my_roundNumber = "Round " + my_RoundsNumber
 								if (filteredMatches[rnd].my_roundNr == my_roundNumber){
-									////////log("filtering round", filteredMatches[rnd])
+									//log("filtering round", filteredMatches[rnd])
 									filteredRounds.push(filteredMatches[rnd]);
 								}
 							} 

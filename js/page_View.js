@@ -37,6 +37,16 @@ function displayTitle(){
 	} else { //if no mobile
 		//var ifPlayersViewPreset = (ifPlayersViewPreset == false
 		document.getElementById('TournamentUrlName').innerHTML = my_tournamentName
+		
+		if(tournament_ID == "Helios-kersttoernooi-2017"){
+			var tournament_shortcut = "helioskersttoernooi"
+		} else if (tournament_ID == "isbt-enschede-2017"){
+			var tournament_shortcut = "isbtenschede"
+		} else {
+			var tournament_shortcut = tournament_ID
+		}
+		var anouncementText = "Go to tourniadashboard.nl/"+tournament_shortcut+" to check all the info on your mobile including results and rankings."
+		document.getElementById('announcements').innerHTML = anouncementText
 	}
 }
 
@@ -214,7 +224,11 @@ function setrefreshTablesInterval(){
 			}, reloadDataTime)
 	} else {
 		if(ifMobile == false){
-			log("autrefresh is done through paging")
+			if(turnOnAutoRefresh == true){
+				log("autrefresh is done through paging")
+			} else {
+				log("autorefresh is turned off")
+			}
 		}
 	}
 }

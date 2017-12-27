@@ -144,6 +144,7 @@ function getUpcomingMatchesTable(){
 								if(playerReady == false){
 									playerNamesCurrentlyUnavailableArray.push(fullPlayerName)	
 									var playerStatus = "player not ready"
+									my_postponedPlayers.push(fullPlayerName)
 									statusPlayers.push(playerStatus)
 										return playerName
 								} else {

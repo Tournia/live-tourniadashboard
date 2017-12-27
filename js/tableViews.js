@@ -168,9 +168,10 @@ function removeTables(){
 	removeTable('currentMatchesTable', 2)
 	removeTable('upcomingMatchesTable', 3)
 	removeTable('postponedMatchesTable', 3)
-	removeTable('playedMatchesTable', 2)
-	removeTable('playersRankingTable', 2)
-	
+	if(ifMobile == true){
+		removeTable('playedMatchesTable', 2)
+		removeTable('playersRankingTable', 2)
+	}
 	try{
 		my_poolsOverviewTable.page(0).draw('page')
 	} catch (er){}
