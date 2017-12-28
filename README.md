@@ -1,4 +1,4 @@
-# Live-Dashboard v 1.2
+# Live-Dashboard v 1.3
 This live dashbaord shows extended information about current, upcoming, postponed mamtches and it gives an overview of the pools. Dashboard is fully adjiustments what should be shown on the screen. This dashboard makes use of the Tournia API.
 
 Dashboard is created using on client-side JavaScript.
@@ -73,4 +73,5 @@ v 1.0 has succefully been tested during 3 badminton tournaments
 - Searchable Results table with all match results
 - Searchable Rankings tables for all pools
 - Searchable Rankings for all players
+- Searchable Rankings for all groups
 - Searchable Players table with all matches
