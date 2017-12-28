@@ -750,6 +750,12 @@ Transparent Button With Visible Text
 	position: relative;
 }
 
+#groupsRankingsTab{
+	display: inline-block;
+	width: 30%;
+	position: relative;
+}
+
 #poolNameC{
 	display: inline-block;
 }
@@ -765,7 +771,10 @@ Transparent Button With Visible Text
 	display: inline-block;
 }
 #plRankingsRb{
-	display: inline-block
+	display: inline-block;
+}
+#grRankingsRb{
+	display: inline-block;
 }
 
 .ui-radio{

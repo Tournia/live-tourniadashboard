@@ -412,6 +412,8 @@ function getPoolsOverviewTable(){
 																	$(nTd).css('background-color', '#b3ccff')
 																	$(nTd).css('padding-left', '5px')
 																	$(nTd).css('padding-right', '5px')
+																	$(nTd).css('padding-top', '5px')
+																	$(nTd).css('padding-bottom', '5px')
 																},
 							},
 							{ data: 'amountTeams', fnCreatedCell:  	function (nTd, sData, oData, iRow, iCol) {

@@ -152,7 +152,7 @@ function tableConfigurations(){
 		document.getElementById("poolColumn").innerHTML = "Pools";	
 	}
 
-	if(showExpectedTimeColumn == false){
+	if(showExpectedTimeColumn == false ){
 		document.getElementById("UM_notes").style.display="none"
 	} else {
 		document.getElementById("UM_notes").style.display=""
@@ -171,6 +171,7 @@ function removeTables(){
 	if(ifMobile == true){
 		removeTable('playedMatchesTable', 2)
 		removeTable('playersRankingTable', 2)
+		removeTable('groupsRankingTable', 2)
 	}
 	try{
 		my_poolsOverviewTable.page(0).draw('page')
@@ -197,7 +198,10 @@ function removeTables(){
 	if(ifMobile == true){
 		document.getElementById("playedMatchesLoader").style.display = ""
 		document.getElementById("playersRankingLoader").style.display = ""
+		document.getElementById("playersRankingLoader").style.display = ""
+		document.getElementById("groupsRankingLoader").style.display = ""
 		document.getElementById("playersLoader").style.display = ""
+		
 	}
 	if (sampleData == true){
 		getLocalDataAndMakeLocalTables()

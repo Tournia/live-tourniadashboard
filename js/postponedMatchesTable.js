@@ -224,6 +224,8 @@ function getPostponedMatchesTable(){
 							{ data: 'matchNr', sWidth: '15px', autoWidth: false, fnCreatedCell: 	function (nTd, sData, oData, iRow, iCol) {
 																	$(nTd).css('border-left', '3px solid #555555')
 																	$(nTd).css('text-align', 'center')
+																	$(nTd).css('padding-top', '5px')
+																	$(nTd).css('padding-bottom', '5px')
 																}
 							},
 							{ data: 'PoolName', sWidth: '150px', autoWidth: true, fnCreatedCell: 	function (nTd, sData, oData, iRow, iCol) {

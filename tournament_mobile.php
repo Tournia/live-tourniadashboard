@@ -140,6 +140,7 @@
  <script src="js/paginationFunctions.js"></script>
  <script src="js/poolRankingsTable.js"></script>
  <script src="js/playersRankingTable.js"></script>
+ <script src="js/groupsRankingTable.js"></script>
  <script src="js/playersTable.js"></script>
  <script src="js/getAPIDataAndMakeTables.js"></script>
  <script src="js/localSampleData.js"></script>
@@ -281,8 +282,8 @@
 <div id="parent">
 	<div data-role="page" id="currentMatches">
 		<div id="TournamentUrlName1" class="TournamentUrlName"></div>
-		<div data-role="main" class="ui-content">
-			<div id="currentMatchesBox">
+		<div data-role="main">
+			<div id="currentMatchesBox" class="ui-content">
 				<table id="currentMatchesTable" class="display" width="100%">
 					<thead id="my_CMtHead">
 						<tr>
@@ -318,8 +319,8 @@
 	
 	<div data-role="page" id="upcomingMatches">
 	  <div id="TournamentUrlName2" class="TournamentUrlName"></div>
-	  <div data-role="main" class="ui-content">
-		<div id="upcomingMatchesBox">
+	  <div data-role="main">
+		<div id="upcomingMatchesBox" class="ui-content">
 				<table id = "upcomingMatchesTable" class="display" width="100%">
 					<thead id="my_UMtHead">
 						<tr>
@@ -366,8 +367,8 @@
 	
 	<div data-role="page" id="postponedMatches">
 		<div id="TournamentUrlName3" class="TournamentUrlName"></div>
-		<div data-role="main" class="ui-content">
-			<div id="postponedMatchesBox">
+		<div data-role="main">
+			<div id="postponedMatchesBox" class="ui-content">
 				<table id = "postponedMatchesTable" class="display" width="100%">
 					<thead id="my_PMtHead">
 						<tr>
@@ -409,8 +410,8 @@
 
 	<div data-role="page" id="overviewPools">
 		<div id="TournamentUrlName4" class="TournamentUrlName"></div>
-		<div data-role="main" class="ui-content">
-			<div id="OverviewRoundsBox">
+		<div data-role="main">
+			<div id="OverviewRoundsBox" class="ui-content">
 				<table id="poolsOverviewTable" class="display" width="100%">
 					<thead id="my_POtHead">
 						<tr>
@@ -443,9 +444,9 @@
 		</div>
 	</div>
 	<div data-role="page" id="overviewResults">
-		<div data-role="main" class="ui-content">
+		<div data-role="main">
 			<div id="TournamentUrlName5" class="TournamentUrlName"></div>
-			<div id="resultsRankingsBox">
+			<div id="resultsRankingsBox" class="ui-content">
 				<div id="resultsRankingsRbs">
 					<fieldset data-role="controlgroup" data-type="horizontal">
 						<form>
@@ -508,10 +509,12 @@
 						<fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
 							<form>
 								<label>
-									<input type="radio" name="rankingsRbs" id="poRankingsRb" checked>Pool Rankings
+									<input type="radio" name="rankingsRbs" id="poRankingsRb" class="RankingsRb" checked>Pool Rankings
 								</label>
 								<label for="plRankingsRb">Player Ranking</label>
-								<input type="radio" name="rankingsRbs" id="plRankingsRb">
+								<input type="radio" name="rankingsRbs" id="plRankingsRb" class="RankingsRb">
+								<label for="grRankingsRb">Group Ranking</label>
+								<input type="radio" name="rankingsRbs" id="grRankingsRb" class="RankingsRb">
 							</form>
 						</fieldset>
 						<br>
@@ -530,7 +533,7 @@
 								<tr>
 									<td colspan="13" class="tableHeaders">Pool Rankings</td>
 								</tr>
-									<th id="rCol" rowspan="2" class="leftCol">Rank</th>
+									<th id="plRCol" rowspan="2" class="leftCol">Rank</th>
 									<th id="plCol" rowspan="2" class="col">Players</th>
 									<th colspan="5" id="mCol" class="col rankTypeCol">Matches</th>
 									<th colspan="3" id="sCol" class="col">Sets</th>
@@ -570,6 +573,24 @@
 								</tr>
 							</thead>
 							<div id="playersRankingLoader" class="loader" style="display: none"></div> 
+						</table>
+					</div>
+					<div id="groupsRankingBox" style="display:none">
+						<table id="groupsRankingTable" class="display" width="100%">
+							<thead id="my_GRtHead">
+								<tr>
+									<td colspan="6" class="tableHeaders">Groups Ranking</td>
+								</tr>
+								<tr>
+									<th id="groupRankColumn" class="leftCol">Rank</th>
+									<th id="groupNameCol" class="col">Group</th>
+									<th id="grTPCol" class="col">Total points</th>
+									<th id="grsetsCol" class="col">Sets</th>
+									<th id="grRPCol" class="rightCol">Relative</th>
+									<th id="nrPLCol" class="rightCol">Nr. of Players</th>
+								</tr>
+							</thead>
+							<div id="groupsRankingLoader" class="loader" style="display: none"></div> 
 						</table>
 					</div>
 				</div>

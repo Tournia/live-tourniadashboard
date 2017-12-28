@@ -144,7 +144,7 @@ function getUpcomingMatchesTable(){
 								if(playerReady == false){
 									playerNamesCurrentlyUnavailableArray.push(fullPlayerName)	
 									var playerStatus = "player not ready"
-									my_postponedPlayers.push(fullPlayerName)
+									//my_postponedPlayers.push(fullPlayerName)
 									statusPlayers.push(playerStatus)
 										return playerName
 								} else {
@@ -266,6 +266,7 @@ function getUpcomingMatchesTable(){
 				//expected Times column
 				var ET_returns = calculateExpectedTime(um, my_PoolName, poolPropertiesObject, singleUMData, nrOfCourts, my_statusText, playersNotReady, playersPlaying, playerNamesCurrentlyPlayingArray, playersPlayingObects, predictedTimeLeftofPlayingPlayersArray)				
 				
+				log(ET_returns)
 				var upcomingMatchInfo = ET_returns[0]
 				singleUMData = ET_returns[1]
 				
@@ -319,7 +320,7 @@ function getUpcomingMatchesTable(){
 
 			my_currentStartSingleStringsObject.reloadDataTimeInterval = reloadDataTimeSecs 
 			if(ifUnavailableS == false){
-				my_startArray.push(tournamentName, reloadDataCount, processIDS, start, my_matchLocalId, myPoolname, isoCurrentTimeS, firstExpectedTime, ifReadytoPlayS, ifPlayerPlayingS, ifUnavailableS, reloadDataTimeSecs, lastRefreshTimeLog, expectedTimestartTimeDifferenceS, timeDifferenceSecsS)
+				my_startArray.push(tournamentName, reloadDataCount, processIDS, start, my_matchLocalId, myPoolname, isoCurrentTimeS, firstExpectedTime, ifReadytoPlayS, ifPlayerPlayingS, ifUnavailableS, reloadDataTimeSecs, lastRefreshTimeLog, expectedTimestartTimeDifferenceS, timeDifferenceSecsS, tournament_ID)
 				
 				my_currentStringObjectsArray.push(my_currentStartSingleStringsObject)
 				mycurrentLocalIDArray.push(my_matchLocalId)
@@ -386,21 +387,20 @@ function getUpcomingMatchesTable(){
 		} /* */ /** end of for loop **/ /* */
 		
 		//adjust ExpectedTime
+		/*try{
+			var adjustedExpectedTimes = adjustExpectedTimes(allUpcomingMatchInfoObjects,allUMdata)
+			allUMdata = adjustedExpectedTimes[1]
+		} catch(err){
+			log(err)
+		}*/
 		
-		//adjustExpectedTimes()
-		
-		//allUMdata = adjustedExpectedTimes[1]
-	
 		//append Table
 		////log("allUMdata", allUMdata)
 		var UMremakeCount = 0
 		var my_lengthMenu = lengthMenu(false, allUMdata) //create whole table
 		//////log(my_lengthMenu)
-			
-		if(noUpcomingMatches == true){
-			//log("no UM")
-			
-			function makeNoUpcomingMatchesTable(my_data, ifPaging, lengthMenu){
+		
+		function makeNoUpcomingMatchesTable(my_data, ifPaging, lengthMenu){
 				var my_noUMTable = $('#upcomingMatchesTable').DataTable({
 					data: my_data,
 					paging: ifPaging,
@@ -417,7 +417,7 @@ function getUpcomingMatchesTable(){
 						{ data: 'localId', autoWidth: false, fnCreatedCell: 	function (nTd, sData, oData, iRow, iCol) {
 																$(nTd).css('text-align', 'center')
 															},
-						visible: runLocal },
+						visible: expectedTimesDataTesting },
 						{ data: 'poolName', function (nTd, sData, oData, iRow, iCol) {
 																	$(nTd).css('-webkit-column-span', 'all')
 																	$(nTd).css('column-span', 'all')
@@ -432,19 +432,9 @@ function getUpcomingMatchesTable(){
 						{ data: 'StdDevExpectedTime', visible: showExpectedTimeColumn }
 					],
 				})
-			return my_noUMTable}
-			
-			my_upcomingMatchesTable = makeNoUpcomingMatchesTable(allUMdata, ifPaging, my_lengthMenu)
-			document.getElementById("UM_notes").style = "display: none"
-			
-			/*var UMrow_id = 0
-			tri = $('<tr id=' + UMrow_id + '/>');
-			tri.append("<td colspan='9' class='noUpcomingMatchesRow'>" + "There are no upcoming matches planned." + "</td>")
-			//document.getElementById("notes").style = "display: none"
-			//appending table
-			$('#upcomingMatchesTable').append(tri);*/
-		} else {
-			function makeUpcomingMatchesTable(my_data, ifPaging, lengthMenu){
+			return my_noUMTable}	
+		
+		function makeUpcomingMatchesTable(my_data, ifPaging, lengthMenu){
 				//////log("making table", remakeCount, my_data, "lm:", lengthMenu)
 				var my_UMTable = $('#upcomingMatchesTable').DataTable({
 					data: my_data,
@@ -465,7 +455,7 @@ function getUpcomingMatchesTable(){
 						{ data: 'UMNr', autoWidth: false, fnCreatedCell: 	function (nTd, sData, oData, iRow, iCol) {
 																$(nTd).css('text-align', 'center')
 															},
-						visible: runLocal },
+						visible: expectedTimesDataTesting },
 						{ data: 'poolName', fnCreatedCell: 	function (nTd, sData, oData, iRow, iCol) {
 																//$(nTd).css('border-left', '0.2vw solid #555555')
 																$(nTd).css('border-left', '3px solid #555555')
@@ -473,6 +463,8 @@ function getUpcomingMatchesTable(){
 																$(nTd).css('background-color', '#b3ccff')
 																$(nTd).css('padding-left', '5px')
 																$(nTd).css('padding-right', '5px')
+																$(nTd).css('padding-top', '5px')
+																$(nTd).css('padding-bottom', '5px')
 															}
 						},
 						{ data: 'teamOne1', fnCreatedCell:  function (nTd, sData, oData, iRow, iCol) {
@@ -578,13 +570,29 @@ function getUpcomingMatchesTable(){
 				})
 			return my_UMTable }
 			
+		if(noUpcomingMatches == true){
+			//log("no UM")
+			
+			
+			
+			my_upcomingMatchesTable = makeNoUpcomingMatchesTable(allUMdata, ifPaging, my_lengthMenu)
+			document.getElementById("UM_notes").style = "display: none"
+			
+			/*var UMrow_id = 0
+			tri = $('<tr id=' + UMrow_id + '/>');
+			tri.append("<td colspan='9' class='noUpcomingMatchesRow'>" + "There are no upcoming matches planned." + "</td>")
+			//document.getElementById("notes").style = "display: none"
+			//appending table
+			$('#upcomingMatchesTable').append(tri);*/
+		} else {
+						
 			//try {
 				my_upcomingMatchesTable = makeUpcomingMatchesTable(allUMdata, ifPaging, my_lengthMenu)
 			/*} catch (err) {
 				log(err)
 			}*/
-		}
 		
+		}
 		//paging		
 		if(ifPaging == true){
 			function resizeUMTable(){	
@@ -598,7 +606,10 @@ function getUpcomingMatchesTable(){
 				if(noUpcomingMatches == true){
 					my_upcomingMatchesTable = makeNoUpcomingMatchesTable(allUMdata, ifPaging, my_newLengthMenu)
 				} else {
-					my_upcomingMatchesTable = makeUpcomingMatchesTable(allUMdata, ifPaging, my_newLengthMenu)					
+					//log("newLengthMenu", my_newLengthMenu)
+					try{
+						my_upcomingMatchesTable = makeUpcomingMatchesTable(allUMdata, ifPaging, my_newLengthMenu)					
+					} catch (err){log(err)}
 				}
 				
 				var my_UMDiv = document.getElementById('upcomingmatches-tab-content')
@@ -650,23 +661,23 @@ function getUpcomingMatchesTable(){
 			//on table change
 			function getUMpageCount(){
 				UMremakeCount = 0
-					UMTimeout = setTimeout(function(){
-						resizeUMTable()
-				
-					////log("Page count UM:", my_pageCount)
-					//function pageTime(){
-						function pageConfig(table){
-							var tableInfo = table.page.info()
-							UMPageCount = tableInfo.pages
-							if(noUpcomingMatches == true){
-									upcomingMatchesTabTime = 5000
-								} else {
-									upcomingMatchesTabTime = (document.getElementById("upcomingTime").value * 1000) - 4000
-								}
-							pageTimeconfig(true, "UM", my_upcomingMatchesTable, UMPageCount,minPageTime, upcomingMatchesTabTime, allUMdata)
-						}
-						pageConfig(my_upcomingMatchesTable)
-					}, 500)
+				UMTimeout = setTimeout(function(){
+					resizeUMTable()
+			
+				////log("Page count UM:", my_pageCount)
+				//function pageTime(){
+					function pageConfig(table){
+						var tableInfo = table.page.info()
+						UMPageCount = tableInfo.pages
+						if(noUpcomingMatches == true){
+								upcomingMatchesTabTime = 5000
+							} else {
+								upcomingMatchesTabTime = (document.getElementById("upcomingTime").value * 1000) - 4000
+							}
+						pageTimeconfig(true, "UM", my_upcomingMatchesTable, UMPageCount,minPageTime, upcomingMatchesTabTime, allUMdata)
+					}
+					pageConfig(my_upcomingMatchesTable)
+				}, 500)
 			}
 			
 			$('#upcomingMatches-button').on('changeTable', function(e) {
@@ -710,11 +721,11 @@ function getUpcomingMatchesTable(){
 			
 			
 			$('#upcomingMatches').on('tab', function(e) {
-			  alert("my alert");
+			  //alert("my alert");
 			});
 		} 
 		/*stop //log*/
-		//try {	
+		try {	
 			if(logUpcomingMatch == true){
 				if(my_upcomingMatches.length == 0){
 					logUpcomingMatch = false
@@ -829,7 +840,7 @@ function getUpcomingMatchesTable(){
 										my_currentFinishSingleStringsObject.expectedTimeDifference = expectedTimeDifferenceF
 										my_currentFinishSingleStringsObject.timeDifferenceSecs = timeDifferenceSecsF
 
-										my_stopArray.push(tournamentName, reloadDataCount, processIDF, stop, my_localID, poolnameF, isoCurrentTimeF, lastExpectedTime, ifReadytoPlayF, ifPlayerPlayingF, ifUnavailableF, reloadDataTimeSecs, lastRefreshTimeLog, expectedTimeDifferenceF, timeDifferenceSecsF)
+										my_stopArray.push(tournamentName, reloadDataCount, processIDF, stop, my_localID, poolnameF, isoCurrentTimeF, lastExpectedTime, ifReadytoPlayF, ifPlayerPlayingF, ifUnavailableF, reloadDataTimeSecs, lastRefreshTimeLog, expectedTimeDifferenceF, timeDifferenceSecsF, tournament_ID)
 										
 										
 										completeStopObjets.push(my_currentFinishSingleStringsObject)
@@ -863,8 +874,8 @@ function getUpcomingMatchesTable(){
 					$('#invisibleButton').trigger("click")
 				}
 			}
-		/*} catch (err){
+		} catch (err){
 			log(err)
-		}*/
+		}
 document.getElementById("upcomingMatchesLoader").style.display = "none"
 }

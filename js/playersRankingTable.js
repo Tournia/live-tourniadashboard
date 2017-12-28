@@ -11,7 +11,7 @@ function getPlayersRankingTable(my_listPlayersRanking){
 		var tr = $('<tr id=' + PlRrow_id + '/>');
 		tr.append("<td colspan='7' class='noUpcomingMatchesRow'>" + "No Players have been imported." + "</td>")
 		$('#playersRankingTable').append(tr)
-		document.getElementById("#playersRankingLoader").style.display = "none"
+		document.getElementById("playersRankingLoader").style.display = "none"
 	} else {
 		for(var plR = 0; plR < my_listPlayersRanking.length; plR++){
 			var plRrow_id = plR + 1

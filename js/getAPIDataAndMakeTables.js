@@ -42,6 +42,7 @@ function _1emptyVars(){
 	my_poolsWithTeams = []
 	my_GoogleSheetData = []
 	my_listPlayersRanking = []
+	my_listGroupsRanking = []
 	poolRankings = []
 	poolNamesRanked = []
 	poolRankings.push(poolNamesRanked)
@@ -227,9 +228,9 @@ function _4AgetCurrentMatchesData(){
 				noLocations = true
 				
 				var noCMData = {}
-					noCMData.CourtName = "There are no courts set up."
+					noCMData.CourtName = ""
 					noCMData.poolPlaying = ""
-					noCMData.poolName = ""
+					noCMData.poolName = "There are no upcoming matches planned"
 					noCMData.team1 = ""
 					noCMData.vsColumn = ""
 					noCMData.team2 = ""//noCMData.team1 = {name: "",players:[{name: ""},{name: ""}]}
@@ -281,9 +282,9 @@ function _5AgetReadyPostponedFinishedMatchesData(){
 				noUpcomingMatches = true
 				//logUpcomingMatch = false
 				var noUMData = {}
-					noUMData.localId = "There are no upcoming matches planned"
+					noUMData.localId = ""
 					noUMData.matchId = ""
-					noUMData.poolName = ""
+					noUMData.poolName = "There are no upcoming matches planned"
 					noUMData.status = ""
 					noUMData.priority = ""
 					noUMData.teamOne1 = ""//noUMData.team1 = {name: "",players:[{name: ""},{name: ""}]}
@@ -406,27 +407,27 @@ function _5DgetFinishedMatchesData(){
 
 function _6AgetplayersRanking(){
 	return $.getJSON(listPlayersRankingUrl, function(json){
-			my_playersRanking = json })
+			my_groupsRanking = json })
 		.success(function(){
-			for (key in my_playersRanking){
-				var singlePlayerRanking = {}
+			for (key in my_groupsRanking){
+				var singleGroupRanking = {}
 					
-				singlePlayerRanking.rank = my_playersRanking[key].rank
-				singlePlayerRanking.playerId = my_playersRanking[key].playerId
-				singlePlayerRanking.name = my_playersRanking[key].name
-				singlePlayerRanking.cleanName = my_playersRanking[key].name.replace(/".*"/, "")
-				singlePlayerRanking.sumPoints = my_playersRanking[key].sumPoints
-				singlePlayerRanking.nrSets = my_playersRanking[key].nrSets
-				singlePlayerRanking.relative = my_playersRanking[key].relative
-				singlePlayerRanking.gender = my_playersRanking[key].gender
+				singleGroupRanking.rank = my_groupsRanking[key].rank
+				singleGroupRanking.playerId = my_groupsRanking[key].playerId
+				singleGroupRanking.name = my_groupsRanking[key].name
+				singleGroupRanking.cleanName = my_groupsRanking[key].name.replace(/".*"/, "")
+				singleGroupRanking.sumPoints = my_groupsRanking[key].sumPoints
+				singleGroupRanking.nrSets = my_groupsRanking[key].nrSets
+				singleGroupRanking.relative = my_groupsRanking[key].relative
+				singleGroupRanking.gender = my_groupsRanking[key].gender
 				
-				if(singlePlayerRanking.gender == "M"){
-					singlePlayerRanking.gender = "Male"
-				} else if(singlePlayerRanking.gender == "F"){
-					singlePlayerRanking.gender = "Female"
+				if(singleGroupRanking.gender == "M"){
+					singleGroupRanking.gender = "Male"
+				} else if(singleGroupRanking.gender == "F"){
+					singleGroupRanking.gender = "Female"
 				}
 				
-				my_listPlayersRanking.push(singlePlayerRanking)
+				my_listPlayersRanking.push(singleGroupRanking)
 			}
 			if(ifMobile == true){
 				getPlayersRankingTable(my_listPlayersRanking)
@@ -435,9 +436,25 @@ function _6AgetplayersRanking(){
 }
 
 function _6BgetGroupRankings(){
-	/*return $.getJSON(listPlayerRankingsUrl, function(json){
-		my_playerRankings = json })
-		.success(function(){})*/
+	return $.getJSON(listGroupsRankingUrl, function(json){
+			my_groupsRanking = json })
+		.success(function(){
+			for (key in my_groupsRanking){
+				var singleGroupRanking = {}
+					
+				singleGroupRanking.rank = my_groupsRanking[key].rank
+				singleGroupRanking.name = my_groupsRanking[key].groupName
+				singleGroupRanking.sumPoints = my_groupsRanking[key].sumPoints
+				singleGroupRanking.nrSets = my_groupsRanking[key].nrSets
+				singleGroupRanking.relative = my_groupsRanking[key].relative
+				singleGroupRanking.nrPlayers = my_groupsRanking[key].nrPlayers
+				
+				my_listGroupsRanking.push(singleGroupRanking)
+			}
+			if(ifMobile == true){
+				getGroupsRankingTable(my_listGroupsRanking)
+			}
+		})
 }
 
 function _6CgetPoolWinners(){
@@ -536,7 +553,7 @@ function getAPIDataAndMakeTables(){
 			//log("finished requests 5")
 		}),
 		
-		$.when(_6AgetplayersRanking(), /*_6BgetGroupRankings(), _6CgetPoolWinners()*/)
+		$.when(_6AgetplayersRanking(), _6BgetGroupRankings()/*, _6CgetPoolWinners()*/)
 		.then(function(){
 			//log("finished requests 6")
 		})
@@ -560,11 +577,11 @@ function getCurrentDataSet(){
 	my_PostponedUpcomingMatchesString = JSON.stringify(my_unavPostponedMatches)
 	my_playedMatchesString = JSON.stringify(my_playedMatches)
 	my_listPlayedFinishedMatchesString = JSON.stringify(my_listPlayedFinishedMatches)
-	my_playersRankingString = JSON.stringify(my_playersRanking)
+	my_groupsRankingString = JSON.stringify(my_groupsRanking)
 	
 	log(reloadDataCount, "\n\n")
 	if(reloadDataCount == 0 || reloadDataCount == 1){
 		log("var my_tournamentInfoData =", my_tournamentInfoString ,"\n\n")
 	}
-	log("var my_upcomingMatchesData =", my_upcomingMatchesString, "\n\n","var locationsListData =", my_locationsListString, "\n\n", "var playingListData =", my_playingListString ,"\n\n", "var my_matchesData =", my_matchesString, "\n\n", "var my_PoolsData =", my_PoolsString,"\n\n", "var my_PostponedUpcomingMatchesData =", my_PostponedUpcomingMatchesString, "\n\n", "var my_playedMatchesData =", my_playedMatchesString, "\n\n", "var my_finishedMatchesData =", my_listPlayedFinishedMatchesString, "\n\n", "var my_playersRankingData =", my_playersRankingString)
+	log("var my_upcomingMatchesData =", my_upcomingMatchesString, "\n\n","var locationsListData =", my_locationsListString, "\n\n", "var playingListData =", my_playingListString ,"\n\n", "var my_matchesData =", my_matchesString, "\n\n", "var my_PoolsData =", my_PoolsString,"\n\n", "var my_PostponedUpcomingMatchesData =", my_PostponedUpcomingMatchesString, "\n\n", "var my_playedMatchesData =", my_playedMatchesString, "\n\n", "var my_finishedMatchesData =", my_listPlayedFinishedMatchesString, "\n\n", "var my_groupsRankingData =", my_groupsRankingString)
 }

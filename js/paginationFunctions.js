@@ -11,6 +11,7 @@ function paginationConfig(table){
 	}*/
 	
 	my_headerHeight = $('#my_header').outerHeight()
+	my_announcementsHeight = $('#announcements').outerHeight() 
 	if(document.getElementById("myLeftTabsBox").style.display== "none"){
 		my_TabsBoxHeight = 0
 	} else {
@@ -55,16 +56,16 @@ function paginationConfig(table){
 	
 	if (table == 'currentMatchesTable'){
 		var my_rowCount = getRowsCount(table, my_CMtHeadHeight, 2, my_CMnotesHeight)
-		availableCMTableHeight = my_windowsHeight - my_headerHeight - my_TabsBoxHeight - my_filterHeight - my_CMtHeadHeight - (1 * my_CMnotesHeight) - (1 * my_paginationNavHeight)
+		availableCMTableHeight = my_windowsHeight - my_headerHeight - my_announcementsHeight - my_TabsBoxHeight - my_filterHeight - my_CMtHeadHeight - (1 * my_CMnotesHeight) - (1 * my_paginationNavHeight)
 	} else if(table == 'upcomingMatchesTable'){
 		var my_rowCount = getRowsCount(table, my_UMtHeadHeight, 3, my_UMnotesHeight)
-		availableUMTableHeight = my_windowsHeight - my_headerHeight - my_TabsBoxHeight - my_filterHeight - my_UMtHeadHeight - (1 * my_UMnotesHeight) - (1 * my_paginationNavHeight)
+		availableUMTableHeight = my_windowsHeight - my_headerHeight - my_announcementsHeight - my_TabsBoxHeight - my_filterHeight - my_UMtHeadHeight - (1 * my_UMnotesHeight) - (1 * my_paginationNavHeight)
 	} else if(table == 'postponedMatchesTable'){
 		var my_rowCount = getRowsCount(table, my_PMtHeadHeight, 3, 0)
-		availablePMTableHeight = my_windowsHeight - my_headerHeight - my_TabsBoxHeight - my_filterHeight - my_PMtHeadHeight - 0 - (1 * my_paginationNavHeight)
+		availablePMTableHeight = my_windowsHeight - my_headerHeight - my_announcementsHeight - my_TabsBoxHeight - my_filterHeight - my_PMtHeadHeight - 0 - (1 * my_paginationNavHeight)
 	}else if(table == 'poolsOverviewTable'){
 		var my_rowCount = getRowsCount(table, my_POtHeadHeight, 2, 0)
-		availablePOTableHeight = my_windowsHeight - my_headerHeight - my_TabsBoxHeight - my_filterHeight - my_POtHeadHeight - 0 - (1 * my_paginationNavHeight)
+		availablePOTableHeight = my_windowsHeight - my_headerHeight - my_announcementsHeight - my_TabsBoxHeight - my_filterHeight - my_POtHeadHeight - 0 - (1 * my_paginationNavHeight)
 	}
 						
 	

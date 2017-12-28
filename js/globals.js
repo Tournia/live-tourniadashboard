@@ -3,11 +3,11 @@
 
 sampleData = false //load data from online database or local sample data sets
 DEBUG_MODE = true //show console log
-sendingDataToDatabase = false
+sendingDataToDatabase = true
 
-expectedTimesFunctionality = true //enable or disable expected Times functionality
-predictedTimesFunctionality = true //enable or disable predicted Times functionality
-expectedTimesDataTesting = true //always show upcoming matches table for expected time script testing
+expectedTimesFunctionality = false //enable or disable expected Times functionality
+predictedTimesFunctionality = false //enable or disable predicted Times functionality
+expectedTimesDataTesting = false //always show upcoming matches table for expected time script testing
 
 dataSetNr = 1 //ISBT Utrecht: 1-4; ISBT Amsterdam 1-9
 	//apply local datasets
@@ -41,6 +41,7 @@ var saveNewSettings = false
 var localStorageArray = []
 
 //running from web site or file
+
 switch(window.location.protocol) {
    case 'http:':
 	 var runLocal = false
@@ -55,14 +56,34 @@ switch(window.location.protocol) {
    default: 
      var runLocal = false
 }
+if(window.location.hostname === 'localhost'){
+	runLocal = true;
+}
+
 if(expectedTimesDataTesting == true){
 	runLocal = true
 }
 
+if(runLocal == false){
+	expectedTimesDataTesting = false
+} else{
+	sendingDataToDatabase = false
+}
+
+if(ifMobile == true){
+	sendingDataToDatabase = false
+}
+
+//overrules
+//runLocal = false
+
+//overview
 log("Sample Data:", sampleData)
 log("Tournament:", urlData[0])
 log("Data Testing:", expectedTimesDataTesting)
+log("run Local:", runLocal)
 log("Data Sample set nr:", dataSetNr)
+log("sending Data to Database:", sendingDataToDatabase)
 log("if Mobile:", ifMobile,"\n\n")
 
 //ifReloadTables = true
@@ -115,6 +136,7 @@ var my_poolsOverviewTable
 var my_playedMatchesTable
 var my_poolRankingsTable
 var my_playersRankingTable
+var my_groupsRankingTable
 var my_playersTable
 
 var tabTableIds = ["currentMatchesTable", "upcomingMatchesTable", "postponedMatchesTable"]
@@ -129,7 +151,7 @@ var newPoolsOverviewTable
 var selectedCMTable
 var selectedUMTable
 var selectedPMTable
-var selectedPOTable = "nothing"
+var selectedPOTable
 
 var poolProperties = []
 var predictedTimeLeftArray = []
@@ -193,6 +215,7 @@ var my_matchesRaw
 var my_matches
 var my_nrofRoundsPerPool = {}
 var my_listPlayersRanking = []
+var my_listGroupsRanking = []
 var listPlayers = []
 var startTab
 var goToUpcomingMatchesTab
@@ -294,6 +317,7 @@ var PMdetectChangeCount = 0
 
 
 var my_headerHeight
+var my_announcementsHeight
 var my_TabsBoxHeight
 var my_UMtHeadHeight
 var my_paginationNavHeight
