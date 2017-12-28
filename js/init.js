@@ -49,8 +49,10 @@ var timeString = time.toString();
 		
 		document.getElementById("poRankingsRb").checked = true
 		document.getElementById("plRankingsRb").checked = false
+		document.getElementById("grRankingsRb").checked = false
 		document.getElementById("poolRankingsBox").style.display = ""
 		document.getElementById("playersRankingBox").style.display = "none"
+		document.getElementById("groupsRankingBox").style.display = "none"
 		document.getElementById("rankingsBox").style.display = "none"
 		document.getElementById("playersBox").style.display = "none"
 	}
@@ -180,7 +182,7 @@ var timeString = time.toString();
 		getPoolRankingsTable(my_pool, my_poolId)
 	});
 	$('#resultsRankingsRbs').change(function(){
-		log("change", document.getElementById("resultsRb").checked, document.getElementById("rankingsRb").checked, document.getElementById("playersRb").checked == true)
+		//log("change", document.getElementById("resultsRb").checked, document.getElementById("rankingsRb").checked, document.getElementById("playersRb").checked == true)
 		if(document.getElementById("resultsRb").checked == true){
 			document.getElementById("matchResultsBox").style.display = ""
 			document.getElementById("rankingsBox").style.display = "none"
@@ -200,9 +202,15 @@ var timeString = time.toString();
 		if(document.getElementById("poRankingsRb").checked == true){
 			document.getElementById("poolRankingsBox").style.display = ""
 			document.getElementById("playersRankingBox").style.display = "none"
+			document.getElementById("groupsRankingBox").style.display = "none"
 		} else if(document.getElementById("plRankingsRb").checked == true){
 			document.getElementById("poolRankingsBox").style.display = "none"
 			document.getElementById("playersRankingBox").style.display = ""
+			document.getElementById("groupsRankingBox").style.display = "none"
+		} else if(document.getElementById("grRankingsRb").checked == true){
+			document.getElementById("poolRankingsBox").style.display = "none"
+			document.getElementById("playersRankingBox").style.display = "none"
+			document.getElementById("groupsRankingBox").style.display = ""
 		}
 	})
 	
@@ -225,13 +233,19 @@ var timeString = time.toString();
 	//turn predicted / expected Times on or off
 	if(expectedTimesFunctionality == false){
 		showExpectedTimeColumn = false
-		document.getElementById("ExpectedTimeBo").checked = false
-		document.getElementById("expectedTimesOption").style.display = "none"
+		if(ifMobile == false){
+			document.getElementById("ExpectedTimeBo").checked = false
+			document.getElementById("expectedTimesOption").style.display = "none"
+		}
+		document.getElementById("UM_notes").style.display="none"
 	}
 	if(predictedTimesFunctionality == false){
 		showPredictedTimeColumn = false
-		document.getElementById("predictedTimeColumn").checked = false
-		document.getElementById("predictedTimesOption").style.display = "none"
+		if(ifMobile == false){
+			document.getElementById("predictedTimeColumn").checked = false
+			document.getElementById("predictedTimesOption").style.display = "none"
+		}
+		document.getElementById("CM_notes").style.display="none"
 	}
 	
 }) // end of init

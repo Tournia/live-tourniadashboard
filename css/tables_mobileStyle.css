@@ -65,6 +65,13 @@ p.tableHeaders{
 	display: block;
 }
 
+#groupsRankingTable{
+	border-collapse: collapse;
+	width: 100%;
+	overflow-x: auto;
+	display: block;
+}
+
 #playersTable{
 	border-collapse: collapse;
 	width: 100%;
@@ -357,6 +364,19 @@ table.dataTable thead th, table.dataTable thead td {
     text-align: center;	
 }
 
+#plCol{
+	border-right: 3px solid #555555;
+}
+
+#mCol{
+	border-right: 3px solid #555555;
+}
+#sCol{
+	border-right: 3px solid #555555;
+}
+#pCol{
+	border-right: 3px solid #555555;
+}
 #mRelativeCol{
 	border-right: 3px solid #555555;
 }

@@ -106,10 +106,14 @@ a:hover{
 }
 
 .ui-navbar li .ui-btn {
-    font-size: 0.6em;
+    font-size: 3vw;
     display: block;
     margin: 0;
     border-right-width: 0;
+	display: flex;
+    justify-content: center;
+    flex-direction: column;
+	text-overflow: clip;
 }
 
 #my_header{
