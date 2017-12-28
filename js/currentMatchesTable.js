@@ -314,6 +314,8 @@ function getCurrentMatchesTable(){
 																			} else {
 																				$(nTd).css('background-color', '#71da71')
 																			}
+																			$(nTd).css('padding-top', '5px')
+																			$(nTd).css('padding-bottom', '5px')
 																		}
 				},
 				{ data: 'poolPlaying', fnCreatedCell: 	function (nTd, sData, oData, iRow, iCol) {
@@ -394,6 +396,8 @@ function getCurrentMatchesTable(){
 																			} else {
 																				$(nTd).css('background-color', '#71da71')
 																			}
+																			$(nTd).css('padding-top', '5px')
+																			$(nTd).css('padding-bottom', '5px')
 																		}
 				},
 				{ data: 'poolPlaying', sWidth: '120px', fnCreatedCell: 	function (nTd, sData, oData, iRow, iCol) {
