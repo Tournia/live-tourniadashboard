@@ -237,18 +237,19 @@ function tableInfoLocations(){
 
 function sendTimesLog(){
   if(sendingDataToDatabase == true){
-	  //log('sending times log data..')
+	 var databaseUrl = "expectedTimesLog_"+tournament_ID+".php"
+	 log('sending times log data..')
 	  //log("data to send to database:", UM_loopLogStrings)
 	  var UM_loopLogJSON = JSON.stringify(UM_loopLogStrings)
 		$.ajax({
 		  type: "POST",
 		  data: {UM_loopLogStrings: UM_loopLogStrings},
-		  url: "expectedTimesLog.php",
+		  url: databaseUrl,
 		  success: function(response){
-				//log("data send succesufully to php")
+				log("data send succesfully to php")
 			},
 		  fail: function(response){
-			  //log("data failed to send to php")
+			  log("data failed to send to php")
 		  }
 		});
   }
