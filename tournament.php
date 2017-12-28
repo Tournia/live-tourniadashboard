@@ -15,7 +15,7 @@
 	var ifMobile = false //set to true if you want to work only in the mobile pages
 	
 	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || ifMobile == true) {
-		var ifMobile = true		
+		ifMobile = true		
 	} else {
 		var mobileError = false
 		var cssPath = "css/style.css";
@@ -318,7 +318,7 @@
 		<div id="TournamentUrlName"></div>
 		<div id="myClock"></div>
 	</div>
-	
+	<div id="announcements"></div>
 	<!-- Modals -->
 	<!--Settings Modal -->
   <div class="modal fade" id="settingsModal" role="dialog">

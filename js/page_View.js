@@ -45,7 +45,7 @@ function displayTitle(){
 		} else {
 			var tournament_shortcut = tournament_ID
 		}
-		var anouncementText = "Go to tourniadashboard.nl/"+tournament_shortcut+" to check all the info on your mobile including results and rankings."
+		var anouncementText = "Go to <i><u>tourniadashboard.nl/"+tournament_shortcut+"</u></i> to check everything on your  mobile including upcoming matches, byes, results and rankings."
 		document.getElementById('announcements').innerHTML = anouncementText
 	}
 }
@@ -119,14 +119,14 @@ function createPage(){
 	/*make tables*/
 	if (sampleData == true){
 		getLocalDataAndMakeLocalTables()
-		if(runLocal == true){
+		if(runLocal == true && expectedTimesDataTesting == true){
 			simpleTabChangeOnce()
 		}
 	} else {
 		$.when(checkForAPIChange())
 		.then(function(){
 			getAPIDataAndMakeTables()
-			if(runLocal == true){
+			if(runLocal == true && expectedTimesDataTesting == true){
 				simpleTabChangeOnce()
 			}
 		})

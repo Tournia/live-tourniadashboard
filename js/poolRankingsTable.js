@@ -121,7 +121,7 @@ function getPoolRankingsTable(pool, poolId){
 					},{ data: 'my_players', fnCreatedCell:  	function (nTd, sData, oData, iRow, iCol) {
 																$(nTd).css('padding-right', '5px')
 																$(nTd).css('text-align', 'left')
-																$(nTd).css('border-right', '0.2vw solid #555555')
+																$(nTd).css('border-right', '3px solid #555555')
 															}
 					},
 					{ data: 'matchesPlayed', fnCreatedCell:  function (nTd, sData, oData, iRow, iCol) {
