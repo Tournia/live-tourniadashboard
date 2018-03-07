@@ -13,10 +13,10 @@ function placeDefaultVars(tournament_ID, gSheetUrl) { //default from url
 		my_settingsVarsObject.ifPostponedTable = true
 		my_settingsVarsObject.ifPoolsTable = true
 		my_settingsVarsObject.ifReloadTables = true
-		my_settingsVarsObject.reloadTime = 60
+		my_settingsVarsObject.reloadTime = 30
 		my_settingsVarsObject.ifChangeTabs = true
 		my_settingsVarsObject.minPageTime = 5
-		my_settingsVarsObject.upcomingTime = 40
+		my_settingsVarsObject.upcomingTime = 10
 		my_settingsVarsObject.currentTime = 10
 		my_settingsVarsObject.postponedTime = 10
 		my_settingsVarsObject.showStatusPlayersColumn = true
@@ -25,7 +25,7 @@ function placeDefaultVars(tournament_ID, gSheetUrl) { //default from url
 		my_settingsVarsObject.showPredictedTimeColumn = true
 		my_settingsVarsObject.showTotTeamsColumn = false
 		my_settingsVarsObject.showRoundsNeededColumn = false
-		my_settingsVarsObject.showRoundsCreatedColumn = true
+		my_settingsVarsObject.showRoundsCreatedColumn = false
 		my_settingsVarsObject.showRoundsLeftColumn = false
 		my_settingsVarsObject.showStatusColumn = true
 		my_settingsVarsObject.showByeDataColumn = true

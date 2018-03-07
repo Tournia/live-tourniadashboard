@@ -406,61 +406,61 @@ function getPoolsOverviewTable(){
 						//pageResize: true,
 						//bAutoWidth: false,			
 						columns: [
-							{ data: 'poolName', sWidth: '150px', autoWidth: false, fnCreatedCell: 	function (nTd, sData, oData, iRow, iCol) {
-																	$(nTd).css('border-left', '3px solid #555555')
-																	$(nTd).css('border-right', '0.2vw solid #555555')
-																	$(nTd).css('background-color', '#b3ccff')
-																	$(nTd).css('padding-left', '5px')
-																	$(nTd).css('padding-right', '5px')
-																	$(nTd).css('padding-top', '5px')
-																	$(nTd).css('padding-bottom', '5px')
+							{ data: 'poolName', sWidth: '150px', autoWidth: false, fnCreatedCell: 	function (namedExpectedTimeMins, sData, oData, iRow, iCol) {
+																	$(namedExpectedTimeMins).css('border-left', '3px solid #555555')
+																	$(namedExpectedTimeMins).css('border-right', '0.2vw solid #555555')
+																	$(namedExpectedTimeMins).css('background-color', '#b3ccff')
+																	$(namedExpectedTimeMins).css('padding-left', '5px')
+																	$(namedExpectedTimeMins).css('padding-right', '5px')
+																	$(namedExpectedTimeMins).css('padding-top', '5px')
+																	$(namedExpectedTimeMins).css('padding-bottom', '5px')
 																},
 							},
-							{ data: 'amountTeams', fnCreatedCell:  	function (nTd, sData, oData, iRow, iCol) {
-																		$(nTd).css('padding-right', '5px')
-																		$(nTd).css('text-align', 'right')
-																		$(nTd).css('border-right', '0.2vw solid #555555')
+							{ data: 'amountTeams', fnCreatedCell:  	function (namedExpectedTimeMins, sData, oData, iRow, iCol) {
+																		$(namedExpectedTimeMins).css('padding-right', '5px')
+																		$(namedExpectedTimeMins).css('text-align', 'right')
+																		$(namedExpectedTimeMins).css('border-right', '0.2vw solid #555555')
 																	},								
 							visible: showTotTeamsColumn},
-							{ data: 'roundsNeeded', fnCreatedCell:  function (nTd, sData, oData, iRow, iCol) {
-																		$(nTd).css('padding-right', '5px')
-																		$(nTd).css('text-align', 'right')
-																		$(nTd).css('border-right', '0.2vw solid #555555')
+							{ data: 'roundsNeeded', fnCreatedCell:  function (namedExpectedTimeMins, sData, oData, iRow, iCol) {
+																		$(namedExpectedTimeMins).css('padding-right', '5px')
+																		$(namedExpectedTimeMins).css('text-align', 'right')
+																		$(namedExpectedTimeMins).css('border-right', '0.2vw solid #555555')
 																	},
 																									
 							visible: showRoundsNeededColumn},
-							{ data: 'roundsNr', fnCreatedCell:  function (nTd, sData, oData, iRow, iCol) {
-																	$(nTd).css('padding-right', '5px')
-																	$(nTd).css('text-align', 'right')
-																	$(nTd).css('border-right', '0.2vw solid #555555')
+							{ data: 'roundsNr', fnCreatedCell:  function (namedExpectedTimeMins, sData, oData, iRow, iCol) {
+																	$(namedExpectedTimeMins).css('padding-right', '5px')
+																	$(namedExpectedTimeMins).css('text-align', 'right')
+																	$(namedExpectedTimeMins).css('border-right', '0.2vw solid #555555')
 																},							
 							visible: showRoundsCreatedColumn},
-							{ data: 'roundsLeft', fnCreatedCell:  	function (nTd, sData, oData, iRow, iCol) {
-																		$(nTd).css('padding-right', '5px')
-																		$(nTd).css('text-align', 'right')
-																		$(nTd).css('border-right', '0.2vw solid #555555')
+							{ data: 'roundsLeft', fnCreatedCell:  	function (namedExpectedTimeMins, sData, oData, iRow, iCol) {
+																		$(namedExpectedTimeMins).css('padding-right', '5px')
+																		$(namedExpectedTimeMins).css('text-align', 'right')
+																		$(namedExpectedTimeMins).css('border-right', '0.2vw solid #555555')
 																	},								
 							visible: showRoundsLeftColumn},
-							{ data: 'statusPool', sWidth: '80px', fnCreatedCell:	function (nTd, sData, oData, iRow, iCol) {
+							{ data: 'statusPool', sWidth: '80px', fnCreatedCell:	function (namedExpectedTimeMins, sData, oData, iRow, iCol) {
 																					var sDataLower = sData.toLowerCase()
-																					//$(nTd).css('border-right', '0.2vw solid #555555')
+																					//$(namedExpectedTimeMins).css('border-right', '0.2vw solid #555555')
 																					if (sDataLower.includes("stop") || sData == "Pool doesn't exist"){
-																						$(nTd).css('background-color', '#ff4d4d')
+																						$(namedExpectedTimeMins).css('background-color', '#ff4d4d')
 																					} else if (sData == "new round planned" ){
-																						$(nTd).css('background-color', '#ffffb3')
+																						$(namedExpectedTimeMins).css('background-color', '#ffffb3')
 																					} else if (sData == "pool finished"){
-																						$(nTd).css('background-color', '#ff8080')
+																						$(namedExpectedTimeMins).css('background-color', '#ff8080')
 																					} else if (sData == "currently playing"){
-																						$(nTd).css('background-color', '#71da71')
+																						$(namedExpectedTimeMins).css('background-color', '#71da71')
 																					} else if (sDataLower.includes("pause")){
-																						$(nTd).css('background-color', '#ffb366')
+																						$(namedExpectedTimeMins).css('background-color', '#ffb366')
 																					}
 																				},											
 							visible: showStatusColumn},
-							{ data: 'byeData', fnCreatedCell:  	function (nTd, sData, oData, iRow, iCol) {
-																	$(nTd).css('padding-left', '5px')
-																	$(nTd).css('text-align', 'left')
-																	$(nTd).css('border-right', '3px solid #555555')
+							{ data: 'byeData', fnCreatedCell:  	function (namedExpectedTimeMins, sData, oData, iRow, iCol) {
+																	$(namedExpectedTimeMins).css('padding-left', '5px')
+																	$(namedExpectedTimeMins).css('text-align', 'left')
+																	$(namedExpectedTimeMins).css('border-right', '3px solid #555555')
 																},								
 							visible: showByeColumn}
 						],

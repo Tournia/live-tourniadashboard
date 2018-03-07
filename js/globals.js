@@ -5,11 +5,13 @@ sampleData = false //load data from online database or local sample data sets
 DEBUG_MODE = true //show console log
 sendingDataToDatabase = true
 
-expectedTimesFunctionality = false //enable or disable expected Times functionality
-predictedTimesFunctionality = false //enable or disable predicted Times functionality
+expectedTimesFunctionality = true //enable or disable expected Times functionality
+predictedTimesFunctionality = true //enable or disable predicted Times functionality
 expectedTimesDataTesting = false //always show upcoming matches table for expected time script testing
+AET = true //adjust expected times
+slowLoading = false
 
-dataSetNr = 1 //ISBT Utrecht: 1-4; ISBT Amsterdam 1-9
+dataSetNr = 2 //ISBT Utrecht: 1-4; ISBT Amsterdam 1-9
 	//apply local datasets
 	//isbt Utrecht sample Data
 	var ifEmptyInput = false
@@ -188,13 +190,13 @@ var ifOrganizerViewPreset
 /*colors*/
 var playerPlayingSpan = "<td style=background-color:#ffffb3>" //yellow
 var playerUnavailableSpan = "<td style=background-color:#ff8080>" //red
-var nowPlayingSpan = "<td style=background-color:#71da71>" //Ready to Play green
+var nowPlayingSpan = "<td style=background-color:#71da71>" //Players Available green
 var poolPausedSpan = "<span style=background-color:#ffb366>" //orange
 var poolsColour = "<span style=background-color:#b3ccff>" //light blue
 var poolStoppedSpan = "<span style=background-color:ff4d4d>" // dark red
 
 /*status texts*/
-var readyToPlay = "ready to play"
+var readyToPlay = "Players Available"
 var playersCurrentlyPlaying = "players playing"
 var playersUnavailable = "players unavailable"
 var postponedMatch = "postponed match"

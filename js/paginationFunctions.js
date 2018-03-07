@@ -94,7 +94,7 @@ function pageTimeconfig(ifTabTable, tableName, table, pageCount, minPageTime, ta
 			//log("no CM tc")
 			my_returns = []
 			my_newPageTime = 5000
-			my_newTableTime = pageCount * 5000
+			my_newTableTime = 1 * 5000
 			newCMPageTime = my_newPageTime
 			newCMTableTime = my_newTableTime
 			my_returns.push(my_newPageTime, my_newTableTime)
@@ -109,7 +109,7 @@ function pageTimeconfig(ifTabTable, tableName, table, pageCount, minPageTime, ta
 			//log("no UM tc")
 			my_returns = []
 			my_newPageTime = 5000
-			my_newTableTime = pageCount * 5000
+			my_newTableTime = 1 * 5000
 			newUMPageTime = my_newPageTime
 			newUMTableTime = my_newTableTime
 			my_returns.push(my_newPageTime, my_newTableTime)
@@ -120,10 +120,10 @@ function pageTimeconfig(ifTabTable, tableName, table, pageCount, minPageTime, ta
 	} else if(tableName == "PM"){
 		var ifTabTable = true
 		if(noUnavPostponedMatches == true){
-			//log("no PM tc")
+			log("no PM tc")
 			my_returns = []
 			my_newPageTime = 5000 
-			my_newTableTime = pageCount * 5000
+			my_newTableTime = 1 * 5000
 			newPMPageTime = my_newPageTime 
 			newPMTableTime = my_newTableTime
 			my_returns.push(my_newPageTime, my_newTableTime)
@@ -131,13 +131,12 @@ function pageTimeconfig(ifTabTable, tableName, table, pageCount, minPageTime, ta
 			newPMPageTime = my_newPageTime 
 			newPMTableTime = my_newTableTime
 		}
-		
-	} else if(tableName = "PO"){
+	} else if(tableName == "PO"){
 		newPOPageTime = my_newPageTime 
 		newPOTableTime = my_newTableTime
-		var tabTable = false
+		var ifTabTable = false
 	} else {
-		alert("error occured in pageTimeConfig")
+		log("error occured in pageTimeConfig")
 	}
 	//log("new times:", newCMPageTime, newCMTableTime, newUMPageTime, newUMTableTime, newPMPageTime, newPMTableTime, newPOPageTime, newPOTableTime)
 	//log("my page time configurations result of", tableName+":", my_returns)

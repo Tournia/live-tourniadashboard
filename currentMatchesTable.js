@@ -372,7 +372,7 @@ function getCurrentMatchesTable(){
 		var my_CMTable = $('#currentMatchesTable').DataTable({
 			data: my_data,
 			paging: ifPaging,
-			//pagingType: "numbers",
+			pagingType: "numbers",
 			lengthChange: ifLengthChange(),
 			searching: ifOrganizerViewPreset,
 			lengthMenu:	lengthMenu,

@@ -166,10 +166,10 @@
 			ifPostponedTable: true,
 			ifPoolsTable: true,		
 			ifReloadTables: false,
-			reloadTime: 60,
+			reloadTime: 30,
 			ifChangeTabs: false,
 			minPageTime: 5,
-			upcomingTime: 40,
+			upcomingTime: 10,
 			currentTime: 10,
 			postponedTime: 10,
 			ifGoogleSheet: false,
@@ -265,7 +265,7 @@
 		} else {
 			log("empty url")
 			mobileError = true
-			var tournamentID_input = prompt("No tournament found. Please provide a (correct) tournament id:") //eg.: www.tourniadashboard.nl/utrecht2016")
+			var tournamentID_input = prompt("No tournament found. Please provide a (correct) tournament id.\nOngoing or upcoming tournaments include:\n 'isbt-enschede-2017'\n'bc-drop-shot-wintertoernooi-2017'\n") //eg.: www.tourniadashboard.nl/utrecht2016")
 			var tournament_url = "/tournament.php?" + tournamentID_input
 			window.location.href = tournament_url
 		} 		

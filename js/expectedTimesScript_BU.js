@@ -88,7 +88,7 @@ function calculateExpectedTime(um, my_PoolName, poolPropertiesObject, singleUMDa
 			if(upcomingMatchNr == nrOfCourts + unavailable_UM[1]){
 				showShift1Text = false
 			}
-			//log("in Shift 1 ready to play")
+			//log("in Shift 1 Players Available")
 			//log("free courts available:", freeCourtsAvailable)
 			inCount = true; inTotCount_UM +=1; inCount_UM[shiftNr] +=1; inReadyCount_UM[shiftNr]+=1
 			inFirstCount = true; inFirstCount_UM +=1
@@ -288,7 +288,7 @@ function calculateExpectedTime(um, my_PoolName, poolPropertiesObject, singleUMDa
 				singleUMData.stars = stars
 				
 				if(my_statusText == readyToPlay){
-					//log("in Shift", shiftNr, "ready to play")
+					//log("in Shift", shiftNr, "Players Available")
 					inCount = true; inTotCount_UM +=1; inCount_UM[shiftNr] +=1; inReadyCount_UM[shiftNr] +=1;
 					upcomingMatchInfo.readyToPlay = true
 					if(freeCourtsAvailable > 0){

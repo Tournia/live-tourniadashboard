@@ -176,9 +176,9 @@ function getPlayedMatchesTable(){
 					//pageResize: true,
 					//bAutoWidth: false,			
 					columns: [
-						{ data: 'matchNr', fnCreatedCell: 	function (nTd, sData, oData, iRow, iCol) {
-																$(nTd).css('text-overflow', 'visible')
-																$(nTd).css('white-space', 'nowrap')
+						{ data: 'matchNr', fnCreatedCell: 	function (namedExpectedTimeMins, sData, oData, iRow, iCol) {
+																$(namedExpectedTimeMins).css('text-overflow', 'visible')
+																$(namedExpectedTimeMins).css('white-space', 'nowrap')
 															}
 						},
 						{ data: 'PoolName' },
@@ -204,49 +204,49 @@ function getPlayedMatchesTable(){
 					//pageResize: true,
 					//bAutoWidth: false,			
 					columns: [
-						{ data: 'matchNr', sWidth: '15px', autoWidth: false, fnCreatedCell: 	function (nTd, sData, oData, iRow, iCol) {
-																$(nTd).css('border-left', '3px solid #555555')
-																$(nTd).css('text-align', 'center')
+						{ data: 'matchNr', sWidth: '15px', autoWidth: false, fnCreatedCell: 	function (namedExpectedTimeMins, sData, oData, iRow, iCol) {
+																$(namedExpectedTimeMins).css('border-left', '3px solid #555555')
+																$(namedExpectedTimeMins).css('text-align', 'center')
 															}
 						},
-						{ data: 'PoolName', sWidth: '150px', autoWidth: true, fnCreatedCell: 	function (nTd, sData, oData, iRow, iCol) {
-																$(nTd).css('border-left', '0.2vw solid #555555')
-																$(nTd).css('border-right', '0.2vw solid #555555')
-																$(nTd).css('background-color', '#b3ccff')
-																$(nTd).css('padding-left', '5px')
-																$(nTd).css('padding-right', '5px')
+						{ data: 'PoolName', sWidth: '150px', autoWidth: true, fnCreatedCell: 	function (namedExpectedTimeMins, sData, oData, iRow, iCol) {
+																$(namedExpectedTimeMins).css('border-left', '0.2vw solid #555555')
+																$(namedExpectedTimeMins).css('border-right', '0.2vw solid #555555')
+																$(namedExpectedTimeMins).css('background-color', '#b3ccff')
+																$(namedExpectedTimeMins).css('padding-left', '5px')
+																$(namedExpectedTimeMins).css('padding-right', '5px')
 															}
 						},
-						{ data: 'teamOne1', fnCreatedCell:  function (nTd, sData, oData, iRow, iCol) {
-																$(nTd).css('padding-left', '5px')
-																$(nTd).css('text-align', 'left')
+						{ data: 'teamOne1', fnCreatedCell:  function (namedExpectedTimeMins, sData, oData, iRow, iCol) {
+																$(namedExpectedTimeMins).css('padding-left', '5px')
+																$(namedExpectedTimeMins).css('text-align', 'left')
 																//////log(sData)
 															}
 														
 						},
-						{ data: 'teamOne2', fnCreatedCell:  function (nTd, sData, oData, iRow, iCol) {
-																$(nTd).css('padding-left', '5px')
-																$(nTd).css('text-align', 'left')
-																$(nTd).css('border-right', '0.2vw solid #555555')
+						{ data: 'teamOne2', fnCreatedCell:  function (namedExpectedTimeMins, sData, oData, iRow, iCol) {
+																$(namedExpectedTimeMins).css('padding-left', '5px')
+																$(namedExpectedTimeMins).css('text-align', 'left')
+																$(namedExpectedTimeMins).css('border-right', '0.2vw solid #555555')
 															}											
 						},
-						{ data: 'scores', width: '60px', fnCreatedCell:	function (nTd, sData, oData, iRow, iCol) {
-																	$(nTd).css('font-weight', 'bold')
+						{ data: 'scores', width: '60px', fnCreatedCell:	function (namedExpectedTimeMins, sData, oData, iRow, iCol) {
+																	$(namedExpectedTimeMins).css('font-weight', 'bold')
 															}
 						},
-						{ data: 'teamTwo1', fnCreatedCell:  function (nTd, sData, oData, iRow, iCol) {
-																$(nTd).css('padding-left', '5px')
-																$(nTd).css('text-align', 'left')
-																$(nTd).css('border-left', '0.2vw solid #555555')
+						{ data: 'teamTwo1', fnCreatedCell:  function (namedExpectedTimeMins, sData, oData, iRow, iCol) {
+																$(namedExpectedTimeMins).css('padding-left', '5px')
+																$(namedExpectedTimeMins).css('text-align', 'left')
+																$(namedExpectedTimeMins).css('border-left', '0.2vw solid #555555')
 
 															}												
 						},
-						{ data: 'teamTwo2', fnCreatedCell:  function (nTd, sData, oData, iRow, iCol) {
-																$(nTd).css('padding-left', '5px')
-																$(nTd).css('text-align', 'left')
+						{ data: 'teamTwo2', fnCreatedCell:  function (namedExpectedTimeMins, sData, oData, iRow, iCol) {
+																$(namedExpectedTimeMins).css('padding-left', '5px')
+																$(namedExpectedTimeMins).css('text-align', 'left')
 																//////log(sData)
 																//////log("arrays:", playerNamesReadyToPlayArray, playerNamesCurrentlyPlayingArray, playerNamesCurrentlyUnavailableArray)
-																$(nTd).css('border-right', '3px solid #555555')
+																$(namedExpectedTimeMins).css('border-right', '3px solid #555555')
 
 															}												
 						}															

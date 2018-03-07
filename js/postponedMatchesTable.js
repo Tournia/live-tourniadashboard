@@ -190,9 +190,9 @@ function getPostponedMatchesTable(){
 						//pageResize: true,
 						//bAutoWidth: false,			
 						columns: [
-							{ data: 'matchNr', fnCreatedCell: 	function (nTd, sData, oData, iRow, iCol) {
-																	$(nTd).css('text-overflow', 'visible')
-																	$(nTd).css('white-space', 'nowrap')
+							{ data: 'matchNr', fnCreatedCell: 	function (namedExpectedTimeMins, sData, oData, iRow, iCol) {
+																	$(namedExpectedTimeMins).css('text-overflow', 'visible')
+																	$(namedExpectedTimeMins).css('white-space', 'nowrap')
 																}
 							},
 							{ data: 'PoolName' },
@@ -221,111 +221,111 @@ function getPostponedMatchesTable(){
 						//pageResize: true,
 						//bAutoWidth: false,			
 						columns: [
-							{ data: 'matchNr', sWidth: '15px', autoWidth: false, fnCreatedCell: 	function (nTd, sData, oData, iRow, iCol) {
-																	$(nTd).css('border-left', '3px solid #555555')
-																	$(nTd).css('text-align', 'center')
-																	$(nTd).css('padding-top', '5px')
-																	$(nTd).css('padding-bottom', '5px')
+							{ data: 'matchNr', sWidth: '15px', autoWidth: false, fnCreatedCell: 	function (namedExpectedTimeMins, sData, oData, iRow, iCol) {
+																	$(namedExpectedTimeMins).css('border-left', '3px solid #555555')
+																	$(namedExpectedTimeMins).css('text-align', 'center')
+																	$(namedExpectedTimeMins).css('padding-top', '5px')
+																	$(namedExpectedTimeMins).css('padding-bottom', '5px')
 																}
 							},
-							{ data: 'PoolName', sWidth: '150px', autoWidth: true, fnCreatedCell: 	function (nTd, sData, oData, iRow, iCol) {
-																	$(nTd).css('border-left', '0.2vw solid #555555')
-																	$(nTd).css('border-right', '0.2vw solid #555555')
-																	$(nTd).css('background-color', '#b3ccff')
-																	$(nTd).css('padding-left', '5px')
-																	$(nTd).css('padding-right', '5px')
+							{ data: 'PoolName', sWidth: '150px', autoWidth: true, fnCreatedCell: 	function (namedExpectedTimeMins, sData, oData, iRow, iCol) {
+																	$(namedExpectedTimeMins).css('border-left', '0.2vw solid #555555')
+																	$(namedExpectedTimeMins).css('border-right', '0.2vw solid #555555')
+																	$(namedExpectedTimeMins).css('background-color', '#b3ccff')
+																	$(namedExpectedTimeMins).css('padding-left', '5px')
+																	$(namedExpectedTimeMins).css('padding-right', '5px')
 																}
 							},
-							{ data: 'teamOne1', fnCreatedCell:  function (nTd, sData, oData, iRow, iCol) {
-																	$(nTd).css('padding-left', '5px')
-																	$(nTd).css('text-align', 'left')
+							{ data: 'teamOne1', fnCreatedCell:  function (namedExpectedTimeMins, sData, oData, iRow, iCol) {
+																	$(namedExpectedTimeMins).css('padding-left', '5px')
+																	$(namedExpectedTimeMins).css('text-align', 'left')
 																	//////log(sData)
 																	var inRTP = inArray(sData, playerNamesReadyToPlayArray)
 																	var inPl = inArray(sData, playerNamesCurrentlyPlayingArray)
 																	var inUnav = inArray(sData, playerNamesCurrentlyUnavailableArray)
 																	if (inRTP == true) {
-																		//$(nTd).css('background-color', '#71da71')
+																		//$(namedExpectedTimeMins).css('background-color', '#71da71')
 																	} else if (inPl == true) {
-																		$(nTd).css('background-color', '#ffffb3')
+																		$(namedExpectedTimeMins).css('background-color', '#ffffb3')
 																	} else if (inUnav == true) {
-																		$(nTd).css('background-color', '#ff8080')
+																		$(namedExpectedTimeMins).css('background-color', '#ff8080')
 																	}
 																}
 															
 							},
-							{ data: 'teamOne2', fnCreatedCell:  function (nTd, sData, oData, iRow, iCol) {
-																	$(nTd).css('padding-left', '5px')
-																	$(nTd).css('text-align', 'left')
+							{ data: 'teamOne2', fnCreatedCell:  function (namedExpectedTimeMins, sData, oData, iRow, iCol) {
+																	$(namedExpectedTimeMins).css('padding-left', '5px')
+																	$(namedExpectedTimeMins).css('text-align', 'left')
 																	//////log(sData)
 																	var inRTP = inArray(sData, playerNamesReadyToPlayArray)
 																	var inPl = inArray(sData, playerNamesCurrentlyPlayingArray)
 																	var inUnav = inArray(sData, playerNamesCurrentlyUnavailableArray)
 																	if (inRTP == true) {
-																		//$(nTd).css('background-color', '#71da71')
+																		//$(namedExpectedTimeMins).css('background-color', '#71da71')
 																	} else if (inPl == true) {
-																		$(nTd).css('background-color', '#ffffb3')
+																		$(namedExpectedTimeMins).css('background-color', '#ffffb3')
 																	} else if (inUnav == true) {
-																		$(nTd).css('background-color', '#ff8080')
+																		$(namedExpectedTimeMins).css('background-color', '#ff8080')
 																	}
 																}											
 							},
-							{ data: 'vsColumn', sWidth: '10px', fnCreatedCell:	function (nTd, sData, oData, iRow, iCol) {
-																		$(nTd).css('font-weight', 'bold')
+							{ data: 'vsColumn', sWidth: '10px', fnCreatedCell:	function (namedExpectedTimeMins, sData, oData, iRow, iCol) {
+																		$(namedExpectedTimeMins).css('font-weight', 'bold')
 																}
 							},
-							{ data: 'teamTwo1', fnCreatedCell:  function (nTd, sData, oData, iRow, iCol) {
-																	$(nTd).css('padding-left', '5px')
-																	$(nTd).css('text-align', 'left')
+							{ data: 'teamTwo1', fnCreatedCell:  function (namedExpectedTimeMins, sData, oData, iRow, iCol) {
+																	$(namedExpectedTimeMins).css('padding-left', '5px')
+																	$(namedExpectedTimeMins).css('text-align', 'left')
 																	//////log(sData)
 																	var inRTP = inArray(sData, playerNamesReadyToPlayArray)
 																	var inPl = inArray(sData, playerNamesCurrentlyPlayingArray)
 																	var inUnav = inArray(sData, playerNamesCurrentlyUnavailableArray)
 																	if (inRTP == true) {
-																		//$(nTd).css('background-color', '#71da71')
+																		//$(namedExpectedTimeMins).css('background-color', '#71da71')
 																	} else if (inPl == true) {
-																		$(nTd).css('background-color', '#ffffb3')
+																		$(namedExpectedTimeMins).css('background-color', '#ffffb3')
 																	} else if (inUnav == true) {
-																		$(nTd).css('background-color', '#ff8080')
+																		$(namedExpectedTimeMins).css('background-color', '#ff8080')
 																	}
 																}												
 							},
-							{ data: 'teamTwo2', fnCreatedCell:  function (nTd, sData, oData, iRow, iCol) {
-																	$(nTd).css('padding-left', '5px')
-																	$(nTd).css('text-align', 'left')
+							{ data: 'teamTwo2', fnCreatedCell:  function (namedExpectedTimeMins, sData, oData, iRow, iCol) {
+																	$(namedExpectedTimeMins).css('padding-left', '5px')
+																	$(namedExpectedTimeMins).css('text-align', 'left')
 																	//////log(sData)
 																	//////log("arrays:", playerNamesReadyToPlayArray, playerNamesCurrentlyPlayingArray, playerNamesCurrentlyUnavailableArray)
 																	var inRTP = inArray(sData, playerNamesReadyToPlayArray)
 																	var inPl = inArray(sData, playerNamesCurrentlyPlayingArray)
 																	var inUnav = inArray(sData, playerNamesCurrentlyUnavailableArray)
 																	if (inRTP == true) {
-																		//$(nTd).css('background-color', '#71da71')
+																		//$(namedExpectedTimeMins).css('background-color', '#71da71')
 																	} else if (inPl == true) {
-																		$(nTd).css('background-color', '#ffffb3')
+																		$(namedExpectedTimeMins).css('background-color', '#ffffb3')
 																	} else if (inUnav == true) {
-																		$(nTd).css('background-color', '#ff8080')
+																		$(namedExpectedTimeMins).css('background-color', '#ff8080')
 																	}
 																}												
 							},
-							{ data: 'status', sWidth: '80px', fnCreatedCell:	function (nTd, sData, oData, iRow, iCol) {
-																	$(nTd).css('border-left', '0.2vw solid #555555')
+							{ data: 'status', sWidth: '80px', fnCreatedCell:	function (namedExpectedTimeMins, sData, oData, iRow, iCol) {
+																	$(namedExpectedTimeMins).css('border-left', '0.2vw solid #555555')
 																	//////log(sData)
 																	if (sData == postponedMatch){
-																		$(nTd).css('background-color', '#ff8080')
-																		$(nTd).css('text-decoration', 'underline')
+																		$(namedExpectedTimeMins).css('background-color', '#ff8080')
+																		$(namedExpectedTimeMins).css('text-decoration', 'underline')
 																	} else if (sData == playersCurrentlyPlaying ){
-																		$(nTd).css('background-color', '#ffffb3')
+																		$(namedExpectedTimeMins).css('background-color', '#ffffb3')
 																	} else if (sData == playersUnavailable ){
-																		$(nTd).css('background-color', '#ff8080')
+																		$(namedExpectedTimeMins).css('background-color', '#ff8080')
 																	} else if (sData == readyToPlay){
-																		$(nTd).css('background-color', '#71da71')
+																		$(namedExpectedTimeMins).css('background-color', '#71da71')
 																	}
 																}											
 							},
-							{ data: 'comment', fnCreatedCell: 	function (nTd, sData, oData, iRow, iCol){
-																				$(nTd).css('padding-left', '5px')
-																				$(nTd).css('text-align', 'left')
-																				$(nTd).css('width', '60px')
-																				$(nTd).css('border-right', '3px solid #555555')
+							{ data: 'comment', fnCreatedCell: 	function (namedExpectedTimeMins, sData, oData, iRow, iCol){
+																				$(namedExpectedTimeMins).css('padding-left', '5px')
+																				$(namedExpectedTimeMins).css('text-align', 'left')
+																				$(namedExpectedTimeMins).css('width', '60px')
+																				$(namedExpectedTimeMins).css('border-right', '3px solid #555555')
 																			}
 							}
 						]

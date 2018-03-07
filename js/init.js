@@ -149,10 +149,10 @@ var timeString = time.toString();
     });
 	
 	$('#myReloadTimeInput').keyup(function() {
-        if($(this).val() < '60') {
+        if($(this).val() < '30') {
 			if_error = true
-			alert("For better performance minimum time cannot be lower than 60 seconds.")
-			document.getElementById("myReloadTimeInput").value = 60
+			alert("For better performance minimum time cannot be lower than 30 seconds.")
+			document.getElementById("myReloadTimeInput").value = 30
         }
     });
 	 

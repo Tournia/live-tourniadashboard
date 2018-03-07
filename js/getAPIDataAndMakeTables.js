@@ -165,41 +165,45 @@ function _2AgetPoolsRoundsData(){
 			
 function _2BgetAllMatchesData(){
 	//log("2bS. in get matches")
-	return $.getJSON(listMatchesUrl, function(matches){
-		my_matchesRaw = matches})
-	.success(function(){
-		delete my_matchesRaw.iTotalDisplayRecords
-		delete my_matchesRaw.iTotalRecords
-		delete my_matchesRaw.sEcho
-		//log("2bF. all matches:", my_matches)
-		my_matches = my_matchesRaw.aaData
-		//////////log(my_matches[l], "length:", my_matches[l].length)
-		for (m in my_matches){
-			var my_poolName = my_matches[m].pool
-			var my_roundNrFString = my_matches[m].round
-			
-			var my_roundNrStr = my_roundNrFString.split(" ")
-			my_roundNrLastStr = my_roundNrStr.pop() 
-			var my_roundNr = Number(my_roundNrLastStr)
-			//////////log(my_poolName+":", my_roundNr)
-			my_nrofRoundsPerPool[my_poolName] = my_roundNr
-			
-			var DT_RowId =  my_matches[m].DT_RowId
-			var DT_RowId1 = DT_RowId.split("-")
-			my_matches[m].DT_RowId = Number(DT_RowId1[1])
-			
-			var localId = my_matches[m].localId
-			var my_localId1 = localId.split("\'\)\">")
-			var my_localId2 = my_localId1[1].split("</a>")
-			my_matches[m].localId = Number(my_localId2[0])
-		}
-		//////////log(my_nrofRoundsPerPool)
-		if(ifMobile == true){
-			getPlayersTable("none")
-		}
-		//log("2. all matches loaded")
-		//log("2. done with pools with teams", my_poolsWithTeams)		
-	})
+	if(ifMobile == true){
+		return $.getJSON(listMatchesUrl, function(matches){
+			my_matchesRaw = matches})
+		.success(function(){
+			delete my_matchesRaw.iTotalDisplayRecords
+			delete my_matchesRaw.iTotalRecords
+			delete my_matchesRaw.sEcho
+			//log("2bF. all matches:", my_matches)
+			my_matches = my_matchesRaw.aaData
+			//////////log(my_matches[l], "length:", my_matches[l].length)
+			for (m in my_matches){
+				var my_poolName = my_matches[m].pool
+				var my_roundNrFString = my_matches[m].round
+				
+				var my_roundNrStr = my_roundNrFString.split(" ")
+				my_roundNrLastStr = my_roundNrStr.pop() 
+				var my_roundNr = Number(my_roundNrLastStr)
+				//////////log(my_poolName+":", my_roundNr)
+				my_nrofRoundsPerPool[my_poolName] = my_roundNr
+				
+				var DT_RowId =  my_matches[m].DT_RowId
+				var DT_RowId1 = DT_RowId.split("-")
+				my_matches[m].DT_RowId = Number(DT_RowId1[1])
+				
+				var localId = my_matches[m].localId
+				var my_localId1 = localId.split("\'\)\">")
+				var my_localId2 = my_localId1[1].split("</a>")
+				my_matches[m].localId = Number(my_localId2[0])
+			}
+			//////////log(my_nrofRoundsPerPool)
+			if(ifMobile == true){
+				getPlayersTable("none")
+			}
+			//log("2. all matches loaded")
+			//log("2. done with pools with teams", my_poolsWithTeams)		
+		})
+	} else {
+		my_matches = ""
+	}
 }
 
 function _3AgetGData(){
@@ -362,26 +366,31 @@ function _5BgetPostponedMatchesData(){
 	
 function _5CgetPlayedMatchesData(){
 	//log("5cS. in get Played")
-	return $.getJSON(listPlayedMatchesUrl, function(json){
-			my_playedMatches = json })
-		.success(function(){
-			//log("5cF. Played matches:", my_playedMatches)
+	if(ifMobile == true || my_settingsVarsObject.ifPoolsTable == true){
 			
-			for(var p = 0; p < my_playedMatches.length; p++){
-				var singlePlayedMatch = {}
+		return $.getJSON(listPlayedMatchesUrl, function(json){
+				my_playedMatches = json })
+			.success(function(){
+				//log("5cF. Played matches:", my_playedMatches)
 				
-				singlePlayedMatch.my_Poolname = my_playedMatches[p].pool
-				singlePlayedMatch.my_roundNr =  my_playedMatches[p].round
-				singlePlayedMatch.my_team1NameF = my_playedMatches[p].team1.name
-				singlePlayedMatch.my_team2NameF = my_playedMatches[p].team2.name
-				singlePlayedMatch.my_deltaStartTime = my_playedMatches[p].deltaStartTime
-				//singlePlayedMatch.push(my_Poolname, my_roundNr, my_team1NameF, my_team2NameF)
-				my_listPlayedFinishedMatches.push(singlePlayedMatch)
-			}
-			if(ifMobile == true){
-				getPlayedMatchesTable()
-			}
-		})
+				for(var p = 0; p < my_playedMatches.length; p++){
+					var singlePlayedMatch = {}
+					
+					singlePlayedMatch.my_Poolname = my_playedMatches[p].pool
+					singlePlayedMatch.my_roundNr =  my_playedMatches[p].round
+					singlePlayedMatch.my_team1NameF = my_playedMatches[p].team1.name
+					singlePlayedMatch.my_team2NameF = my_playedMatches[p].team2.name
+					singlePlayedMatch.my_deltaStartTime = my_playedMatches[p].deltaStartTime
+					//singlePlayedMatch.push(my_Poolname, my_roundNr, my_team1NameF, my_team2NameF)
+					my_listPlayedFinishedMatches.push(singlePlayedMatch)
+				}
+				if(ifMobile == true){
+					getPlayedMatchesTable()
+				}
+			})
+	} else {
+		my_playedMatches = ""
+	}
 }
 
 function _5DgetFinishedMatchesData(){
@@ -406,55 +415,59 @@ function _5DgetFinishedMatchesData(){
 }
 
 function _6AgetplayersRanking(){
-	return $.getJSON(listPlayersRankingUrl, function(json){
-			my_groupsRanking = json })
-		.success(function(){
-			for (key in my_groupsRanking){
-				var singleGroupRanking = {}
+	if(ifMobile == true){
+		return $.getJSON(listPlayersRankingUrl, function(json){
+				my_playersRanking = json })
+			.success(function(){
+				for (key in my_playersRanking){
+					var singlePlayerRanking = {}
+						
+					singlePlayerRanking.rank = my_playersRanking[key].rank
+					singlePlayerRanking.playerId = my_playersRanking[key].playerId
+					singlePlayerRanking.name = my_playersRanking[key].name
+					singlePlayerRanking.cleanName = my_playersRanking[key].name.replace(/".*"/, "")
+					singlePlayerRanking.sumPoints = my_playersRanking[key].sumPoints
+					singlePlayerRanking.nrSets = my_playersRanking[key].nrSets
+					singlePlayerRanking.relative = my_playersRanking[key].relative
+					singlePlayerRanking.gender = my_playersRanking[key].gender
 					
-				singleGroupRanking.rank = my_groupsRanking[key].rank
-				singleGroupRanking.playerId = my_groupsRanking[key].playerId
-				singleGroupRanking.name = my_groupsRanking[key].name
-				singleGroupRanking.cleanName = my_groupsRanking[key].name.replace(/".*"/, "")
-				singleGroupRanking.sumPoints = my_groupsRanking[key].sumPoints
-				singleGroupRanking.nrSets = my_groupsRanking[key].nrSets
-				singleGroupRanking.relative = my_groupsRanking[key].relative
-				singleGroupRanking.gender = my_groupsRanking[key].gender
-				
-				if(singleGroupRanking.gender == "M"){
-					singleGroupRanking.gender = "Male"
-				} else if(singleGroupRanking.gender == "F"){
-					singleGroupRanking.gender = "Female"
+					if(singlePlayerRanking.gender == "M"){
+						singlePlayerRanking.gender = "Male"
+					} else if(singlePlayerRanking.gender == "F"){
+						singlePlayerRanking.gender = "Female"
+					}
+					
+					my_listPlayersRanking.push(singlePlayerRanking)
 				}
-				
-				my_listPlayersRanking.push(singleGroupRanking)
-			}
-			if(ifMobile == true){
 				getPlayersRankingTable(my_listPlayersRanking)
-			}
-		})
+			})
+	} else { my_playersRanking  = ""}
 }
 
 function _6BgetGroupRankings(){
-	return $.getJSON(listGroupsRankingUrl, function(json){
-			my_groupsRanking = json })
-		.success(function(){
-			for (key in my_groupsRanking){
-				var singleGroupRanking = {}
+	if(ifMobile == true){
+		return $.getJSON(listGroupsRankingUrl, function(json){
+				my_groupsRanking = json })
+			.success(function(){
+				for (key in my_groupsRanking){
+					var singleGroupRanking = {}
+						
+					singleGroupRanking.rank = my_groupsRanking[key].rank
+					singleGroupRanking.name = my_groupsRanking[key].groupName
+					singleGroupRanking.sumPoints = my_groupsRanking[key].sumPoints
+					singleGroupRanking.nrSets = my_groupsRanking[key].nrSets
+					singleGroupRanking.relative = my_groupsRanking[key].relative
+					singleGroupRanking.nrPlayers = my_groupsRanking[key].nrPlayers
 					
-				singleGroupRanking.rank = my_groupsRanking[key].rank
-				singleGroupRanking.name = my_groupsRanking[key].groupName
-				singleGroupRanking.sumPoints = my_groupsRanking[key].sumPoints
-				singleGroupRanking.nrSets = my_groupsRanking[key].nrSets
-				singleGroupRanking.relative = my_groupsRanking[key].relative
-				singleGroupRanking.nrPlayers = my_groupsRanking[key].nrPlayers
-				
-				my_listGroupsRanking.push(singleGroupRanking)
-			}
-			if(ifMobile == true){
-				getGroupsRankingTable(my_listGroupsRanking)
-			}
-		})
+					my_listGroupsRanking.push(singleGroupRanking)
+				}
+				if(ifMobile == true){
+					getGroupsRankingTable(my_listGroupsRanking)
+				}
+			})
+	} else {
+		my_groupsRanking = ""
+	}
 }
 
 function _6CgetPoolWinners(){
@@ -552,12 +565,10 @@ function getAPIDataAndMakeTables(){
 		.then(function(){
 			//log("finished requests 5")
 		}),
-		
 		$.when(_6AgetplayersRanking(), _6BgetGroupRankings()/*, _6CgetPoolWinners()*/)
-		.then(function(){
-			//log("finished requests 6")
+			.then(function(){
+				//log("finished requests 6")
 		})
-
 	).then(function(){
 		_7finalConfigurations()
 		reloadedData = true
@@ -571,17 +582,21 @@ function getCurrentDataSet(){
 	my_upcomingMatchesString = JSON.stringify(my_upcomingMatches)
 	my_locationsListString = JSON.stringify(my_locationsList)
 	my_playingListString = JSON.stringify(my_playingList)
-	my_matchesString = JSON.stringify(my_matches)
+	my_matchesString = JSON.stringify(my_matchesRaw)
 
 	my_PoolsString = JSON.stringify(my_Pools)
 	my_PostponedUpcomingMatchesString = JSON.stringify(my_unavPostponedMatches)
 	my_playedMatchesString = JSON.stringify(my_playedMatches)
 	my_listPlayedFinishedMatchesString = JSON.stringify(my_listPlayedFinishedMatches)
+	my_playersRankingString = JSON.stringify(my_playersRanking)
 	my_groupsRankingString = JSON.stringify(my_groupsRanking)
 	
 	log(reloadDataCount, "\n\n")
 	if(reloadDataCount == 0 || reloadDataCount == 1){
 		log("var my_tournamentInfoData =", my_tournamentInfoString ,"\n\n")
 	}
-	log("var my_upcomingMatchesData =", my_upcomingMatchesString, "\n\n","var locationsListData =", my_locationsListString, "\n\n", "var playingListData =", my_playingListString ,"\n\n", "var my_matchesData =", my_matchesString, "\n\n", "var my_PoolsData =", my_PoolsString,"\n\n", "var my_PostponedUpcomingMatchesData =", my_PostponedUpcomingMatchesString, "\n\n", "var my_playedMatchesData =", my_playedMatchesString, "\n\n", "var my_finishedMatchesData =", my_listPlayedFinishedMatchesString, "\n\n", "var my_groupsRankingData =", my_groupsRankingString)
+	log("var my_upcomingMatchesData =", my_upcomingMatchesString, "\n\n","var locationsListData =", my_locationsListString, "\n\n", "var playingListData =", my_playingListString ,"\n\n", "var my_matchesData =", my_matchesString, "\n\n", "var my_PoolsData =", my_PoolsString,"\n\n", "var my_PostponedUpcomingMatchesData =", my_PostponedUpcomingMatchesString, "\n\n", "var my_playedMatchesData =", my_playedMatchesString, "\n\n", "var my_finishedMatchesData =", my_listPlayedFinishedMatchesString, "\n\n", "var my_playersRankingData =", my_playersRankingString,  "\n\n", "var my_groupsRankingData =", my_groupsRankingString)
+	
+	//log("var my_upcomingMatchesData =", my_upcomingMatchesString, "\n\n","var locationsListData =", my_locationsListString, "\n\n", "var playingListData =", my_playingListString ,"\n\n", "var my_matchesData =", my_matchesString, "\n\n", "var my_PoolsData =", my_PoolsString,"\n\n", "var my_PostponedUpcomingMatchesData =", my_PostponedUpcomingMatchesString, "\n\n", "var my_playedMatchesData =", my_playedMatchesString, "\n\n", "var my_finishedMatchesData =", my_listPlayedFinishedMatchesString, "\n\n", "var my_playersRankingData =", my_playersRankingString,  "\n\n", "var my_groupsRankingData =", my_groupsRankingString)
+	
 }

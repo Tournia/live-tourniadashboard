@@ -105,7 +105,7 @@ function toggleUpcomingMatchesTable(_checked){
 		/*if(document.getElementById("ifCurrentMatches").checked == true){
 			document.getElementById("ifChangeTabs").disabled = false
 			document.getElementById("ifChangeTabs").checked = true*/
-		document.getElementById("upcomingTime").value = 40
+		document.getElementById("upcomingTime").value = 10
 		document.getElementById("upcomingTime").disabled = false
 	} else {
 		upcoming = false
@@ -134,7 +134,7 @@ function togglePostponedMatchesTable(_checked){
 		/*if(document.getElementById("ifCurrentMatches").checked == true){
 			document.getElementById("ifChangeTabs").disabled = false
 			document.getElementById("ifChangeTabs").checked = true*/
-		document.getElementById("postponedTime").value = 40
+		document.getElementById("postponedTime").value = 10
 		document.getElementById("postponedTime").disabled = false
 	} else {
 		upcoming = false
@@ -230,7 +230,7 @@ function toggleViewerView(_checked){
 		document.getElementById("ifChangeTabs").disabled = true
 		document.getElementById("ifChangeTabs").checked = true
 		if(document.getElementById("ifUpcomingMatches").checked == true){
-			document.getElementById("upcomingTime").value = 40
+			document.getElementById("upcomingTime").value = 10
 			document.getElementById("upcomingTime").disabled = false
 		} else {
 			document.getElementById("upcomingTime").value = 0
@@ -253,21 +253,22 @@ function toggleViewerView(_checked){
 }
 
 function toggleReloadTables(_checked){
-
+	
 	if(_checked == true){
 		document.getElementById("myReloadTimeInput").disabled = false
+		document.getElementById("ifReloadTablesBo").checked = true
 	} else {
 		document.getElementById("myReloadTimeInput").disabled = true
+		document.getElementById("ifReloadTablesBo").checked = false
 	}
 	
 	if(document.getElementById("myReloadTimeInput").disabled == true){
 		document.getElementById("myReloadTimeInput").value = ""
 	}
 	if(document.getElementById("myReloadTimeInput").disabled == false){
-		document.getElementById("myReloadTimeInput").value = 60
+		document.getElementById("myReloadTimeInput").value = 30
 	}
 }
-
 function toggleChangeTabs(_checked){
 	/*if(document.getElementById("ifChangeTabs").checked == false){
 		document.getElementById("upcomingTime").disabled = true;
@@ -444,6 +445,7 @@ function placeVarsInput(){
 				return lsVarV
 			}
 		}
+		 
 	}
 	
 	//apply storage values
@@ -552,6 +554,35 @@ function placeVarsInput(){
 			alert("tournament if error")
 		}
 	}
+	
+	if(expectedTimesFunctionality == false){
+			my_showExpectedTimeColumn = false
+			showExpectedTimeColumn = false
+			document.getElementById("ExpectedTimeBo").checked = false
+			document.getElementById("expectedTimesOption").style.display = "none"
+	}
+	if(predictedTimesFunctionality == false){
+		my_showPredictedTimeColumn = false
+		showPredictedTimeColumn = false
+		document.getElementById("predictedTimeColumn").checked = false
+		document.getElementById("predictedTimesOption").style.display = "none"
+	}
+	if(slowLoading == false){
+		log(" dddd dgr ")
+		my_showRoundsNeededColumn = false
+		my_showRoundsCreatedColumn = false
+		my_showRoundsLeftColumn = false
+		
+		my_settingsVarsObject.showRoundsNeededColumn = false
+		my_settingsVarsObject.showRoundsCreatedColumn = false
+		my_settingsVarsObject.showRoundsLeftColumn = false
+				
+		document.getElementById("showRoundsNeededCb").checked = false
+		document.getElementById("showRoundsCreatedCb").checked = false
+		document.getElementById("showRoundsLeftCb").checked = false
+		
+		document.getElementById("slowLoadersFunctionalities").style.display = "none"
+	}
 }
 
 function getVars(){
@@ -620,6 +651,7 @@ function getVars(){
 		document.getElementById("predictedTimeColumn").checked = false
 		document.getElementById("predictedTimesOption").style.display = "none"
 	}
+	
 	
 	//vars array push order for url
 	if(my_GoogleSheetUrl == null || my_GoogleSheetUrl == undefined || my_GoogleSheetUrl == ""){

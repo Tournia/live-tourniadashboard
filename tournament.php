@@ -78,7 +78,7 @@
   </script>
   <!--<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">-->
  
- <link rel="stylesheet" href="https://cdn.datatables.net/v/bs-3.3.7/jqc-1.12.4/dt-1.10.13/b-1.2.4/b-colvis-1.2.4/fh-3.1.2/r-2.1.1/datatables.min.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs-3.3.7/jqc-1.12.3/dt-1.10.16/b-1.5.1/b-colvis-1.5.1/fh-3.1.3/r-2.2.1/datatables.min.css"/>
  <!--<link rel="stylesheet" href="css/libs/DataTables_Bootstrap.css">-->
  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/css/select2.min.css" rel="stylesheet" />
 
@@ -97,7 +97,7 @@
  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/1.2.4/js/dataTables.buttons.min.js"></script>
  <script type="text/javascript" charset="utf8" src="https:////cdn.datatables.net/buttons/1.2.4/js/buttons.colVis.min.js"></script>-->
   
- <script type="text/javascript" src="https://cdn.datatables.net/v/bs-3.3.7/jqc-1.12.4/dt-1.10.13/b-1.2.4/b-colvis-1.2.4/fh-3.1.2/r-2.1.1/datatables.min.js"></script>
+ <script type="text/javascript" src="https://cdn.datatables.net/v/bs-3.3.7/jqc-1.12.3/dt-1.10.16/b-1.5.1/b-colvis-1.5.1/fh-3.1.3/r-2.2.1/datatables.min.js"></script>
  <!--<script type="text/javascript" src="https://momentjs.com/downloads/moment.js"></script>-->
  <!--<script src="js/libs/DataTables_Bootstrap.js"></script>-->
  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/js/select2.min.js"></script>
@@ -136,10 +136,10 @@
 			ifPostponedTable: true,
 			ifPoolsTable: true,		
 			ifReloadTables: true,
-			reloadTime: 60,
+			reloadTime: 30,
 			ifChangeTabs: true,
 			minPageTime: 5,
-			upcomingTime: 40,
+			upcomingTime: 10,
 			currentTime: 10,
 			postponedTime: 10,
 			ifGoogleSheet: false,
@@ -151,7 +151,7 @@
 			showPredictedTimeColumn: true,		
 			showTotTeamsColumn: false,
 			showRoundsNeededColumn: false,
-			showRoundsCreatedColumn: true,
+			showRoundsCreatedColumn: false,
 			showRoundsLeftColumn: false,
 			showStatusColumn: true,
 			showByeDataColumn: true,
@@ -181,9 +181,9 @@
 			showPlayingTimeColumn: (localStorage.getItem("ls_my_showPlayingTimeColumn") === 'true'),
 			showPredictedTimeColumn: (localStorage.getItem("ls_my_showPredictedTimeColumn") === 'true'),
 			showTotTeamsColumn: (localStorage.getItem("ls_my_showTotTeamsColumn") === 'true'),
-			showRoundsNeededColumn: (localStorage.getItem("ls_my_showRoundsNeededColumn") === 'true'),
-			showRoundsCreatedColumn: (localStorage.getItem("ls_my_showRoundsCreatedColumn") === 'true'),
-			showRoundsLeftColumn: (localStorage.getItem("ls_my_showRoundsLeftColumn") === 'true'),
+			showRoundsNeededColumn: false,//(localStorage.getItem("ls_my_showRoundsNeededColumn") === 'true'),
+			showRoundsCreatedColumn: false,//(localStorage.getItem("ls_my_showRoundsCreatedColumn") === 'true'),
+			showRoundsLeftColumn: false,//(localStorage.getItem("ls_my_showRoundsLeftColumn") === 'true'),
 			showStatusColumn: (localStorage.getItem("ls_my_showStatusColumn") === 'true'),
 			showByeDataColumn: (localStorage.getItem("ls_my_showByeDataColumn") === 'true'),
 			ifPagingTable: (localStorage.getItem("ls_my_ifPagingTable") === 'true'),
@@ -363,7 +363,7 @@
 										<input class="checkbox" type="checkbox" id="ifReloadTablesBo" onchange="toggleReloadTables(this.checked)" checked>Reload data every
 									</td>
 									<td>
-										<input class ="NRinput" type="number" id="myReloadTimeInput" value="60">secs.
+										<input class ="NRinput" type="number" id="myReloadTimeInput" value="30">secs.
 									</td>
 								</tr>
 							</table>
@@ -483,11 +483,13 @@
 					<tr>
 						<td>
 							<input type="checkbox" id="showTotTeamsCb" class="checkbox">Total amount of teams<br>
-							<input type="checkbox" id="showRoundsNeededCb" class="checkbox">Rounds needed<br>
-							<input type="checkbox" id="showRoundsCreatedCb" class="checkbox" checked>Rounds created so far<br>
-							<input type="checkbox" id="showRoundsLeftCb" class="checkbox">Rounds left<br>
-							<input type="checkbox" id="showStatusCb" class="checkbox" checked>Status of pool<br>
-							<input type="checkbox" id="showByeDataCb" class="checkbox" checked>Teams that have a bye<br>
+							<div id="slowLoadersFunctionalities">
+								<input type="checkbox" id="showRoundsNeededCb" class="checkbox">Rounds needed<br>
+								<input type="checkbox" id="showRoundsCreatedCb" class="checkbox" checked>Rounds created so far<br>
+								<input type="checkbox" id="showRoundsLeftCb" class="checkbox">Rounds left<br>
+							</div>
+								<input type="checkbox" id="showStatusCb" class="checkbox" checked>Status of pool<br>
+								<input type="checkbox" id="showByeDataCb" class="checkbox" checked>Teams that have a bye<br>
 						</td>
 						<td>	
 							<a tabindex="0" class="glyphicon glyphicon-info-sign" data-container="body" data-toggle="popover" data-trigger="focus" data-placement="right" title="Select pools overview columns" data-content="Turn on and off certain column. For each column inforation will be shown for each pool. A custom preset is also possible."></a>
