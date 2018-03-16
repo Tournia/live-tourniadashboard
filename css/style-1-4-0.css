@@ -1,0 +1,822 @@
+body{
+	background-color: #f3f2f0;
+	line-height: 1.2vw;
+	overflow-y: scroll;
+}
+
+a {
+	color: #43a73f;
+    text-decoration: none;
+}
+
+a:hover{
+	color:	#2c6c28;
+    text-decoration: none;
+}
+:-webkit-full-screen {
+    background-color: #f3f2f0;
+    z-index: 2147483647;
+}
+#parent{
+	height: 100%;
+	width: 100%;
+}
+
+#myTables{
+	width: 100%;
+	height: 100%;
+}
+
+#myTabs{
+	width: 100%
+}
+
+#leftBox{
+	width: 47%;
+	margin-left: 10px;
+	margin-right: 10px;
+	float: left;
+}
+
+#rightBox{
+	width: 47%;
+	float: right;
+	margin-left: 10px;
+	margin-top: 2px;
+	margin-right: 10px;
+}
+
+#myLeftTabsBox {
+	height: 40px;
+	font-size: 1vw;
+	margin-top: 1vh;
+}
+
+#myRightTabsBox {
+	height: 40px;
+	font-size: 1vw;
+	margin-top: 1vh;
+}
+
+#poolsOverview-button{
+	visibility: hidden;
+}
+#tab-contents {
+	margin-top: 2px
+}
+
+.loader {
+	border: 20px solid #f3f3f3; /* Light grey */
+	border-top: 20px solid #43a73f; /* Blue */
+	border-radius: 50%;
+	width: 300px;
+	height: 300px;
+	animation: spin 2s linear infinite;
+	float: left;
+	margin-left: 150px;
+	margin-top: 80px;
+}
+@keyframes spin {
+	0% { transform: rotate(0deg); }
+	100% { transform: rotate(360deg); }
+}
+/* table layout */
+.tableHeaders{
+	/*border: 0.3vw solid #555555 !important;*/
+	font-size: 1.4vw;
+	font-weight: bold;
+	text-align: center;
+	line-height: 2.8vw;
+}
+p.tableHeaders{
+	
+}
+
+#currentMatchesTable{
+	width: 100%;
+	border: 0.3vw solid #555555;
+	border-collapse: collapse;
+}
+
+#upcomingMatchesTable{
+	width: 100%;
+	border: 0.3vw solid #555555;
+	border-collapse: collapse;
+}
+#postponedMatchesTable{
+	border: 0.3vw solid #555555;
+	border-collapse: collapse;
+	width: 100%;
+}
+
+#poolsOverviewTable{
+	border: 0.3vw solid #555555 !important;
+	border-collapse: collapse;
+	width: 100%;
+	float: right;
+	position: relative;
+}
+
+#playedMatchesTable{
+	width: 100%;
+	border: 0.3vw solid #555555;
+	border-collapse: collapse;
+}
+
+#poolRankingsTable{
+	width: 100%;
+	border: 0.3vw solid #555555;
+	border-collapse: collapse;
+}
+
+#TournamentUrlName{
+	width: 100%;
+	display: inline-block;
+	margin-top: 0.2em;
+	text-align: center;
+	font-weight: bold;
+	font-size: 3vw;
+	/*margin-left: 35%;*/
+	font-family: courier, monospace;
+}
+
+#myClock{
+	display: inline-block;
+	float: right;
+	margin-right: 20px;
+	margin-top: -30px;
+	font-size: 4vw;
+	z-index: 99;
+	font-family: courier, monospace;
+	font-weight: bold;
+}
+
+#settingsButton{
+	float:left;
+	z-index: 99;	
+}
+
+.btn-group-sm>.btn, .btn-sm {
+    padding: 5px 10px;
+    font-size: 10px;
+    line-height: 1px;
+    border-radius: 3px;
+}
+
+#my_header{
+	width: 100%;
+	display: inline-block;
+	border-bottom: .3em solid #43a73f;
+	padding-bottom: 1em;
+	color: #555555;
+}
+
+/*Tables*/
+
+th, td {
+   /* border-bottom: 0.2vw solid #555555;*/
+   border-top: 0.2vw solid #555555;
+    /*border-left: 0.2vw solid #555555;*/
+    font-size: 1vw;
+}
+
+.playerColumn{
+	width: 100px;
+}
+td.playerColumn{
+	padding-left:3px;
+	padding-right: 3px;
+}
+
+td.playerPlayingColumn{
+	padding: 5px;
+}
+.teamColumn{
+	text-align: center;
+	width: 100px;
+	
+}
+th.teamColumn{
+	font-size: 1vw;
+	border-right: 0.2vw solid #555555;
+	/*border-left: 0.2vw solid #555555;*/
+}
+
+.onHoldColumn{
+	border-left: 0px;
+	border-right: 0px;
+	padding-left: 5px;
+}
+.VsColum{
+	width: 10px;
+	border-right: 0px;
+	border-left: 0px;
+}
+
+.onHoldColumnVs{
+	width: 10px;
+	border-left: 0px;
+	border-right: 0px;
+}
+
+.discColumnVs{
+	width: 10px;;
+}
+.courtColumn{
+	width: 40px;
+	border-right: 0.2vw solid #555555;
+	font-size: 1vw;
+}
+
+th.courtColumn{
+	text-align: center;
+}
+
+td.courtColumn{
+	padding-left: 3px;
+}
+
+th.poolColumn {
+	width: 150px;
+	border-right: 0.2vw solid #555555;
+	text-align: center;
+	font-size: 1vw;
+}
+
+td.poolColumn{
+	background-color: #b3ccff;
+	font-size: 1vw;
+	border-right: 0.2vw solid #555555;
+	padding-left: 3px;
+}
+
+
+
+
+.emptyPoolColumn {
+	width: 100px;
+	border-left: 0.2vw solid #555555;
+	border-right: 0.2vw solid #555555;
+}
+
+
+
+th.poolRoundsColumns{
+	text-align: center;
+	width: 50px;
+	border-right: 0.2vw solid #555555;
+}
+td.poolRoundsColumns{
+	text-align:right;
+	border-right: 0.2vw solid #555555;
+	padding-right: 5px
+}
+
+
+th.totTeamsColumn{
+	text-align: center;
+	width: 50px;
+	border-right: 0.2vw solid #555555;
+}
+
+td.totTeamsColumn{
+	text-align:right;
+	border-right: 0.2vw solid #555555;
+	padding-right: 5px
+}
+
+th.roundsNeededColumn{
+	text-align: center;
+	width: 50px;
+	border-right: 0.2vw solid #555555;
+}
+
+td.roundsNeededColumn{
+	text-align:right;
+	border-right: 0.2vw solid #555555;
+	padding-right: 5px;
+}
+
+th.roundsCreatedColumn{
+	text-align: center;
+	width: 50px;
+	border-right: 0.2vw solid #555555;
+}
+
+td.roundsCreatedColumn{
+	text-align:right;
+	border-right: 0.2vw solid #555555;
+	padding-right: 5px
+}
+
+th.roundsLeftColumn{
+	text-align: center;
+	width: 50px;
+	border-right: 0.2vw solid #555555;
+}
+
+td.roundsLeftColumn{
+	text-align:right;
+	border-right: 0.2vw solid #555555;
+	padding-right: 5px
+}
+
+.statusColumn{
+	border-left: 0.2vw solid #555555;
+	text-align: center;
+	width: 80px;
+}
+
+.predcitedTimeColumn{
+	border-left: 0.2vw solid #555555;
+	border-bottom: 0.2vw solid #555555;
+}
+th.statusColumn{
+	font-size: 1vw;
+	border-right: 0.2vw solid #555555;
+	text-align: center;
+	font-size: 1vw;
+}
+
+td.statusColumn{
+	text-align: center
+}
+
+
+#playerStatusColumn{
+	border-right: 0.2vw solid #555555;
+	text-align: center;
+	font-size: 1vw;
+}
+	
+#PPplayerStatusColumn{
+	border-right: 0.2vw solid #555555;
+	text-align: center;
+	font-size: 1vw;	
+}
+.vsColumn{
+	width: 1px;
+}
+
+td.vsColumn {
+}
+th.vsColumn{
+	border-left: 0.2vw solid #555555;
+	border-right: 0.2vw solid #555555;
+	text-align: center;
+}
+th.matchNrColumn{
+	border-right: 0.2vw solid #555555;
+	text-align: center;
+}
+
+th.alreadyplayingTimeColumn{
+	border-left: 0.2vw solid #555555;
+	text-align: center;
+	font-size: 1vw;
+	width: 60px;
+}
+#alreadyplayingTimeColumn{
+	text-align: center;
+}
+
+td.alreadyplayingTimeColumn{
+	padding-left: 5px;
+	border-left: 0.2vw solid #555555
+}
+
+th.predictedTimeColumn{
+	border-left: 0.2vw solid #555555;
+	text-align: center;
+	font-size: 1vw;
+	width: 60px;
+	/*border-right: 0.3vw solid #555555*/
+}
+
+td.predictedTimeColumn{
+	padding-left: 5px;
+	/*border-left: 0.2vw solid #555555;*/
+	/*border-right: 0.3vw solid #555555*/
+}
+th.expectedTimeColumn {
+	text-align: center;
+	font-size: 1vw;
+}
+td.expectedTimeColumn{
+	padding-left: 5px;
+	border-right: 0.3vw solid #555555;
+	border-collapse: collapse;
+}
+
+
+.byeColumn{
+	border-left: 0.2vw solid #555555;
+	/*border-right: 3px solid #555555;*/
+	text-align: left;
+	padding-left: 3px;
+	width: 100px
+}
+
+#currentsPoolColumn{
+	border-right: 0.2vw solid #555555;
+	background-color: none;
+	font-size: 1vw;
+	text-align: center;
+}
+.lastInfoRow{
+	border-top: 0.3vw solid #555555;
+	height: 80px;
+	
+}
+.lastInfoRow td{
+	padding-left: 10px;
+}
+.remainingMatches{
+	padding-left: 10px;
+}
+
+.note{
+	font-size: 0.95vw;
+}
+
+.noUpcomingMatchesRow{
+	line-height: 4vh;
+	font-size: 1.3vw;
+	text-align: center;
+}
+
+.showNone{
+	display: none;
+	border: 0px;
+}
+
+table.dataTable {
+    clear: both;
+    margin-bottom: 6px !important;
+	border-collapse: collapse !important;
+}
+/*table.dataTable.upcomingMatchesTable{
+	width: 100%;
+	border: 0.3vw solid #555555;
+	border-collapse: collapse !important;
+}*/
+/*
+table.dataTable.upcomingMatchesTable td{
+	border-collapse: collapse
+}*/
+.row {
+   /* margin-right: -15px;*/
+    margin-left: -15px;
+}
+
+table.dataTable tbody th, table.dataTable tbody td {
+  padding: 1px;
+  text-align: center;
+}
+
+table.dataTable thead th, table.dataTable thead td {
+  padding: 1px;
+}
+
+.dataTables_info {
+	font-size: 11px;
+	padding-top: 0.5em;
+	display: inline-block;
+}
+.dataTables_filter {
+	display: inline-block;
+	float: right;
+}
+
+.dataTables_paginate{
+	float: right;
+}
+
+.bottom{
+	display: inline-block;
+	width: 100%;
+}
+
+/*Modal */
+.modal-dialog{
+    overflow-y: initial !important
+}
+.modal-body{
+    height: 380px;
+    overflow-y: auto;
+}
+.checkbox {
+	display: inline-block;
+}
+.radio {
+	display: inline-block;
+}
+.popover{
+	position: absolute;
+}
+
+#tableSelections td{
+	border-top: 0px;
+}
+#tableSelections{
+	display: inline-block;
+}
+.modal-header, h4, .close {
+      background-color: #5cb85c;
+      color:white !important;
+      text-align: center;
+      font-size: 30px;
+  }
+  .modal-footer {
+      background-color: #f9f9f9;
+  }
+
+.saveLoader {
+		border: 4px solid #f3f3f3; /* Light grey */
+		border-top: 4px solid #3498db; /* Blue */
+		border-radius: 50%;
+		width: 10px;
+		height: 10px;
+		animation: spin 2s linear infinite;
+}
+
+#googlesheetUrlBox{
+		}
+#googleUrl{
+	display: inline-block;
+}
+
+#CustomSortingBox{
+	margin-top: 10px;
+}
+#loadDataButton{
+	display: inline-block
+}
+#GDataLoader{
+	margin-left: 10px;
+	vertical-align: middle; 
+	display: inline-block;
+}
+.checkmark{
+	content:url(../images/checkmark.png);
+	display: inline-block;
+	height: 15px;
+	width: 15px;
+	vertical-align: middle;
+	margin-left: 3px;
+}
+.cross{
+	content:url(../images/cross.png);
+	display: inline-block;
+	height: 15px;
+	width: 15px;
+	vertical-align: middle;
+	margin-left: 3px;
+}
+#createPageBox {
+	display: inline-block;
+	width: 40%;
+	/*margin-left: auto;*/
+	/*margin-right: auto;*/
+}
+
+#cancelButton{
+	display: inline-block;
+	
+}
+#createPageButton{
+	display: inline-block;
+}
+#createPageLoader{
+	display: inline-block;
+	vertical-align: middle;
+	margin-left: 10px;
+}
+#GSPreviewTable iframe{
+	width: 100%;
+	height: 550px;
+}
+#setupTable {
+	width: 80%;
+	margin-left: auto;
+	margin-right: auto;
+	border: 1px solid #555555;
+	border-collapse: collapse;
+}
+
+
+table.setupTable td {
+	padding-top: 8px;
+	padding-bottom: 8px;
+	padding-left: 8px;
+	padding-right: 8px;
+	border-top: 1px solid #555555;
+	border-collapse: collapse;
+	border-bottom: 1px solid black;
+	border-top: 1px solid black;
+
+}
+table#reloadTimeTable td {
+	border: 0px;
+	padding-left: 0px;
+	padding-right: 22px;
+
+}
+
+table.tableTimesInput td {
+	border: 0px;
+	padding-left: 0px;
+	padding-right: 15px;
+
+}
+
+#myTable{
+	width: 100%;
+}
+#LeftBox{
+	
+	margin-right: 5px;
+	float: left;
+	width: 45%;
+}
+#BoxRight {
+	margin-left: 5px;
+	margin-right: 5px;
+	width: 45%;
+	float: right;
+}
+.input{
+	/*width: 160px;*/
+	margin-right: 5px;
+	display: inline-block;
+}
+
+input[type=checkbox]{
+	margin-right: 5px;
+	display: inline-block;
+}
+input[type=radio]{
+	margin-right: 5px;
+	display: inline-block;
+}
+.NRinput {
+	width: 40px;
+	margin-right: 2px;
+	display: inline-block;
+}
+#whatColumn {
+	/*width: 120px;*/
+}
+
+#descriptionColumn{
+}
+.tIDtooltip {
+	border-bottom: 1px dotted #000000; color: #000000; outline: none;
+	cursor: help; text-decoration: none;
+	position: relative;
+}
+#tooltipGS {
+	color: #3366BB;
+}
+.IDtooltip span {
+	margin-left: -999em;
+	position: absolute;
+}
+.IDtooltip:hover span {
+	border-radius: 5px 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; 
+	box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1); -webkit-box-shadow: 5px 5px rgba(0, 0, 0, 0.1); -moz-box-shadow: 5px 5px rgba(0, 0, 0, 0.1);
+	font-family: Calibri, Tahoma, Geneva, sans-serif;
+	position: absolute; left: 1em; top: 2em; z-index: 999;
+	margin-left: 0; width: 250px;
+}
+.IDtooltip:hover img {
+	border: 2px solid black; margin: -10px 0 0 -55px;
+	float: left; position: absolute;
+}
+.IDtooltip:hover em {
+	font-family: Candara, Tahoma, Geneva, sans-serif; font-size: 1.2em; font-weight: bold;
+	display: block; padding: 0.2em 0 0.6em 0;
+}
+.info {
+	background: #9FDAEE; border: 1px solid #2BB0D7;
+}
+#tournamentPopup{
+}
+#editGSheet{
+	display: inline-block;
+}
+#myReloadTimeInput{
+	display: inline-block
+}
+
+.GSheetSetup{
+	display: none;
+}
+
+#invisibleButton {
+
+    background: transparent;
+    border: none !important;
+    font-size:0;
+}
+Transparent Button With Visible Text
+
+#invisibleButton {
+    background: transparent;
+    border: none !important;
+}​
+
+
+#resultsRankingsPages{
+	display: inline-block;
+	width: 100%
+}
+
+#matchResultsTab{
+	display: inline-block;
+	width: 30%;
+	position: relative;
+}
+
+#poolRankingsTab{
+	display: inline-block;
+	width: 30%;
+	position: relative;
+}
+
+#playerRankingsTab{
+	display: inline-block;
+	width: 30%;
+	position: relative;
+}
+
+#groupsRankingsTab{
+	display: inline-block;
+	width: 30%;
+	position: relative;
+}
+
+#poolNameC{
+	display: inline-block;
+}
+#poolNameText{
+	float: left;
+	display: inline-block;
+}
+#poolSelector{
+	display: inline-block;
+}
+
+#poRankingsRb{
+	display: inline-block;
+}
+#plRankingsRb{
+	display: inline-block;
+}
+#grRankingsRb{
+	display: inline-block;
+}
+
+.ui-radio{
+	display: inline-block 
+ }
+/* .ui-btn{ */
+	/* display: in-line; */
+/* } */
+
+#rankingsRadioButtons{
+	display: inline-block;
+	width: 200px;
+	height: 50px;
+	position: relative;
+}
+
+#announcements{
+	text-align: center;
+	margin: auto;
+	padding-top: 10px;
+	padding-left: 20px;
+	font-size: 22px;
+	color:#555555;	
+}
+
+.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
+    z-index: 3;
+    color: #fff;
+    cursor: default;
+    background-color: #43a73f !important;
+    border-color: #43a73f !important;
+}
+
+.pagination>.active>a:hover{
+	color: #fff;
+	background-color: #43a73f !important;
+}
+
+
+.pagination>li>a:focus, .pagination>li>a:hover, .pagination>li>span:focus, .pagination>li>span:hover {
+    z-index: 2;
+    color: #43a73f !important;
+    background-color: #eee;
+    border-color: #ddd;
+}
