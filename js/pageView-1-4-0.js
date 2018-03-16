@@ -1,7 +1,7 @@
 function getTournamentTitleandPageInfo(){
 	log("getting tournament title...")
 	$("#TournamentUrlName").empty()
-	if(sampleData == false){
+	if(sampleData === false){
 		$.getJSON(tournamentInfoUrl, function (tournamentInfo) {
 			my_tournamentInfo = tournamentInfo
 			//log(my_tournamentInfo)
@@ -12,9 +12,9 @@ function getTournamentTitleandPageInfo(){
 		})
 	} else {
 		my_tournamentInfo_LOCAL = {}
-		if(tournament_ID == "utrecht2016"){
+		if(tournament_ID === "utrecht2016"){
 			my_tournamentInfo_LOCAL.name = "ISBT Utrecht 2016"
-		} else if(tournament_ID == "isbt-amsterdam-2017"){
+		} else if(tournament_ID === "isbt-amsterdam-2017"){
 			my_tournamentInfo_LOCAL.name = "ISBT Amsterdam 2017"
 		} else {
 			my_tournamentInfo_LOCAL.name = "No Tournament"
@@ -27,7 +27,7 @@ function getTournamentTitleandPageInfo(){
 //display Tournament title
 function displayTitle(){
 	log("displaying tournamant title...")
-	if(ifMobile == true){		
+	if(ifMobile === true){		
 		document.getElementById('TournamentUrlName1').innerHTML = my_tournamentName
 		document.getElementById('TournamentUrlName2').innerHTML = my_tournamentName
 		document.getElementById('TournamentUrlName3').innerHTML = my_tournamentName
@@ -35,21 +35,25 @@ function displayTitle(){
 		document.getElementById('TournamentUrlName5').innerHTML = my_tournamentName
 		
 	} else { //if no mobile
-		//var ifPlayersViewPreset = (ifPlayersViewPreset == false
+		//var ifPlayersViewPreset = (ifPlayersViewPreset === false
 		document.getElementById('TournamentUrlName').innerHTML = my_tournamentName
 		var ifDefaultannoucement = true
-		if(tournament_ID == "Helios-kersttoernooi-2017"){
+		if(tournament_ID === "Helios-kersttoernooi-2017"){
 			var tournament_shortcut = "helioskersttoernooi"
-		} else if (tournament_ID == "isbt-enschede-2017"){
+		} else if (tournament_ID === "isbt-enschede-2017"){
 			var tournament_shortcut = "isbtenschede"
-		} else if (tournament_ID == "bc-drop-shot-wintertoernooi-2018"){
+		} else if (tournament_ID === "bc-drop-shot-wintertoernooi-2018"){
 			var tournament_shortcut = "dropshot"
 			ifDefaultannoucement = false
 			var anouncementText = "Go to <i><u>bcdropshot.nl/live</u></i> to check everything on your  mobile including upcoming matches, byes, results and rankings."
+		} else if(tournament_ID.includes("utrecht") === true){
+			var tournament_shortcut = "utrecht"
+			ifDefaultannoucement = false
+			var anouncementText = "Go to <i><u>isbtutrecht.nl</u></i> to check everything on your  mobile including upcoming matches, byes, results and rankings."
 		} else {
 			var tournament_shortcut = tournament_ID
 		}
-		if(ifDefaultannoucement == true){
+		if(ifDefaultannoucement === true){
 			var anouncementText = "Go to <i><u>tourniadashboard.nl/"+tournament_shortcut+"</u></i> to check everything on your  mobile including upcoming matches, byes, results and rankings."
 		}
 		document.getElementById('announcements').innerHTML = anouncementText
@@ -118,34 +122,34 @@ function createPage(){
 	getTournamentTitleandPageInfo()
 	
 	//show which tables
-	if(ifMobile == false){
+	if(ifMobile === false){
 		tableConfigurations()
 	}
 	
 	/*make tables*/
-	if (sampleData == true){
+	if (sampleData === true){
 		getLocalDataAndMakeLocalTables()
-		if(runLocal == true && expectedTimesDataTesting == true){
+		if(runLocal === true && expectedTimesDataTesting === true){
 			simpleTabChangeOnce()
 		}
 	} else {
 		$.when(checkForAPIChange())
 		.then(function(){
 			getAPIDataAndMakeTables()
-			if(runLocal == true && expectedTimesDataTesting == true){
+			if(runLocal === true && expectedTimesDataTesting === true){
 				simpleTabChangeOnce()
 			}
 		})
 	}
 
-	if(ifMobile == true && mobileError == true){
+	if(ifMobile === true && mobileError === true){
 		stopLoaders()
 	}
 
 	//refresh tables interval
 }
 	//run clock		
-	//if (ifMobile == true){
+	//if (ifMobile === true){
 		
 		
 		/*var button = document.createElement("div");
@@ -171,7 +175,7 @@ function createPage(){
 		});*/
 	
 	
-	//} else { // ifMobile == false
+	//} else { // ifMobile === false
 		//show which tables
 		//log("countLeftTables:", countLeftTables, "shownoLeftTables:", shownoLeftTables)
 		
@@ -190,7 +194,7 @@ function removeTable(tableName, rowsOver){
 }
 
 function setrefreshTablesInterval(){
-	if (turnOnAutoRefresh == true && ifPaging == false){
+	if (turnOnAutoRefresh === true && ifPaging === false){
 		//log("setting autoRefresh in Organizer View mode as ifPaging is turned off")
 		try{
 			clearInterval(reloadDataInterval)
@@ -200,10 +204,10 @@ function setrefreshTablesInterval(){
 			//log("..to:", reloadDataTime/1000,  "secs")
 			reloadDataInterval = setInterval(function(){	
 				//log("in interval table with interval secs:", reloadDataTime)
-				if(sampleData == false){
+				if(sampleData === false){
 					$.when(checkForAPIChange())
 					.then(function(){
-						if(ifAPIChangeDetected == true){
+						if(ifAPIChangeDetected === true){
 							removeTables()
 						} else {}
 					})
@@ -216,12 +220,12 @@ function setrefreshTablesInterval(){
 					var my_activeTab = $('.tab-content').find('.tab-pane.active').attr('id')
 					
 					log("active tab:", my_activeTab, startTab, timeSinceLastRefreshTime, totCycleTime)
-					if (ifOrganizerViewPreset == true){
+					if (ifOrganizerViewPreset === true){
 						log("refreshng table...")
 						removeTables()
-					} else if (ifOrganizerViewPreset == false){
+					} else if (ifOrganizerViewPreset === false){
 						log("in FALSE organizerviewPreset ")
-						if(my_activeTab == startTab && (timeSinceLastRefreshTime >= 60 || totCycleTime >= 60000)){ //1 minute
+						if(my_activeTab === startTab && (timeSinceLastRefreshTime >= 60 || totCycleTime >= 60000)){ //1 minute
 							log("back in active tab and refresh time is greater than 60")
 							removeTables()
 						}
@@ -229,8 +233,8 @@ function setrefreshTablesInterval(){
 				}, 1000)*/
 			}, reloadDataTime)
 	} else {
-		if(ifMobile == false){
-			if(turnOnAutoRefresh == true){
+		if(ifMobile === false){
+			if(turnOnAutoRefresh === true){
 				log("autrefresh is done through paging")
 			} else {
 				log("autorefresh is turned off")

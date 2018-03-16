@@ -32,7 +32,7 @@ function getPostponedMatchesTable(){
 					var poolPropertiesObject = findPoolProperties(my_PoolName)
 					singlePMData.poolProperties = poolPropertiesObject
 					
-					if(poolPropertiesObject.altNames[0] == "Average Pool"){
+					if(poolPropertiesObject.altNames[0] === "Average Pool"){
 						var abbrPoolName = my_PoolName
 					} else {
 						var abbrPoolName = poolPropertiesObject.abbreviations[0]
@@ -44,7 +44,7 @@ function getPostponedMatchesTable(){
 					//tri.append("<td class='vsColumn'>" + my_UMrowNumber + "</td>")
 					singlePMData.matchNr = my_unavPostponedMatches[pm].localId
 
-					if(ifMobile == false){
+					if(ifMobile === false){
 						//tri.append("<td class='poolColumn'>" + my_PoolName + "</td>");
 						singlePMData.PoolName = my_PoolName 
 					} else {
@@ -57,14 +57,14 @@ function getPostponedMatchesTable(){
 				
 					//Get status in Table
 					function getStatus(fullPlayerName, playerName, amountPlayers, playerCurrentlyPlaying, playerReady, TdInput, playerStatus){
-								if(playerCurrentlyPlaying == true){
+								if(playerCurrentlyPlaying === true){
 									playerNamesCurrentlyPlayinginMatchArray.push(fullPlayerName)
 									playerNamesCurrentlyPlayingArray.push(fullPlayerName)
 									var playerStatus = "player playing"
 									statusPlayers.push(playerStatus)	
 										return playerName
 								} else {
-									if(playerReady == false){
+									if(playerReady === false){
 										playerNamesCurrentlyUnavailableArray.push(fullPlayerName)	
 										var playerStatus = "player not ready"
 										statusPlayers.push(playerStatus)
@@ -83,7 +83,7 @@ function getPostponedMatchesTable(){
 					for (var t1 = 0; t1 < my_unavPostponedMatches[pm].team1.players.length; t1++){
 							my_T1count +=1
 							var playerNickNameTeam1 = my_unavPostponedMatches[pm].team1.players[t1].name
-							var playerNameTeam1 = playerNickNameTeam1.replace(/".*"/, "")
+							var playerNameTeam1 = playerNickNameTeam1.replace(/".*"/, "").replace("  ", " ")
 							var t1PlayerCurrentlyPlaying = my_unavPostponedMatches[pm].team1.players[t1].currentlyPlaying
 							//////////log(playerNameTeam1, "playing:", t1PlayerCurrentlyPlaying)
 							var t1PlayerReady = my_unavPostponedMatches[pm].team1.players[t1].ready
@@ -92,16 +92,16 @@ function getPostponedMatchesTable(){
 							var Td1Input, t1PlayerStatus
 							var my_t1Input = getStatus(playerNickNameTeam1, playerNameTeam1, amountT1Players, t1PlayerCurrentlyPlaying, t1PlayerReady, Td1Input, t1PlayerStatus)
 					//tri.append(my_t1Input)
-						if(my_unavPostponedMatches[pm].team1.players.length == 1){
+						if(my_unavPostponedMatches[pm].team1.players.length === 1){
 							singlePMData.teamOne1 = my_t1Input
 							singlePMData.teamOne2 = ""
-						} else if(my_unavPostponedMatches[pm].team1.players.length > 1 && my_T1count == 1){
+						} else if(my_unavPostponedMatches[pm].team1.players.length > 1 && my_T1count === 1){
 							singlePMData.teamOne1 = my_t1Input
-						} else if (my_unavPostponedMatches[pm].team1.players.length > 1 && my_T1count == 2){
+						} else if (my_unavPostponedMatches[pm].team1.players.length > 1 && my_T1count === 2){
 							singlePMData.teamOne2 = my_t1Input
 						}
 					}
-					if(my_unavPostponedMatches[pm].team1.players.length == 0){
+					if(my_unavPostponedMatches[pm].team1.players.length === 0){
 						my_t1Input = "-"
 						singlePMData.teamOne1 = "-"
 						singlePMData.teamOne2 = ""
@@ -116,7 +116,7 @@ function getPostponedMatchesTable(){
 					for (var t2 = 0; t2 < my_unavPostponedMatches[pm].team2.players.length; t2++){
 							my_T2count +=1
 							var playerNickNameTeam2 = my_unavPostponedMatches[pm].team2.players[t2].name
-							var playerNameTeam2 = playerNickNameTeam2.replace(/".*"/, "")
+							var playerNameTeam2 = playerNickNameTeam2.replace(/".*"/, "").replace("  ", " ")
 							var t2PlayerCurrentlyPlaying = my_unavPostponedMatches[pm].team2.players[t2].currentlyPlaying
 							//////////log(playerNameTeam2, "playing:", t2PlayerCurrentlyPlaying)
 							var t2PlayerReady = my_unavPostponedMatches[pm].team2.players[t2].ready
@@ -125,16 +125,16 @@ function getPostponedMatchesTable(){
 							var Td2Input, t2PlayerStatus
 							var my_t2Input = getStatus(playerNickNameTeam2, playerNameTeam2, amountT2Players, t2PlayerCurrentlyPlaying, t2PlayerReady, Td2Input, t2PlayerStatus)
 					//tri.append(my_t2Input);
-					if(my_unavPostponedMatches[pm].team2.players.length == 1){
+					if(my_unavPostponedMatches[pm].team2.players.length === 1){
 						singlePMData.teamTwo1 = my_t2Input
 						singlePMData.teamTwo2 = ""
-					} else if(my_unavPostponedMatches[pm].team2.players.length > 1 && my_T2count == 1){
+					} else if(my_unavPostponedMatches[pm].team2.players.length > 1 && my_T2count === 1){
 						singlePMData.teamTwo1 = my_t2Input
-					} else if (my_unavPostponedMatches[pm].team2.players.length > 1 && my_T2count == 2){
+					} else if (my_unavPostponedMatches[pm].team2.players.length > 1 && my_T2count === 2){
 						singlePMData.teamTwo2 = my_t2Input
 					}
 					}
-					if(my_unavPostponedMatches[pm].team2.players.length == 0){
+					if(my_unavPostponedMatches[pm].team2.players.length === 0){
 						my_t2Input = "-"
 						singlePMData.teamTwo1 = "-"
 						singlePMData.teamTwo2 = ""
@@ -144,13 +144,13 @@ function getPostponedMatchesTable(){
 					var playersPlaying = inArray("player playing", statusPlayers)
 					var playersNotReady = inArray("player not ready", statusPlayers)
 					
-					if (my_unavPostponedMatches[pm].status == "Postponed"){
+					if (my_unavPostponedMatches[pm].status === "Postponed"){
 						var my_statusText = postponedMatch
 						var my_status = my_statusText
-					} else if (playersNotReady == true){
+					} else if (playersNotReady === true){
 						var my_statusText = playersUnavailable
 						var my_status = my_statusText
-					}else if (playersPlaying == true){
+					}else if (playersPlaying === true){
 						var my_statusText = playersCurrentlyPlaying
 						var my_status = my_statusText
 					}
@@ -159,9 +159,9 @@ function getPostponedMatchesTable(){
 					
 					
 					//Comment
-					//if(my_unavPostponedMatches[pm].status == "Postponed"){
+					//if(my_unavPostponedMatches[pm].status === "Postponed"){
 						var my_comment = my_unavPostponedMatches[pm].nonreadyReason
-						//if(my_comment == ""){
+						//if(my_comment === ""){
 							
 						//}
 					//}
@@ -177,6 +177,7 @@ function getPostponedMatchesTable(){
 			var PMremakeCount = 0
 			var my_lengthMenu = lengthMenu(false, allPMdata) //create whole table
 				function makeNoPostponedMatchesTable(my_data, ifPaging, lengthMenu){
+					var tableInfoLocations = setTableInfoLocations(ifOrganizerViewPreset);
 					var my_PMTable = $('#postponedMatchesTable').DataTable({
 						data: my_data,
 						paging: ifPaging,
@@ -186,13 +187,13 @@ function getPostponedMatchesTable(){
 						lengthMenu:	lengthMenu,
 						ordering: false,
 						responsive: false,
-						dom: tableInfoLocations(),
+						dom: tableInfoLocations,
 						//pageResize: true,
 						//bAutoWidth: false,			
 						columns: [
-							{ data: 'matchNr', fnCreatedCell: 	function (namedExpectedTimeMins, sData, oData, iRow, iCol) {
-																	$(namedExpectedTimeMins).css('text-overflow', 'visible')
-																	$(namedExpectedTimeMins).css('white-space', 'nowrap')
+							{ data: 'matchNr', fnCreatedCell: 	function (nTd, sData, oData, iRow, iCol) {
+																	$(nTd).css('text-overflow', 'visible')
+																	$(nTd).css('white-space', 'nowrap')
 																}
 							},
 							{ data: 'PoolName' },
@@ -208,6 +209,7 @@ function getPostponedMatchesTable(){
 				return my_PMTable}
 
 				function makePostponedMatchesTable(my_data, ifPaging, lengthMenu){
+					var tableInfoLocations = setTableInfoLocations(ifOrganizerViewPreset);
 					var my_PMTable = $('#postponedMatchesTable').DataTable({
 						data: my_data,
 						paging: ifPaging,
@@ -217,135 +219,135 @@ function getPostponedMatchesTable(){
 						lengthMenu:	lengthMenu,
 						ordering: false,
 						responsive: false,
-						dom: tableInfoLocations(),
+						dom: tableInfoLocations,
 						//pageResize: true,
 						//bAutoWidth: false,			
 						columns: [
-							{ data: 'matchNr', sWidth: '15px', autoWidth: false, fnCreatedCell: 	function (namedExpectedTimeMins, sData, oData, iRow, iCol) {
-																	$(namedExpectedTimeMins).css('border-left', '3px solid #555555')
-																	$(namedExpectedTimeMins).css('text-align', 'center')
-																	$(namedExpectedTimeMins).css('padding-top', '5px')
-																	$(namedExpectedTimeMins).css('padding-bottom', '5px')
+							{ data: 'matchNr', sWidth: '15px', autoWidth: false, fnCreatedCell: 	function (nTd, sData, oData, iRow, iCol) {
+																	$(nTd).css('border-left', '3px solid #555555')
+																	$(nTd).css('text-align', 'center')
+																	$(nTd).css('padding-top', '5px')
+																	$(nTd).css('padding-bottom', '5px')
 																}
 							},
-							{ data: 'PoolName', sWidth: '150px', autoWidth: true, fnCreatedCell: 	function (namedExpectedTimeMins, sData, oData, iRow, iCol) {
-																	$(namedExpectedTimeMins).css('border-left', '0.2vw solid #555555')
-																	$(namedExpectedTimeMins).css('border-right', '0.2vw solid #555555')
-																	$(namedExpectedTimeMins).css('background-color', '#b3ccff')
-																	$(namedExpectedTimeMins).css('padding-left', '5px')
-																	$(namedExpectedTimeMins).css('padding-right', '5px')
+							{ data: 'PoolName', sWidth: '150px', autoWidth: true, fnCreatedCell: 	function (nTd, sData, oData, iRow, iCol) {
+																	$(nTd).css('border-left', '0.2vw solid #555555')
+																	$(nTd).css('border-right', '0.2vw solid #555555')
+																	$(nTd).css('background-color', '#b3ccff')
+																	$(nTd).css('padding-left', '5px')
+																	$(nTd).css('padding-right', '5px')
 																}
 							},
-							{ data: 'teamOne1', fnCreatedCell:  function (namedExpectedTimeMins, sData, oData, iRow, iCol) {
-																	$(namedExpectedTimeMins).css('padding-left', '5px')
-																	$(namedExpectedTimeMins).css('text-align', 'left')
+							{ data: 'teamOne1', fnCreatedCell:  function (nTd, sData, oData, iRow, iCol) {
+																	$(nTd).css('padding-left', '5px')
+																	$(nTd).css('text-align', 'left')
 																	//////log(sData)
 																	var inRTP = inArray(sData, playerNamesReadyToPlayArray)
 																	var inPl = inArray(sData, playerNamesCurrentlyPlayingArray)
 																	var inUnav = inArray(sData, playerNamesCurrentlyUnavailableArray)
-																	if (inRTP == true) {
-																		//$(namedExpectedTimeMins).css('background-color', '#71da71')
-																	} else if (inPl == true) {
-																		$(namedExpectedTimeMins).css('background-color', '#ffffb3')
-																	} else if (inUnav == true) {
-																		$(namedExpectedTimeMins).css('background-color', '#ff8080')
+																	if (inRTP === true) {
+																		//$(nTd).css('background-color', '#71da71')
+																	} else if (inPl === true) {
+																		$(nTd).css('background-color', '#ffffb3')
+																	} else if (inUnav === true) {
+																		$(nTd).css('background-color', '#ff8080')
 																	}
 																}
 															
 							},
-							{ data: 'teamOne2', fnCreatedCell:  function (namedExpectedTimeMins, sData, oData, iRow, iCol) {
-																	$(namedExpectedTimeMins).css('padding-left', '5px')
-																	$(namedExpectedTimeMins).css('text-align', 'left')
+							{ data: 'teamOne2', fnCreatedCell:  function (nTd, sData, oData, iRow, iCol) {
+																	$(nTd).css('padding-left', '5px')
+																	$(nTd).css('text-align', 'left')
 																	//////log(sData)
 																	var inRTP = inArray(sData, playerNamesReadyToPlayArray)
 																	var inPl = inArray(sData, playerNamesCurrentlyPlayingArray)
 																	var inUnav = inArray(sData, playerNamesCurrentlyUnavailableArray)
-																	if (inRTP == true) {
-																		//$(namedExpectedTimeMins).css('background-color', '#71da71')
-																	} else if (inPl == true) {
-																		$(namedExpectedTimeMins).css('background-color', '#ffffb3')
-																	} else if (inUnav == true) {
-																		$(namedExpectedTimeMins).css('background-color', '#ff8080')
+																	if (inRTP === true) {
+																		//$(nTd).css('background-color', '#71da71')
+																	} else if (inPl === true) {
+																		$(nTd).css('background-color', '#ffffb3')
+																	} else if (inUnav === true) {
+																		$(nTd).css('background-color', '#ff8080')
 																	}
 																}											
 							},
-							{ data: 'vsColumn', sWidth: '10px', fnCreatedCell:	function (namedExpectedTimeMins, sData, oData, iRow, iCol) {
-																		$(namedExpectedTimeMins).css('font-weight', 'bold')
+							{ data: 'vsColumn', sWidth: '10px', fnCreatedCell:	function (nTd, sData, oData, iRow, iCol) {
+																		$(nTd).css('font-weight', 'bold')
 																}
 							},
-							{ data: 'teamTwo1', fnCreatedCell:  function (namedExpectedTimeMins, sData, oData, iRow, iCol) {
-																	$(namedExpectedTimeMins).css('padding-left', '5px')
-																	$(namedExpectedTimeMins).css('text-align', 'left')
+							{ data: 'teamTwo1', fnCreatedCell:  function (nTd, sData, oData, iRow, iCol) {
+																	$(nTd).css('padding-left', '5px')
+																	$(nTd).css('text-align', 'left')
 																	//////log(sData)
 																	var inRTP = inArray(sData, playerNamesReadyToPlayArray)
 																	var inPl = inArray(sData, playerNamesCurrentlyPlayingArray)
 																	var inUnav = inArray(sData, playerNamesCurrentlyUnavailableArray)
-																	if (inRTP == true) {
-																		//$(namedExpectedTimeMins).css('background-color', '#71da71')
-																	} else if (inPl == true) {
-																		$(namedExpectedTimeMins).css('background-color', '#ffffb3')
-																	} else if (inUnav == true) {
-																		$(namedExpectedTimeMins).css('background-color', '#ff8080')
+																	if (inRTP === true) {
+																		//$(nTd).css('background-color', '#71da71')
+																	} else if (inPl === true) {
+																		$(nTd).css('background-color', '#ffffb3')
+																	} else if (inUnav === true) {
+																		$(nTd).css('background-color', '#ff8080')
 																	}
 																}												
 							},
-							{ data: 'teamTwo2', fnCreatedCell:  function (namedExpectedTimeMins, sData, oData, iRow, iCol) {
-																	$(namedExpectedTimeMins).css('padding-left', '5px')
-																	$(namedExpectedTimeMins).css('text-align', 'left')
+							{ data: 'teamTwo2', fnCreatedCell:  function (nTd, sData, oData, iRow, iCol) {
+																	$(nTd).css('padding-left', '5px')
+																	$(nTd).css('text-align', 'left')
 																	//////log(sData)
 																	//////log("arrays:", playerNamesReadyToPlayArray, playerNamesCurrentlyPlayingArray, playerNamesCurrentlyUnavailableArray)
 																	var inRTP = inArray(sData, playerNamesReadyToPlayArray)
 																	var inPl = inArray(sData, playerNamesCurrentlyPlayingArray)
 																	var inUnav = inArray(sData, playerNamesCurrentlyUnavailableArray)
-																	if (inRTP == true) {
-																		//$(namedExpectedTimeMins).css('background-color', '#71da71')
-																	} else if (inPl == true) {
-																		$(namedExpectedTimeMins).css('background-color', '#ffffb3')
-																	} else if (inUnav == true) {
-																		$(namedExpectedTimeMins).css('background-color', '#ff8080')
+																	if (inRTP === true) {
+																		//$(nTd).css('background-color', '#71da71')
+																	} else if (inPl === true) {
+																		$(nTd).css('background-color', '#ffffb3')
+																	} else if (inUnav === true) {
+																		$(nTd).css('background-color', '#ff8080')
 																	}
 																}												
 							},
-							{ data: 'status', sWidth: '80px', fnCreatedCell:	function (namedExpectedTimeMins, sData, oData, iRow, iCol) {
-																	$(namedExpectedTimeMins).css('border-left', '0.2vw solid #555555')
+							{ data: 'status', sWidth: '80px', fnCreatedCell:	function (nTd, sData, oData, iRow, iCol) {
+																	$(nTd).css('border-left', '0.2vw solid #555555')
 																	//////log(sData)
-																	if (sData == postponedMatch){
-																		$(namedExpectedTimeMins).css('background-color', '#ff8080')
-																		$(namedExpectedTimeMins).css('text-decoration', 'underline')
-																	} else if (sData == playersCurrentlyPlaying ){
-																		$(namedExpectedTimeMins).css('background-color', '#ffffb3')
-																	} else if (sData == playersUnavailable ){
-																		$(namedExpectedTimeMins).css('background-color', '#ff8080')
-																	} else if (sData == readyToPlay){
-																		$(namedExpectedTimeMins).css('background-color', '#71da71')
+																	if (sData === postponedMatch){
+																		$(nTd).css('background-color', '#ff8080')
+																		$(nTd).css('text-decoration', 'underline')
+																	} else if (sData === playersCurrentlyPlaying ){
+																		$(nTd).css('background-color', '#ffffb3')
+																	} else if (sData === playersUnavailable ){
+																		$(nTd).css('background-color', '#ff8080')
+																	} else if (sData === readyToPlay){
+																		$(nTd).css('background-color', '#71da71')
 																	}
 																}											
 							},
-							{ data: 'comment', fnCreatedCell: 	function (namedExpectedTimeMins, sData, oData, iRow, iCol){
-																				$(namedExpectedTimeMins).css('padding-left', '5px')
-																				$(namedExpectedTimeMins).css('text-align', 'left')
-																				$(namedExpectedTimeMins).css('width', '60px')
-																				$(namedExpectedTimeMins).css('border-right', '3px solid #555555')
+							{ data: 'comment', fnCreatedCell: 	function (nTd, sData, oData, iRow, iCol){
+																				$(nTd).css('padding-left', '5px')
+																				$(nTd).css('text-align', 'left')
+																				$(nTd).css('width', '60px')
+																				$(nTd).css('border-right', '3px solid #555555')
 																			}
 							}
 						]
 					})
 				return my_PMTable}				
 			
-			if(noUnavPostponedMatches == true){
+			if(noUnavPostponedMatches === true){
 				//log("no PM")
 				my_postponedMatchesTable = makeNoPostponedMatchesTable(allPMdata, ifPaging, my_lengthMenu)
 			} else {
 				my_postponedMatchesTable = makePostponedMatchesTable(allPMdata, ifPaging, my_lengthMenu)
 			}
 			//paging
-			if(ifPaging == true){
+			if(ifPaging === true){
 				function resizePMTable(){
 					var countPMRows = paginationConfig('postponedMatchesTable')
 					my_postponedMatchesTable.destroy()
 					////log("PM table destroyed")
 					var my_newLengthMenu = lengthMenu(true, allPMdata, countPMRows)
-					if(noUnavPostponedMatches == true){
+					if(noUnavPostponedMatches === true){
 						my_postponedMatchesTable = makeNoPostponedMatchesTable(allPMdata, ifPaging, my_newLengthMenu)
 					} else {
 						my_postponedMatchesTable = makePostponedMatchesTable(allPMdata, ifPaging, my_newLengthMenu)
@@ -368,7 +370,7 @@ function getPostponedMatchesTable(){
 							//////log("newRowsCount", newRowsCount)
 							var my_newnewLengthMenu = lengthMenu(true, allPMdata, newRowsCount)
 							//////log(my_newnewLengthMenu)
-							if(noUnavPostponedMatches == true){
+							if(noUnavPostponedMatches === true){
 								my_postponedMatchesTable = makeNoPostponedMatchesTable(allPMdata, ifPaging, my_newLengthMenu)
 							} else {
 								my_postponedMatchesTable = makePostponedMatchesTable(allPMdata, ifPaging, my_newLengthMenu)
@@ -379,7 +381,7 @@ function getPostponedMatchesTable(){
 						} else {
 							var my_activeTab = $('.tab-content').find('.tab-pane.active').attr('id')
 							//log("no more resizing in PM; activeTab:", my_activeTab)
-							if(my_activeTab == tabTableContents[2] && startTab == tabTableContents[2] && reloadedData == true){
+							if(my_activeTab === tabTableContents[2] && startTab === tabTableContents[2] && reloadedData === true){
 								//log("start tab PM")
 								var PMstarttimeout = setTimeout(function(){getPMpageCount()}, 1000)
 								refreshTimeInterval = setInterval(function(){ timeSinceLastRefreshTime += 1}, 1000)
@@ -403,7 +405,7 @@ function getPostponedMatchesTable(){
 							function pageConfig(table){
 								var tableInfo = table.page.info()
 								PMPageCount = tableInfo.pages
-								if(noUnavPostponedMatches == true){
+								if(noUnavPostponedMatches === true){
 									postponedMatchesTabTime = 5000
 								} else {
 									postponedMatchesTabTime = (document.getElementById("postponedTime").value * 1000) - 4000
@@ -415,15 +417,15 @@ function getPostponedMatchesTable(){
 				}
 				$('#postponedMatches-button').on('changeTable', function(e) {
 					PMdetectChangeCount +=1
-					if(PMdetectChangeCount == 1){
+					if(PMdetectChangeCount === 1){
 						PMclickChange +=1
 						//log("change table detected in PM with nr.:", PMclickChange)		
-							if(startTab == tabTableContents[2] && timeSinceLastRefreshTime >= reloadDataTimeSecs){
+							if(startTab === tabTableContents[2] && timeSinceLastRefreshTime >= reloadDataTimeSecs){
 								//log("start refresh tab PM")
-								if(sampleData == false){
+								if(sampleData === false){
 									$.when(checkForAPIChange())
 									.then(function(){
-										if(ifAPIChangeDetected == true){
+										if(ifAPIChangeDetected === true){
 											temprefreshTimeout = setTimeout(function(){
 											removeTables()}, 1000)
 										} else {
@@ -436,10 +438,10 @@ function getPostponedMatchesTable(){
 									removeTables()}, 1000)
 								}
 								//getAPIDataAndMakeTables()}, 1000)
-							} else if(PMclickChange == 1 && startTab == tabTableContents[2]){
+							} else if(PMclickChange === 1 && startTab === tabTableContents[2]){
 								//log("second time in PM tab and PM start tab")
 								nextTablePage(true, "PM", my_postponedMatchesTable, newPMPageTime, newPMTableTime)
-							} else if(PMclickChange == 1 && startTab != tabTableContents[2]){
+							} else if(PMclickChange === 1 && startTab != tabTableContents[2]){
 								//log("first time in PM tab and PM not start tab")
 								getPMpageCount()						
 							} else if(PMclickChange > 1){
@@ -453,7 +455,7 @@ function getPostponedMatchesTable(){
 				/*function ifPMActive(){
 						////log("PMClickCount in active:", PMclickChange)
 						PMclickChange +=1
-						if(PMclickChange == 1 && startTab != tabTableContents[2]){
+						if(PMclickChange === 1 && startTab != tabTableContents[2]){
 							PMpageCount()
 						} else {
 							nextTablePage(true, "PM", my_postponedMatchesTable, newPMPageTime, newPMTableTime)

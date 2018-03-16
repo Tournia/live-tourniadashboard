@@ -201,7 +201,7 @@ function inNamesObject(array, key, prop){
 
 function inNamesArray(needle, haystack) {
 	for (var i = 0; i < haystack.length; i++) {
-		if (haystack[i].toLowerCase() == needle){
+		if (haystack[i].toLowerCase() === needle){
 			return true;
 		}
 	}
@@ -216,13 +216,13 @@ function findPoolProperties(namePool){
 		//log(pn, namePool, poolProperties[pn])
 		namePool_LC = namePool.toLowerCase()
 		ifinPool = inNamesArray(namePool_LC, poolProperties[pn].altNames)
-		if(ifinPool == true){
+		if(ifinPool === true){
 			//log("pool found:", namePool, poolProperties[pn])
 			var selectedPool = poolProperties[pn]
 			break
 		} else poolsCount +=1
 	}
-	if (poolsCount == poolProperties.length){
+	if (poolsCount === poolProperties.length){
 		//log("pool not found:", poolProperties[0]) // "Average Pool"
 		var selectedPool =  poolProperties[0] // "Average Pool"
 	}

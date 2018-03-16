@@ -1,6 +1,6 @@
 function setIfEmptyInput(set){
 	//log("runLocal testing:", sampleData)
-	if(sampleData == false){
+	if(sampleData === false){
 		return false
 	} else {
 		//log("in else-->runLocal testing = true")
@@ -13,13 +13,13 @@ function setIfEmptyInput(set){
 setIfEmptyInput(ifEmptyInput)
 //log("if emptyInput:", my_EmptyInputBol)
 //log("runLocal testing:", sampleData)
-if(sampleData == true){
+if(sampleData === true){
 	//log("\n...with empty Input:", my_EmptyInputBol)
 }
 function _0getNewLocalData(tournamentID, dataSetNr){
-	if(tournamentID == "utrecht2016"){
+	if(tournamentID === "utrecht2016"){
 		getISBTUtrechtData(dataSetNr)
-	} else if(tournamentID == "isbt-amsterdam-2017"){
+	} else if(tournamentID === "isbt-amsterdam-2017"){
 		getISBTAmsterdamData(dataSetNr)
 	} else {
 		my_EmptyInputBol = true
@@ -69,7 +69,7 @@ function _1emptyVars_LOCAL(){
 	allCycleTimes.push(totCycleTime)
 	totCycleTime = 0
 	
-	if(my_settingsVarsObject.ifOrganizerViewPreset == true){
+	if(my_settingsVarsObject.ifOrganizerViewPreset === true){
 		lastRefreshTimeLog = my_settingsVarsObject.reloadTime
 
 	} else {
@@ -182,7 +182,7 @@ function _2BgetAllMatchesData_LOCAL(){
 
 function _3AgetGData(){
 	//log("3aS. in get GData")
-	if (poolProperties == true){
+	if (poolProperties === true){
 		//log(poolProperties)
 			Tabletop.init({
 						key: googleSheetUrl,
@@ -225,7 +225,7 @@ function _4BgetListCurrentMatchesData_LOCAL(){
 			} else {
 				noCurrentMatches = true
 			}
-		//if(currentTable == true || upcomingTable == true || poolsTable == true){
+		//if(currentTable === true || upcomingTable === true || poolsTable === true){
 		//}
 		//log("4. done with locations and current matches")
 		//})
@@ -237,7 +237,7 @@ function _5AgetReadyPostponedFinishedMatchesData_LOCAL(){
 		my_upcomingMatches = my_upcomingMatches_LOCAL //})
 		//.success(function(){
 			//log("5aF. Ready matches:", my_upcomingMatches)	
-			if(my_upcomingMatches.length == 0){
+			if(my_upcomingMatches.length === 0){
 				noUpcomingMatches = true
 				//logUpcomingMatch = false
 				var noUMData = {}
@@ -268,15 +268,15 @@ function _5AgetReadyPostponedFinishedMatchesData_LOCAL(){
 					
 					unavailablePlayerFound = false
 					for(var pl1 = 0; pl1 < my_upcomingMatches[i].team1.players.length; pl1++){
-						if( my_upcomingMatches[i].team1.players[pl1].ready == false){
+						if( my_upcomingMatches[i].team1.players[pl1].ready === false){
 							my_unavPostponedMatches.push(my_upcomingMatches[i])
 							unavailablePlayerFound = true
 							break
 						}
 					}
-					if(unavailablePlayerFound == false){
+					if(unavailablePlayerFound === false){
 						for(var pl2 = 0; pl2 < my_upcomingMatches[i].team2.players.length; pl2++){
-							if( my_upcomingMatches[i].team2.players[pl2].ready == false){
+							if( my_upcomingMatches[i].team2.players[pl2].ready === false){
 								my_unavPostponedMatches.push(my_upcomingMatches[i])
 								break
 							}
@@ -304,13 +304,13 @@ function _5BgetPostponedMatchesData_LOCAL(){
 					my_unavPostponedMatches.push(my_PostponedUpcomingMatches[i2])
 				
 					for (plyrs1 in my_PostponedUpcomingMatches[i2].team1.players){
-						if(my_PostponedUpcomingMatches[i2].team1.players[plyrs1].ready == false){
+						if(my_PostponedUpcomingMatches[i2].team1.players[plyrs1].ready === false){
 							my_postponedPlayers.push(my_PostponedUpcomingMatches[i2].team1.players[plyrs1].name)
 							my_postponedTeamNames.push(my_PostponedUpcomingMatches[i2].team1.name)
 						}
 					}
 					for (plyrs2 in my_PostponedUpcomingMatches[i2].team2.players){
-						if(my_PostponedUpcomingMatches[i2].team2.players[plyrs2].ready == false){
+						if(my_PostponedUpcomingMatches[i2].team2.players[plyrs2].ready === false){
 							my_postponedPlayers.push(my_PostponedUpcomingMatches[i2].team2.players[plyrs2].name)
 							my_postponedTeamNames.push(my_PostponedUpcomingMatches[i2].team2.name) 						
 						}
@@ -318,7 +318,7 @@ function _5BgetPostponedMatchesData_LOCAL(){
 				}
 			} else {}
 			
-			if(my_unavPostponedMatches == 0){
+			if(my_unavPostponedMatches === 0){
 				noUnavPostponedMatches = true
 				var noPMData = {}
 					noPMData.matchNr = "There are no upcoming matches planned"
@@ -383,7 +383,7 @@ function _5DgetFinishedMatchesData_LOCAL(){
 }
 
 function _6finalConfigurations_LOCAL(){
-	if(my_unavPostponedMatches.length == 0){
+	if(my_unavPostponedMatches.length === 0){
 				log("no unavPost matches")
 				noUnavPostponedMatches = true
 				var noPMData = {}
@@ -408,15 +408,15 @@ function makeLocalTables(){
 	//log("in making tables")
 	getCurrentMatchesTable()
 
-	if(upcomingTable == true || poolsTable == true || postponedTable == true){
+	if(upcomingTable === true || poolsTable === true || postponedTable === true){
 		shrinkUpcomingsTable = false
 		getUpcomingMatchesTable()
 	}
 	
-	if(postponedTable == true){
+	if(postponedTable === true){
 		getPostponedMatchesTable()
 	}
-	if(poolsTable == true){
+	if(poolsTable === true){
 		getPoolsOverviewTable()
 	}
 	setrefreshTablesInterval()

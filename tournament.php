@@ -1,297 +1,289 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!--<meta http-equiv="refresh" content="60" >-->
-  <title>Tournia live dashboard</title>
-
-  <script type="text/javascript">
-	//checkBrowsers()
-	var sampleData
-	var DEBUG_MODE
-	var sendingDataToDatabase
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!--<meta http-equiv="refresh" content="60" >-->
+	<title>Tournia live dashboard</title>
+	<script type="text/javascript">
+		var version = "1-4-0"
+		//checkBrowsers()
+		var sampleData
+		var DEBUG_MODE
+		var sendingDataToDatabase
 	
-	var ifMobile = false //set to true if you want to work only in the mobile pages
+		var ifMobile = false //set to true if you want to work only in the mobile pages
 	
-	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || ifMobile == true) {
-		ifMobile = true		
-	} else {
-		var mobileError = false
-		var cssPath = "css/style.css";
-		//var cssPath2 = "css/tables_mobileStyle.css";
-	}
-	var loadFromUrl = false
-	var loadFromSetupWindow
-	var viewChange
-	var tournamentChange = true
-	
-	var my_settingsVarsObject = {}
-	startSetupWindow = false
-	var query = ""
-	var query = window.location.search;
-	// Skip the leading ?, which should always be there, 
-	// but be careful anyway
-	if (query.substring(0, 1) == '?') {
-		query = query.substring(1);
-	}
-	var urlData = query.split('&'); 
-	for (i = 0; (i < urlData.length); i++) {
-		if(urlData[i] == null || urlData[i] == undefined || urlData[i] == "" ){
-			//console.log("empty/no gSheet url")
-			continue
+		if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || ifMobile === true) {
+			ifMobile = true		
 		} else {
-			urlData[i] = unescape(urlData[i]);
+			var mobileError = false
+			var cssPath = "css/style-" + version + ".css";
+			//var cssPath2 = "css/tables_mobileStyle.css";
 		}
-	}
-	if(urlData[0] == "demo" || urlData[0] == "utrecht2016"){
-		sampleData = true
-		sendingDataToDatabase = false
-		
-		var dataSetNr =  1 // 1-4
-		if(typeof isNaN(dataSetNr) == true || dataSetNr < 1 || dataSetNr > 4){
-			dataSetNr = 1
+		var loadFromUrl = false
+		var loadFromSetupWindow
+		var viewChange
+		var tournamentChange = true
+	
+		var my_settingsVarsObject = {}
+		startSetupWindow = false
+		var query = ""
+		var query = window.location.search;
+		// Skip the leading ?, which should always be there, 
+		// but be careful anyway
+		if (query.substring(0, 1) === '?') {
+			query = query.substring(1);
 		}
-	}
-	if(urlData[0] == "isbtamsterdam" || urlData[0] == "isbt-amsterdam-2017"){
-		sampleData = true
-		sendingDataToDatabase = false
-		
-		var dataSetNr =  4 //1-9
-		if(typeof isNaN(dataSetNr) == true || dataSetNr < 1 || dataSetNr > 9){
-			dataSetNr = 1
-		}
-		/*
-			1: UMBR 19 - 53 mins.
-			2: UMNR 18 - 64 mins.
-			3: UMNR 17 - 46 mins.
-			4:UMNR
-			5:
-			6: UMNR 7 - 31 mins., UMNR 10 - 12 mins
-			
-			*/
-		
-	}
-	if(ifMobile == true){
-		window.location = "tournament_mobile.php?"+urlData[0]+"#upcomingMatches"
-	}
-  </script>
-  <!--<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">-->
- 
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs-3.3.7/jqc-1.12.3/dt-1.10.16/b-1.5.1/b-colvis-1.5.1/fh-3.1.3/r-2.2.1/datatables.min.css"/>
- <!--<link rel="stylesheet" href="css/libs/DataTables_Bootstrap.css">-->
- <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/css/select2.min.css" rel="stylesheet" />
-
- 
- <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.css">
- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.1.1/css/responsive.dataTables.min.css">
- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.2.4/css/buttons.dataTables.min.css">-->
- <!--<link rel="stylesheet" href="css/style.css" />-->
- 
- <!--<script src="https://code.jquery.com/jquery-1.12.4.js"></script>-->
- <!--<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>-->
-  
- <!--<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.js"></script>
- <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/responsive/2.1.1/js/dataTables.responsive.min.js"></script>
- <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/1.2.4/js/dataTables.buttons.min.js"></script>
- <script type="text/javascript" charset="utf8" src="https:////cdn.datatables.net/buttons/1.2.4/js/buttons.colVis.min.js"></script>-->
-  
- <script type="text/javascript" src="https://cdn.datatables.net/v/bs-3.3.7/jqc-1.12.3/dt-1.10.16/b-1.5.1/b-colvis-1.5.1/fh-3.1.3/r-2.2.1/datatables.min.js"></script>
- <!--<script type="text/javascript" src="https://momentjs.com/downloads/moment.js"></script>-->
- <!--<script src="js/libs/DataTables_Bootstrap.js"></script>-->
- <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/js/select2.min.js"></script>
- <script src="js/libs/tabletop.min.js"></script>
- 
- <script src="js/globals.js"></script>
- <script src="js/setupFunctions.js"></script>
- <script src="js/options.js"></script>
- <script src="js/otherFunctions.js"></script>
- <script src="js/poolProperties.js"></script>
- <script src="js/paginationFunctions.js"></script>
- <script src="js/poolRankingsTable.js"></script>
- <script src="js/playersRankingTable.js"></script>
- <script src="js/playersTable.js"></script>
- <script src="js/getAPIDataAndMakeTables.js"></script>
- <script src="js/localSampleData.js"></script>
- <script src="js/getAPIDataAndMakeTables_LOCAL.js"></script>
- <script src="js/currentMatchesTable.js"></script>
- <script src="js/expectedTimesScript.js"></script>
- <script src="js/upcomingMatchesTable.js"></script>
- <script src="js/postponedMatchesTable.js"></script>
- <script src="js/playedMatchesTable.js"></script>
- <script src="js/poolsOverviewTable.js"></script>
- <script src="js/page_View.js"></script>
- <script src="js/tableViews.js"></script>
- 
- <script>
-
-	function urlSetup(){
-		
-		my_defaultVarsObject = {
-			settingsVariables: false,
-			tournamentID: "",
-			ifCurrentTable: true,
-			ifUpcomingTable: true,
-			ifPostponedTable: true,
-			ifPoolsTable: true,		
-			ifReloadTables: true,
-			reloadTime: 30,
-			ifChangeTabs: true,
-			minPageTime: 5,
-			upcomingTime: 10,
-			currentTime: 10,
-			postponedTime: 10,
-			ifGoogleSheet: false,
-			GoogleSheetUrl: "",
-			ifCustomSorting: false,
-			showStatusPlayersColumn: true,
-			showExpectedTimeColumn: true,
-			showPlayingTimeColumn: true,
-			showPredictedTimeColumn: true,		
-			showTotTeamsColumn: false,
-			showRoundsNeededColumn: false,
-			showRoundsCreatedColumn: false,
-			showRoundsLeftColumn: false,
-			showStatusColumn: true,
-			showByeDataColumn: true,
-			ifPagingTable: true,
-			ifOrganizerViewPreset: false
-		}
-		
-		my_settingsVarsObject = {
-			
-			tournamentID: localStorage.getItem("ls_my_tournamentId"),				//tournament id
-			ifCurrentTable: (localStorage.getItem("ls_my_ifCurrentTable") === 'true'), //ifCurrentTable
-			ifUpcomingTable: (localStorage.getItem("ls_my_ifUpcomingTable") === 'true'), //ifUpcomingTable
-			ifPostponedTable: (localStorage.getItem("ls_my_ifPostponedTable") === 'true'), //ifPostponedTable
-			ifPoolsTable: (localStorage.getItem("ls_my_ifPoolsTable") === 'true'), //ifPoolsTable
-			ifReloadTables: (localStorage.getItem("ls_my_ifReloadTables") === 'true'), //ifReloadTables
-			reloadTime: Number(localStorage.getItem("ls_my_reloadTime")),		//reloadTablesTime
-			ifChangeTabs: (localStorage.getItem("ls_my_ifChangeTabs") === 'true'), //ifChangeTabs
-			minPageTime: Number(localStorage.getItem("ls_my_minPageTime")),		//minPageTime
-			upcomingTime: Number(localStorage.getItem("ls_my_upcomingTime")),		//upcomingTime
-			currentTime: Number(localStorage.getItem("ls_my_currentTime")),	//currentTime
-			postponedTime: Number(localStorage.getItem("ls_my_postponedTime")),		//postponedTime
-			ifGoogleSheet: (localStorage.getItem("ls_my_ifGoogleSheet") === 'true'),	//ifGoogleSheet
-			GoogleSheetUrl: localStorage.getItem("ls_my_GoogleSheetUrl"),				//google sheet url
-			ifCustomSorting: (localStorage.getItem("ls_my_ifCustomSorting") === 'true'),
-			showStatusPlayersColumn: (localStorage.getItem("ls_my_showStatusPlayersColumn") === 'true'),
-			showExpectedTimeColumn: (localStorage.getItem("ls_my_showExpectedTimeColumn") === 'true'),
-			showPlayingTimeColumn: (localStorage.getItem("ls_my_showPlayingTimeColumn") === 'true'),
-			showPredictedTimeColumn: (localStorage.getItem("ls_my_showPredictedTimeColumn") === 'true'),
-			showTotTeamsColumn: (localStorage.getItem("ls_my_showTotTeamsColumn") === 'true'),
-			showRoundsNeededColumn: false,//(localStorage.getItem("ls_my_showRoundsNeededColumn") === 'true'),
-			showRoundsCreatedColumn: false,//(localStorage.getItem("ls_my_showRoundsCreatedColumn") === 'true'),
-			showRoundsLeftColumn: false,//(localStorage.getItem("ls_my_showRoundsLeftColumn") === 'true'),
-			showStatusColumn: (localStorage.getItem("ls_my_showStatusColumn") === 'true'),
-			showByeDataColumn: (localStorage.getItem("ls_my_showByeDataColumn") === 'true'),
-			ifPagingTable: (localStorage.getItem("ls_my_ifPagingTable") === 'true'),
-			ifOrganizerViewPreset: (localStorage.getItem("ls_my_ifOrganizerViewPreset") === 'true')
-		}
-		
-		if(urlData != ""){
-			getAllLocalStorage()
-			
-			startSetupWindow = false
-			if(viewChange == true){
-				loadFromUrl = false
-				loadFromSetupWindow = true				
+		var urlData = query.split('&'); 
+		for (i = 0; (i < urlData.length); i++) {
+			if(urlData[i] === null || urlData[i] === undefined || urlData[i] === "" ){
+				//console.log("empty/no gSheet url")
+				continue
 			} else {
-				loadFromUrl = true
-				loadFromSetupWindow = false
+				urlData[i] = unescape(urlData[i]);
 			}
-			my_settingsVarsObject.tournamentID = urlData[0]
-			my_settingsVarsObject.GoogleSheetUrl = urlData[1]
+		}
+		if(urlData[0] === "demo" || urlData[0] === "utrecht2016"){
+			sampleData = true
+			sendingDataToDatabase = false
+		
+			var dataSetNr =  1 // 1-4
+			if(typeof isNaN(dataSetNr) === true || dataSetNr < 1 || dataSetNr > 4){
+				dataSetNr = 1
+			}
+		}
+		if(urlData[0] === "isbtamsterdam" || urlData[0] === "isbt-amsterdam-2017"){
+			sampleData = true
+			sendingDataToDatabase = false
+		
+			var dataSetNr =  4 //1-9
+			if(typeof isNaN(dataSetNr) === true || dataSetNr < 1 || dataSetNr > 9){
+				dataSetNr = 1
+			}
+			/*
+				1: UMBR 19 - 53 mins.
+				2: UMNR 18 - 64 mins.
+				3: UMNR 17 - 46 mins.
+				4:UMNR
+				5:
+				6: UMNR 7 - 31 mins., UMNR 10 - 12 mins
 			
-			var myTournamentID = my_settingsVarsObject.tournamentID
-			var myGSheetUrl = my_settingsVarsObject.GoogleSheetUrl
-			var mydataNr = 0
-					
-			if(myGSheetUrl == null){
+				*/
+		
+		}
+		if(ifMobile === true){
+			window.location = "tournament_mobile.php?"+urlData[0]+"#upcomingMatches"
+		}
+	</script>
+	  <!--<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">-->
+ 
+	 <!--<link rel="stylesheet" href="css/libs/DataTables_Bootstrap.css">-->
+   	<!--<link rel="stylesheet" type="text/css" href="css/libs/dataTables.css"/>-->
+	<link rel="stylesheet" href="css/libs/select2.css"/>
+
+	 <link rel="stylesheet" href="https://cdn.datatables.net/v/bs-3.3.7/jqc-1.12.3/dt-1.10.16/b-1.5.1/b-colvis-1.5.1/fh-3.1.3/r-2.2.1/datatables.min.css" >
+	 <!--<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.css">
+	 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.1.1/css/responsive.dataTables.min.css">
+	 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.2.4/css/buttons.dataTables.min.css">-->
+	 <!--<link rel="stylesheet" href="css/style.css" />-->
+ 
+	 <!--<script src="https://code.jquery.com/jquery-1.12.4.js"></script>-->
+	 <!--<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>-->
+  
+
+	<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/v/bs-3.3.7/jqc-1.12.3/dt-1.10.16/b-1.5.1/b-colvis-1.5.1/fh-3.1.3/r-2.2.1/datatables.min.js"></script>
+	 <!--<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/responsive/2.1.1/js/dataTables.responsive.min.js"></script>
+	 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/1.2.4/js/dataTables.buttons.min.js"></script>
+	 <script type="text/javascript" charset="utf8" src="https:////cdn.datatables.net/buttons/1.2.4/js/buttons.colVis.min.js"></script>-->
+	 <!--<script type="text/javascript" src="js/libs/moment.js"></script>-->
+	 <!--<script src="js/libs/dataTables_Bootstrap.js"></script>-->
+
+	 <!--<script src="js/libs/tabletop.min.js"></script>-->
+
+ 
+ 
+
+	<!--<script type="text/javascript" src="js/libs/dataTables.js"></script>-->
+	<script type="text/javascript" src="js/libs/select2.js"></script>
+ 
+	<script src="js/globals-1-4-0.js"></script>
+	<script src="js/setupFunctions-1-4-0.js"></script>
+	<script src="js/options-1-4-0.js"></script>
+	<script src="js/otherFunctions-1-4-0.js"></script>
+	<script src="js/poolProperties-1-4-0.js"></script>
+	<script src="js/paginationFunctions-1-4-0.js"></script>
+	<script src="js/poolRankingsTable-1-4-0.js"></script>
+	<script src="js/playersRankingTable-1-4-0.js"></script>
+	<script src="js/playersTable-1-4-0.js"></script>
+	<script src="js/getAPIDataAndMakeTables-1-4-0.js"></script>
+	<script src="js/localSampleData-1-4-0.js"></script>
+	<script src="js/getAPIDataAndMakeTables_LOCAL-1-4-0.js"></script>
+	<script src="js/currentMatchesTable-1-4-0.js"></script>
+	<script src="js/expectedTimesScript-1-4-0.js"></script>
+	<script src="js/upcomingMatchesTable-1-4-0.js"></script>
+	<script src="js/postponedMatchesTable-1-4-0.js"></script>
+	<script src="js/playedMatchesTable-1-4-0.js"></script>
+	<script src="js/poolsOverviewTable-1-4-0.js"></script>
+	<script src="js/pageView-1-4-0.js"></script>
+	<script src="js/tableViews-1-4-0.js"></script>
+ 
+	 <script>
+		 function urlSetup() {
+
+			my_defaultVarsObject = {
+				settingsVariables: false,
+				tournamentID: "",
+				ifCurrentTable: true,
+				ifUpcomingTable: true,
+				ifPostponedTable: true,
+				ifPoolsTable: true,
+				ifReloadTables: true,
+				reloadTime: 30,
+				ifChangeTabs: true,
+				minPageTime: 5,
+				upcomingTime: 10,
+				currentTime: 10,
+				postponedTime: 10,
+				ifGoogleSheet: false,
+				GoogleSheetUrl: "",
+				ifCustomSorting: false,
+				showStatusPlayersColumn: true,
+				showExpectedTimeColumn: true,
+				showPlayingTimeColumn: true,
+				showPredictedTimeColumn: true,
+				showTotTeamsColumn: false,
+				showRoundsNeededColumn: false,
+				showRoundsCreatedColumn: false,
+				showRoundsLeftColumn: false,
+				showStatusColumn: true,
+				showByeDataColumn: true,
+				ifPagingTable: true,
+				ifOrganizerViewPreset: false
+			}
+
+			my_settingsVarsObject = {
+
+				tournamentID: localStorage.getItem("ls_my_tournamentId"),				//tournament id
+				ifCurrentTable: (localStorage.getItem("ls_my_ifCurrentTable") === 'true'), //ifCurrentTable
+				ifUpcomingTable: (localStorage.getItem("ls_my_ifUpcomingTable") === 'true'), //ifUpcomingTable
+				ifPostponedTable: (localStorage.getItem("ls_my_ifPostponedTable") === 'true'), //ifPostponedTable
+				ifPoolsTable: (localStorage.getItem("ls_my_ifPoolsTable") === 'true'), //ifPoolsTable
+				ifReloadTables: (localStorage.getItem("ls_my_ifReloadTables") === 'true'), //ifReloadTables
+				reloadTime: Number(localStorage.getItem("ls_my_reloadTime")),		//reloadTablesTime
+				ifChangeTabs: (localStorage.getItem("ls_my_ifChangeTabs") === 'true'), //ifChangeTabs
+				minPageTime: Number(localStorage.getItem("ls_my_minPageTime")),		//minPageTime
+				upcomingTime: Number(localStorage.getItem("ls_my_upcomingTime")),		//upcomingTime
+				currentTime: Number(localStorage.getItem("ls_my_currentTime")),	//currentTime
+				postponedTime: Number(localStorage.getItem("ls_my_postponedTime")),		//postponedTime
+				ifGoogleSheet: (localStorage.getItem("ls_my_ifGoogleSheet") === 'true'),	//ifGoogleSheet
+				GoogleSheetUrl: localStorage.getItem("ls_my_GoogleSheetUrl"),				//google sheet url
+				ifCustomSorting: (localStorage.getItem("ls_my_ifCustomSorting") === 'true'),
+				showStatusPlayersColumn: (localStorage.getItem("ls_my_showStatusPlayersColumn") === 'true'),
+				showExpectedTimeColumn: (localStorage.getItem("ls_my_showExpectedTimeColumn") === 'true'),
+				showPlayingTimeColumn: (localStorage.getItem("ls_my_showPlayingTimeColumn") === 'true'),
+				showPredictedTimeColumn: (localStorage.getItem("ls_my_showPredictedTimeColumn") === 'true'),
+				showTotTeamsColumn: (localStorage.getItem("ls_my_showTotTeamsColumn") === 'true'),
+				showRoundsNeededColumn: false,//(localStorage.getItem("ls_my_showRoundsNeededColumn") === 'true'),
+				showRoundsCreatedColumn: false,//(localStorage.getItem("ls_my_showRoundsCreatedColumn") === 'true'),
+				showRoundsLeftColumn: false,//(localStorage.getItem("ls_my_showRoundsLeftColumn") === 'true'),
+				showStatusColumn: (localStorage.getItem("ls_my_showStatusColumn") === 'true'),
+				showByeDataColumn: (localStorage.getItem("ls_my_showByeDataColumn") === 'true'),
+				ifPagingTable: (localStorage.getItem("ls_my_ifPagingTable") === 'true'),
+				ifOrganizerViewPreset: (localStorage.getItem("ls_my_ifOrganizerViewPreset") === 'true')
+			}
+
+			if (urlData != "") {
+				getAllLocalStorage()
+
+				startSetupWindow = false
+				if (viewChange === true) {
+					loadFromUrl = false
+					loadFromSetupWindow = true
+				} else {
+					loadFromUrl = true
+					loadFromSetupWindow = false
+				}
 				my_settingsVarsObject.tournamentID = urlData[0]
-				my_settingsVarsObject.ifGoogleSheet = true
-				my_settingsVarsObject.ifCustomSorting = false
-				my_settingsVarsObject.GoogleSheetUrl = ""
-				my_settingsVarsObject.ifGoogleSheet = false
+				my_settingsVarsObject.GoogleSheetUrl = urlData[1]
+
+				var myTournamentID = my_settingsVarsObject.tournamentID
+				var myGSheetUrl = my_settingsVarsObject.GoogleSheetUrl
+				var mydataNr = 0
+
+				if (myGSheetUrl === null) {
+					my_settingsVarsObject.tournamentID = urlData[0]
+					my_settingsVarsObject.ifGoogleSheet = true
+					my_settingsVarsObject.ifCustomSorting = false
+					my_settingsVarsObject.GoogleSheetUrl = ""
+					my_settingsVarsObject.ifGoogleSheet = false
+				} else {
+					my_settingsVarsObject.tournamentID = urlData[mydataNr]; mydataNr += 1
+					my_settingsVarsObject.ifGoogleSheet = true
+					my_settingsVarsObject.ifCustomSorting = false
+					my_settingsVarsObject.GoogleSheetUrl = urlData[mydataNr];
+				}
+
+				if (myTournamentID === "" || myTournamentID === undefined || myTournamentID === null || myTournamentID === "undefined") {
+					console.log('set start window to true')
+					loadFromUrl = false
+					startSetupWindow = true
+					//log("startSetupWindow:", startSetupWindow)
+				} else if (myTournamentID === localStorage.getItem("ls_my_tournamentId") && loadFromSetupWindow === false) {
+					//log("creating page with stored values and maybe from setup window:", my_settingsVarsObject)
+					tournamentChange = false
+					setVars()
+					applyVars()
+					//startSetupWindow = true
+					//createPage()	//not needed as this is already done in the init
+				} else if (myTournamentID === localStorage.getItem("ls_my_tournamentId") && loadFromSetupWindow === true) {
+					//log("creating page with stored values from setup window:", my_settingsVarsObject)
+					tournamentChange = false
+					setVars()
+					applyVars()
+
+					//startSetupWindow = true
+					//createPage()	//not needed as this is already done in the init 
+				} else if (myTournamentID != localStorage.getItem("ls_my_tournamentId")) {
+					//log("different id provided than local storage")
+					tournamentChange = true
+					if (myGSheetUrl === undefined || myGSheetUrl === null) {
+						localStorage.setItem("ls_my_GoogleSheetUrl", "")
+					} else {
+						localStorage.setItem("ls_my_GoogleSheetUrl", myGSheetUrl)
+					}
+
+					if (localStorage.getItem("ls_my_tournamentId") === null || localStorage.getItem("ls_my_tournamentId") === undefined) {
+						//log("new tournament ID localStorage:", localStorage.getItem("ls_my_tournamentId"))
+						tournamentChange = true
+						localStorage.setItem("ls_my_tournamentId", myTournamentID)
+						placeDefaultVars(myTournamentID, myGSheetUrl)
+						setAllLocalStorage()
+						setVars()
+						applyVars()
+						//createPage()	//not needed as this is already done in the init
+
+					} else {
+						//log("placing new storage values from setup window replacing:", localStorage.getItem("ls_my_tournamentId"))
+						tournamentChange = false
+						localStorage.setItem("ls_my_tournamentId", myTournamentID)
+						setVars()
+						applyVars()
+						//createPage()	//not needed as this is already done in the init
+					}
+				} else {
+					//log("error in new_Tables HTML()")
+					alert("error in new_Tables HTML()")
+				}
 			} else {
-				my_settingsVarsObject.tournamentID = urlData[mydataNr];	mydataNr +=1	
-				my_settingsVarsObject.ifGoogleSheet = true
-				my_settingsVarsObject.ifCustomSorting = false
-				my_settingsVarsObject.GoogleSheetUrl = urlData[mydataNr];
-			}
-					
-	if(myTournamentID == "" || myTournamentID == undefined || myTournamentID == null || myTournamentID == "undefined"){
-				console.log('set start window to true')
+				//log("empty url")
 				loadFromUrl = false
 				startSetupWindow = true
-				//log("startSetupWindow:", startSetupWindow)
-			} else if (myTournamentID == localStorage.getItem("ls_my_tournamentId") && loadFromSetupWindow == false){
-				//log("creating page with stored values and maybe from setup window:", my_settingsVarsObject)
-				tournamentChange = false
-				setVars()
-				applyVars()
-				//startSetupWindow = true
-				//createPage()	//not needed as this is already done in the init
-			} else if (myTournamentID == localStorage.getItem("ls_my_tournamentId") && loadFromSetupWindow == true){
-				//log("creating page with stored values from setup window:", my_settingsVarsObject)
-				tournamentChange = false
-				setVars()
-				applyVars()
-				
-				//startSetupWindow = true
-				//createPage()	//not needed as this is already done in the init 
-			} else if (myTournamentID != localStorage.getItem("ls_my_tournamentId")){
-				//log("different id provided than local storage")
-				tournamentChange = true
-				if(myGSheetUrl == undefined || myGSheetUrl == null){
-					localStorage.setItem("ls_my_GoogleSheetUrl", "")
-				} else {
-					localStorage.setItem("ls_my_GoogleSheetUrl", myGSheetUrl)
-				}
-				
-				if(localStorage.getItem("ls_my_tournamentId") == null || localStorage.getItem("ls_my_tournamentId") == undefined){
-					//log("new tournament ID localStorage:", localStorage.getItem("ls_my_tournamentId"))
-					tournamentChange = true
-					localStorage.setItem("ls_my_tournamentId", myTournamentID)
-					placeDefaultVars(myTournamentID, myGSheetUrl)
-					setAllLocalStorage()
-					setVars()
-					applyVars()
-					//createPage()	//not needed as this is already done in the init
-
-				} else {
-					//log("placing new storage values from setup window replacing:", localStorage.getItem("ls_my_tournamentId"))
-					tournamentChange = false
-					localStorage.setItem("ls_my_tournamentId", myTournamentID)
-					setVars()
-					applyVars()
-					//createPage()	//not needed as this is already done in the init
-				}
-			} else {
-				//log("error in new_Tables HTML()")
-				alert("error in new_Tables HTML()")
 			}
-		} else {
-			//log("empty url")
-			loadFromUrl = false
-			startSetupWindow = true		
-		} 		
-	}
-	urlSetup()
-  
-
-
-	  
-	  //$.post('expectedTimes.php', {UM_loopLog: UM_loopLog})
-	  
-  
-  
-  </script>
-
-  <script src="js/init.js"></script>
-
-
+		}
+		urlSetup()	  
+	</script>
+	 <script src="js/init-1-4-0.js"></script>
 </head>
 <body bgcolor="#f3f2f0">
 
@@ -488,8 +480,8 @@
 								<input type="checkbox" id="showRoundsCreatedCb" class="checkbox" checked>Rounds created so far<br>
 								<input type="checkbox" id="showRoundsLeftCb" class="checkbox">Rounds left<br>
 							</div>
-								<input type="checkbox" id="showStatusCb" class="checkbox" checked>Status of pool<br>
-								<input type="checkbox" id="showByeDataCb" class="checkbox" checked>Teams that have a bye<br>
+							<input type="checkbox" id="showStatusCb" class="checkbox" checked>Status of pool<br>
+							<input type="checkbox" id="showByeDataCb" class="checkbox" checked>Teams that have a bye<br>
 						</td>
 						<td>	
 							<a tabindex="0" class="glyphicon glyphicon-info-sign" data-container="body" data-toggle="popover" data-trigger="focus" data-placement="right" title="Select pools overview columns" data-content="Turn on and off certain column. For each column inforation will be shown for each pool. A custom preset is also possible."></a>

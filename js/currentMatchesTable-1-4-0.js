@@ -34,7 +34,7 @@ function getCurrentMatchesTable(){
 		
 		singleCMData.courtOnHold = courtOnHold
 		//courtcolumn
-		if (courtOnHold == true){					
+		if (courtOnHold === true){					
 			//tro.append("<td class='courtColumn'" + playerUnavailableSpan + courtName + "</td>");
 		} else {
 			availableLocationsCount += 1
@@ -44,7 +44,7 @@ function getCurrentMatchesTable(){
 		
 		//Pool Name
 		indivCourtObjCount = Object.keys(my_locationsList[m]).length 
-		if (courtOnHold == true){
+		if (courtOnHold === true){
 			if(onHoldReason === null){
 				onHoldReason = ""
 			}
@@ -52,7 +52,7 @@ function getCurrentMatchesTable(){
 			singleCMData.onHoldReason = onHoldReason
 			singleCMData.poolPlaying = onHoldReason
 			singleCMData.abbrpoolPlaying = null
-		} else if(indivCourtObjCount == 5){
+		} else if(indivCourtObjCount === 5){
 			//tro.append("<td class='emptyPoolColumn'></td>")
 			singleCMData.onHoldReason = ""
 			singleCMData.poolPlaying = ""
@@ -63,14 +63,14 @@ function getCurrentMatchesTable(){
 			var namePoolPlaying = my_locationsList[m].pool
 			var poolPropertiesObject = findPoolProperties(namePoolPlaying)
 			singleCMData.poolProperties = poolPropertiesObject
-			if(poolPropertiesObject.altNames[0] == "Average Pool"){
+			if(poolPropertiesObject.altNames[0] === "Average Pool"){
 				var abbrPoolName = namePoolPlaying
 			} else {
 				var abbrPoolName = poolPropertiesObject.abbreviations[0]
 			}
 			//var abbrPoolName = poolPropertiesObject.//getPoolNameAbbr(namePoolPlaying)
 
-			if(ifMobile == false){
+			if(ifMobile === false){
 				//tro.append("<td class='poolColumn'>" + namePoolPlaying + "</td>");
 				singleCMData.poolPlaying = namePoolPlaying
 			} else {
@@ -80,10 +80,10 @@ function getCurrentMatchesTable(){
 			singleCMData.abbrpoolPlaying = abbrPoolName
 		}			
 		//team 1 column
-		if(indivCourtObjCount == 5 && courtOnHold == false ){
+		if(indivCourtObjCount === 5 && courtOnHold === false ){
 			//tro.append("<td class='emptyPoolColumn'></td>")
 			singleCMData.team1 = ""
-		} else if (indivCourtObjCount == 5 && courtOnHold == true){
+		} else if (indivCourtObjCount === 5 && courtOnHold === true){
 			//tro.append("<td class='onHoldColumn'></td>")
 			singleCMData.team1 = ""
 
@@ -94,7 +94,7 @@ function getCurrentMatchesTable(){
 					myTeam1PlayerNames.push(individual1Player)
 			}
 			
-			var Team1NamesClean = myTeam1PlayerNames.map(e=>e.split("\"").map((a,i)=>i%2==0?a:undefined).join(""));
+			var Team1NamesClean = myTeam1PlayerNames.map(e=>e.split("\"").map((a,i)=>i%2===0?a:undefined).join(""));
 			//////log(Team1NamesClean)
 			var Team1NamesCleanTrim = []
 			for (var i = 0; i <Team1NamesClean.length; i++) {
@@ -108,10 +108,10 @@ function getCurrentMatchesTable(){
 		}
 		
 		//vs column
-		if(indivCourtObjCount == 5 && courtOnHold == false ){
+		if(indivCourtObjCount === 5 && courtOnHold === false ){
 			//tro.append("<td class='emptyPoolColumnVs'></td>")
 			singleCMData.vsColumn = ""
-		} else if (indivCourtObjCount == 5 && courtOnHold == true){
+		} else if (indivCourtObjCount === 5 && courtOnHold === true){
 			//tro.append("<td class='onHoldColumnVs'></td>")
 			singleCMData.vsColumn = ""
 		} else {
@@ -120,10 +120,10 @@ function getCurrentMatchesTable(){
 		}
 		
 		//team 2 column
-		if(indivCourtObjCount == 5 && courtOnHold == false ){
+		if(indivCourtObjCount === 5 && courtOnHold === false ){
 			//tro.append("<td class='emptyPoolColumn'></td>")
 			singleCMData.team2 = ""
-		} else if (indivCourtObjCount == 5 && courtOnHold == true){
+		} else if (indivCourtObjCount === 5 && courtOnHold === true){
 			//tro.append("<td class='onHoldColumn'></td>")
 			singleCMData.team2 = ""
 
@@ -133,7 +133,7 @@ function getCurrentMatchesTable(){
 					var individual2Player = myTeam2Players[key]
 					myTeam2PlayerNames.push(individual2Player)
 			}
-			var Team2NamesClean = myTeam2PlayerNames.map(e=>e.split("\"").map((a,i)=>i%2==0?a:undefined).join(""));
+			var Team2NamesClean = myTeam2PlayerNames.map(e=>e.split("\"").map((a,i)=>i%2===0?a:undefined).join(""));
 			var Team2NamesCleanTrim = []
 			for (var i = 0; i <Team2NamesClean.length; i++) {
 				var string = Team2NamesClean[i].replace(/  +/g, ' ');
@@ -146,15 +146,15 @@ function getCurrentMatchesTable(){
 		}
 		
 		//already playing time column
-		if(indivCourtObjCount == 5 && courtOnHold == false ){
-			if(showPlayingTimeColumn == true){
+		if(indivCourtObjCount === 5 && courtOnHold === false ){
+			if(showPlayingTimeColumn === true){
 				//tro.append("<td class='emptyPoolColumn'></td>")
 			} else {
 				//document.getElementById("alreadyplayingTimeColumn").style.display = "none"							
 			}
 			singleCMData.alreadyPlayingTime = ""
-		} else if (indivCourtObjCount == 5 && courtOnHold == true){
-			if(showPlayingTimeColumn == true){
+		} else if (indivCourtObjCount === 5 && courtOnHold === true){
+			if(showPlayingTimeColumn === true){
 				//tro.append("<td class='onHoldColumn'></td>")
 			} else {
 				//document.getElementById("playingTimeColumn").style.display = "none"
@@ -172,7 +172,7 @@ function getCurrentMatchesTable(){
 			}
 			singleCMData.alreadyPlayingTime = myFinalTime
 			
-			if(showPlayingTimeColumn == true || showPlayingTimeColumn == "true"){
+			if(showPlayingTimeColumn === true || showPlayingTimeColumn === "true"){
 				//tro.append("<td class='playingTimeColumn'>"+  myFinalTime + "</td>")							
 			} else {
 				//document.getElementById("playingTimeColumn").style.display = "none"
@@ -180,8 +180,8 @@ function getCurrentMatchesTable(){
 		}
 		
 		//predicted Time column
-		if(indivCourtObjCount == 5 && courtOnHold == false ){
-			if(showPredictedTimeColumn == true){
+		if(indivCourtObjCount === 5 && courtOnHold === false ){
+			if(showPredictedTimeColumn === true){
 				my_locationsList[m].deltaPredictedTimeLeft = undefined
 				//tro.append("<td class='emptyPoolColumn'></td>")
 			} else{
@@ -190,8 +190,8 @@ function getCurrentMatchesTable(){
 			singleCMData.predictedTimeLeft = ""
 			singleCMData.namedPredictedTimeLeft = ""
 			singleCMData.stdDevPredictedTimeLeft = ""
-		} else if (indivCourtObjCount == 5 && courtOnHold == true){
-			if(showPredictedTimeColumn == true){							
+		} else if (indivCourtObjCount === 5 && courtOnHold === true){
+			if(showPredictedTimeColumn === true){							
 				my_locationsList[m].deltaPredictedTimeLeft = undefined
 				//tro.append("<td class='onHoldColumn'></td>")
 			} else {
@@ -211,7 +211,7 @@ function getCurrentMatchesTable(){
 				var averageTimePool = poolProperties["Overall Average"].avgTime
 				var stdDevPool = poolProperties["Overall Average"].stdDev				
 			}
-			if (averageTimePool == undefined){
+			if (averageTimePool === undefined){
 				var averageTimePool = poolProperties["Overall Average"].avgTime
 				var stdDevPool = poolProperties["Overall Average"].stdDev				
 			}
@@ -238,7 +238,7 @@ function getCurrentMatchesTable(){
 			var predictedTimeLeftStdDeviationTime = predictedTimeLeftMins +  " ± " + (Math.ceil((stdDevPool)/60)) 
 			
 			predictedTimeLeftMinsRounded = Math.round(predictedTimeLeftMins)
-			if (predictedTimeLeftMinsRounded == 0){
+			if (predictedTimeLeftMinsRounded === 0){
 				namedPredictedTime = "a few minutes"
 			} else if (predictedTimeLeftMinsRounded > 0 && predictedTimeLeftMinsRounded <= 5){
 				namedPredictedTime = "0-5 mins."
@@ -260,7 +260,7 @@ function getCurrentMatchesTable(){
 			singleCMData.namedPredictedTimeLeft = namedPredictedTime
 			singleCMData.stdDevPredictedTimeLeft = predictedTimeLeftStdDeviationTime + " mins."
 			
-			if(showPredictedTimeColumn == true){
+			if(showPredictedTimeColumn === true){
 				//tro.append("<td class='predictedTimeColumn'>" + namedPredictedTime +"</td>")
 			} else {
 				//document.getElementById("predictedTimeColumn").style.display = "none"
@@ -287,6 +287,7 @@ function getCurrentMatchesTable(){
 	var my_lengthMenu = lengthMenu(false, allCMdata) //create whole table
 	//////log(my_lengthMenu)
 	function makeNoCourtsTable(my_data, ifPaging, lengthMenu){
+		var tableInfoLocations = setTableInfoLocations(ifOrganizerViewPreset);
 		var my_CMTable = $('#currentMatchesTable').DataTable({
 			data: my_data,
 			paging: ifPaging,
@@ -296,7 +297,7 @@ function getCurrentMatchesTable(){
 			lengthMenu:	lengthMenu,
 			ordering: false,
 			responsive: false,
-			dom: tableInfoLocations(),
+			dom: tableInfoLocations,
 			/*dom: 'CMTable',
 			buttons: [
 						'colvis'
@@ -304,64 +305,64 @@ function getCurrentMatchesTable(){
 			//pageResize: true,
 			//bAutoWidth: false,			
 			columns: [
-				{ data: 'CourtName', fnCreatedCell: 	function (namedExpectedTimeMins, sData, oData, iRow, iCol) {
-																			$(namedExpectedTimeMins).css('text-align', 'left')
-																			$(namedExpectedTimeMins).css('border-right', '0.2vw solid #555555')
-																			$(namedExpectedTimeMins).css('padding-left', '5px')
-																			$(namedExpectedTimeMins).css('border-left', '3px solid #555555')
-																			if(oData.courtOnHold == true){
-																				$(namedExpectedTimeMins).css('background-color', '#ff8080')
+				{ data: 'CourtName', fnCreatedCell: 	function (nTd, sData, oData, iRow, iCol) {
+																			$(nTd).css('text-align', 'left')
+																			$(nTd).css('border-right', '0.2vw solid #555555')
+																			$(nTd).css('padding-left', '5px')
+																			$(nTd).css('border-left', '3px solid #555555')
+																			if(oData.courtOnHold === true){
+																				$(nTd).css('background-color', '#ff8080')
 																			} else {
-																				$(namedExpectedTimeMins).css('background-color', '#71da71')
+																				$(nTd).css('background-color', '#71da71')
 																			}
-																			$(namedExpectedTimeMins).css('padding-top', '5px')
-																			$(namedExpectedTimeMins).css('padding-bottom', '5px')
+																			$(nTd).css('padding-top', '5px')
+																			$(nTd).css('padding-bottom', '5px')
 																		}
 				},
-				{ data: 'poolPlaying', fnCreatedCell: 	function (namedExpectedTimeMins, sData, oData, iRow, iCol) {
-																			if(oData.courtOnHold == false){
+				{ data: 'poolPlaying', fnCreatedCell: 	function (nTd, sData, oData, iRow, iCol) {
+																			if(oData.courtOnHold === false){
 																				if(sData != ""){
-																					$(namedExpectedTimeMins).css('border-right', '0.2vw solid #555555')
-																					$(namedExpectedTimeMins).css('background-color', '#b3ccff')
-																					$(namedExpectedTimeMins).css('padding-left', '5px')
-																					$(namedExpectedTimeMins).css('padding-right', '5px')
-																					$(namedExpectedTimeMins).css('text-align', 'left')
+																					$(nTd).css('border-right', '0.2vw solid #555555')
+																					$(nTd).css('background-color', '#b3ccff')
+																					$(nTd).css('padding-left', '5px')
+																					$(nTd).css('padding-right', '5px')
+																					$(nTd).css('text-align', 'left')
 																				} else {
-																					$(namedExpectedTimeMins).css('border-right', '0.2vw solid #555555')
-																					$(namedExpectedTimeMins).css('padding-left', '5px')
-																					$(namedExpectedTimeMins).css('padding-right', '5px')
-																					$(namedExpectedTimeMins).css('text-align', 'left')
+																					$(nTd).css('border-right', '0.2vw solid #555555')
+																					$(nTd).css('padding-left', '5px')
+																					$(nTd).css('padding-right', '5px')
+																					$(nTd).css('text-align', 'left')
 																				}
 																			} else {
-																				$(namedExpectedTimeMins).css('text-align', 'left')
-																				$(namedExpectedTimeMins).css('padding-left', '5px')
-																				$(namedExpectedTimeMins).css('white-space', 'nowrap')
+																				$(nTd).css('text-align', 'left')
+																				$(nTd).css('padding-left', '5px')
+																				$(nTd).css('white-space', 'nowrap')
 																			}
 																		}
 				},
-				{ data: 'team1', fnCreatedCell: function (namedExpectedTimeMins, sData, oData, iRow, iCol) {
-														$(namedExpectedTimeMins).css('padding-left', '5px')
-														$(namedExpectedTimeMins).css('text-align', 'left')
+				{ data: 'team1', fnCreatedCell: function (nTd, sData, oData, iRow, iCol) {
+														$(nTd).css('padding-left', '5px')
+														$(nTd).css('text-align', 'left')
 												}														
 				},
-				{ data: 'vsColumn', sWidth: '10px', fnCreatedCell:	function (namedExpectedTimeMins, sData, oData, iRow, iCol) {
-																		$(namedExpectedTimeMins).css('font-weight', 'bold')
+				{ data: 'vsColumn', sWidth: '10px', fnCreatedCell:	function (nTd, sData, oData, iRow, iCol) {
+																		$(nTd).css('font-weight', 'bold')
 																	}
 				},
-				{ data: 'team2', fnCreatedCell:  	function (namedExpectedTimeMins, sData, oData, iRow, iCol) {
-														$(namedExpectedTimeMins).css('padding-left', '5px')
-														$(namedExpectedTimeMins).css('text-align', 'left')
+				{ data: 'team2', fnCreatedCell:  	function (nTd, sData, oData, iRow, iCol) {
+														$(nTd).css('padding-left', '5px')
+														$(nTd).css('text-align', 'left')
 													}												
 				},
-				{ data: 'alreadyPlayingTime', sWidth: '80px', fnCreatedCell:	function (namedExpectedTimeMins, sData, oData, iRow, iCol) {
-																					if(oData.courtOnHold == false){
-																						$(namedExpectedTimeMins).css('border-left', '0.2vw solid #555555')
+				{ data: 'alreadyPlayingTime', sWidth: '80px', fnCreatedCell:	function (nTd, sData, oData, iRow, iCol) {
+																					if(oData.courtOnHold === false){
+																						$(nTd).css('border-left', '0.2vw solid #555555')
 																					}
 																				},																					
 				visible: showPlayingTimeColumn},
-				{ data: 'stdDevPredictedTimeLeft'/*namedPredictedTimeLeft*/, fnCreatedCell: 	function (namedExpectedTimeMins, sData, oData, iRow, iCol){
-																	$(namedExpectedTimeMins).css('width', '60px')
-																	$(namedExpectedTimeMins).css('border-right', '3px solid #555555')
+				{ data: 'stdDevPredictedTimeLeft'/*namedPredictedTimeLeft*/, fnCreatedCell: 	function (nTd, sData, oData, iRow, iCol){
+																	$(nTd).css('width', '60px')
+																	$(nTd).css('border-right', '3px solid #555555')
 																},
 				visible: showPredictedTimeColumn}
 			],
@@ -369,16 +370,17 @@ function getCurrentMatchesTable(){
 	return my_CMTable}
 	
 	function makeCurrentMatchesTable(my_data, ifPaging, lengthMenu){
+		var tableInfoLocations = setTableInfoLocations(ifOrganizerViewPreset);
 		var my_CMTable = $('#currentMatchesTable').DataTable({
 			data: my_data,
 			paging: ifPaging,
-			pagingType: "numbers",
+			//pagingType: "numbers",
 			lengthChange: ifLengthChange(),
 			searching: ifOrganizerViewPreset,
 			lengthMenu:	lengthMenu,
 			ordering: false,
 			responsive: false,
-			dom: tableInfoLocations(),
+			dom: tableInfoLocations,
 			/*dom: 'CMTable',
 			buttons: [
 						'colvis'
@@ -386,77 +388,77 @@ function getCurrentMatchesTable(){
 			//pageResize: true,
 			//bAutoWidth: false,			
 			columns: [
-				{ data: 'CourtName', fnCreatedCell: 	function (namedExpectedTimeMins, sData, oData, iRow, iCol) {
-																			$(namedExpectedTimeMins).css('text-align', 'left')
-																			$(namedExpectedTimeMins).css('border-right', '0.2vw solid #555555')
-																			$(namedExpectedTimeMins).css('padding-left', '5px')
-																			$(namedExpectedTimeMins).css('border-left', '3px solid #555555')
-																			if(oData.courtOnHold == true){
-																				$(namedExpectedTimeMins).css('background-color', '#ff8080')
+				{ data: 'CourtName', fnCreatedCell: 	function (nTd, sData, oData, iRow, iCol) {
+																			$(nTd).css('text-align', 'left')
+																			$(nTd).css('border-right', '0.2vw solid #555555')
+																			$(nTd).css('padding-left', '5px')
+																			$(nTd).css('border-left', '3px solid #555555')
+																			if(oData.courtOnHold === true){
+																				$(nTd).css('background-color', '#ff8080')
 																			} else {
-																				$(namedExpectedTimeMins).css('background-color', '#71da71')
+																				$(nTd).css('background-color', '#71da71')
 																			}
-																			$(namedExpectedTimeMins).css('padding-top', '5px')
-																			$(namedExpectedTimeMins).css('padding-bottom', '5px')
+																			$(nTd).css('padding-top', '5px')
+																			$(nTd).css('padding-bottom', '5px')
 																		}
 				},
-				{ data: 'poolPlaying', sWidth: '120px', fnCreatedCell: 	function (namedExpectedTimeMins, sData, oData, iRow, iCol) {
-																			if(oData.courtOnHold == false){
+				{ data: 'poolPlaying', sWidth: '120px', fnCreatedCell: 	function (nTd, sData, oData, iRow, iCol) {
+																			if(oData.courtOnHold === false){
 																				if(sData != ""){
-																					$(namedExpectedTimeMins).css('border-right', '0.2vw solid #555555')
-																					$(namedExpectedTimeMins).css('background-color', '#b3ccff')
-																					$(namedExpectedTimeMins).css('padding-left', '5px')
-																					$(namedExpectedTimeMins).css('padding-right', '5px')
-																					$(namedExpectedTimeMins).css('text-align', 'left')
+																					$(nTd).css('border-right', '0.2vw solid #555555')
+																					$(nTd).css('background-color', '#b3ccff')
+																					$(nTd).css('padding-left', '5px')
+																					$(nTd).css('padding-right', '5px')
+																					$(nTd).css('text-align', 'left')
 																				} else {
-																					$(namedExpectedTimeMins).css('border-right', '0.2vw solid #555555')
-																					$(namedExpectedTimeMins).css('padding-left', '5px')
-																					$(namedExpectedTimeMins).css('padding-right', '5px')
-																					$(namedExpectedTimeMins).css('text-align', 'left')
+																					$(nTd).css('border-right', '0.2vw solid #555555')
+																					$(nTd).css('padding-left', '5px')
+																					$(nTd).css('padding-right', '5px')
+																					$(nTd).css('text-align', 'left')
 																				}
 																			} else {
-																				$(namedExpectedTimeMins).css('text-align', 'left')
-																				$(namedExpectedTimeMins).css('padding-left', '5px')
-																				$(namedExpectedTimeMins).css('white-space', 'nowrap')
+																				$(nTd).css('text-align', 'left')
+																				$(nTd).css('padding-left', '5px')
+																				$(nTd).css('white-space', 'nowrap')
 																			}
 																		}
 				},
-				{ data: 'team1', fnCreatedCell: function (namedExpectedTimeMins, sData, oData, iRow, iCol) {
-														$(namedExpectedTimeMins).css('padding-left', '5px')
-														$(namedExpectedTimeMins).css('text-align', 'left')
+				{ data: 'team1', fnCreatedCell: function (nTd, sData, oData, iRow, iCol) {
+														$(nTd).css('padding-left', '5px')
+														$(nTd).css('text-align', 'left')
 												}														
 				},
-				{ data: 'vsColumn', sWidth: '10px', fnCreatedCell:	function (namedExpectedTimeMins, sData, oData, iRow, iCol) {
-																		$(namedExpectedTimeMins).css('font-weight', 'bold')
+				{ data: 'vsColumn', sWidth: '10px', fnCreatedCell:	function (nTd, sData, oData, iRow, iCol) {
+																		$(nTd).css('font-weight', 'bold')
 																	}
 				},
-				{ data: 'team2', fnCreatedCell:  	function (namedExpectedTimeMins, sData, oData, iRow, iCol) {
-														$(namedExpectedTimeMins).css('padding-left', '5px')
-														$(namedExpectedTimeMins).css('text-align', 'left')
+				{ data: 'team2', fnCreatedCell:  	function (nTd, sData, oData, iRow, iCol) {
+														$(nTd).css('padding-left', '5px')
+														$(nTd).css('text-align', 'left')
 													}												
 				},
-				{ data: 'alreadyPlayingTime', sWidth: '80px', fnCreatedCell:	function (namedExpectedTimeMins, sData, oData, iRow, iCol) {
-																					if(oData.courtOnHold == false){
-																						$(namedExpectedTimeMins).css('border-left', '0.2vw solid #555555')
+				{ data: 'alreadyPlayingTime', sWidth: '80px', fnCreatedCell:	function (nTd, sData, oData, iRow, iCol) {
+																					if(oData.courtOnHold === false){
+																						$(nTd).css('border-left', '0.2vw solid #555555')
 																					}
 																				},																					
 				visible: showPlayingTimeColumn},
-				{ data: 'stdDevPredictedTimeLeft'/*namedPredictedTimeLeft*/, fnCreatedCell: 	function (namedExpectedTimeMins, sData, oData, iRow, iCol){
-																	$(namedExpectedTimeMins).css('width', '60px')
-																	$(namedExpectedTimeMins).css('border-right', '3px solid #555555')
+				{ data: 'stdDevPredictedTimeLeft'/*namedPredictedTimeLeft*/, fnCreatedCell: 	function (nTd, sData, oData, iRow, iCol){
+																	$(nTd).css('width', '60px')
+																	$(nTd).css('border-right', '3px solid #555555')
 																},
 				visible: showPredictedTimeColumn}
 			],
 		})
 	return my_CMTable}
 	
-	if(my_locationsList.length == 0){
+	if(my_locationsList.length === 0){
 		my_currentMatchesTable = makeNoCourtsTable(allCMdata, ifPaging, my_lengthMenu)
 	} else {
 		my_currentMatchesTable = makeCurrentMatchesTable(allCMdata, ifPaging, my_lengthMenu)
 	}
 	//paging	
-	if(ifPaging == true){
+	if(ifPaging === true){
 		
 			function resizeCMTable(){
 				var countCMRows = paginationConfig('currentMatchesTable')
@@ -488,7 +490,7 @@ function getCurrentMatchesTable(){
 					} else {
 						var my_activeTab = $('.tab-content').find('.tab-pane.active').attr('id')
 						//log("no more resizing in CM; ativeTab:", my_activeTab)
-						if(my_activeTab == tabTableContents[0] && startTab == tabTableContents[0] && reloadedData == true){
+						if(my_activeTab === tabTableContents[0] && startTab === tabTableContents[0] && reloadedData === true){
 							//log("in start tab CM")
 							var CMstarttimeout = setTimeout(function(){getCMpageCount()}, 1000)
 							log("setting currentMathces interval")
@@ -514,7 +516,7 @@ function getCurrentMatchesTable(){
 							function pageConfig(table){
 								var tableInfo = table.page.info()
 								CMPageCount = tableInfo.pages
-								if(noCurrentMatches == true){
+								if(noCurrentMatches === true){
 									currentMatchesTabTime = 5000
 								} else {
 									currentMatchesTabTime = (document.getElementById("currentTime").value * 1000) - 4000
@@ -527,15 +529,15 @@ function getCurrentMatchesTable(){
 			
 			$('#currentMatches-button').on('changeTable', function(e) {
 					CMdetectChangeCount +=1
-					if(CMdetectChangeCount == 1){
+					if(CMdetectChangeCount === 1){
 						CMclickChange += 1
 						//log("change table detected in CM with nr.:", CMclickChange, startTab, timeSinceLastRefreshTime+">=?"+reloadDataTimeSecs)			
-						if(startTab == tabTableContents[0] && timeSinceLastRefreshTime >= (reloadDataTimeSecs - 1)){
+						if(startTab === tabTableContents[0] && timeSinceLastRefreshTime >= (reloadDataTimeSecs - 1)){
 							//log("in refresh change start tab CM")
-							if(sampleData == false){
+							if(sampleData === false){
 								$.when(checkForAPIChange())
 								.then(function(){
-									if(ifAPIChangeDetected == true){
+									if(ifAPIChangeDetected === true){
 										temprefreshTimeout = setTimeout(function(){
 										removeTables()}, 1000)
 									} else {
@@ -548,10 +550,10 @@ function getCurrentMatchesTable(){
 								removeTables()}, 1000)
 							}								
 							//getAPIDataAndMakeTables()}, 1000)
-						} else if(CMclickChange == 1 && startTab == tabTableContents[0]){
+						} else if(CMclickChange === 1 && startTab === tabTableContents[0]){
 							//log("second time in CM tab and CM start tab")
 							nextTablePage(true, "CM", my_currentMatchesTable, newCMPageTime, newCMTableTime)
-						} else if(CMclickChange == 1 && startTab != tabTableContents[0]){
+						} else if(CMclickChange === 1 && startTab != tabTableContents[0]){
 							//log("first time in CM tab and CM not start tab")
 							getCMpageCount()
 						} else if(CMclickChange > 1){

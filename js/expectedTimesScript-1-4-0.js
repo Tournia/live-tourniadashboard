@@ -36,7 +36,7 @@ function calculateExpectedTime(um, my_PoolName, poolPropertiesObject, singleUMDa
 		
 		
 		log("\n-----------------------------------\n\nprocessing upcoming match number", upcomingMatchNr, my_PoolName)
-		if(inCount_UM.length == 0){
+		if(inCount_UM.length === 0){
 			log("in first creating variables")
 			inCount_UM[1] = 0
 			inReadyCount_UM[1] = 0
@@ -70,7 +70,7 @@ function calculateExpectedTime(um, my_PoolName, poolPropertiesObject, singleUMDa
 		
 		if(upcomingMatchNr <= nrOfCourts + unavailable_UM[1]){ // look at first shift of upcoming matches excluding posptoned match that fits nr of available courts 
 			secondpart = false
-			if(upcomingMatchNr == nrOfCourts + unavailable_UM[1]){
+			if(upcomingMatchNr === nrOfCourts + unavailable_UM[1]){
 				showShift1Text = true
 			}
 			shiftNr = 1
@@ -85,11 +85,11 @@ function calculateExpectedTime(um, my_PoolName, poolPropertiesObject, singleUMDa
 			upcomingMatchInfo.stars = stars
 			singleUMData.stars = stars
 			
-			if(my_statusText == readyToPlay){
-				if(upcomingMatchNr == nrOfCourts + unavailable_UM[1]){
+			if(my_statusText === readyToPlay){
+				if(upcomingMatchNr === nrOfCourts + unavailable_UM[1]){
 					showShift1Text = false
 				}
-				log("in Shift 1 Players Available")
+				log("in Shift 1 ready to play")
 				log("free courts available:", freeCourtsAvailable)
 				inCount = true; inTotCount_UM +=1; inCount_UM[shiftNr] +=1; inReadyCount_UM[shiftNr]+=1
 				inFirstCount = true; inFirstCount_UM +=1
@@ -141,8 +141,8 @@ function calculateExpectedTime(um, my_PoolName, poolPropertiesObject, singleUMDa
 					
 					my_finalExpectedTimeSecs = Math.ceil(my_expectedTime)
 				}
-			} else if(my_statusText == playersCurrentlyPlaying){
-				if(upcomingMatchNr == nrOfCourts + unavailable_UM[1]){
+			} else if(my_statusText === playersCurrentlyPlaying){
+				if(upcomingMatchNr === nrOfCourts + unavailable_UM[1]){
 					showShift1Text = false
 				}
 				log("in shift 1 player playing")
@@ -189,8 +189,8 @@ function calculateExpectedTime(um, my_PoolName, poolPropertiesObject, singleUMDa
 				shift1upcomingMatchInfoObjects.push(upcomingMatchInfo)
 				playersPlayingExpectedTimesArray.push(my_expectedTime)
 				ppUpcomingMatchInfoObjects.push(upcomingMatchInfo)
-			} else if(my_statusText == playersUnavailable){
-				if(upcomingMatchNr == nrOfCourts + unavailable_UM[1]){
+			} else if(my_statusText === playersUnavailable){
+				if(upcomingMatchNr === nrOfCourts + unavailable_UM[1]){
 					showShift1Text = false
 				}
 				upcomingMatchInfo.playersUnavailable = true
@@ -209,7 +209,7 @@ function calculateExpectedTime(um, my_PoolName, poolPropertiesObject, singleUMDa
 			}
 			upcomingMatchInfoObjectsShift[shiftNr].push(upcomingMatchInfo)
 			allUpcomingMatchInfoObjects.push(upcomingMatchInfo)
-			if(upcomingMatchNr == (nrOfCourts + unavailable_UM[1])){
+			if(upcomingMatchNr === (nrOfCourts + unavailable_UM[1])){
 				log("end of shift 1")
 				log("upcomingMatchesInfoObjects:", allUpcomingMatchInfoObjects)
 				log("expected times array:", expectedTimesArray[shiftNr])
@@ -241,7 +241,7 @@ function calculateExpectedTime(um, my_PoolName, poolPropertiesObject, singleUMDa
 				upcomingMatchInfo.shiftNumber = shiftNr
 				log("in shiftNr:", shiftNr)
 				log("Shift start time:", Math.ceil(shiftStartTime / 60), "mins.")
-				if(typeof inCount_UM[shiftNr] == 'undefined'){
+				if(typeof inCount_UM[shiftNr] === 'undefined'){
 					log("in shift "+ shiftNr + " creating variables")
 					inCount_UM[shiftNr] = 0
 					inReadyCount_UM[shiftNr] = 0
@@ -279,7 +279,7 @@ function calculateExpectedTime(um, my_PoolName, poolPropertiesObject, singleUMDa
 				var smallerEquThanNextShift =  ((upcomingMatchNr - inTotCount_UM) <= nextShiftLowerBound)
 				
 				log(">:"+ greaterThanPrevShift, "<=:"+smallerEquThanNextShift)
-				if(greaterThanPrevShift == true && smallerEquThanNextShift == true){
+				if(greaterThanPrevShift === true && smallerEquThanNextShift === true){
 					if(totUnavailable_UM > 0){
 						stars = "**" //adds note about this match.
 					} else {
@@ -288,8 +288,8 @@ function calculateExpectedTime(um, my_PoolName, poolPropertiesObject, singleUMDa
 					upcomingMatchInfo.stars = stars
 					singleUMData.stars = stars
 					
-					if(my_statusText == readyToPlay){
-						log("in Shift", shiftNr, "Players Available")
+					if(my_statusText === readyToPlay){
+						log("in Shift", shiftNr, "ready to play")
 						inCount = true; inTotCount_UM +=1; inCount_UM[shiftNr] +=1; inReadyCount_UM[shiftNr] +=1;
 						upcomingMatchInfo.readyToPlay = true
 						if(freeCourtsAvailable > 0){
@@ -319,15 +319,15 @@ function calculateExpectedTime(um, my_PoolName, poolPropertiesObject, singleUMDa
 							my_finalExpectedTimeSecs = my_expectedTime
 
 						} else {
-							if(prevShiftNr == 1){
+							if(prevShiftNr === 1){
 								altshift2count +=1
-								if(Playing == true){
+								if(Playing === true){
 									log("in alt. shift2", shift1ppCount, altshift2count, altshift2ppCount)
 									//log("nr.", inCount_UM[shiftNr] - 1,inCount_UM[shiftNr] - altshift2ppCount - 1,   shift1upcomingMatchInfoObjects[inCount_UM[shiftNr] - 1].expectedTime)
 									log("nr2.", shift1upcomingMatchInfoObjects,  shift1upcomingMatchInfoObjects[inCount_UM[shiftNr] - altshift2ppCount - 1].expectedTime)
 									var my_prevExpectedTime = shift1upcomingMatchInfoObjects[inCount_UM[shiftNr] - altshift2ppCount - 1].expectedTime
 									var inr = 0
-									while (my_prevExpectedTime == 0){
+									while (my_prevExpectedTime === 0){
 										my_prevExpectedTime = shift1upcomingMatchInfoObjects[inCount_UM[shiftNr] - altshift2ppCount - 1 + inr].expectedTime
 										log(inr, my_prevExpectedTime)
 										inr++
@@ -400,23 +400,23 @@ function calculateExpectedTime(um, my_PoolName, poolPropertiesObject, singleUMDa
 							} else {
 								log("in shift 3 or later")
 								shift1ppCount = 0
-								if(shiftNr == 3){
-									if(inCount_UM[3] == nrOfCourts - altshift2ppCount){
+								if(shiftNr === 3){
+									if(inCount_UM[3] > nrOfCourts - altshift2ppCount){
 										log("players ready shift 3 for shift 2 alterations")
 										log("before index")
 										function addanIndex(){
 											log("in index function")
-											if(addIndex < altshift2ppCount){
+											if (addIndex < altshift2ppCount) {
 												log("adding index")
-												addIndex +=1
-												var my_returns= []
+												addIndex += 1
+												var my_returns = []
 												var my_AddedExpectedTime = shiftStartTime + ((totalTimesArray[prevShiftNr][inCount_UM[shiftNr] + addIndex - 1].totalTime) - shiftStartTime) + timeBetweenMatches
 												my_returns.push(my_AddedExpectedTime)
-												
+
 												var stdDevPrevMatchesObject = allUMdata.find(x => x.UMNr === totalTimesArray[prevShiftNr][inCount_UM[shiftNr] + addIndex - 1].UMNr)
 												var stdDevPrevMatches = stdDevPrevMatchesObject.stdDevTime
 												var stdDevLastMatch = totalTimesArray[prevShiftNr][inCount_UM[shiftNr] + addIndex - 1].stdDev
-												
+
 												var my_stdDevTime = stdDevPrevMatches + stdDevLastMatch
 												my_returns.push(my_stdDevTime)
 												log(my_returns)
@@ -424,15 +424,17 @@ function calculateExpectedTime(um, my_PoolName, poolPropertiesObject, singleUMDa
 												expectedTimesArray[shiftNr].push(my_AddedExpectedTime)
 												my_AddedPredictedTime = predictedTimesArray[prevShiftNr][inCount_UM[shiftNr] + addIndex - 1]
 												predictedTimesArray[shiftNr].push(my_AddedPredictedTime)
-												
+
 												var my_totalTime = {}
 												my_totalTime.UMNr = upcomingMatchNr
 												my_totalTime.totalTime = my_AddedExpectedTime + my_AddedPredictedTime
-												my_totalTime.stdDev = poolPropertiesObject.stdDev 
+												my_totalTime.stdDev = poolPropertiesObject.stdDev
 												totalTimesArray[shiftNr].push(my_totalTime)
-												
+
 												//totalTimesArray.sort(function(a, b){return a-b})
 												log(expectedTimesArray[shiftNr], predictedTimesArray[shiftNr], totalTimesArray[shiftNr])
+											} else {
+
 											}
 										return my_returns}
 										var my_returns = addanIndex()
@@ -487,7 +489,7 @@ function calculateExpectedTime(um, my_PoolName, poolPropertiesObject, singleUMDa
 						upcomingMatchInfoObjectsShift[shiftNr].push(upcomingMatchInfo)
 						allUpcomingMatchInfoObjects.push(upcomingMatchInfo)
 						my_finalExpectedTimeSecs = Math.ceil(my_expectedTime)					
-					} else if(my_statusText == playersCurrentlyPlaying){
+					} else if(my_statusText === playersCurrentlyPlaying){
 						log("in shift " + shiftNr +" player playing")
 						inCount = true;	inCount_UM[shiftNr] +=1; inTotCount_UM +=1
 						inPlayCount = true;	inPlayCount_UM[shiftNr] +=1
@@ -507,9 +509,9 @@ function calculateExpectedTime(um, my_PoolName, poolPropertiesObject, singleUMDa
 						var playerPoolproperties = findPoolProperties(my_predictedTimeReturns[1])
 						var my_predictedStdDevTime = playerPoolproperties.stdDev
 						var my_readyExpectedTime
-						if (Playing == true){
+						if (Playing === true){
 								altshift2count +=1
-								if(prevShiftNr == 1){
+								if(prevShiftNr === 1){
 									//////////log("in alt. shift2", shift1ppCount, altshift2count, altshift2ppCount)
 									//////////log("nr.", inCount_UM[shiftNr] - 1,inCount_UM[shiftNr] - altshift2ppCount - 1,   shift1upcomingMatchInfoObjects[inCount_UM[shiftNr] - 1].expectedTime)
 									log("nr2.", shift1upcomingMatchInfoObjects,  shift1upcomingMatchInfoObjects[inCount_UM[shiftNr] - altshift2ppCount - 1].expectedTime)
@@ -581,8 +583,8 @@ function calculateExpectedTime(um, my_PoolName, poolPropertiesObject, singleUMDa
 						} else {
 							log("in shift 3 or later")
 							shift1ppCount = 0
-							if (shiftNr == 3){
-								if(inCount_UM[3] == nrOfCourts - altshift2ppCount){
+							if (shiftNr === 3){
+								if(inCount_UM[3] === nrOfCourts - altshift2ppCount){
 									function addanIndex(){
 										log("players playing shift 3 for shift 2 alterations")
 										log("in index function")
@@ -690,7 +692,7 @@ function calculateExpectedTime(um, my_PoolName, poolPropertiesObject, singleUMDa
 						totalTimesArray[shiftNr].sort(function(a, b){return a.totalTime - b.totalTime})
 						upcomingMatchInfoObjectsShift[shiftNr].push(upcomingMatchInfo)
 						allUpcomingMatchInfoObjects.push(upcomingMatchInfo)
-					} else if(my_statusText == playersUnavailable){
+					} else if(my_statusText === playersUnavailable){
 						log("in shift " + shiftNr+" player unavailable")
 						inUnavailable = true; totUnavailable_UM +=1; unavailable_UM[shiftNr] +=1
 						upcomingMatchInfo.playersUnavailable = true
@@ -704,7 +706,7 @@ function calculateExpectedTime(um, my_PoolName, poolPropertiesObject, singleUMDa
 					}
 					var endShift = false
 					
-					if(upcomingMatchNr == ((shiftNr * nrOfCourts) + totUnavailable_UM)+shift1ppCount){
+					if(upcomingMatchNr === ((shiftNr * nrOfCourts) + totUnavailable_UM)+shift1ppCount){
 						endShift = true
 						log("end of shift "+shiftNr)
 						log("upcomingMatchesInfoObjects:", allUpcomingMatchInfoObjects)
@@ -714,7 +716,7 @@ function calculateExpectedTime(um, my_PoolName, poolPropertiesObject, singleUMDa
 						log("total times array shitnr.", shiftNr,":", totalTimesArray[shiftNr])
 						smallestExpectedTimesArray[shiftNr] = expectedTimesArray[shiftNr]
 						smallestExpectedTimesArray[shiftNr].sort(function(a, b){return a-b})
-						if(shiftNr == 2 && altshift2ppCount > 0){
+						if(shiftNr === 2 && altshift2ppCount > 0){
 							log("in playing startshift")
 							shiftStartTime += ((totalTimesArray[shiftNr][0].totalTime))
 							log(shiftStartTime)
@@ -734,14 +736,14 @@ function calculateExpectedTime(um, my_PoolName, poolPropertiesObject, singleUMDa
 		}
 			
 		//show shiftNR in table (only when sampleData is turned on for Testing)
-		if(sampleData == true){
-			if(secondpart == true){
-				if(endShift == true){
+		if(sampleData === true){
+			if(secondpart === true){
+				if(endShift === true){
 					var my_shiftNr = shiftNr + ". "
 				} else {
 					var my_shiftNr = (shiftNr + 1) + ". "
 				}
-			} else { //secondpart == false
+			} else { //secondpart === false
 				var my_shiftNr = shiftNr + ". "
 			}
 		} else {
@@ -751,11 +753,11 @@ function calculateExpectedTime(um, my_PoolName, poolPropertiesObject, singleUMDa
 		singleUMData.sNr = my_shiftNr
 		singleUMData.stdDevTime = upcomingMatchInfo.stdDevTime
 		
-		if(typeof my_finalExpectedTimeSecs == 'number'){
+		if(typeof my_finalExpectedTimeSecs === 'number'){
 			my_finalExpectedTimeMins = Math.ceil(my_finalExpectedTimeSecs/60)
-		} else if(my_finalExpectedTimeSecs == "unknown"){
+		} else if(my_finalExpectedTimeSecs === "unknown"){
 			my_finalExpectedTimeMins = 9999999999999999999999999999999999999
-		} else if(my_finalExpectedTimeSecs == "free court available"){
+		} else if(my_finalExpectedTimeSecs === "free court available"){
 			my_finalExpectedTimeMins = 0
 		} else {
 			my_finalExpectedTimeMins = my_finalExpectedTimeSecs
@@ -769,7 +771,7 @@ function calculateExpectedTime(um, my_PoolName, poolPropertiesObject, singleUMDa
 		//log(finalStdDeviationTime)
 		//expected times properties
 		
-		if (inUnavailable == true) {
+		if (inUnavailable === true) {
 			//tri.append("<td class='expectedTimeColumn'>"+my_finalExpectedTimeSecs+"</td>");
 			singleUMData.expectedTimeSecs = 9999999999999999999999999999999999999
 			singleUMData.shiftNrExpectedTimeSecs = my_shiftNr + my_finalExpectedTimeSecs
@@ -777,10 +779,10 @@ function calculateExpectedTime(um, my_PoolName, poolPropertiesObject, singleUMDa
 			singleUMData.shiftNrExpectedTimeSecsMins = my_shiftNr + "unknown"
 			singleUMData.shiftNrExpectedTimeMins = my_shiftNr + "unknown"
 			singleUMData.shiftNrExpectedTimeMinsStdDev = "unknown"
-			singleUMData.namedExpectedTimeMins = "unknown"
+			singleUMData.namedExpectedTime = "unknown"
 			singleUMData.StdDevExpectedTime = "unknown"
 		} else {
-			if (freeCourt == true) {
+			if (freeCourt === true) {
 				//tri.append("<td class='expectedTimeColumn'>"+my_finalExpectedTimeSecs+"</td>");
 				singleUMData.expectedTimeSecs = 0
 				singleUMData.shiftNrExpectedTimeSecs = my_shiftNr + "free court available"
@@ -788,7 +790,7 @@ function calculateExpectedTime(um, my_PoolName, poolPropertiesObject, singleUMDa
 				singleUMData.shiftNrExpectedTimeSecsMins = my_shiftNr + "free court available"
 				singleUMData.shiftNrExpectedTimeMins = my_shiftNr + "free court available"
 				singleUMData.shiftNrExpectedTimeMinsStdDev = "free court available"
-				singleUMData.namedExpectedTimeMins = "free court available"
+				singleUMData.namedExpectedTime = "free court available"
 				singleUMData.StdDevExpectedTime = "free court available"
 				
 			} else {
@@ -799,21 +801,21 @@ function calculateExpectedTime(um, my_PoolName, poolPropertiesObject, singleUMDa
 				singleUMData.shiftNrExpectedTimeSecsMins = my_shiftNr +my_finalExpectedTimeSecs+" secs., "+my_finalExpectedTimeMins +" mins."+ stars
 				singleUMData.shiftNrExpectedTimeMins = my_shiftNr +my_finalExpectedTimeMins + " mins." + stars
 				singleUMData.shiftNrExpectedTimeMinsStdDev = my_shiftNr +my_finalExpectedTimeMins + " mins. ±" + Math.ceil(my_stdDevTime/60) + stars
-				singleUMData.namedExpectedTimeMins = my_namedFinalExpectedTimeMins + " mins." + stars
+				singleUMData.namedExpectedTime = my_namedFinalExpectedTimeMins + " mins." + stars
 				singleUMData.StdDevExpectedTime = finalStdDeviationTime + " mins." + stars
 			}
 		}
 			
-		//edit status column data for priority matchesif(priorityMatch == true){
-		if(singleUMData.priority == true){
+		//edit status column data for priority matchesif(priorityMatch === true){
+		if(singleUMData.priority === true){
 			//log("in prio")
 			singleUMData.status = "priority match"
-			if (playersNotReady == true){
+			if (playersNotReady === true){
 					singleUMData.unavailablePlayers = true;
 					singleUMData.playersPlaying = false;
 					singleUMData.readyToPlay = false;
 					//////////log("unavailable:", my_status)
-			} else if (playersPlaying == true){
+			} else if (playersPlaying === true){
 				singleUMData.unavailablePlayers = false;
 				singleUMData.playersPlaying = true;
 				singleUMData.readyToPlay = false;
@@ -850,7 +852,7 @@ function adjustExpectedTimes(allUpcomingMatchInfoObjects, allUMdata){
 		var rtpExpectedTimesArray = []
 		var rtpMatchIdsArray = []
 		for(var o = 0; o < allUMdata.length; o++) {
-			if(allUMdata[o].readyToPlay == true){
+			if(allUMdata[o].readyToPlay === true){
 				var newObject = $.extend({}, allUMdata[o])
 				rtpObjects.push(newObject)
 				rtpMatchIdsArray.push(allUMdata[o].matchNr)
@@ -864,7 +866,7 @@ function adjustExpectedTimes(allUpcomingMatchInfoObjects, allUMdata){
 			var newETSecs = rtpExpectedTimesArray[objNr]
 			rtpObjects[objNr].expectedTimeSecs_ad = newETSecs
 			rtpObjects[objNr].expectedTimeMins_ad = Math.ceil(newETSecs/60)
-			if(rtpObjects[objNr].expectedTimeSecs == 0){
+			if(rtpObjects[objNr].expectedTimeSecs === 0){
 				rtpObjects[objNr].shiftNrExpectedTimeSecsMins_ad = rtpObjects[objNr].sNr + "free court available"
 				rtpObjects[objNr].shiftNrExpectedTimeSecs_ad = rtpObjects[objNr].sNr + "free court available"
 				rtpObjects[objNr].shiftNrExpectedTimeMins_ad = rtpObjects[objNr].sNr + "free court available"
@@ -901,7 +903,7 @@ function adjustExpectedTimes(allUpcomingMatchInfoObjects, allUMdata){
 			} else {
 				singleUMObject.shiftNrExpectedTimeMinsStdDev = str + " ± " + Math.ceil(rtpObjects[objNr].stdDevTime/60)
 			}
-			singleUMObject.namedExpectedTimeMins = rtpObjects[objNr].NamedExpectedTime_ad
+			singleUMObject.namedExpectedTime = rtpObjects[objNr].NamedExpectedTime_ad
 			singleUMObject.stdDevTime = rtpObjects[objNr].stdDevTime_ad
 			singleUMObject.StdDevExpectedTime = rtpObjects[objNr].StdDevExpectedTime_ad
 			
@@ -942,8 +944,8 @@ function namedExpectedTime(my_PoolName, my_finalExpectedTimeMins, my_stdDevTime)
 		var ifselectedPoolName = false
 		for (pool in poolProperties){
 			ifPoolName = inArray(poolName, poolProperties[pool].altNames)
-			if(ifPoolName == true){
-				if(poolProperties[pool].altNames[0] == "Men Singles A" || poolProperties[pool].altNames[0] == "Men Singles B"){
+			if(ifPoolName === true){
+				if(poolProperties[pool].altNames[0] === "Men Singles A" || poolProperties[pool].altNames[0] === "Men Singles B"){
 					ifselectedPoolName = true
 					break
 				}	
@@ -952,7 +954,7 @@ function namedExpectedTime(my_PoolName, my_finalExpectedTimeMins, my_stdDevTime)
 		return ifselectedPoolName
 	}
 	var ifMSAorMSB = checkPoolName(my_PoolName)
-	if(ifMSAorMSB == true && my_finalExpectedTimeMins < 10){
+	if(ifMSAorMSB === true && my_finalExpectedTimeMins < 10){
 		my_namedFinalExpectedTimeMins = "0-10"
 	}
 	//stdDeviation  Expected Time

@@ -12,7 +12,7 @@ function paginationConfig(table){
 	
 	my_headerHeight = $('#my_header').outerHeight()
 	my_announcementsHeight = $('#announcements').outerHeight() 
-	if(document.getElementById("myLeftTabsBox").style.display== "none"){
+	if(document.getElementById("myLeftTabsBox").style.display=== "none"){
 		my_TabsBoxHeight = 0
 	} else {
 		my_TabsBoxHeight = $('#myLeftTabsBox').outerHeight()
@@ -54,16 +54,16 @@ function paginationConfig(table){
 			return countRows
 	}
 	
-	if (table == 'currentMatchesTable'){
+	if (table === 'currentMatchesTable'){
 		var my_rowCount = getRowsCount(table, my_CMtHeadHeight, 2, my_CMnotesHeight)
 		availableCMTableHeight = my_windowsHeight - my_headerHeight - my_announcementsHeight - my_TabsBoxHeight - my_filterHeight - my_CMtHeadHeight - (1 * my_CMnotesHeight) - (1 * my_paginationNavHeight)
-	} else if(table == 'upcomingMatchesTable'){
+	} else if(table === 'upcomingMatchesTable'){
 		var my_rowCount = getRowsCount(table, my_UMtHeadHeight, 3, my_UMnotesHeight)
 		availableUMTableHeight = my_windowsHeight - my_headerHeight - my_announcementsHeight - my_TabsBoxHeight - my_filterHeight - my_UMtHeadHeight - (1 * my_UMnotesHeight) - (1 * my_paginationNavHeight)
-	} else if(table == 'postponedMatchesTable'){
+	} else if(table === 'postponedMatchesTable'){
 		var my_rowCount = getRowsCount(table, my_PMtHeadHeight, 3, 0)
 		availablePMTableHeight = my_windowsHeight - my_headerHeight - my_announcementsHeight - my_TabsBoxHeight - my_filterHeight - my_PMtHeadHeight - 0 - (1 * my_paginationNavHeight)
-	}else if(table == 'poolsOverviewTable'){
+	}else if(table === 'poolsOverviewTable'){
 		var my_rowCount = getRowsCount(table, my_POtHeadHeight, 2, 0)
 		availablePOTableHeight = my_windowsHeight - my_headerHeight - my_announcementsHeight - my_TabsBoxHeight - my_filterHeight - my_POtHeadHeight - 0 - (1 * my_paginationNavHeight)
 	}
@@ -84,13 +84,13 @@ function pageTimeconfig(ifTabTable, tableName, table, pageCount, minPageTime, ta
 		var my_newPageTime = tableTime / pageCount
 		var my_newTableTime = my_newPageTime * pageCount
 		my_returns.push(my_newPageTime, my_newTableTime)
-	} /*else if(data.length == 0){
+	} /*else if(data.length === 0){
 		var my_pageTime = 5000
 		my_returns.push(my_pageTime, tableTime)
 	}*/
-	if(tableName == "CM"){
+	if(tableName === "CM"){
 		var ifTabTable = true
-		if(noCurrentMatches == true){
+		if(noCurrentMatches === true){
 			//log("no CM tc")
 			my_returns = []
 			my_newPageTime = 5000
@@ -103,9 +103,9 @@ function pageTimeconfig(ifTabTable, tableName, table, pageCount, minPageTime, ta
 			newCMPageTime = my_newPageTime
 			newCMTableTime = my_newTableTime	
 		}
-	} else if(tableName == "UM"){
+	} else if(tableName === "UM"){
 		var ifTabTable = true
-		if(noUpcomingMatches == true){
+		if(noUpcomingMatches === true){
 			//log("no UM tc")
 			my_returns = []
 			my_newPageTime = 5000
@@ -117,9 +117,9 @@ function pageTimeconfig(ifTabTable, tableName, table, pageCount, minPageTime, ta
 			newUMPageTime = my_newPageTime
 			newUMTableTime = my_newTableTime
 		}
-	} else if(tableName == "PM"){
+	} else if(tableName === "PM"){
 		var ifTabTable = true
-		if(noUnavPostponedMatches == true){
+		if(noUnavPostponedMatches === true){
 			log("no PM tc")
 			my_returns = []
 			my_newPageTime = 5000 
@@ -131,7 +131,7 @@ function pageTimeconfig(ifTabTable, tableName, table, pageCount, minPageTime, ta
 			newPMPageTime = my_newPageTime 
 			newPMTableTime = my_newTableTime
 		}
-	} else if(tableName == "PO"){
+	} else if(tableName === "PO"){
 		newPOPageTime = my_newPageTime 
 		newPOTableTime = my_newTableTime
 		var ifTabTable = false
@@ -175,18 +175,18 @@ function nextTablePage(ifTabTable, tableName, table, pageTime, tableTime){
 
 		// If were on the last page, reset the currentInt to the first page #
 		if ( my_currentInt ===  endInt){
-			if(ifTabTable == true && countLeftTables > 1){
+			if(ifTabTable === true && countLeftTables > 1){
 				clearInterval(tabTableInterval)
 				
 				var currentActiveTable = $('.tab-content').find('.tab-pane.active').attr('id')
 				//log("--------\non last page of", currentActiveTable)
-				if(currentActiveTable == tabTableContents[0]){
+				if(currentActiveTable === tabTableContents[0]){
 					setCMPageTableConfig = true
 					CMdetectChangeCount = 0
-				} else if(currentActiveTable == tabTableContents[1]){
+				} else if(currentActiveTable === tabTableContents[1]){
 					setUMPageTableConfig = true
 					UMdetectChangeCount = 0
-				} else if(currentActiveTable == tabTableContents[2]){
+				} else if(currentActiveTable === tabTableContents[2]){
 					setPMPageTableConfig = true
 					PMdetectChangeCount = 0
 				} else {
@@ -198,17 +198,17 @@ function nextTablePage(ifTabTable, tableName, table, pageTime, tableTime){
 				lastpageTimeoutMatchTable = setTimeout(function(){
 						
 					//log("last page timeout finshed\n\n------------------\n\n")
-					if(myNextTableContent == tabTableContents[0]){
+					if(myNextTableContent === tabTableContents[0]){
 						var my_tableMetaData = my_currentMatchesTable
 						var myNextTableTime = currentMatchesTabTime
 						var my_pageCount = CMPageCount
 						var my_data = allCMdata
-					} else if(myNextTableContent == tabTableContents[1]){
+					} else if(myNextTableContent === tabTableContents[1]){
 						var my_tableMetaData = my_upcomingMatchesTable
 						var myNextTableTime = upcomingMatchesTabTime
 						var my_pageCount = UMPageCount
 						var my_data = allUMdata
-					} else if(myNextTableContent == tabTableContents[2]){
+					} else if(myNextTableContent === tabTableContents[2]){
 						var my_tableMetaData = my_postponedMatchesTable
 						var myNextTableTime = postponedMatchesTabTime
 						var my_pageCount = PMPageCount
@@ -285,19 +285,19 @@ function poolsOverviewTableTime(ifTabTable, tableName, table, pageCount, pageTim
 }*/
 function switchTableOnce(activeTable){
 	////log("in switch table once with:", activeTable)
-	if(activeTable == tabTableContents[0] || activeTable == tabTableIds[0] || activeTable == tabTableAbbrs[0]){
+	if(activeTable === tabTableContents[0] || activeTable === tabTableIds[0] || activeTable === tabTableAbbrs[0]){
 		var my_activeTableContent = tabTableContents[0]
-	} else if(activeTable == tabTableContents[1] || activeTable == tabTableIds[1] || activeTable == tabTableAbbrs[1]){
+	} else if(activeTable === tabTableContents[1] || activeTable === tabTableIds[1] || activeTable === tabTableAbbrs[1]){
 		var my_activeTableContent = tabTableContents[1]
-	} else if(activeTable == tabTableContents[2] || activeTable == tabTableIds[2] || activeTable == tabTableAbbrs[2]){
+	} else if(activeTable === tabTableContents[2] || activeTable === tabTableIds[2] || activeTable === tabTableAbbrs[2]){
 		var my_activeTableContent = tabTableContents[2] 
 	} 
 	
 	var my_nextTableContent = $('.tab-content').find('.tab-pane.active').next().attr('id')
 			if(typeof my_nextTableContent === 'undefined'){
-				if(currentTable == true){
+				if(currentTable === true){
 					$('#myLeftTabsBox ul li:first-child').find('a').trigger('click').trigger('changeTable')
-				} else if(upcomingTable == true){
+				} else if(upcomingTable === true){
 					$('#myLeftTabsBox ul li:nth-child(2)').find('a').trigger('click').trigger('changeTable')	
 				}
 			} else {
@@ -314,9 +314,9 @@ function switchTabOnce(){
 	var my_nextTableContent = $('.tab-content').find('.tab-pane.active').next().attr('id');
 	//log("in switch tab once; active:", activeTableContent, "next",my_nextTableContent)
 			if(typeof my_nextTableContent === 'undefined'){
-				if(currentTable == true){
+				if(currentTable === true){
 					$('#myLeftTabsBox ul li:first-child').find('a').trigger('click')
-				} else if(upcomingTable == true){
+				} else if(upcomingTable === true){
 					$('#myLeftTabsBox ul li:nth-child(2)').find('a').trigger('click')
 				}					
 			} else {
@@ -338,32 +338,32 @@ function checkWhichNextTableActive(currentActiveTableContent){
 	////log("in check which next table with:", currentActiveTableContent)
 	var activeTable = currentActiveTableContent
 	
-	if(activeTable == tabTableContents[0] || activeTable == tabTableIds[0] || activeTable == tabTableAbbrs[0]){
-		if(upcomingTable == true){
+	if(activeTable === tabTableContents[0] || activeTable === tabTableIds[0] || activeTable === tabTableAbbrs[0]){
+		if(upcomingTable === true){
 			var my_nextTableContent = tabTableContents[1]
 			var my_nextTableId = tabTableIds[1]
 			var my_nextTableAbbr = tabTableAbbrs[1]
-		} else if(postponedTable == true){
+		} else if(postponedTable === true){
 			var my_nextTableContent =tabTableContents[2]
 			var my_nextTableId = tabTableIds[2]
 			var my_nextTableAbbr = tabTableAbbrs[2]
 		}
-	} else if(activeTable == tabTableContents[1] || activeTable == tabTableIds[1] || activeTable == tabTableAbbrs[1]){
-		if (postponedTable == true){
+	} else if(activeTable === tabTableContents[1] || activeTable === tabTableIds[1] || activeTable === tabTableAbbrs[1]){
+		if (postponedTable === true){
 			var my_nextTableContent = tabTableContents[2]
 			var my_nextTableId = tabTableIds[2]
 			var my_nextTableAbbr = tabTableAbbrs[2]
-		} else if (currentTable == true){
+		} else if (currentTable === true){
 			var my_nextTableContent = tabTableContents[0]
 			var my_nextTableId = tabTableIds[0]
 			var my_nextTableAbbr = tabTableAbbrs[0]
 		}
-	} else if (activeTable == tabTableContents[2] || activeTable == tabTableIds[2] || activeTable == tabTableAbbrs[2]){
-		if(currentTable == true){
+	} else if (activeTable === tabTableContents[2] || activeTable === tabTableIds[2] || activeTable === tabTableAbbrs[2]){
+		if(currentTable === true){
 			var my_nextTableContent = tabTableContents[0]
 			var my_nextTableId = tabTableIds[0]
 			var my_nextTableAbbr = tabTableAbbrs[0]
-		} else if(upcomingTable == true){
+		} else if(upcomingTable === true){
 			var my_nextTableContent = tabTableContents[1]
 			var my_nextTableId = tabTableIds[1]
 			var my_nextTableAbbr = tabTableAbbrs[1]
@@ -381,7 +381,7 @@ function upcomingMatchesOnClick(){
 
 function currentMatchesOnClick(){
 	refreshCount += 1
-	if(refreshCount == 1){
+	if(refreshCount === 1){
 	goToNextTab(0)
 	} else {
 		goToNextTab(currentMatchesTabTime)
@@ -389,15 +389,15 @@ function currentMatchesOnClick(){
 }
 */
 // start tab interval
-/*if(ifMobile == false) {
-	if(turnOnNextTabCaroussel == true){
+/*if(ifMobile === false) {
+	if(turnOnNextTabCaroussel === true){
 		////////log("in first timeout")
 		my_firstTimeout = setTimeout("currentMatchesOnClick()", upcomingMatchesTabTime);
 	}
 }*/
 
 function lengthMenu(ifPaging, data, rowsCount){
-			if(ifPaging == false){
+			if(ifPaging === false){
 				////console.//log("false, all")
 				var my_counts = [[-1],["All"]]
 				return my_counts

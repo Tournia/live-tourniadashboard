@@ -27,9 +27,9 @@ function getPlayersTable(player){
 		for (var play in my_matches){
 			var my_team1 = my_matches[play].team1
 			var my_team2 = my_matches[play].team2
-			if(my_team1.includes(player) == true){
+			if(my_team1.includes(player) === true){
 				my_playerMatches.push(my_matches[play])
-			} else if(my_team2.includes(player) == true){
+			} else if(my_team2.includes(player) === true){
 				my_playerMatches.push(my_matches[play])
 			} else {}
 			continue
@@ -49,21 +49,21 @@ function getPlayersTable(player){
 			var poolPropertiesObject = findPoolProperties(my_PoolName)
 			singlePLAData.poolProperties = poolPropertiesObject
 			
-			if(poolPropertiesObject.altNames[0] == "Average Pool"){
+			if(poolPropertiesObject.altNames[0] === "Average Pool"){
 				var abbrPoolName = my_PoolName
 			} else {
 				var abbrPoolName = poolPropertiesObject.abbreviations[0]
 			}
 			
 			function getStatus(fullPlayerName, playerName, amountPlayers, playerCurrentlyPlaying, playerReady, TdInput, playerStatus){
-						if(playerCurrentlyPlaying == true){
+						if(playerCurrentlyPlaying === true){
 							playerNamesCurrentlyPlayinginMatchArray.push(fullPlayerName)
 							playerNamesCurrentlyPlayingArray.push(fullPlayerName)
 							var playerStatus = "player playing"
 							statusPlayers.push(playerStatus)	
 								return playerName
 						} else {
-							if(playerReady == false){
+							if(playerReady === false){
 								playerNamesCurrentlyUnavailableArray.push(fullPlayerName)	
 								var playerStatus = "player not ready"
 								statusPlayers.push(playerStatus)
@@ -84,7 +84,7 @@ function getPlayersTable(player){
 			//tri.append("<td class='vsColumn'>" + my_UMrowNumber + "</td>")
 			singlePLAData.matchNr = my_playerMatches[pla].localId
 
-			if(ifMobile == false){
+			if(ifMobile === false){
 				//tri.append("<td class='poolColumn'>" + my_PoolName + "</td>");
 				singlePLAData.PoolName = my_PoolName 
 			} else {
@@ -97,7 +97,7 @@ function getPlayersTable(player){
 		
 			//Name Team 1 column
 			var team1Players = my_playerMatches[pla].team1.split(" & ")
-			var team1_nameClean = team1Players.map(e=>e.split("\"").map((a,i)=>i%2==0?a:undefined).join(""))
+			var team1_nameClean = team1Players.map(e=>e.split("\"").map((a,i)=>i%2===0?a:undefined).join(""))
 			var Team1NamesCleanTrim = []
 			for (var t1 = 0; t1 < team1_nameClean.length; t1++) {
 				var string = team1_nameClean[t1].replace(/  +/g, ' ');
@@ -114,7 +114,7 @@ function getPlayersTable(player){
 			
 			//Name Team 1 column
 			var team2Players = my_playerMatches[pla].team2.split(" & ")
-			var team2_nameClean = team2Players.map(e=>e.split("\"").map((a,i)=>i%2==0?a:undefined).join(""))
+			var team2_nameClean = team2Players.map(e=>e.split("\"").map((a,i)=>i%2===0?a:undefined).join(""))
 			var Team2NamesCleanTrim = []
 			for (var t2 = 0; t2 < team2_nameClean.length; t2++) {
 				var string = team2_nameClean[t2].replace(/  +/g, ' ');
@@ -164,62 +164,63 @@ function getPlayersTable(player){
 	//log("allPLAdata:", allPLAdata)
 
 	function makePlayersTable(my_data){
+		var tableInfoLocations = setTableInfoLocations(ifOrganizerViewPreset);
 		var my_PLATable = $('#playersTable').DataTable({
 			data: my_data,
 			paging: false,
 			searching: false,
 			ordering: false,
 			responsive: false,
-			dom: tableInfoLocations(),
+			dom: tableInfoLocations,
 			//pageResize: true,
 			//bAutoWidth: false,			
 			columns: [
-				{ data: 'matchNr', autoWidth: false, fnCreatedCell: 	function (namedExpectedTimeMins, sData, oData, iRow, iCol) {
-														$(namedExpectedTimeMins).css('border-left', '3px solid #555555')
-														$(namedExpectedTimeMins).css('text-align', 'center')
+				{ data: 'matchNr', autoWidth: false, fnCreatedCell: 	function (nTd, sData, oData, iRow, iCol) {
+														$(nTd).css('border-left', '3px solid #555555')
+														$(nTd).css('text-align', 'center')
 													}
 				},
-				{ data: 'team1', fnCreatedCell:  function (namedExpectedTimeMins, sData, oData, iRow, iCol) {
-														$(namedExpectedTimeMins).css('padding-left', '5px')
-														$(namedExpectedTimeMins).css('text-align', 'left')
+				{ data: 'team1', fnCreatedCell:  function (nTd, sData, oData, iRow, iCol) {
+														$(nTd).css('padding-left', '5px')
+														$(nTd).css('text-align', 'left')
 														//////log(sData)
 													}
 												
 				},
-				{ data: 'vsColumn', fnCreatedCell:	function (namedExpectedTimeMins, sData, oData, iRow, iCol) {
-															$(namedExpectedTimeMins).css('font-weight', 'bold')
+				{ data: 'vsColumn', fnCreatedCell:	function (nTd, sData, oData, iRow, iCol) {
+															$(nTd).css('font-weight', 'bold')
 													}
 				},
-				{ data: 'team2', fnCreatedCell:  function (namedExpectedTimeMins, sData, oData, iRow, iCol) {
-														$(namedExpectedTimeMins).css('padding-left', '5px')
-														$(namedExpectedTimeMins).css('text-align', 'left')
-														$(namedExpectedTimeMins).css('border-right', '0.2vw solid #555555')
+				{ data: 'team2', fnCreatedCell:  function (nTd, sData, oData, iRow, iCol) {
+														$(nTd).css('padding-left', '5px')
+														$(nTd).css('text-align', 'left')
+														$(nTd).css('border-right', '0.2vw solid #555555')
 
 													}												
 				},
-				{ data: 'PoolName', autoWidth: true, fnCreatedCell: 	function (namedExpectedTimeMins, sData, oData, iRow, iCol) {
-														$(namedExpectedTimeMins).css('border-right', '0.2vw solid #555555')
-														$(namedExpectedTimeMins).css('background-color', '#b3ccff')
-														$(namedExpectedTimeMins).css('padding-left', '5px')
-														$(namedExpectedTimeMins).css('padding-right', '5px')
+				{ data: 'PoolName', autoWidth: true, fnCreatedCell: 	function (nTd, sData, oData, iRow, iCol) {
+														$(nTd).css('border-right', '0.2vw solid #555555')
+														$(nTd).css('background-color', '#b3ccff')
+														$(nTd).css('padding-left', '5px')
+														$(nTd).css('padding-right', '5px')
 													}
 				},
-				{ data: 'round', fnCreatedCell: 	function (namedExpectedTimeMins, sData, oData, iRow, iCol){
-																	$(namedExpectedTimeMins).css('padding-left', '5px')
-																	$(namedExpectedTimeMins).css('text-align', 'left')
-																	$(namedExpectedTimeMins).css('width', '60px')
-																	$(namedExpectedTimeMins).css('border-right', '0.2vw solid #555555')
+				{ data: 'round', fnCreatedCell: 	function (nTd, sData, oData, iRow, iCol){
+																	$(nTd).css('padding-left', '5px')
+																	$(nTd).css('text-align', 'left')
+																	$(nTd).css('width', '60px')
+																	$(nTd).css('border-right', '0.2vw solid #555555')
 																}
 				},						
-				{ data: 'scoresComment', fnCreatedCell: 	function (namedExpectedTimeMins, sData, oData, iRow, iCol){
-																	$(namedExpectedTimeMins).css('padding-left', '5px')
-																	$(namedExpectedTimeMins).css('text-align', 'left')
-																	$(namedExpectedTimeMins).css('width', '60px')
-																	$(namedExpectedTimeMins).css('border-right', '0.2vw solid #555555')
+				{ data: 'scoresComment', fnCreatedCell: 	function (nTd, sData, oData, iRow, iCol){
+																	$(nTd).css('padding-left', '5px')
+																	$(nTd).css('text-align', 'left')
+																	$(nTd).css('width', '60px')
+																	$(nTd).css('border-right', '0.2vw solid #555555')
 																}
 				},
-				{ data: 'status', fnCreatedCell:	function (namedExpectedTimeMins, sData, oData, iRow, iCol) {
-															$(namedExpectedTimeMins).css('border-right', '3px solid #555555')
+				{ data: 'status', fnCreatedCell:	function (nTd, sData, oData, iRow, iCol) {
+															$(nTd).css('border-right', '3px solid #555555')
 															
 														}											
 				}						

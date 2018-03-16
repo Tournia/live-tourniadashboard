@@ -5,10 +5,10 @@ function tableConfigurations(){
 	//log(ifLeftTables)
 	countLeftTables = countItemsTrue(ifLeftTables)
 	//log(countLeftTables)
-	if(countLeftTables == 3){
+	if(countLeftTables === 3){
 		var showUpcomingAndCurrentANDPostTables = true
 		var shownoLeftTables = false
-	} else if(countLeftTables == 0){
+	} else if(countLeftTables === 0){
 		var shownoLeftTables = true
 		var showUpcomingAndCurrentANDPostTables = false
 	} else {
@@ -16,7 +16,7 @@ function tableConfigurations(){
 		var showUpcomingAndCurrentANDPostTables = false
 	}
 	
-	if(countLeftTables == 1){
+	if(countLeftTables === 1){
 		log("only 1 left table")
 		document.getElementById("myLeftTabsBox").style.display="none"
 		document.getElementById("myRightTabsBox").style.display="none"
@@ -29,10 +29,10 @@ function tableConfigurations(){
 		document.getElementById("leftBox").style.marginTop="0px"
 	}
 
-	if(currentTable == false){
+	if(currentTable === false){
 		document.getElementById("currentMatches-button").style.display="none"
 		document.getElementById("currentmatches-tab-content").style.display="none"
-		if(upcomingTable == true){
+		if(upcomingTable === true){
 			startTab = tabTableContents[1]
 			$("a[href='#upcomingmatches-tab-content']").trigger('click');
 			//simpleTabChangeOnce()
@@ -41,7 +41,7 @@ function tableConfigurations(){
 			$("#upcomingMatches-button").addClass("active")
 			$("#postponedMatches-button").removeClass("active")
 
-		} else if (postponedTable == true){ // only postponed is turned on
+		} else if (postponedTable === true){ // only postponed is turned on
 			startTab = tabTableContents[2]
 			//switchTabOnce()
 			$("a[href='#postponedmatches-tab-content']").trigger('click');
@@ -61,12 +61,12 @@ function tableConfigurations(){
 		//CMclickChange = 2
 	}
 
-	if(upcomingTable == false){
+	if(upcomingTable === false){
 		//log("upcoming off")
 		document.getElementById("upcomingMatches-button").style.display="none"
 		document.getElementById("upcomingmatches-tab-content").style.display="none"
 		
-		/*if(postponedTable == true){
+		/*if(postponedTable === true){
 			//log("upcoming off -- postponed on")
 			//switchTableOnce()
 			$("#currentMatches-button").removeClass("active")
@@ -75,7 +75,7 @@ function tableConfigurations(){
 
 		} else {
 			//log("upcoming off -- postponed off")
-			if(currentTable == false){
+			if(currentTable === false){
 				//switchTableOnce()
 				//switchTableOnce()
 			} else {
@@ -89,10 +89,10 @@ function tableConfigurations(){
 		document.getElementById("upcomingmatches-tab-content").style.display=""
 	}
 
-	if(postponedTable == false){
+	if(postponedTable === false){
 		document.getElementById("postponedMatches-button").style.display="none"
 		document.getElementById("postponedmatches-tab-content").style.display="none"
-		if(currentTable == true){
+		if(currentTable === true){
 			//switchTableOnce()
 			$("#currentMatches-button").addClass("active")
 			$("#upcomingMatches-button").removeClass("active")
@@ -110,7 +110,7 @@ function tableConfigurations(){
 		document.getElementById("postponedmatches-tab-content").style.display=""
 	}
 
-	if(poolsTable == false){
+	if(poolsTable === false){
 		document.getElementById("rightBox").style.display="none"
 		document.getElementById("leftBox").style.width = "70%"
 		document.getElementById("leftBox").style.float = "none"
@@ -126,7 +126,7 @@ function tableConfigurations(){
 	}
 
 	//resize width tables
-	if(shownoLeftTables == true){
+	if(shownoLeftTables === true){
 		
 		document.getElementById("leftBox").style.display = "none"
 		document.getElementById("rightBox").style.width = "70%"
@@ -146,16 +146,22 @@ function tableConfigurations(){
 	}
 
 	
-	if(customSorting == true){
+	if(customSorting === true){
 		document.getElementById("poolColumn").innerHTML = "Pools<br/>(presumed order)";	
 	} else {
 		document.getElementById("poolColumn").innerHTML = "Pools";	
 	}
 
-	if(showExpectedTimeColumn == false ){
+	if(showExpectedTimeColumn === false ){
 		document.getElementById("UM_notes").style.display="none"
 	} else {
 		document.getElementById("UM_notes").style.display=""
+	}
+
+	if (showPredictedTimeColumn === false) {
+		document.getElementById("CM_notes").style.display = "none";
+	} else {
+		document.getElementById("CM_notes").style.display = "";
 	}
 }
 
@@ -168,7 +174,7 @@ function removeTables(){
 	removeTable('currentMatchesTable', 2)
 	removeTable('upcomingMatchesTable', 3)
 	removeTable('postponedMatchesTable', 3)
-	if(ifMobile == true){
+	if(ifMobile === true){
 		removeTable('playedMatchesTable', 2)
 		removeTable('playersRankingTable', 2)
 		removeTable('groupsRankingTable', 2)
@@ -195,7 +201,7 @@ function removeTables(){
 	document.getElementById("currentMatchesLoader").style.display = ""
 	document.getElementById("postponedMatchesLoader").style.display = ""
 	document.getElementById("poolsOverviewLoader").style.display = ""
-	if(ifMobile == true){
+	if(ifMobile === true){
 		document.getElementById("playedMatchesLoader").style.display = ""
 		document.getElementById("playersRankingLoader").style.display = ""
 		document.getElementById("playersRankingLoader").style.display = ""
@@ -203,7 +209,7 @@ function removeTables(){
 		document.getElementById("playersLoader").style.display = ""
 		
 	}
-	if (sampleData == true){
+	if (sampleData === true){
 		getLocalDataAndMakeLocalTables()
 	} else {
 		getAPIDataAndMakeTables()

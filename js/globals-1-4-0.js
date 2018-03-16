@@ -3,23 +3,23 @@
 
 sampleData = false //load data from online database or local sample data sets
 DEBUG_MODE = true //show console log
-sendingDataToDatabase = true
+sendingDataToDatabase = false
 
-expectedTimesFunctionality = true //enable or disable expected Times functionality
+expectedTimesFunctionality = false //enable or disable expected Times functionality
 predictedTimesFunctionality = true //enable or disable predicted Times functionality
 expectedTimesDataTesting = false //always show upcoming matches table for expected time script testing
-AET = true //adjust expected times
-slowLoading = false
+AET = false //adjust expected times
+slowLoading = false //load all matxhes data for all info. Not necessary and thus can be turned off for faster loading
 
-dataSetNr = 2 //ISBT Utrecht: 1-4; ISBT Amsterdam 1-9
+dataSetNr = 5 //ISBT Utrecht: 1-5; ISBT Amsterdam 1-9
 	//apply local datasets
 	//isbt Utrecht sample Data
 	var ifEmptyInput = false
-	if(urlData[0] == "utrecht2016" && (isNaN(dataSetNr) == true || dataSetNr < 1 || dataSetNr > 4)){
+	if(urlData[0] === "utrecht2016" && (isNaN(dataSetNr) === true || dataSetNr < 1 || dataSetNr > 4)){
 		dataSetNr = 1
 			}
 	//isbt amsterdam sample Data
-	if(urlData[0] == "isbt-amsterdam-2017" && (isNaN(dataSetNr) == true || dataSetNr < 1 || dataSetNr > 9)){
+	if(urlData[0] === "isbt-amsterdam-2017" && (isNaN(dataSetNr) === true || dataSetNr < 1 || dataSetNr > 9)){
 		dataSetNr = 1
 	}
 
@@ -32,7 +32,7 @@ if(!DEBUG_MODE || typeof(console.log) === 'undefined') {
 }
 var log = console.log.bind(console)
 
-var ifMobileConfig = (ifMobile == false)
+var ifMobileConfig = (ifMobile === false)
 var my_tournamentInfo
 var my_settingsVarsArray = []
 //var my_settingsVarsObject = {}
@@ -62,18 +62,19 @@ if(window.location.hostname === 'localhost'){
 	runLocal = true;
 }
 
-if(expectedTimesDataTesting == true){
+if(expectedTimesDataTesting === true){
 	runLocal = true
 }
 
-if(runLocal == false){
+if(runLocal === false){
 	expectedTimesDataTesting = false
 } else{
 	sendingDataToDatabase = false
 }
 
-if(ifMobile == true){
-	sendingDataToDatabase = false
+if(ifMobile === true){
+	sendingDataToDatabase = false;
+	slowLoading = false;
 }
 
 //overrules
@@ -186,17 +187,18 @@ var showByeColumn
 var ifPaging	
 var ifOrganizerViewPreset	
 
+var dom
 
 /*colors*/
 var playerPlayingSpan = "<td style=background-color:#ffffb3>" //yellow
 var playerUnavailableSpan = "<td style=background-color:#ff8080>" //red
-var nowPlayingSpan = "<td style=background-color:#71da71>" //Players Available green
+var nowPlayingSpan = "<td style=background-color:#71da71>" //players available green
 var poolPausedSpan = "<span style=background-color:#ffb366>" //orange
 var poolsColour = "<span style=background-color:#b3ccff>" //light blue
 var poolStoppedSpan = "<span style=background-color:ff4d4d>" // dark red
 
 /*status texts*/
-var readyToPlay = "Players Available"
+var readyToPlay = "players available"
 var playersCurrentlyPlaying = "players playing"
 var playersUnavailable = "players unavailable"
 var postponedMatch = "postponed match"
@@ -213,8 +215,8 @@ var my_unavPostponedMatches = [] //matches with postponed players and postponed 
 var my_postponedPlayers = []
 var my_postponedTeamNames = []
 var	my_poolsWithTeams = []
-var my_matchesRaw
-var my_matches
+var my_matchesRaw = [] 
+var my_matches = []
 var my_nrofRoundsPerPool = {}
 var my_listPlayersRanking = []
 var my_listGroupsRanking = []

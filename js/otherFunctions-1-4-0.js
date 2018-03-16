@@ -26,7 +26,7 @@ function inObject(array, key, prop){
 
 function inArray(needle, haystack) {
 	for (var i = 0; i < haystack.length; i++) {
-		if (haystack[i] == needle){
+		if (haystack[i] === needle){
 			return true;
 		}
 	}
@@ -34,10 +34,10 @@ function inArray(needle, haystack) {
 }
 
 function isEven(n) {
-	return n % 2 == 0
+	return n % 2 === 0
 }
 function isOdd(n) {
-	return Math.abs(n % 2) == 1
+	return Math.abs(n % 2) === 1
 }
 	
 function countItemsTrue(arry){
@@ -52,6 +52,16 @@ function countItemsTrue(arry){
 
 }
 
+function removeStringFromArray(array, string){
+	for (var i=array.length-1; i>=0; i--) {
+		if (array[i] === string) {
+			array.splice(i, 1);
+			break;     //<-- Uncomment  if only the first term has to be removed
+		}
+	}
+}
+
+
 function findPlayersPlaying(playerArray, my_locationsList, playersPlayingObects){
 	for (var pl  = 0; pl < playerArray.length; pl++){
 		var my_individualPlayer = playerArray[pl]
@@ -64,7 +74,7 @@ function findPlayersPlaying(playerArray, my_locationsList, playersPlayingObects)
 				for(var key1 in myT1Players){
 					position += 1
 					var individual1Player = myT1Players[key1]
-					if (individual1Player == my_individualPlayer){
+					if (individual1Player === my_individualPlayer){
 						//////console.log("found person in team 1")
 						var my_playerObject = my_locationsList[m]
 						var foundPlayer = true
@@ -76,7 +86,7 @@ function findPlayersPlaying(playerArray, my_locationsList, playersPlayingObects)
 					} else {
 						for(var key2 in myT2Players){
 							var individual2Player = myT2Players[key2]
-							if (individual2Player == my_individualPlayer){
+							if (individual2Player === my_individualPlayer){
 								//////console.log("found person in team 2")
 								var foundPlayer = true
 								var my_playerObject = my_locationsList[m]
@@ -144,7 +154,7 @@ function dynamicSortMultiple() {
 function getInternetExplorerVersion(){
     var rv = -1; // Return value assumes failure.
 
-    if (navigator.appName == 'Microsoft Internet Explorer'){
+    if (navigator.appName === 'Microsoft Internet Explorer'){
 
        var ua = navigator.userAgent,
            re  = new RegExp("MSIE ([0-9]{1,}[\\.0-9]{0,})");
@@ -153,7 +163,7 @@ function getInternetExplorerVersion(){
          rv = parseFloat( RegExp.$1 );
        }
     }
-    else if(navigator.appName == "Netscape"){                       
+    else if(navigator.appName === "Netscape"){                       
        // in IE 11 the navigator.appVersion says 'trident'
        // in Edge the navigator.appVersion does not say trident
        if(navigator.appVersion.indexOf('Trident') === -1) rv = 12;
@@ -201,7 +211,7 @@ var isChrome = !!window.chrome && !!window.chrome.webstore;
 // Blink engine detection
 var isBlink = (isChrome || isOpera) && !!window.CSS;
 
-if(isIE == true || isEdge == true || isOpera == true || isSafari == true){
+if(isIE === true || isEdge === true || isOpera === true || isSafari === true){
 		msg = "You are using the Internet Explorer, Microsoft Edge, Safari, or the Opera browser. Fr now, this website is only optimized for Google Chrome or Mozilla Firefox."
 	  alert(msg)
 	  throw new Error(msg);
@@ -220,23 +230,43 @@ function stopLoaders(){
 
 
 function ifLengthChange(){
-	if(ifMobile == true){
+	if(ifMobile === true){
 		return false
 	} else {
 		return ifOrganizerViewPreset
 	}
 }
 
-function tableInfoLocations(){
-	if(ifOrganizerViewPreset == true){
+function setTableInfoLocations(ifOrganizerView){
+	if(ifOrganizerView === true){
+		dom = '<"top"if>rt<"bottom"p>'
 		return '<"top"if>rt<"bottom"p>'
 	} else {
+		dom = '<"top">rt<"bottom"ip>'
 		return '<"top">rt<"bottom"ip>'
 	}
 }
 
+function expectedTimeColumnName(value) {
+	var my_name = value;
+	if (showExpectedTimeColumn === false) {
+		my_name = 0;
+	}
+	if (my_name === 0) { //dsiabled expected Time
+		return 'expectedTime'
+	} else if (my_name === 1) {
+		return 'shiftNrExpectedTimeMinsStdDev';
+	} else if (my_name === 2) {
+		return 'shiftNrExpectedTimeSecs';
+	} else if (my_name === 3) {
+		return 'StdDevExpectedTime';
+	} else if (my_name === 4) {
+		return 'namedExpectedTimeMins';
+	}
+}
+
 function sendTimesLog(){
-  if(sendingDataToDatabase == true){
+  if(sendingDataToDatabase === true){
 	 var databaseUrl = "expectedTimesLog_"+tournament_ID+".php"
 	 log('sending times log data..')
 	  //log("data to send to database:", UM_loopLogStrings)
@@ -267,7 +297,7 @@ function setTournialiveUrl(){
 
 function jsToisoDate(jsDate){
     //var DST = checkDST()
-	//if(DST == true){ var hour = 2} else { var hour = 1}
+	//if(DST === true){ var hour = 2} else { var hour = 1}
 	var date = jsDate
 	//var offset = date.getTimezoneOffset()/60;
 	//log(offset)

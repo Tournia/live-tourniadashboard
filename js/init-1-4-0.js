@@ -4,8 +4,10 @@ var timeString = time.toString();
 
 
  $( function() { /**init**/
+	$.ajaxSetup({ cache: true });
+	
 	/*customized CSS**/	
-	if(urlData[0] == "demo"){
+	if(urlData[0] === "demo"){
 		sampleData = true
 	}
 	var fileref = document.createElement("link");
@@ -21,7 +23,7 @@ var timeString = time.toString();
 	checkBrowsers()
 	
 	/*show clock */
-	if(ifMobile == false){
+	if(ifMobile === false){
 		displayTime();
 		var my_tickingClock = setInterval(displayTime, 1000);
 		$('a[data-toggle="tooltip"]').tooltip({
@@ -34,12 +36,12 @@ var timeString = time.toString();
 			html: true	
 		})
 		
-		if(startSetupWindow == true){
+		if(startSetupWindow === true){
 		$('#settingsModal').modal('show')
 		}
 		
 		placeVarsInput()
-	} else { //mobile == true
+	} else { //mobile === true
 		//$('table.display').DataTable()
 		var fileref2 = document.createElement("link");
 		fileref2.setAttribute("rel", "stylesheet");
@@ -75,7 +77,7 @@ var timeString = time.toString();
 		var second="here </a>in the URL of your Tournia tournament homepage.-->
 	}*/
 	/*
-	 if(ifMobile == true){
+	 if(ifMobile === true){
 		document.getElementById("BoxRight").style.display = "none"
 		document.getElementById("LeftBox").style.width = "100%"
 		document.getElementById("createPageButton").style.width = "100%"
@@ -95,8 +97,8 @@ var timeString = time.toString();
 			
 	};*/
 	/*$("#parent").keyup(function(event){
-		if(event.keyCode == 13){
-			if(document.getElementById("createPageButton").disabled == false){
+		if(event.keyCode === 13){
+			if(document.getElementById("createPageButton").disabled === false){
 				//log("in here")
 				$("#createPageButton").click();
 				checkVariables()
@@ -108,8 +110,8 @@ var timeString = time.toString();
 	
 	$('#organizerPreset').click(function() {
 		if($('#organizerPreset').is(':checked')){
-			//log("in organizer Preset", document.getElementById("ifUpcomingMatches").checked, document.getElementById("ifCurrentMatches").checked == false)
-			if(document.getElementById("ifPoolsOverview").checked == true){
+			//log("in organizer Preset", document.getElementById("ifUpcomingMatches").checked, document.getElementById("ifCurrentMatches").checked === false)
+			if(document.getElementById("ifPoolsOverview").checked === true){
 				//log("Organizer checked");
 				document.getElementById("showTotTeamsCb").checked = true
 				document.getElementById("showRoundsNeededCb").checked = true
@@ -122,8 +124,8 @@ var timeString = time.toString();
 	});
 	$('#viewerPreset').click(function() {
 		if($('#viewerPreset').is(':checked')){
-			//log("in player Preset", document.getElementById("ifUpcomingMatches").checked, document.getElementById("ifCurrentMatches").checked == false)
-			if(document.getElementById("ifPoolsOverview").checked == true){				//log(" Viewer checked");
+			//log("in player Preset", document.getElementById("ifUpcomingMatches").checked, document.getElementById("ifCurrentMatches").checked === false)
+			if(document.getElementById("ifPoolsOverview").checked === true){				//log(" Viewer checked");
 				document.getElementById("showTotTeamsCb").checked = false
 				document.getElementById("showRoundsNeededCb").checked = false
 				document.getElementById("showRoundsCreatedCb").checked = true
@@ -167,7 +169,7 @@ var timeString = time.toString();
 	});
 		
 
-	if(startSetupWindow == false){
+	if(startSetupWindow === false){
 		createPage()
 	}
 	$("#poolSelector").select2({
@@ -182,16 +184,16 @@ var timeString = time.toString();
 		getPoolRankingsTable(my_pool, my_poolId)
 	});
 	$('#resultsRankingsRbs').change(function(){
-		//log("change", document.getElementById("resultsRb").checked, document.getElementById("rankingsRb").checked, document.getElementById("playersRb").checked == true)
-		if(document.getElementById("resultsRb").checked == true){
+		//log("change", document.getElementById("resultsRb").checked, document.getElementById("rankingsRb").checked, document.getElementById("playersRb").checked === true)
+		if(document.getElementById("resultsRb").checked === true){
 			document.getElementById("matchResultsBox").style.display = ""
 			document.getElementById("rankingsBox").style.display = "none"
 			document.getElementById("playersBox").style.display = "none"
-		} else if(document.getElementById("rankingsRb").checked == true){
+		} else if(document.getElementById("rankingsRb").checked === true){
 			document.getElementById("matchResultsBox").style.display = "none"
 			document.getElementById("rankingsBox").style.display = ""
 			document.getElementById("playersBox").style.display = "none"
-		} else if(document.getElementById("playersRb").checked == true){
+		} else if(document.getElementById("playersRb").checked === true){
 			document.getElementById("matchResultsBox").style.display = "none"
 			document.getElementById("rankingsBox").style.display = "none"
 			document.getElementById("playersBox").style.display = ""
@@ -199,15 +201,15 @@ var timeString = time.toString();
 	})
 	
 	$('#rankingsRadioButtons').change(function(){
-		if(document.getElementById("poRankingsRb").checked == true){
+		if(document.getElementById("poRankingsRb").checked === true){
 			document.getElementById("poolRankingsBox").style.display = ""
 			document.getElementById("playersRankingBox").style.display = "none"
 			document.getElementById("groupsRankingBox").style.display = "none"
-		} else if(document.getElementById("plRankingsRb").checked == true){
+		} else if(document.getElementById("plRankingsRb").checked === true){
 			document.getElementById("poolRankingsBox").style.display = "none"
 			document.getElementById("playersRankingBox").style.display = ""
 			document.getElementById("groupsRankingBox").style.display = "none"
-		} else if(document.getElementById("grRankingsRb").checked == true){
+		} else if(document.getElementById("grRankingsRb").checked === true){
 			document.getElementById("poolRankingsBox").style.display = "none"
 			document.getElementById("playersRankingBox").style.display = "none"
 			document.getElementById("groupsRankingBox").style.display = ""
@@ -231,22 +233,27 @@ var timeString = time.toString();
 	//})
 	
 	//turn predicted / expected Times on or off
-	if(expectedTimesFunctionality == false){
+	if(expectedTimesFunctionality === false){
 		showExpectedTimeColumn = false
-		if(ifMobile == false){
+		if(ifMobile === false){
 			document.getElementById("ExpectedTimeBo").checked = false
 			document.getElementById("expectedTimesOption").style.display = "none"
 		}
 		document.getElementById("UM_notes").style.display="none"
 	}
-	if(predictedTimesFunctionality == false){
+	if(predictedTimesFunctionality === false){
 		showPredictedTimeColumn = false
-		if(ifMobile == false){
+		if(ifMobile === false){
 			document.getElementById("predictedTimeColumn").checked = false
 			document.getElementById("predictedTimesOption").style.display = "none"
 		}
 		document.getElementById("CM_notes").style.display="none"
 	}
+
+	 if (sampleData === true) {
+		 document.getElementById("ifReloadTablesBo").checked = false;
+		 toggleReloadTables(this.checked);
+	 }
 	
 }) // end of init
 

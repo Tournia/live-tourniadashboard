@@ -26,7 +26,7 @@ function _1emptyVars(){
 	document.getElementById("currentMatchesLoader").style.display = "" 
 	document.getElementById("upcomingMatchesLoader").style.display = ""
 	document.getElementById("postponedMatchesLoader").style.display = ""
-	if(ifMobile == true){
+	if(ifMobile === true){
 		document.getElementById("playedMatchesLoader").style.display = ""
 		document.getElementById("playersRankingLoader").style.display = ""
 	}
@@ -75,7 +75,7 @@ function _1emptyVars(){
 	allCycleTimes.push(totCycleTime)
 	totCycleTime = 0
 	
-	if(my_settingsVarsObject.ifOrganizerViewPreset == true){
+	if(my_settingsVarsObject.ifOrganizerViewPreset === true){
 		lastRefreshTimeLog = my_settingsVarsObject.reloadTime
 
 	} else {
@@ -140,7 +140,7 @@ function _2AgetPoolsRoundsData(){
 			}
 			
 			//var data = []
-			if(ifMobile == true){
+			if(ifMobile === true){
 				$("#poolSelector").select2({
 					placeholder: 'select a pool',
 					data: poolNamesArray,
@@ -165,7 +165,7 @@ function _2AgetPoolsRoundsData(){
 			
 function _2BgetAllMatchesData(){
 	//log("2bS. in get matches")
-	if(ifMobile == true){
+	if(slowLoading === true){
 		return $.getJSON(listMatchesUrl, function(matches){
 			my_matchesRaw = matches})
 		.success(function(){
@@ -195,7 +195,7 @@ function _2BgetAllMatchesData(){
 				my_matches[m].localId = Number(my_localId2[0])
 			}
 			//////////log(my_nrofRoundsPerPool)
-			if(ifMobile == true){
+			if(ifMobile === true){
 				getPlayersTable("none")
 			}
 			//log("2. all matches loaded")
@@ -208,7 +208,7 @@ function _2BgetAllMatchesData(){
 
 function _3AgetGData(){
 	//log("3aS. in get GData")
-	if (poolProperties == true){
+	if (poolProperties === true){
 		//log(poolProperties)
 			Tabletop.init({
 						key: googleSheetUrl,
@@ -228,7 +228,7 @@ function _4AgetCurrentMatchesData(){
 	return $.getJSON(listCurrentlyPlayingLocationsUrl, function (json){
 			my_locationsList = json })
 		.success(function(){
-			if(my_locationsList.length == 0){
+			if(my_locationsList.length === 0){
 				noLocations = true
 				
 				var noCMData = {}
@@ -270,7 +270,7 @@ function _4BgetListCurrentMatchesData(){
 			} else {
 				noCurrentMatches = true
 			}
-		//if(currentTable == true || upcomingTable == true || poolsTable == true){
+		//if(currentTable === true || upcomingTable === true || poolsTable === true){
 		//}
 		//log("4. done with locations and current matches")
 		})
@@ -282,7 +282,7 @@ function _5AgetReadyPostponedFinishedMatchesData(){
 			my_upcomingMatches = json })
 		.success(function(){
 			//log("5aF. Ready matches:", my_upcomingMatches)	
-			if(my_upcomingMatches.length == 0){
+			if(my_upcomingMatches.length === 0){
 				noUpcomingMatches = true
 				//logUpcomingMatch = false
 				var noUMData = {}
@@ -313,15 +313,15 @@ function _5AgetReadyPostponedFinishedMatchesData(){
 					
 					unavailablePlayerFound = false
 					for(var pl1 = 0; pl1 < my_upcomingMatches[i].team1.players.length; pl1++){
-						if( my_upcomingMatches[i].team1.players[pl1].ready == false){
+						if( my_upcomingMatches[i].team1.players[pl1].ready === false){
 							my_unavPostponedMatches.push(my_upcomingMatches[i])
 							unavailablePlayerFound = true
 							break
 						}
 					}
-					if(unavailablePlayerFound == false){
+					if(unavailablePlayerFound === false){
 						for(var pl2 = 0; pl2 < my_upcomingMatches[i].team2.players.length; pl2++){
-							if( my_upcomingMatches[i].team2.players[pl2].ready == false){
+							if( my_upcomingMatches[i].team2.players[pl2].ready === false){
 								my_unavPostponedMatches.push(my_upcomingMatches[i])
 								break
 							}
@@ -348,13 +348,13 @@ function _5BgetPostponedMatchesData(){
 					my_teamsPlayingReadyPostponed.push(my_Team2Name)
 					my_unavPostponedMatches.push(my_PostponedUpcomingMatches[i2])
 					for (plyrs1 in my_PostponedUpcomingMatches[i2].team1.players){
-						if(my_PostponedUpcomingMatches[i2].team1.players[plyrs1].ready == false){
+						if(my_PostponedUpcomingMatches[i2].team1.players[plyrs1].ready === false){
 							my_postponedPlayers.push(my_PostponedUpcomingMatches[i2].team1.players[plyrs1].name)
 							my_postponedTeamNames.push(my_PostponedUpcomingMatches[i2].team1.name)
 						}
 					}
 					for (plyrs2 in my_PostponedUpcomingMatches[i2].team2.players){
-						if(my_PostponedUpcomingMatches[i2].team2.players[plyrs2].ready == false){
+						if(my_PostponedUpcomingMatches[i2].team2.players[plyrs2].ready === false){
 							my_postponedPlayers.push(my_PostponedUpcomingMatches[i2].team2.players[plyrs2].name)
 							my_postponedTeamNames.push(my_PostponedUpcomingMatches[i2].team2.name) 						
 						}
@@ -366,7 +366,7 @@ function _5BgetPostponedMatchesData(){
 	
 function _5CgetPlayedMatchesData(){
 	//log("5cS. in get Played")
-	if(ifMobile == true || my_settingsVarsObject.ifPoolsTable == true){
+	if(ifMobile === true || my_settingsVarsObject.ifPoolsTable === true){
 			
 		return $.getJSON(listPlayedMatchesUrl, function(json){
 				my_playedMatches = json })
@@ -384,7 +384,7 @@ function _5CgetPlayedMatchesData(){
 					//singlePlayedMatch.push(my_Poolname, my_roundNr, my_team1NameF, my_team2NameF)
 					my_listPlayedFinishedMatches.push(singlePlayedMatch)
 				}
-				if(ifMobile == true){
+				if(ifMobile === true){
 					getPlayedMatchesTable()
 				}
 			})
@@ -415,7 +415,7 @@ function _5DgetFinishedMatchesData(){
 }
 
 function _6AgetplayersRanking(){
-	if(ifMobile == true){
+	if(ifMobile === true){
 		return $.getJSON(listPlayersRankingUrl, function(json){
 				my_playersRanking = json })
 			.success(function(){
@@ -425,15 +425,15 @@ function _6AgetplayersRanking(){
 					singlePlayerRanking.rank = my_playersRanking[key].rank
 					singlePlayerRanking.playerId = my_playersRanking[key].playerId
 					singlePlayerRanking.name = my_playersRanking[key].name
-					singlePlayerRanking.cleanName = my_playersRanking[key].name.replace(/".*"/, "")
+					singlePlayerRanking.cleanName = my_playersRanking[key].name.replace(/".*"/, "").replace("  ", " ")
 					singlePlayerRanking.sumPoints = my_playersRanking[key].sumPoints
 					singlePlayerRanking.nrSets = my_playersRanking[key].nrSets
 					singlePlayerRanking.relative = my_playersRanking[key].relative
 					singlePlayerRanking.gender = my_playersRanking[key].gender
 					
-					if(singlePlayerRanking.gender == "M"){
+					if(singlePlayerRanking.gender === "M"){
 						singlePlayerRanking.gender = "Male"
-					} else if(singlePlayerRanking.gender == "F"){
+					} else if(singlePlayerRanking.gender === "F"){
 						singlePlayerRanking.gender = "Female"
 					}
 					
@@ -445,7 +445,7 @@ function _6AgetplayersRanking(){
 }
 
 function _6BgetGroupRankings(){
-	if(ifMobile == true){
+	if(ifMobile === true){
 		return $.getJSON(listGroupsRankingUrl, function(json){
 				my_groupsRanking = json })
 			.success(function(){
@@ -461,7 +461,7 @@ function _6BgetGroupRankings(){
 					
 					my_listGroupsRanking.push(singleGroupRanking)
 				}
-				if(ifMobile == true){
+				if(ifMobile === true){
 					getGroupsRankingTable(my_listGroupsRanking)
 				}
 			})
@@ -494,7 +494,7 @@ function _6CgetPoolWinners(){
 }
 
 function _7finalConfigurations(){
-	if(my_unavPostponedMatches.length == 0){
+	if(my_unavPostponedMatches.length === 0){
 				//log("no unavPost matches")
 				noUnavPostponedMatches = true
 				var noPMData = {}
@@ -520,15 +520,15 @@ function makeTables(){
 	log("making tables...")
 	getCurrentMatchesTable()
 
-	if(upcomingTable == true || poolsTable == true || postponedTable == true){
+	if(upcomingTable === true || poolsTable === true || postponedTable === true){
 		shrinkUpcomingsTable = false
 		getUpcomingMatchesTable()
 	}
 	
-	if(postponedTable == true){
+	if(postponedTable === true){
 		getPostponedMatchesTable()
 	}
-	if(poolsTable == true){
+	if(poolsTable === true){
 		getPoolsOverviewTable()
 	}
 	setrefreshTablesInterval()
@@ -592,10 +592,10 @@ function getCurrentDataSet(){
 	my_groupsRankingString = JSON.stringify(my_groupsRanking)
 	
 	log(reloadDataCount, "\n\n")
-	if(reloadDataCount == 0 || reloadDataCount == 1){
+	if(reloadDataCount === 0 || reloadDataCount === 1){
 		log("var my_tournamentInfoData =", my_tournamentInfoString ,"\n\n")
 	}
-	log("var my_upcomingMatchesData =", my_upcomingMatchesString, "\n\n","var locationsListData =", my_locationsListString, "\n\n", "var playingListData =", my_playingListString ,"\n\n", "var my_matchesData =", my_matchesString, "\n\n", "var my_PoolsData =", my_PoolsString,"\n\n", "var my_PostponedUpcomingMatchesData =", my_PostponedUpcomingMatchesString, "\n\n", "var my_playedMatchesData =", my_playedMatchesString, "\n\n", "var my_finishedMatchesData =", my_listPlayedFinishedMatchesString, "\n\n", "var my_playersRankingData =", my_playersRankingString,  "\n\n", "var my_groupsRankingData =", my_groupsRankingString)
+	log("var my_upcomingMatchesData =", my_upcomingMatchesString, "\n\n", "var locationsListData =", my_locationsListString, "\n\n", "var playingListData =", my_playingListString, "\n\n", "var my_matchesData =", my_matchesString, "\n\n", "var my_PoolsData =", my_PoolsString,"\n\n", "var my_PostponedUpcomingMatchesData =", my_PostponedUpcomingMatchesString, "\n\n", "var my_playedMatchesData =", my_playedMatchesString, "\n\n", "var my_finishedMatchesData =", my_listPlayedFinishedMatchesString, "\n\n", "var my_playersRankingData =", my_playersRankingString,  "\n\n", "var my_groupsRankingData =", my_groupsRankingString)
 	
 	//log("var my_upcomingMatchesData =", my_upcomingMatchesString, "\n\n","var locationsListData =", my_locationsListString, "\n\n", "var playingListData =", my_playingListString ,"\n\n", "var my_matchesData =", my_matchesString, "\n\n", "var my_PoolsData =", my_PoolsString,"\n\n", "var my_PostponedUpcomingMatchesData =", my_PostponedUpcomingMatchesString, "\n\n", "var my_playedMatchesData =", my_playedMatchesString, "\n\n", "var my_finishedMatchesData =", my_listPlayedFinishedMatchesString, "\n\n", "var my_playersRankingData =", my_playersRankingString,  "\n\n", "var my_groupsRankingData =", my_groupsRankingString)
 	

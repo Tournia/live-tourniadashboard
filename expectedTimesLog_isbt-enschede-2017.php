@@ -44,7 +44,7 @@
 		$pool = $UM_loopLogPHPSplit[5];
 		$dateTime = $UM_loopLogPHPSplit[6];
 		$expectedTime = (int)$UM_loopLogPHPSplit[7];
-		$ifReadyToPlay = $UM_loopLogPHPSplit[8];
+		$ifplayersAvailable = $UM_loopLogPHPSplit[8];
 		$ifPlayerPlaying = $UM_loopLogPHPSplit[9];
 		$ifPlayerUnavailable = $UM_loopLogPHPSplit[10];
 		$reloadDataTimeInterval  = (int)$UM_loopLogPHPSplit[11];
@@ -54,7 +54,7 @@
 		$tournamentID = $UM_loopLogPHPSplit[15];
 		
 		$sql2 = "INSERT INTO isbt_enschede_2017
-        VALUES ('$tournamentID', '$tournamantName', '$dataRefreshCount', '$processID', '$status', '$matchId', '$pool', '$dateTime', '$expectedTime', '$ifReadyToPlay', '$ifPlayerPlaying', '$ifPlayerUnavailable', '$reloadDataTimeInterval', '$timeSinceLastRefresh', '$expectedTimeDifferenceCalc', '$timeDifferenceCalc')";
+        VALUES ('$tournamentID', '$tournamantName', '$dataRefreshCount', '$processID', '$status', '$matchId', '$pool', '$dateTime', '$expectedTime', '$ifplayersAvailable', '$ifPlayerPlaying', '$ifPlayerUnavailable', '$reloadDataTimeInterval', '$timeSinceLastRefresh', '$expectedTimeDifferenceCalc', '$timeDifferenceCalc')";
         
 		mysqli_query($conn, $sql2);
     }

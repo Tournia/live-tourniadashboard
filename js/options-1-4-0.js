@@ -32,21 +32,22 @@ function placeDefaultVars(tournament_ID, gSheetUrl) { //default from url
 		my_settingsVarsObject.ifPagingTable = true
 		my_settingsVarsObject.ifOrganizerViewPreset = false
 
-		if (gSheetUrl != undefined) {
+		/*if (gSheetUrl !== undefined) {
 			var ifGsheet = true
 				my_settingsVarsObject.ifGoogleSheet = true
 		} else {
 			var ifGoogleSheet = false
 				my_settingsVarsObject.ifGoogleSheet = false
-		}
-
-		if (ifGsheet == false) {
+		}*/
+		var ifGsheet = false
+		my_settingsVarsObject.ifGoogleSheet = false 
+		if (ifGsheet === false) {
 			my_settingsVarsObject.GoogleSheetUrl = ""
 		} else {
 			my_settingsVarsObject.GoogleSheetUrl = gSheetUrl
 		}
 
-		if (ifGsheet == false) {
+		if (ifGsheet === false) {
 			my_settingsVarsObject.ifCustomSorting = false
 		} else {
 			my_settingsVarsObject.ifCustomSorting = false
@@ -126,7 +127,7 @@ function applyVars() {
 		
 		getPoolProperties()
 		
-		ifPlayersViewPreset = (ifOrganizerViewPreset == true)
+		ifPlayersViewPreset = (ifOrganizerViewPreset === true)
 		googleSheetUrl = googleSheetUrl + "&&range=A:C"
 
 		minPageTime = (minPageTimeSecs * 1000)
@@ -136,7 +137,7 @@ function applyVars() {
 		poolsOverviewMatchesTabTime = 500
 		reloadDataTime = (reloadDataTimeSecs * 1000)
 		upcomingAndCurrentTabTimes = upcomingMatchesTabTime + currentMatchesTabTime
-		/*if (upcomingAndCurrentTabTimes % reloadDataTime == 0) {
+		/*if (upcomingAndCurrentTabTimes % reloadDataTime === 0) {
 			reloadDataTime = (reloadDataTimeSecs * 1000) + 2000
 		}*/
 

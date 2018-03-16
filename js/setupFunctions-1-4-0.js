@@ -66,14 +66,12 @@ var ifUpcoming
 var ifCurrent
 var ifPostponed
 
-
-function my_errorHandling(error){
+function my_errorHandling(error) {
 	if_error = true
 	alert(error)
 }
-
 function toggleCurrentMatchesTable(_checked){
-	if (_checked == true){
+	if (_checked === true){
 		current = true
 		document.getElementById("playingTimeColumn").disabled = false
 		document.getElementById("playingTimeColumn").checked = true
@@ -94,7 +92,7 @@ function toggleCurrentMatchesTable(_checked){
 }
 
 function toggleUpcomingMatchesTable(_checked){
-	if (_checked == true){
+	if (_checked === true){
 		upcoming = true
 		//document.getElementById("if_PagingTable").disabled = false
 		//document.getElementById("if_PagingTable").checked = true
@@ -102,7 +100,7 @@ function toggleUpcomingMatchesTable(_checked){
 		document.getElementById("umStatusColumn").checked = true
 		document.getElementById("ExpectedTimeBo").disabled = false
 		document.getElementById("ExpectedTimeBo").checked = true
-		/*if(document.getElementById("ifCurrentMatches").checked == true){
+		/*if(document.getElementById("ifCurrentMatches").checked === true){
 			document.getElementById("ifChangeTabs").disabled = false
 			document.getElementById("ifChangeTabs").checked = true*/
 		document.getElementById("upcomingTime").value = 10
@@ -127,11 +125,11 @@ function toggleUpcomingMatchesTable(_checked){
 }
 
 function togglePostponedMatchesTable(_checked){
-	if (_checked == true){
+	if (_checked === true){
 		upcoming = true
 		//document.getElementById("if_PagingTable").disabled = false
 		//document.getElementById("if_PagingTable").checked = true
-		/*if(document.getElementById("ifCurrentMatches").checked == true){
+		/*if(document.getElementById("ifCurrentMatches").checked === true){
 			document.getElementById("ifChangeTabs").disabled = false
 			document.getElementById("ifChangeTabs").checked = true*/
 		document.getElementById("postponedTime").value = 10
@@ -152,7 +150,7 @@ function togglePostponedMatchesTable(_checked){
 }
 
 function togglePoolsOverviewTable(_checked){
-	if (_checked == true){
+	if (_checked === true){
 		document.getElementById("ifGoogleSheetData").disabled = false
 		document.getElementById("myGSheetUrl").disabled = false
 		document.getElementById("predictedTimeColumn").checked = true
@@ -200,20 +198,20 @@ function togglePoolsOverviewTable(_checked){
 
 function toggleOrganizerView(_checked){
 	//log("am I toggling?")
-	if(_checked == true){ //organizer view
+	if(_checked === true){ //organizer view
 		document.getElementById("if_PagingTable").disabled = true
 		document.getElementById("if_PagingTable").checked = false
 		document.getElementById("ifChangeTabs").disabled = true
 		document.getElementById("ifChangeTabs").checked = false
-		//if(document.getElementById("ifUpcomingMatches").checked == true){
+		//if(document.getElementById("ifUpcomingMatches").checked === true){
 			document.getElementById("upcomingTime").value = ""
 			document.getElementById("upcomingTime").disabled = true
 		//}
-		//if(document.getElementById("ifCurrentMatches").checked == true){
+		//if(document.getElementById("ifCurrentMatches").checked === true){
 			document.getElementById("currentTime").value = ""
 			document.getElementById("currentTime").disabled = true
 		//}
-		//if(document.getElementById("ifPostponedMatches").checked == true){
+		//if(document.getElementById("ifPostponedMatches").checked === true){
 			document.getElementById("postponedTime").value = ""
 			document.getElementById("postponedTime").disabled = true
 		//}
@@ -224,24 +222,24 @@ function toggleOrganizerView(_checked){
 }
 
 function toggleViewerView(_checked){
-	if(_checked == true){
+	if(_checked === true){
 		document.getElementById("if_PagingTable").disabled = true
 		document.getElementById("if_PagingTable").checked = true
 		document.getElementById("ifChangeTabs").disabled = true
 		document.getElementById("ifChangeTabs").checked = true
-		if(document.getElementById("ifUpcomingMatches").checked == true){
+		if(document.getElementById("ifUpcomingMatches").checked === true){
 			document.getElementById("upcomingTime").value = 10
 			document.getElementById("upcomingTime").disabled = false
 		} else {
 			document.getElementById("upcomingTime").value = 0
 		}
-		if(document.getElementById("ifCurrentMatches").checked == true){
+		if(document.getElementById("ifCurrentMatches").checked === true){
 			document.getElementById("currentTime").value = 10
 			document.getElementById("currentTime").disabled = false
 		} else {
 			document.getElementById("currentTime").value = 0
 		}
-		if(document.getElementById("ifPostponedMatches").checked == true){	
+		if(document.getElementById("ifPostponedMatches").checked === true){	
 			document.getElementById("postponedTime").value = 10
 			document.getElementById("postponedTime").disabled = false
 		} else {
@@ -254,7 +252,7 @@ function toggleViewerView(_checked){
 
 function toggleReloadTables(_checked){
 	
-	if(_checked == true){
+	if(_checked === true){
 		document.getElementById("myReloadTimeInput").disabled = false
 		document.getElementById("ifReloadTablesBo").checked = true
 	} else {
@@ -262,21 +260,21 @@ function toggleReloadTables(_checked){
 		document.getElementById("ifReloadTablesBo").checked = false
 	}
 	
-	if(document.getElementById("myReloadTimeInput").disabled == true){
+	if(document.getElementById("myReloadTimeInput").disabled === true){
 		document.getElementById("myReloadTimeInput").value = ""
 	}
-	if(document.getElementById("myReloadTimeInput").disabled == false){
+	if(document.getElementById("myReloadTimeInput").disabled === false){
 		document.getElementById("myReloadTimeInput").value = 30
 	}
 }
 function toggleChangeTabs(_checked){
-	/*if(document.getElementById("ifChangeTabs").checked == false){
+	/*if(document.getElementById("ifChangeTabs").checked === false){
 		document.getElementById("upcomingTime").disabled = true;
 		document.getElementById("upcomingTime").value = "";
 		document.getElementById("currentTime").disabled = true;
 		document.getElementById("currentTime").value = "" ;
 	}
-	if(document.getElementById("ifChangeTabs").checked == true){
+	if(document.getElementById("ifChangeTabs").checked === true){
 		document.getElementById("upcomingTime").disabled = false;
 		document.getElementById("upcomingTime").value = 45;
 		document.getElementById("currentTime").disabled = false;
@@ -288,7 +286,7 @@ function toggleGoogleSheet(_checked){
 	document.getElementById("myGSheetUrl").disabled = _checked ? false : true;
 	document.getElementById("loadDataButton").disabled = _checked ? false : true		
 			
-	if(document.getElementById("ifGoogleSheetData").checked == true){
+	if(document.getElementById("ifGoogleSheetData").checked === true){
 		ifGSheet = true;
 		document.getElementById("myGSheetUrl").value = ""
 		document.getElementById("myGSheetUrl").value = localStorage.getItem("ls_my_GoogleSheetUrl")
@@ -314,12 +312,12 @@ function toggleGoogleSheet(_checked){
 }
 
 function toggleCustomSorting(){
-	if(document.getElementById("myCustomSortingBo").checked == true){
+	if(document.getElementById("myCustomSortingBo").checked === true){
 		for(var co=0; co <TourniaPoolswithTeams.length; co++){
 			var my_poolNr = co+1;										nrofTourniaPoolsArray.push(my_poolNr)
 			var tourniaPoolinGSheet = inArray(TourniaPoolswithTeams[co].name, GooglePoolsArray)
 			tourniaPoolNrinGSheet = inArray(my_poolNr, GoogleCustomOrderArray)
-			if(tourniaPoolNrinGSheet == false){
+			if(tourniaPoolNrinGSheet === false){
 				customOrderError = true;
 				my_error = "Order number '" + my_poolNr + "' is missing in the Google Sheet. Please insert it and load the data again."
 				
@@ -340,7 +338,7 @@ function toggleCustomSorting(){
 		}		
 		
 	}
-	if(document.getElementById("myCustomSortingBo").checked == false){
+	if(document.getElementById("myCustomSortingBo").checked === false){
 		document.getElementById("customOrderCheckmark").style.display = "none"
 	}
 }
@@ -413,14 +411,14 @@ function placeVarsInput(){
 		var varName = lsVarN.split("_")[2]
 		//log("VarName:",  varName, lsVarV)
 		
-		if(varName == "tournamentId" && (lsVarV == null || lsVarV == undefined || lsVarV == "undefined")){
+		if(varName === "tournamentId" && (lsVarV === null || lsVarV === undefined || lsVarV === "undefined")){
 			var tournamantIDInUrl = window.location.href.split("?").pop()
 			log(tournamantIDInUrl)
-			if(tournamantIDInUrl == "http://www.tourniadashboard.nl/" || tournamantIDInUrl == "undefined" || tournamantIDInUrl == null || tournamantIDInUrl == "http://www.tourniadashboard.nl/test/" || tournamantIDInUrl == "http://www.tourniadashboard.nl/test/tournament.php" || tournamantIDInUrl == "http://www.tourniadashboard.nl/tournament.php" || tournamantIDInUrl == "http://tourniadashboard.nl/" || tournamantIDInUrl == "http://tourniadashboard.nl/test/" || tournamantIDInUrl == "http://tourniadashboard.nl/tournament.php" || tournamantIDInUrl == "http://tourniadashboard.nl/test/tournament.php"){
+			if(tournamantIDInUrl === "http://www.tourniadashboard.nl/" || tournamantIDInUrl === "undefined" || tournamantIDInUrl === null || tournamantIDInUrl === "http://www.tourniadashboard.nl/test/" || tournamantIDInUrl === "http://www.tourniadashboard.nl/test/tournament.php" || tournamantIDInUrl === "http://www.tourniadashboard.nl/tournament.php" || tournamantIDInUrl === "http://tourniadashboard.nl/" || tournamantIDInUrl === "http://tourniadashboard.nl/test/" || tournamantIDInUrl === "http://tourniadashboard.nl/tournament.php" || tournamantIDInUrl === "http://tourniadashboard.nl/test/tournament.php"){
 				tournamantIDInUrl = ""
 			}
 			log(tournamantIDInUrl)
-			if(tournamantIDInUrl == "" || tournamantIDInUrl == null || tournamantIDInUrl == undefined || tournamantIDInUrl == "undefined"){
+			if(tournamantIDInUrl === "" || tournamantIDInUrl === null || tournamantIDInUrl === undefined || tournamantIDInUrl === "undefined"){
 				log("tournament id return empty")
 				tournamentIdFromUrl = false
 				ifEmptyTournament = true
@@ -431,11 +429,11 @@ function placeVarsInput(){
 				tournamentIdFromUrl = true
 				return tournamantIDInUrl	
 			}
-		} else if (lsVarV == null || lsVarV == undefined || ifEmptyTournament == true){
+		} else if (lsVarV === null || lsVarV === undefined || ifEmptyTournament === true){
 			log("null storage value for:", varName, "returning:", defaultvaluesObj[varName])
 			return defaultvaluesObj[varName] 
 		} else {
-			if(tournamentIdFromUrl == true){
+			if(tournamentIdFromUrl === true){
 				log("default storage value with tid in URL")
 				ifEmptyTournament = false
 				return defaultvaluesObj[varName] 
@@ -449,13 +447,13 @@ function placeVarsInput(){
 	}
 	
 	//apply storage values
-	if(tournamentChange == true){
+	if(tournamentChange === true){
 		log("change in tournament id")
 		if(urlData[0] != ""){
 			document.getElementById("myTournamentId").value = urlData[0]
 			var my_tournamentInfoUrl = _tourniaApiUrl + urlData[0] + "/tournament"
 				log(my_tournamentInfoUrl)
-				if(sampleData == false){
+				if(sampleData === false){
 					$.getJSON(my_tournamentInfoUrl, function(info) {
 						var my_tournamentInfo = info
 						})
@@ -473,7 +471,7 @@ function placeVarsInput(){
 						})
 					} else {
 						var nope_error = true
-						if(nope_error == true){
+						if(nope_error === true){
 							//log("tournament exists!")
 							applyStorageValues(true)
 						} else {
@@ -496,7 +494,7 @@ function placeVarsInput(){
 	
 	function applyStorageValues(tournamentExists){
 		log("apply storage values...")
-		if(tournamentExists == true){
+		if(tournamentExists === true){
 			document.getElementById("myTournamentId").value = lsCheck(ls1N, ls1, my_defaultVarsObject)
 			document.getElementById("ifCurrentMatches").checked = lsCheck(ls2N, ls2, my_defaultVarsObject)
 			document.getElementById("ifUpcomingMatches").checked = lsCheck(ls3N, ls3, my_defaultVarsObject)
@@ -527,47 +525,52 @@ function placeVarsInput(){
 
 			//apply disabled storage
 			
-			document.getElementById("myReloadTimeInput").disabled = (lsCheck(ls6N, ls6, my_defaultVarsObject) == false)
+			document.getElementById("myReloadTimeInput").disabled = (lsCheck(ls6N, ls6, my_defaultVarsObject) === false)
 			
 			document.getElementById("minPageTime").disabled = lsCheck(ls27N, ls27, my_defaultVarsObject)
-			document.getElementById("upcomingTime").disabled = (lsCheck(ls27N, ls27, my_defaultVarsObject) == true || lsCheck(ls10N, ls10, my_defaultVarsObject) == false)
-			document.getElementById("currentTime").disabled = (lsCheck(ls27N, ls27, my_defaultVarsObject) == true || lsCheck(ls11N, ls11, my_defaultVarsObject) == false)
-			document.getElementById("postponedTime").disabled = (lsCheck(ls27N, ls27, my_defaultVarsObject) == true || lsCheck(ls12N, ls12, my_defaultVarsObject) == false)
+			document.getElementById("upcomingTime").disabled = (lsCheck(ls27N, ls27, my_defaultVarsObject) === true || lsCheck(ls10N, ls10, my_defaultVarsObject) === false)
+			document.getElementById("currentTime").disabled = (lsCheck(ls27N, ls27, my_defaultVarsObject) === true || lsCheck(ls11N, ls11, my_defaultVarsObject) === false)
+			document.getElementById("postponedTime").disabled = (lsCheck(ls27N, ls27, my_defaultVarsObject) === true || lsCheck(ls12N, ls12, my_defaultVarsObject) === false)
 				
-			document.getElementById("ifGoogleSheetData").disabled = (lsCheck(ls5N, ls5, my_defaultVarsObject) == false) 
-			document.getElementById("myGSheetUrl").disabled = (lsCheck(ls13N, ls13, my_defaultVarsObject) == false)
+			document.getElementById("ifGoogleSheetData").disabled = (lsCheck(ls5N, ls5, my_defaultVarsObject) === false) 
+			document.getElementById("myGSheetUrl").disabled = (lsCheck(ls13N, ls13, my_defaultVarsObject) === false)
 			document.getElementById("myCustomSortingBo").disabled =  true
 			
-			document.getElementById("umStatusColumn").disabled = (lsCheck(ls2N, ls2, my_defaultVarsObject) == false)
-			document.getElementById("ExpectedTimeBo").disabled = (lsCheck(ls2N, ls2, my_defaultVarsObject) == false)
+			document.getElementById("umStatusColumn").disabled = (lsCheck(ls2N, ls2, my_defaultVarsObject) === false)
+			document.getElementById("ExpectedTimeBo").disabled = (lsCheck(ls2N, ls2, my_defaultVarsObject) === false)
 			
-			document.getElementById("playingTimeColumn").disabled = (lsCheck(ls3N, ls3, my_defaultVarsObject) == false)
-			document.getElementById("predictedTimeColumn").disabled = (lsCheck(ls3N, ls3, my_defaultVarsObject) == false)
+			document.getElementById("playingTimeColumn").disabled = (lsCheck(ls3N, ls3, my_defaultVarsObject) === false)
+			document.getElementById("predictedTimeColumn").disabled = (lsCheck(ls3N, ls3, my_defaultVarsObject) === false)
 			
-			document.getElementById("showTotTeamsCb").disabled = (lsCheck(ls5N, ls5, my_defaultVarsObject) == false)
-			document.getElementById("showRoundsNeededCb").disabled = (lsCheck(ls5N, ls5, my_defaultVarsObject) == false)
-			document.getElementById("showRoundsCreatedCb").disabled = (lsCheck(ls5N, ls5, my_defaultVarsObject) == false)
-			document.getElementById("showRoundsLeftCb").disabled = (lsCheck(ls5N, ls5, my_defaultVarsObject) == false)
-			document.getElementById("showStatusCb").disabled = (lsCheck(ls5N, ls5, my_defaultVarsObject) == false)
-			document.getElementById("showByeDataCb").disabled = (lsCheck(ls5N, ls5, my_defaultVarsObject) == false)
+			document.getElementById("showTotTeamsCb").disabled = (lsCheck(ls5N, ls5, my_defaultVarsObject) === false)
+			document.getElementById("showRoundsNeededCb").disabled = (lsCheck(ls5N, ls5, my_defaultVarsObject) === false)
+			document.getElementById("showRoundsCreatedCb").disabled = (lsCheck(ls5N, ls5, my_defaultVarsObject) === false)
+			document.getElementById("showRoundsLeftCb").disabled = (lsCheck(ls5N, ls5, my_defaultVarsObject) === false)
+			document.getElementById("showStatusCb").disabled = (lsCheck(ls5N, ls5, my_defaultVarsObject) === false)
+			document.getElementById("showByeDataCb").disabled = (lsCheck(ls5N, ls5, my_defaultVarsObject) === false)
 		} else {
 			alert("tournament if error")
 		}
 	}
 	
-	if(expectedTimesFunctionality == false){
+	if(expectedTimesFunctionality === false){
 			my_showExpectedTimeColumn = false
 			showExpectedTimeColumn = false
 			document.getElementById("ExpectedTimeBo").checked = false
 			document.getElementById("expectedTimesOption").style.display = "none"
 	}
-	if(predictedTimesFunctionality == false){
+	if(predictedTimesFunctionality === false){
 		my_showPredictedTimeColumn = false
 		showPredictedTimeColumn = false
 		document.getElementById("predictedTimeColumn").checked = false
 		document.getElementById("predictedTimesOption").style.display = "none"
+		document.getElementById("CM_notes").style.display = "none";
 	}
-	if(slowLoading == false){
+	if (sampleData === true) {
+		document.getElementById("ifReloadTablesBo").checked = false;
+		toggleReloadTables(this.checked);
+	}
+	if(slowLoading === false){
 		log(" dddd dgr ")
 		my_showRoundsNeededColumn = false
 		my_showRoundsCreatedColumn = false
@@ -596,28 +599,28 @@ function getVars(){
 	my_ifPostponedTable = document.getElementById("ifPostponedMatches").checked
 	my_ifPoolsTable = document.getElementById("ifPoolsOverview").checked
 	my_ifReloadTables = document.getElementById("ifReloadTablesBo").checked 
-	if(document.getElementById("myReloadTimeInput").value == ""){
+	if(document.getElementById("myReloadTimeInput").value === ""){
 		my_reloadTime = ""
 	} else {
 		my_reloadTime = Number(document.getElementById("myReloadTimeInput").value)
 	}
 	my_ifChangeTabs = document.getElementById("ifChangeTabs").checked
-	if(document.getElementById("minPageTime").value == ""){
+	if(document.getElementById("minPageTime").value === ""){
 		my_minPageTime = ""
 	} else {
 		my_minPageTime = Number(document.getElementById("minPageTime").value)
 	}
-	if(document.getElementById("upcomingTime").value == ""){
+	if(document.getElementById("upcomingTime").value === ""){
 		my_upcomingTime = ""
 	} else {
 		my_upcomingTime = Number(document.getElementById("upcomingTime").value)
 	}
-	if(document.getElementById("currentTime").value == ""){
+	if(document.getElementById("currentTime").value === ""){
 		my_currentTime = ""
 	} else {
 		my_currentTime = Number(document.getElementById("currentTime").value)
 	}
-	if(document.getElementById("postponedTime").value == ""){
+	if(document.getElementById("postponedTime").value === ""){
 		my_postponedTime = ""
 	} else {
 		my_postponedTime = Number(document.getElementById("postponedTime").value)
@@ -639,22 +642,26 @@ function getVars(){
 	my_ifPagingTable = document.getElementById("if_PagingTable").checked
 	my_IfOrganizerViewPreset = document.getElementById("organizerPreset").checked
 	
-	if(expectedTimesFunctionality == false){
+	if(expectedTimesFunctionality === false){
 		my_showExpectedTimeColumn = false
 		showExpectedTimeColumn = false
 		document.getElementById("ExpectedTimeBo").checked = false
 		document.getElementById("expectedTimesOption").style.display = "none"
 	}
-	if(predictedTimesFunctionality == false){
+	if(predictedTimesFunctionality === false){
 		my_showPredictedTimeColumn = false
 		showPredictedTimeColumn = false
 		document.getElementById("predictedTimeColumn").checked = false
-		document.getElementById("predictedTimesOption").style.display = "none"
+		document.getElementById("predictedTimesOption").style.display = "none";
+		document.getElementById("CM_notes").style.display = "none";
+	}
+	if (sampleData === true) {
+		document.getElementById("ifReloadTablesBo").checked = false;
+		toggleReloadTables(this.checked);
 	}
 	
-	
 	//vars array push order for url
-	if(my_GoogleSheetUrl == null || my_GoogleSheetUrl == undefined || my_GoogleSheetUrl == ""){
+	if(my_GoogleSheetUrl === null || my_GoogleSheetUrl === undefined || my_GoogleSheetUrl === ""){
 		log(my_tournamentId)
 		my_settingsVarsArray.push(my_tournamentId)
 	} else {
@@ -708,7 +715,7 @@ function checkVariables(){
 	var _tournamentInfoUrl = _tourniaApiUrl + my_tournamentId + "/tournament"
 	var poolsUrl = _tourniaApiUrl + my_tournamentId + "/pools"
 	log("set tournament id:", my_tournamentId, "localstorage:", localStorage.getItem("ls_my_tournamentId"))
-	if(my_tournamentId == ""){
+	if(my_tournamentId === ""){
 		my_error = "No Tournament id is provided."
 		if_error = true;
 		my_errorHandling(my_error)	
@@ -731,8 +738,8 @@ function checkVariables(){
 	}
 	
 	if(my_tournamentId != ""){
-		if(loadNewTournament == true){
-			if(sampleData == false){
+		if(loadNewTournament === true){
+			if(sampleData === false){
 				$.getJSON(_tournamentInfoUrl, function(info) {
 							my_tournamntInfo = info
 						})
@@ -749,7 +756,7 @@ function checkVariables(){
 						})
 			} else {
 				var nope_error = false
-				if(nope_error == true){
+				if(nope_error === true){
 					my_TournamentInfo = tournamentInfo_LOCAL
 					getTournamentData(poolsUrl, my_ifGoogleSheetLoad, my_GoogleSheetUrl, my_settingsVarsArray, my_settingsVarsObject, function() {
 						checkGoogleSheet();
@@ -763,12 +770,12 @@ function checkVariables(){
 			}
 		} else {
 			if(loadNewGSheet = true){ //new GSheet
-				if(my_ifGoogleSheetLoad == false){
+				if(my_ifGoogleSheetLoad === false){
 					if_error = false
 					document.getElementById("createPageLoader").style.display = "none"
 					document.getElementById("GDataLoader").style.display = "none"
 					sendingData(my_settingsVarsArray, my_settingsVarsObject)
-				} else if(my_ifGoogleSheetLoad == true && my_GoogleSheetUrl == ""){
+				} else if(my_ifGoogleSheetLoad === true && my_GoogleSheetUrl === ""){
 					my_error = "No Google Sheet URL is provided."
 					if_error = true
 					my_errorHandling(my_error)
@@ -780,12 +787,12 @@ function checkVariables(){
 					sendingData(my_settingsVarsArray, my_settingsVarsObject)
 				}
 			} else { // no new GSheet
-				if(my_ifGoogleSheetLoad == false){
+				if(my_ifGoogleSheetLoad === false){
 					if_error = false
 					document.getElementById("createPageLoader").style.display = "none"
 					document.getElementById("GDataLoader").style.display = "none"
 					sendingData(my_settingsVarsArray, my_settingsVarsObject)
-				} else if(my_ifGoogleSheetLoad == true && my_GoogleSheetUrl == ""){
+				} else if(my_ifGoogleSheetLoad === true && my_GoogleSheetUrl === ""){
 					my_error = "No Google Sheet URL is provided."
 					if_error = true
 					my_errorHandling(my_error)
@@ -800,18 +807,18 @@ function checkVariables(){
 	}
 	
 	function getTournamentData(poolsUrl, my_ifGoogleSheetLoad, GoogleSheetUrl, my_settingsVarsArray, my_settingsVarsObject, getGoogleData){
-		if(sampleData == false){
+		if(sampleData === false){
 			$.getJSON(poolsUrl, function(data) {
 						my_tourniaPools = data
 					})
 					.success(function() {
 							//localStorage.setItem("ls_my_tournamentId", my_tournamentId);
-							if(my_ifGoogleSheetLoad == false){
+							if(my_ifGoogleSheetLoad === false){
 								if_error = false
 								document.getElementById("createPageLoader").style.display = "none"
 								document.getElementById("GDataLoader").style.display = "none"
 								sendingData(my_settingsVarsArray, my_settingsVarsObject)
-							} else if(my_ifGoogleSheetLoad == true && my_GoogleSheetUrl == ""){
+							} else if(my_ifGoogleSheetLoad === true && my_GoogleSheetUrl === ""){
 								my_error = "No Google Sheet URL is provided."
 								if_error = true
 								my_errorHandling(my_error)
@@ -832,13 +839,13 @@ function checkVariables(){
 		} else {
 			var nope_error = false
 				my_tourniaPools = my_Pools_LOCAL
-			if(nopoe_error == false){
-					if(my_ifGoogleSheetLoad == false){
+			if(nopoe_error === false){
+					if(my_ifGoogleSheetLoad === false){
 						if_error = false
 						document.getElementById("createPageLoader").style.display = "none"
 						document.getElementById("GDataLoader").style.display = "none"
 						sendingData(my_settingsVarsArray, my_settingsVarsObject)
-					} else if(my_ifGoogleSheetLoad == true && my_GoogleSheetUrl == ""){
+					} else if(my_ifGoogleSheetLoad === true && my_GoogleSheetUrl === ""){
 						my_error = "No Google Sheet URL is provided."
 						if_error = true
 						my_errorHandling(my_error)
@@ -859,24 +866,24 @@ function checkVariables(){
 	}
 	
 	function checkGoogleSheet(my_ifGoogleSheetLoad, my_GoogleSheetUrl){		
-		if(ifGSheet == true && my_GoogleSheetUrl != ""){
+		if(ifGSheet === true && my_GoogleSheetUrl != ""){
 			loadGData(my_GoogleSheetUrl)
 		}
 		var ifGoogleSheetHasString
-		if(my_GoogleSheetUrl == null || my_GoogleSheetUrl ==""){
+		if(my_GoogleSheetUrl === null || my_GoogleSheetUrl ===""){
 				ifGoogleSheetHasString = false
 		} else {
 			ifGoogleSheetHasString = true
 		}
-		if(ifGSheet == true && my_GoogleSheetUrl == ""){
+		if(ifGSheet === true && my_GoogleSheetUrl === ""){
 			my_error = "No Google Sheet URL is provided."
 			if_error = true
 			my_errorHandling(my_error)
 			document.getElementById("GDataLoader").style.display = "none"
 			
-		} else if(ifGSheet == false && ifGoogleSheetHasString == false){
+		} else if(ifGSheet === false && ifGoogleSheetHasString === false){
 			if_error = false
-		}  if(ifGSheet == false && ifGoogleSheetHasString == true){
+		}  if(ifGSheet === false && ifGoogleSheetHasString === true){
 			my_GoogleSheetUrl = ""
 			if_error = false
 		} else {
@@ -896,12 +903,12 @@ function loadGData(googleUrl){
 	document.getElementById("customOrderCheckmark").style.display = "none"
 	document.getElementById("customOrderCross").style.display = "none"
 		
-	if (my_tournamentId == "" && googleUrl == ""){
+	if (my_tournamentId === "" && googleUrl === ""){
 		my_error = "No Tournament id is provided."
 		if_error = true;
 		my_errorHandling(my_error)
 		document.getElementById("GDataLoader").style.display = "none"
-	} else if(my_tournamentId != "" && googleUrl == ""){
+	} else if(my_tournamentId != "" && googleUrl === ""){
 		my_error = "No Google Sheet URL is provided."
 		if_error = true
 		my_errorHandling(my_error)
@@ -928,7 +935,7 @@ function loadGData(googleUrl){
 							my_editBox.appendChild(my_editUrlClick)
 							my_errorHandling(my_error)
 					}
-					if(ifPoolColumn == undefined){
+					if(ifPoolColumn === undefined){
 							my_error = "No 'Pool' column name exists in your Google Sheet."
 							if_error = true
 							document.getElementById("GDataLoader").style.display = "none"
@@ -955,7 +962,7 @@ function loadGData(googleUrl){
 								TourniaPoolswithTeams = []
 								for (var tap=0; tap < my_tourniaPools.length; tap++){
 									var myTotTeams = my_tourniaPools[tap].totTeams
-									if (myTotTeams == 0){
+									if (myTotTeams === 0){
 									} else {
 										TourniaPoolswithTeams.push(my_tourniaPools[tap])
 									} 
@@ -970,7 +977,7 @@ function loadGData(googleUrl){
 									nrofTourniaPoolsArray.push(my_poolNr)
 									var tourniaPoolinGSheet = inArray(TourniaPoolswithTeams[tp].name, GooglePoolsArray)
 									tourniaPoolNrinGSheet = inArray(my_poolNr, GoogleCustomOrderArray)
-									if(tourniaPoolinGSheet == false){
+									if(tourniaPoolinGSheet === false){
 										excelFunction = "=IMPORTXML(\"https://www.tournia.net/api/v2/" + my_tournamentId + "/pools?tournament_ID=" + my_tournamentId + "&_format=xml;\"//item/name\")"
 										my_error = "Tournia has the '" + TourniaPoolswithTeams[tp].name +"' pool that the Google Sheet does not.\n\nProvided Tournament ID: "+ my_tournamentId+"\nGoogle Sheet Tournament ID: "+ tournamentIDGSheet+"\n\nMake sure to add the missing pools manually or import the pools in the Google sheet automatically. This can be done by inserting the following line of code in cell E2:\n\n" + excelFunction + "\n\nThen copy the values into cell A2 using the special paste 'paste values only' option.\n Automatically retreiving the pool names in the 'Pool' column of the Google sheet is not possible because the website will not retrieve these names when the Google sheet is closed. Copying them manually into column A2 is therefore required." 
 										if_error = true
@@ -981,12 +988,12 @@ function loadGData(googleUrl){
 									}	
 								}				
 								//if no errors so far and if no custom order (if wanted) errors turn on create page button and show table if no errors
-								if(if_error == false){
+								if(if_error === false){
 									var noOrderNr = false;
 									if(confirm("Would you like custom ordering of pools in the 'Pools Overview' table to be turned on?")){
 										for (gp = 0; gp < my_googlePools.length; gp++){
 													var GPinTP = inArray(my_googlePools[gp].Pool, TourniaPoolsWithTeamsArray)
-													if(GPinTP == false){
+													if(GPinTP === false){
 														var GPaOrderNr = my_googlePools[gp].Order
 														if(GPaOrderNr !=""){
 															if_error = true
@@ -999,7 +1006,7 @@ function loadGData(googleUrl){
 														}
 													}
 										}
-										if(ifOrderColumn == undefined){
+										if(ifOrderColumn === undefined){
 												my_error = "No 'Order' column name exists in your Google Sheet. Insert it and load the data again."
 												if_error = true
 												document.getElementById("GDataLoader").style.display = "none"
@@ -1009,7 +1016,7 @@ function loadGData(googleUrl){
 												//document.getElementById("GSPreviewTable").appendChild(iframe);
 												my_editBox.appendChild(my_editUrlClick)
 												my_errorHandling(my_error)
-										} else if (OrderNrInNotPlayingPool == true){
+										} else if (OrderNrInNotPlayingPool === true){
 												my_error = "The Pool '" + myUnplayingPoolwithOrderNr + "' that is not playing or not existing in Tournia has a value in the 'Order' column. Please remove it and load the data again."	
 												if_error = true
 												document.getElementById("GDataLoader").style.display = "none"
@@ -1047,7 +1054,7 @@ function loadGData(googleUrl){
 								}
 							})
 							.error(function() {
-									if (my_tournamentId == ""){
+									if (my_tournamentId === ""){
 										my_error = "No tournament id is provided."
 										if_error = true
 										my_errorHandling(my_error)
@@ -1076,11 +1083,11 @@ function sendingData(array, object){
 	} else {
 		viewChange = false
 	}
-	if(loadFromUrl == true && loadFromSetupWindow == true){ //new to0urnament ID
+	if(loadFromUrl === true && loadFromSetupWindow === true){ //new to0urnament ID
 		log("create url and page")
 		//array.push("true")
 		//object.setupVariables = true
-		//startingPage == false
+		//startingPage === false
 		//checkVariables()
 		setAllLocalStorage()
 		placeVarsInput()
@@ -1089,7 +1096,7 @@ function sendingData(array, object){
 		startSetupWindow = false
 		sendData(array, object) //reload page
 		document.getElementById("createPageLoader").style.display = "none"
-	} else if(loadFromUrl == false && startSetupWindow == true && loadFromSetupWindow == true){ //create page from no url input	
+	} else if(loadFromUrl === false && startSetupWindow === true && loadFromSetupWindow === true){ //create page from no url input	
 		log("create page from no url input")
 		//checkVariables()
 		setAllLocalStorage()
@@ -1099,7 +1106,7 @@ function sendingData(array, object){
 		startSetupWindow = false
 		sendData(array, object) //reload page
 		document.getElementById("createPageLoader").style.display = "none"
-	} else if(loadFromUrl == false && startSetupWindow == false && loadFromSetupWindow == true){ //reload tables	
+	} else if(loadFromUrl === false && startSetupWindow === false && loadFromSetupWindow === true){ //reload tables	
 		log("no tournament ID change and just reload tables with these new settings:", my_settingsVarsObject)
 		tournamentChange = false
 		//checkVariables()
@@ -1109,7 +1116,7 @@ function sendingData(array, object){
 		setVars()
 		applyVars()
 		startSetupWindow = false
-		if(viewChange == false){
+		if(viewChange === false){
 			tableConfigurations()
 			removeTables()
 			$('#settingsModal').modal('hide')
