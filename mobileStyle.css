@@ -1,0 +1,182 @@
+body{
+	background-color: #f3f2f0;
+	/*line-height: 1.2vw;*/
+	overflow-y: scroll;
+}
+#parent{
+	height: 100%;
+	width: 100%;
+}
+
+a {
+	color: #43a73f;
+    text-decoration: none;
+}
+
+a:hover{
+	color:	#2c6c28;
+    text-decoration: none;
+}
+
+#tab-contents {
+	margin-top: 2px
+}
+
+.footer{
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+}
+.navbar-button{
+	white-space: normal;
+	height: 40px;
+	bottom: 0;
+}
+
+.loader {
+	border: 12px solid #f3f3f3;/* Light grey */
+	border-top: 12px solid #43a73f;
+	border-radius: 50%;
+	width: 120px;
+	height: 120px;
+	animation: spin 2s linear infinite;
+	float: left;
+	margin-left: 85px;
+	margin-top: 50px;
+}
+@keyframes spin {
+	0% { transform: rotate(0deg); }
+	100% { transform: rotate(360deg); }
+}
+
+.TournamentUrlName{
+	width: 100%;
+	display: inline-block;
+	margin-top: 20px;
+	padding-bottom: 10px;
+	text-align: center;
+	font-weight: bold;
+	/*margin-left: 35%;*/
+	font-family: courier, monospace;
+	font-size: 6vw;
+	border-bottom: .2em solid #43a73f;
+}
+
+
+#currentMatchesBox{
+	margin-bottom: 80px;
+}
+#upcomingMatchesBox{
+	margin-bottom: 80px;
+}
+#postponedMatchesBox{
+	margin-bottom: 80px;
+}
+
+#OverviewRoundsBox{
+	margin-bottom: 80px;
+}
+
+#resultsRankingsBox{
+	margin-bottom: 80px;
+}
+#TournamentUrlName{
+	width: 100%
+	display: inline-block;
+	margin-top: 30px;
+	text-align: center;
+	font-weight: bold;
+	/*font-size: 5vw;*/
+	/*margin-left: 35%;*/
+	font-family: courier, monospace;
+}
+
+#settingsButton{
+	float:left;
+	z-index: 99;
+	font-size: 6px;
+	
+}
+
+.btn-group-sm>.btn, .btn-sm {
+    padding: 5px 10px;
+    font-size: 10px;
+    line-height: 1px;
+    border-radius: 3px;
+}
+
+.ui-navbar li .ui-btn {
+    font-size: 3vw;
+    display: block;
+    margin: 0;
+    border-right-width: 0;
+	display: flex;
+    justify-content: center;
+    flex-direction: column;
+	text-overflow: clip;
+}
+
+#my_header{
+	width: 100%;
+	display: inline-block;
+}
+
+.note{
+	/*font-size: 0.95vw;*/
+}
+
+.showNone{
+	display: none;
+	border: 0px;
+}
+
+
+
+/**Results & Rankings**/
+
+/* Style the tab */
+div.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+}
+
+/* Style the buttons inside the tab */
+div.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+}
+
+/* Change background color of buttons on hover */
+div.tab button:hover {
+    background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+div.tab button.active {
+    background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+}
+
+.ui-page-theme-a .ui-btn.ui-btn-active, html .ui-bar-a .ui-btn.ui-btn-active, html .ui-body-a .ui-btn.ui-btn-active, html body .ui-group-theme-a .ui-btn.ui-btn-active, html head+body .ui-btn.ui-btn-a.ui-btn-active, .ui-page-theme-a .ui-checkbox-on:after, html .ui-bar-a .ui-checkbox-on:after, html .ui-body-a .ui-checkbox-on:after, html body .ui-group-theme-a .ui-checkbox-on:after, .ui-btn.ui-checkbox-on.ui-btn-a:after, .ui-page-theme-a .ui-flipswitch-active, html .ui-bar-a .ui-flipswitch-active, html .ui-body-a .ui-flipswitch-active, html body .ui-group-theme-a .ui-flipswitch-active, html body .ui-flipswitch.ui-bar-a.ui-flipswitch-active, .ui-page-theme-a .ui-slider-track .ui-btn-active, html .ui-bar-a .ui-slider-track .ui-btn-active, html .ui-body-a .ui-slider-track .ui-btn-active, html body .ui-group-theme-a .ui-slider-track .ui-btn-active, html body div.ui-slider-track.ui-body-a .ui-btn-active {
+    background-color: #43a73f;
+    border-color: #3c7539;
+    color: #fff;
+    text-shadow: 0 1px 0 #3c7539;
+}
+
+.ui-page-theme-a .ui-radio-on:after, html .ui-bar-a .ui-radio-on:after, html .ui-body-a .ui-radio-on:after, html body .ui-group-theme-a .ui-radio-on:after, .ui-btn.ui-radio-on.ui-btn-a:after {
+    border-color: #3c7539;
+}
