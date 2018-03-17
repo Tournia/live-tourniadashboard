@@ -146,6 +146,13 @@ function createPage(){
 		stopLoaders()
 	}
 
+	if (ifOrganizerViewPreset === true) {
+		document.getElementById("myLeftBar").style.display = "none";
+		document.getElementById("myRightBar").style.display = "none";
+	} else {
+		document.getElementById("myLeftBar").style.display = "";
+		document.getElementById("myRightBar").style.display = "";
+	}
 	//refresh tables interval
 }
 	//run clock		

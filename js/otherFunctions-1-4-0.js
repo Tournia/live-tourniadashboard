@@ -335,3 +335,9 @@ return DST}
 function mailTo(){
 	window.open("mailto:jellejstuurman@gmail.com?subject=Tournia dashboard support",'_blank')
 }
+
+function createProgressBar(tableId) {
+	log(tableId)
+	var CM_pb = "<div id='myProgress'><div id='myBar'></div></div>";
+	$("#" + tableId + "_paginate").prepend(CM_pb);
+}

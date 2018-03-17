@@ -151,6 +151,44 @@ function pageTimeconfig(ifTabTable, tableName, table, pageCount, minPageTime, ta
 return my_returns
 }
 
+function leftProgressBar(id, interval) {
+	var elem = document.getElementById(id);
+	var width = 0;
+	var rate = interval / 100
+
+	var timer = setInterval(frame, rate);
+
+
+	function frame() {
+		if (width >= 100) {
+			clearInterval(timer);
+			elem.style.width = '0%';
+		} else {
+			width++;
+			elem.style.width = width + '%';
+		}
+	}
+}
+
+function rightProgressBar(id, interval) {
+	var elem = document.getElementById(id);
+	var width = 0;
+	var rate = interval / 100
+
+	var timer = setInterval(frame, rate);
+
+
+	function frame() {
+		if (width >= 100) {
+			clearInterval(timer);
+			elem.style.width = '0%';
+		} else {
+			width++;
+			elem.style.width = width + '%';
+		}
+	}
+}
+
 function nextTablePage(ifTabTable, tableName, table, pageTime, tableTime){
  // Get the page info, so we know what the last is
 	//log("inNextPageTime\nTableName:", tableName,"\nPageTime", pageTime, "\ntableTime:", tableTime)
@@ -173,7 +211,7 @@ function nextTablePage(ifTabTable, tableName, table, pageTime, tableTime){
 		// Increment the current page int
 		my_currentInt++;
 
-		// If were on the last page, reset the currentInt to the first page #
+		// If on the last page, reset the currentInt to the first page #
 		if ( my_currentInt ===  endInt){
 			if(ifTabTable === true && countLeftTables > 1){
 				clearInterval(tabTableInterval)
@@ -233,6 +271,7 @@ function nextTablePage(ifTabTable, tableName, table, pageTime, tableTime){
 			} else //only one table shown
 				currentInt = 0;
 		}
+		leftProgressBar("myLeftBar", pageTime);
 	}, pageTime);
 	
 }
@@ -262,6 +301,7 @@ function poolsOverviewTableTime(ifTabTable, tableName, table, pageCount, pageTim
 		if ( POcurrentInt ===  endInt){
 				POcurrentInt = 0;
 		} 
+		rightProgressBar("myRightBar", pageTime + 2000);
 	}, pageTime + 2000)
 }
 

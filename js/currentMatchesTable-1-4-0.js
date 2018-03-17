@@ -459,7 +459,6 @@ function getCurrentMatchesTable(){
 	}
 	//paging	
 	if(ifPaging === true){
-		
 			function resizeCMTable(){
 				var countCMRows = paginationConfig('currentMatchesTable')
 				////log("countCMRows", countCMRows)
@@ -467,7 +466,6 @@ function getCurrentMatchesTable(){
 				////log("CM table destroyed")
 				var my_newLengthMenu = lengthMenu(true, allCMdata, countCMRows)
 				my_currentMatchesTable = makeCurrentMatchesTable(allCMdata, ifPaging, my_newLengthMenu)
-				
 				var my_CMDiv = document.getElementById('currentmatches-tab-content')
 				var my_CMDivHeight = my_CMDiv.offsetHeight	
 				function checkCMOverflow(table, data, ifPaging, origRowscount, my_newLengthMenu, my_tableHeight){
@@ -490,11 +488,11 @@ function getCurrentMatchesTable(){
 					} else {
 						var my_activeTab = $('.tab-content').find('.tab-pane.active').attr('id')
 						//log("no more resizing in CM; ativeTab:", my_activeTab)
-						if(my_activeTab === tabTableContents[0] && startTab === tabTableContents[0] && reloadedData === true){
+						if (my_activeTab === tabTableContents[0] && startTab === tabTableContents[0] && reloadedData === true) {
 							//log("in start tab CM")
-							var CMstarttimeout = setTimeout(function(){getCMpageCount()}, 1000)
+							var CMstarttimeout = setTimeout(function () { getCMpageCount() }, 500)
 							log("setting currentMathces interval")
-							refreshTimeInterval = setInterval(function(){ timeSinceLastRefreshTime += 1}, 1000)
+							refreshTimeInterval = setInterval(function(){ timeSinceLastRefreshTime += 1}, 500)
 							reloadedData = false
 						}
 					}
@@ -526,7 +524,7 @@ function getCurrentMatchesTable(){
 							pageConfig(my_currentMatchesTable)
 				}, 500)
 			}
-			
+		
 			$('#currentMatches-button').on('changeTable', function(e) {
 					CMdetectChangeCount +=1
 					if(CMdetectChangeCount === 1){
@@ -564,7 +562,8 @@ function getCurrentMatchesTable(){
 						}
 					}						
 			})
+		
 	}
-	
+
 document.getElementById("currentMatchesLoader").style.display = "none"
 }

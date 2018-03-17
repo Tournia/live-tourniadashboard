@@ -663,8 +663,7 @@ function getUpcomingMatchesTable(){
 		if(noUpcomingMatches === true){
 			//log("no UM")
 			my_upcomingMatchesTable = makeNoUpcomingMatchesTable(allUMdata, ifPaging, my_lengthMenu)
-			document.getElementById("UM_notes").style = "display: none"
-			
+			document.getElementById("UM_notes").style = "display: none";
 		} else {
 						
 			//try {
@@ -750,10 +749,10 @@ function getUpcomingMatchesTable(){
 						var tableInfo = table.page.info()
 						UMPageCount = tableInfo.pages
 						if(noUpcomingMatches === true){
-								upcomingMatchesTabTime = 5000
-							} else {
-								upcomingMatchesTabTime = (document.getElementById("upcomingTime").value * 1000) - 4000
-							}
+							upcomingMatchesTabTime = 5000
+						} else {
+							upcomingMatchesTabTime = (document.getElementById("upcomingTime").value * 1000) - 4000
+						}
 						pageTimeconfig(true, "UM", my_upcomingMatchesTable, UMPageCount,minPageTime, upcomingMatchesTabTime, allUMdata)
 					}
 					pageConfig(my_upcomingMatchesTable)

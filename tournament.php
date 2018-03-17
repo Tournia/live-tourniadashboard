@@ -12,7 +12,7 @@
 		var DEBUG_MODE
 		var sendingDataToDatabase
 	
-		var ifMobile = true //set to true if you want to work only in the mobile pages
+		var ifMobile = false //set to true if you want to work only in the mobile pages
 	
 		if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || ifMobile === true) {
 			ifMobile = true		
@@ -533,10 +533,14 @@
 			<nav id="myLeftTabsBox" >
 				<ul class="nav nav-tabs">
 					<li class="active" id="currentMatches-button"><a href="#currentmatches-tab-content" data-toggle="tab">Current matches</a></li>
-					<li  id="upcomingMatches-button"><a href="#upcomingmatches-tab-content" data-toggle="tab">Upcoming Matches</a></li>
+					<li id="upcomingMatches-button"><a href="#upcomingmatches-tab-content" data-toggle="tab">Upcoming Matches</a></li>
 					<li id="postponedMatches-button"><a href="#postponedmatches-tab-content" data-toggle="tab">Postponed matches</a></li>				
-				</ul>
+					<div id="myLeftProgress" class="myProgress">
+						<div id="myLeftBar" class="myProgressBar"></div>
+					</div>
+				</ul>	
 			</nav>
+			
 			<div class="tab-content" id="tab-contents">
 				<div id="currentmatches-tab-content" class="tab-pane active">
 						<table id="currentMatchesTable" width="100%">
@@ -622,6 +626,9 @@
 			<nav id="myRightTabsBox" >
 				<ul class="nav nav-tabs">
 					<li class="active" id="poolsOverview-button"><a href="#poolsOverview-tab-content" data-toggle="tab">Pools Overview</a></li>			
+					<div id="myRightProgress" class="myProgress">
+						<div id="myRightBar" class="myProgressBar"></div>
+					</div>
 				</ul>
 			</nav>
 			<div id="poolsOverview-tab-content" class="tab-pane">

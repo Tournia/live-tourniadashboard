@@ -820,3 +820,18 @@ Transparent Button With Visible Text
     background-color: #eee;
     border-color: #ddd;
 }
+
+.myProgress {
+
+	margin-top: 33px;
+	margin-right: 3px;
+	width: 15%;
+	float: right;
+	background-color: #ddd;
+}
+
+.myProgressBar {
+	width: 0%;
+	height: 5px;
+	background-color: #43a73f;
+}
