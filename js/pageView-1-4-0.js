@@ -216,6 +216,10 @@ function setrefreshTablesInterval(){
 					.then(function(){
 						if(ifAPIChangeDetected === true){
 							removeTables()
+							clearInterval(leftProgressBarInterval);
+							document.getElementById("myLeftBar").style.width = '0%';
+							clearInterval(rightProgressBarInterval);
+							document.getElementById("myRightBar").style.width = '0%';
 						} else {}
 					})
 				} else {

@@ -156,12 +156,12 @@ function leftProgressBar(id, interval) {
 	var width = 0;
 	var rate = interval / 100
 
-	var timer = setInterval(frame, rate);
+	var leftProgressBarInterval = setInterval(frame, rate);
 
 
 	function frame() {
 		if (width >= 100) {
-			clearInterval(timer);
+			clearInterval(leftProgressBarInterval);
 			elem.style.width = '0%';
 		} else {
 			width++;
@@ -175,12 +175,12 @@ function rightProgressBar(id, interval) {
 	var width = 0;
 	var rate = interval / 100
 
-	var timer = setInterval(frame, rate);
+	var rightProgressBarInterval = setInterval(frame, rate);
 
 
 	function frame() {
 		if (width >= 100) {
-			clearInterval(timer);
+			clearInterval(rightProgressBarInterval);
 			elem.style.width = '0%';
 		} else {
 			width++;
