@@ -10,7 +10,7 @@ v 1.0 has succefully been tested during 3 badminton tournaments
 # key features
 - display all information using auto adjusted tables and creating pages
 - show which teams have a bye in current/planned rounds
-- show expectedd time before play time in upcoming matches table
+- show expectedd time before play time in upcoming matches table (BETA)
 - decide how long each page is shown before moving to the next
 - decide which tables need to be shown on screen
 - full customized mobile pages
@@ -50,7 +50,7 @@ v 1.0 has succefully been tested during 3 badminton tournaments
 - Team 1 player names (with individual player colour coding: green = ready to play, yellow = currently playing, red = postponed)
 - Team 2 player names (with individual player colour coding: green = ready to play, yellow = currently playing, red = postponed)
 - status of match/pl;ayers (free court available, ready to Play, players playing, unavailable, priority match)
-- expected time bfeore play (based on average match durationo statistics per pool of 4 editions of ISBT Utrecht)
+- expected time before play (based on average match durationo statistics per pool of 4 editions of ISBT Utrecht) (BETA)
 
 ## Postponed matches table columns
 - match id

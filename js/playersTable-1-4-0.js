@@ -24,7 +24,8 @@ function getPlayersTable(player){
 		
 		//filter matches
 		my_playerMatches = []
-		for (var play in my_matches){
+		//log(my_matches)
+		for (var play in my_matches) {
 			var my_team1 = my_matches[play].team1
 			var my_team2 = my_matches[play].team2
 			if(my_team1.includes(player) === true){
@@ -32,7 +33,6 @@ function getPlayersTable(player){
 			} else if(my_team2.includes(player) === true){
 				my_playerMatches.push(my_matches[play])
 			} else {}
-			continue
 		}
 		//log(my_playerMatches)
 		for (var pla in my_playerMatches){

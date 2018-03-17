@@ -11,7 +11,7 @@
 	<!--<link rel="stylesheet" href="css/style.css" />-->
 	
 	<!--<link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">-->
-	<link   rel="stylesheet" href="css/libs/jquery_mobile.css" />	
+	<link rel="stylesheet" href="css/libs/jquery_mobile.css" />	
 	<link rel="stylesheet" href="css/libs/select2.css" />
 	
 	<script>
@@ -383,7 +383,6 @@
 		</div>
 	  </div>
 	</div>
-
 	
 	<div data-role="page" id="postponedMatches">
 		<div id="TournamentUrlName3" class="TournamentUrlName"></div>

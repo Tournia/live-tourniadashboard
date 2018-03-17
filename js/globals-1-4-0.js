@@ -9,7 +9,7 @@ expectedTimesFunctionality = false //enable or disable expected Times functional
 predictedTimesFunctionality = true //enable or disable predicted Times functionality
 expectedTimesDataTesting = false //always show upcoming matches table for expected time script testing
 AET = false //adjust expected times
-slowLoading = false //load all matxhes data for all info. Not necessary and thus can be turned off for faster loading
+slowLoading = true //load all matches data for all info. Required for rounds left, bye data and players table
 
 dataSetNr = 5 //ISBT Utrecht: 1-5; ISBT Amsterdam 1-9
 	//apply local datasets
@@ -47,7 +47,6 @@ var localStorageArray = []
 switch(window.location.protocol) {
    case 'http:':
 	 var runLocal = false
-	 
 	 break;
    case 'https:':
      var runLocal = false
@@ -67,14 +66,15 @@ if(expectedTimesDataTesting === true){
 }
 
 if(runLocal === false){
-	expectedTimesDataTesting = false
+	expectedTimesDataTesting = false;
+	DEBUG_MODE = false;
 } else{
 	sendingDataToDatabase = false
 }
 
 if(ifMobile === true){
 	sendingDataToDatabase = false;
-	slowLoading = false;
+	//slowLoading = false;
 }
 
 //overrules
