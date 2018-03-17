@@ -153,13 +153,12 @@
 	<script type="text/javascript" src="js/libs/dataTables_mobile.js"></script>
 	<!--<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.js"></script>
 	-->
-	
 	<script src="js/libs/select2.js"></script>
 
+	<script src="js/otherFunctions-1-4-0.js"></script>
 	<script src="js/globals-1-4-0.js"></script>
 	<script src="js/setupFunctions-1-4-0.js"></script>
 	<script src="js/options-1-4-0.js"></script>
-	<script src="js/otherFunctions-1-4-0.js"></script>
 	<script src="js/poolProperties-1-4-0.js"></script>
 	<script src="js/paginationFunctions-1-4-0.js"></script>
 	<script src="js/poolRankingsTable-1-4-0.js"></script>

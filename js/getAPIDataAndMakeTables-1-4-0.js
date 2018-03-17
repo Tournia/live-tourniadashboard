@@ -297,8 +297,7 @@ function _5AgetReadyPostponedFinishedMatchesData(){
 					noUMData.teamTwo1 = ""
 					noUMData.teamTwo2 = ""
 					noUMData.status = ""
-					noUMData.StdDevExpectedTime = ""
-				
+					noUMData[my_expectedTimeColumnName] = ""
 				allUMdata.push(noUMData)
 			} else {
 				noUpcomingMatches = false

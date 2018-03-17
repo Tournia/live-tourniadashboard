@@ -106,11 +106,11 @@
 
 	<!--<script type="text/javascript" src="js/libs/dataTables.js"></script>-->
 	<script type="text/javascript" src="js/libs/select2.js"></script>
- 
+ 	
+	<script src="js/otherFunctions-1-4-0.js"></script>
 	<script src="js/globals-1-4-0.js"></script>
 	<script src="js/setupFunctions-1-4-0.js"></script>
 	<script src="js/options-1-4-0.js"></script>
-	<script src="js/otherFunctions-1-4-0.js"></script>
 	<script src="js/poolProperties-1-4-0.js"></script>
 	<script src="js/paginationFunctions-1-4-0.js"></script>
 	<script src="js/poolRankingsTable-1-4-0.js"></script>

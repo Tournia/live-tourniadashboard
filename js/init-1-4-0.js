@@ -233,22 +233,27 @@ var timeString = time.toString();
 	//})
 	
 	//turn predicted / expected Times on or off
-	if(expectedTimesFunctionality === false){
-		showExpectedTimeColumn = false
-		if(ifMobile === false){
-			document.getElementById("ExpectedTimeBo").checked = false
-			document.getElementById("expectedTimesOption").style.display = "none"
-		}
-		document.getElementById("UM_notes").style.display="none"
-	}
-	if(predictedTimesFunctionality === false){
-		showPredictedTimeColumn = false
-		if(ifMobile === false){
-			document.getElementById("predictedTimeColumn").checked = false
-			document.getElementById("predictedTimesOption").style.display = "none"
-		}
-		document.getElementById("CM_notes").style.display="none"
-	}
+	 if (expectedTimesFunctionality === false) {
+		 showExpectedTimeColumn = false
+		 if (ifMobile === false) {
+			 document.getElementById("ExpectedTimeBo").checked = false
+			 document.getElementById("expectedTimesOption").style.display = "none"
+		 }
+		 document.getElementById("UM_notes").style.display = "none"
+	 } else if (showExpectedTimeColumn === false) {
+		 document.getElementById("UM_notes").style.display = "none"
+	 }
+
+	 if (predictedTimesFunctionality === false) {
+		 showPredictedTimeColumn = false
+		 if (ifMobile === false) {
+			 document.getElementById("predictedTimeColumn").checked = false
+			 document.getElementById("predictedTimesOption").style.display = "none"
+		 }
+		 document.getElementById("CM_notes").style.display = "none"
+	 } else if (showPredictedTimeColumn === false) {
+		 document.getElementById("CM_notes").style.display = "none"
+	 }
 
 	 if (sampleData === true) {
 		 document.getElementById("ifReloadTablesBo").checked = false;

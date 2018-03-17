@@ -433,11 +433,11 @@ function getUpcomingMatchesTable(){
 		//////log(my_lengthMenu)
 		function makeNoUpcomingMatchesTable(my_data, ifPaging, lengthMenu){
 				var tableInfoLocations = setTableInfoLocations(ifOrganizerViewPreset);
-				if (showExpectedTimeColumn === false) {
-					var my_expectedTimeColumnName = expectedTimeColumnName(0);
+				/*if (showExpectedTimeColumn === false) {
+					var my_NoExpectedTimeColumnName = expectedTimeColumnName(0);
 				} else {
-					var my_expectedTimeColumnName = expectedTimeColumnName(0); //set expected time column name
-				}
+					var my_NoExpectedTimeColumnName = expectedTimeColumnName(0); //set expected time column name
+				}*/
 				var my_noUMTable = $('#upcomingMatchesTable').DataTable({
 					data: my_data,
 					paging: ifPaging,
@@ -474,11 +474,11 @@ function getUpcomingMatchesTable(){
 		function makeUpcomingMatchesTable(my_data, ifPaging, lengthMenu){
 				//////log("making table", remakeCount, my_data, "lm:", lengthMenu)
 				var tableInfoLocations = setTableInfoLocations(ifOrganizerViewPreset);
-				if (showExpectedTimeColumn === false) {
+				/*if (showExpectedTimeColumn === false) {
 					var my_expectedTimeColumnName = expectedTimeColumnName(0);
 				} else {
 					var my_expectedTimeColumnName = expectedTimeColumnName(0); //set expected time column name
-				}
+				}*/
 				var my_UMTable = $('#upcomingMatchesTable').DataTable({
 					data: my_data,
 					paging: ifPaging,

@@ -8,7 +8,8 @@ sendingDataToDatabase = false
 expectedTimesFunctionality = false //enable or disable expected Times functionality
 predictedTimesFunctionality = true //enable or disable predicted Times functionality
 expectedTimesDataTesting = false //always show upcoming matches table for expected time script testing
-AET = false //adjust expected times
+	AET = false //adjust expected times
+	var my_expectedTimeColumnName = expectedTimeColumnName(0); 
 slowLoading = true //load all matches data for all info. Required for rounds left, bye data and players table
 
 dataSetNr = 5 //ISBT Utrecht: 1-5; ISBT Amsterdam 1-9
