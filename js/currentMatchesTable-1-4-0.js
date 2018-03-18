@@ -438,7 +438,10 @@ function getCurrentMatchesTable(){
 													}												
 				},
 				{ data: 'alreadyPlayingTime', sWidth: '80px', fnCreatedCell:	function (nTd, sData, oData, iRow, iCol) {
-																					if(oData.courtOnHold === false){
+																					if (showPredictedTimeColumn === false) {
+																						$(nTd).css('border-right', '3px solid #555555')
+																					} 
+																					if (oData.courtOnHold === false) {
 																						$(nTd).css('border-left', '0.2vw solid #555555')
 																					}
 																				},																					
