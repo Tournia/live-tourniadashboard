@@ -45,16 +45,16 @@ function displayTitle(){
 		} else if (tournament_ID === "bc-drop-shot-wintertoernooi-2018"){
 			var tournament_shortcut = "dropshot"
 			ifDefaultannoucement = false
-			var anouncementText = "Go to <i><u>bcdropshot.nl/live</u></i> to check everything on your  mobile including upcoming matches, byes, results and rankings."
+			var anouncementText = "Go to <i><u>bcdropshot.nl/live</u></i> to check everything on your mobile including upcoming matches, byes, results and rankings."
 		} else if(tournament_ID.includes("utrecht") === true){
 			var tournament_shortcut = "utrecht"
 			ifDefaultannoucement = false
-			var anouncementText = "Go to <i><u>isbtutrecht.nl</u></i> to check everything on your  mobile including upcoming matches, byes, results and rankings."
+			var anouncementText = "Go to <i><u>isbtutrecht.nl</u></i> to check everything on your mobile including upcoming matches, byes, results and rankings."
 		} else {
 			var tournament_shortcut = tournament_ID
 		}
 		if(ifDefaultannoucement === true){
-			var anouncementText = "Go to <i><u>tourniadashboard.nl/"+tournament_shortcut+"</u></i> to check everything on your  mobile including upcoming matches, byes, results and rankings."
+			var anouncementText = "Go to <i><u>tourniadashboard.nl/"+tournament_shortcut+"</u></i> to check everything on your mobile including upcoming matches, byes, results and rankings."
 		}
 		document.getElementById('announcements').innerHTML = anouncementText
 	}

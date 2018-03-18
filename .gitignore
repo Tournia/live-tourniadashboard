@@ -45,7 +45,10 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+
+#Other files
 web.config
 expectedTimesLog_Helios-kersttoernooi-2017.php
 expectedTimesLog_isbt-enschede-2017.php
-/FileZilla_log.log
+FileZilla_log.log
+*.sqlite
