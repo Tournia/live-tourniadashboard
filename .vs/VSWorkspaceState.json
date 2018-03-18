@@ -1,11 +1,7 @@
 {
   "ExpandedNodes": [
     "",
-    "\\css",
-    "\\css\\libs",
-    "\\js",
-    "\\js\\libs"
+    "\\js"
   ],
-  "SelectedNode": "\\phpinfo.php",
   "PreviewInSolutionExplorer": false
 }
