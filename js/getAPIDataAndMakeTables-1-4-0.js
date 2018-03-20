@@ -15,7 +15,7 @@ function checkForAPIChange(){
 	})
 	.error(function(){
 		ifAPIChangeDetected = true
-		my_tournamentId_pr = prompt("Incorrect tournament id. Make sure live access is turned or try another id:")
+		my_tournamentId_pr = prompt("Incorrect tournament id. Make sure live access is turned on or try another id:")
 		window.location.href = "/tournament.php?"+my_tournamentId_pr
 	})	
 }
@@ -165,7 +165,11 @@ function _2AgetPoolsRoundsData(){
 			
 function _2BgetAllMatchesData(){
 	//log("2bS. in get matches")
-	if(slowLoading === true){
+	if (ifMobile === false && my_showRoundsCreatedColumn === false && my_showByeColumn === false) {
+		slowLoading = false
+	} else {
+	}
+	if (slowLoading === true) {
 		return $.getJSON(listMatchesUrl, function(matches){
 			my_matchesRaw = matches})
 		.success(function(){

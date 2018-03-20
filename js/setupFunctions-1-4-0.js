@@ -571,7 +571,6 @@ function placeVarsInput(){
 		toggleReloadTables(this.checked);
 	}
 	if(slowLoading === false){
-		log(" dddd dgr ")
 		my_showRoundsNeededColumn = false
 		my_showRoundsCreatedColumn = false
 		my_showRoundsLeftColumn = false

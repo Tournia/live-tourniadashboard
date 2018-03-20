@@ -213,7 +213,7 @@ function nextTablePage(ifTabTable, tableName, table, pageTime, tableTime){
 
 		// If on the last page, reset the currentInt to the first page #
 		if ( my_currentInt ===  endInt){
-			if(ifTabTable === true && countLeftTables > 1){
+			if (ifTabTable === true && countLeftTables > 1) {
 				clearInterval(tabTableInterval)
 				
 				var currentActiveTable = $('.tab-content').find('.tab-pane.active').attr('id')
@@ -269,7 +269,7 @@ function nextTablePage(ifTabTable, tableName, table, pageTime, tableTime){
 				//nextTablePage(myNextTable, my_pageTime, my_newTableTime)
 
 			} else //only one table shown
-				currentInt = 0;
+				my_currentInt = 0;
 		}
 		leftProgressBar("myLeftBar", pageTime);
 	}, pageTime);
