@@ -271,7 +271,24 @@ function nextTablePage(ifTabTable, tableName, table, pageTime, tableTime){
 			} else //only one table shown
 				my_currentInt = 0;
 		}
-		leftProgressBar("myLeftBar", pageTime);
+		if (countLeftTables === 1) {
+			var barId = ""
+			if (currentTable === true) {
+				barId = "CM"
+			} else if (upcomingTable === true) {
+				barId = "UM"
+			} else if (postponedTable === true) {
+				barId = "PM"
+			}
+			var my_tablePageCountId = barId + "PageCount";
+			//var  my_tablePageCount = 
+			var oneTableId = barId + "_oneTableLeftBar" 
+			if (window[my_tablePageCountId] != 1) {
+				leftProgressBar(oneTableId, pageTime);
+			}
+		} else {
+			leftProgressBar("leftBar", pageTime);
+		}
 	}, pageTime);
 	
 }
@@ -290,18 +307,26 @@ function poolsOverviewTableTime(ifTabTable, tableName, table, pageCount, pageTim
 
 	// Start an interval to go to the "next" page every TIME seconds
 	 
-	POInterval = setInterval(function(){
+	POInterval = setInterval(function () {
 		// "Next" ...
-		table.page( POcurrentInt ).draw( 'page' );
+		table.page(POcurrentInt).draw('page');
 
 		// Increment the current page int
 		POcurrentInt++;
 
 		// If were on the last page, reset the currentInt to the first page #
-		if ( POcurrentInt ===  endInt){
-				POcurrentInt = 0;
-		} 
-		rightProgressBar("myRightBar", pageTime + 2000);
+		if (POcurrentInt === endInt) {
+			POcurrentInt = 0;
+		}
+		if (countLeftTables === 1) {
+			if (POPageCount != 1) {
+				rightProgressBar("oneTableRightBar", pageTime + 2000);
+			}
+		} else {
+			if (POPageCount != 1) {
+				rightProgressBar("rightBar", pageTime + 2000);
+			}
+		}
 	}, pageTime + 2000)
 }
 

@@ -535,8 +535,8 @@
 					<li class="active" id="currentMatches-button"><a href="#currentmatches-tab-content" data-toggle="tab">Current matches</a></li>
 					<li id="upcomingMatches-button"><a href="#upcomingmatches-tab-content" data-toggle="tab">Upcoming Matches</a></li>
 					<li id="postponedMatches-button"><a href="#postponedmatches-tab-content" data-toggle="tab">Postponed matches</a></li>				
-					<div id="myLeftProgress" class="myProgress">
-						<div id="myLeftBar" class="myProgressBar"></div>
+					<div id="leftProgress" class="myProgress">
+						<div id="leftBar" class="leftProgressBar"></div>
 					</div>
 				</ul>	
 			</nav>
@@ -546,7 +546,10 @@
 						<table id="currentMatchesTable" width="100%">
 							<thead id="my_CMtHead">
 								<tr>
-									<td colspan="7" class="tableHeaders">Current matches</td>
+									<td colspan="7" class="tableHeaders">Current matches
+									<div id="oneTableLeftProgress" class="oneTableProgress">
+										<div id="CM_oneTableLeftBar" class="leftProgressBar"></div>
+									</div></td>
 								</tr>
 								<tr>
 									<th class="courtColumn" >Court</th>
@@ -567,7 +570,11 @@
 					<table id = "upcomingMatchesTable" class="upcomingMatchesTable" width="100%">
 						<thead id="my_UMtHead">
 							<tr>
-								<td colspan="9" class="tableHeaders">Upcoming matches</td>
+								<td colspan="9" class="tableHeaders">Upcoming matches
+									<div id="oneTableLeftProgress" class="oneTableProgress">
+										<div id="UM_oneTableLeftBar" class="leftProgressBar"></div>
+									</div>
+								</td>
 							</tr>
 							<tr>
 								<th class="matchNrColumn" rowspan='2'>Upcoming match nr.</th>
@@ -598,7 +605,11 @@
 					<table id = "postponedMatchesTable" width="100%">
 						<thead id="my_PMtHead">
 							<tr>
-								<td colspan="9" class="tableHeaders">Postponed matches</td>
+								<td colspan="9" class="tableHeaders">Postponed matches
+									<div id="oneTableLeftProgress" class="oneTableProgress">
+										<div id="PM_oneTableLeftBar" class="leftProgressBar"></div>
+									</div>
+								</td>
 							</tr>
 							<tr>
 								<th class="matchNrColumn" rowspan='2'>Match nr.</th>
@@ -626,8 +637,8 @@
 			<nav id="myRightTabsBox" >
 				<ul class="nav nav-tabs">
 					<li class="active" id="poolsOverview-button"><a href="#poolsOverview-tab-content" data-toggle="tab">Pools Overview</a></li>			
-					<div id="myRightProgress" class="myProgress">
-						<div id="myRightBar" class="myProgressBar"></div>
+					<div id="rightProgress" class="myProgress">
+						<div id="rightBar" class="rightProgressBar"></div>
 					</div>
 				</ul>
 			</nav>
@@ -636,7 +647,11 @@
 						<table id="poolsOverviewTable" width="100%">
 							<thead id="my_POtHead">
 								<tr>
-									<td colspan="7" class="tableHeaders">Pools overview</td>
+									<td colspan="7" class="tableHeaders">Pools overview
+									<div id="oneTableRightProgress" class="oneTableProgress">
+										<div id="oneTableRightBar" class="rightProgressBar"></div>
+									</div>
+									</td>
 								</tr>
 								<tr>
 									<th id="poolColumn" class="poolColumn">Pool</th>

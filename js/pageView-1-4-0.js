@@ -148,11 +148,34 @@ function createPage(){
 
 	if (ifMobile === false) {
 		if (ifOrganizerViewPreset === true) {
-			document.getElementById("myLeftBar").style.display = "none";
-			document.getElementById("myRightBar").style.display = "none";
+			document.getElementById("leftBar").style.display = "none";
+			document.getElementById("rightBar").style.display = "none";
 		} else {
-			document.getElementById("myLeftBar").style.display = "";
-			document.getElementById("myRightBar").style.display = "";
+			if (countLeftTables === 1) {
+				if (currentTable === true) {
+					document.getElementById("CM_oneTableLeftBar").style.display = "";
+					document.getElementById("UM_oneTableLeftBar").style.display = "none";
+					document.getElementById("PM_oneTableLeftBar").style.display = "none";
+				} else if (upcomingTable === true) {
+					document.getElementById("UM_oneTableLeftBar").style.display = "";
+					document.getElementById("CM_oneTableLeftBar").style.display = "none";
+					document.getElementById("PM_oneTableLeftBar").style.display = "none";
+				} else if (postponedTable === true) {
+					document.getElementById("PM_oneTableLeftBar").style.display = "";
+					document.getElementById("CM_oneTableLeftBar").style.display = "none";
+					document.getElementById("UM_oneTableLeftBar").style.display = "none";
+				}
+
+				document.getElementById("oneTableRightBar").style.display = "";
+			} else {
+				document.getElementById("CM_oneTableLeftBar").style.display = "none";
+				document.getElementById("UM_oneTableLeftBar").style.display = "none";
+				document.getElementById("PM_oneTableLeftBar").style.display = "none";
+				document.getElementById("oneTableRightBar").style.display = "none";
+
+				document.getElementById("leftBar").style.display = "";
+				document.getElementById("rightBar").style.display = "";
+			}
 		}
 	}
 	//refresh tables interval

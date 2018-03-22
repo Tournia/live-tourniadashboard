@@ -813,7 +813,6 @@ Transparent Button With Visible Text
 	background-color: #43a73f !important;
 }
 
-
 .pagination>li>a:focus, .pagination>li>a:hover, .pagination>li>span:focus, .pagination>li>span:hover {
     z-index: 2;
     color: #43a73f !important;
@@ -822,7 +821,6 @@ Transparent Button With Visible Text
 }
 
 .myProgress {
-
 	margin-top: 33px;
 	margin-right: 3px;
 	width: 15%;
@@ -830,7 +828,22 @@ Transparent Button With Visible Text
 	background-color: #ddd;
 }
 
-.myProgressBar {
+.oneTableProgress {
+	margin-top: 33px;
+	margin-right: 3px;
+	margin-bottom: 5px;
+	width: 15%;
+	float: right;
+	background-color: #ddd;
+}
+
+.leftProgressBar {
+	width: 0%;
+	height: 5px;
+	background-color: #43a73f;
+}
+
+.rightProgressBar {
 	width: 0%;
 	height: 5px;
 	background-color: #43a73f;
