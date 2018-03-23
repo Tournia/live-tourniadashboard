@@ -239,13 +239,15 @@ function setrefreshTablesInterval(){
 				if(sampleData === false){
 					$.when(checkForAPIChange())
 					.then(function(){
-						if(ifAPIChangeDetected === true){
+						if (ifAPIChangeDetected === true) {
 							removeTables()
-							clearInterval(leftProgressBarInterval);
-							document.getElementById("myLeftBar").style.width = '0%';
-							clearInterval(rightProgressBarInterval);
-							document.getElementById("myRightBar").style.width = '0%';
-						} else {}
+							if (ifOrganizerViewPreset === false) {
+								clearInterval(leftProgressBarInterval);
+								document.getElementById("myLeftBar").style.width = '0%';
+								clearInterval(rightProgressBarInterval);
+								document.getElementById("myRightBar").style.width = '0%';
+							} else { }
+						} else { }
 					})
 				} else {
 					ifAPIChangeDetected = true

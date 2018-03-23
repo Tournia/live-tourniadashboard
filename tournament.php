@@ -6,7 +6,7 @@
 	<!--<meta http-equiv="refresh" content="60" >-->
 	<title>Tournia live dashboard</title>
 	<script type="text/javascript">
-		var version = "1-4-0"
+		var version = "1-4-2"
 		//checkBrowsers()
 		var sampleData
 		var DEBUG_MODE
@@ -109,6 +109,7 @@
  	
 	<script src="js/otherFunctions-1-4-0.js"></script>
 	<script src="js/globals-1-4-0.js"></script>
+	<script src="js/tablesHTML-1-4-1.js"></script>
 	<script src="js/setupFunctions-1-4-0.js"></script>
 	<script src="js/options-1-4-0.js"></script>
 	<script src="js/poolProperties-1-4-0.js"></script>

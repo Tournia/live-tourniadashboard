@@ -242,15 +242,27 @@ function getPostponedMatchesTable(){
 																	$(nTd).css('padding-left', '5px')
 																	$(nTd).css('text-align', 'left')
 																	//////log(sData)
-																	var inRTP = inArray(sData, playerNamesReadyToPlayArray)
-																	var inPl = inArray(sData, playerNamesCurrentlyPlayingArray)
-																	var inUnav = inArray(sData, playerNamesCurrentlyUnavailableArray)
+																	var inRTP = false;
+																	var inPl = false;
+																	var inUnav = false;
+																	var inRTP = getNewStatus("PM", "RTP", sData, oData)//inArray(sData, UM_playerNamesReadyToPlayArray)
+																	if (inRTP === false) {
+																		inPl = getNewStatus("PM", "PP", sData, oData)//inArray(sData, UM_playerNamesCurrentlyPlayingArray)
+																		if (inPl === false && inPl === false) {
+																			inUnav = getNewStatus("PM", "Unav", sData, oData)//inArray(sData, UM_playerNamesCurrentlyUnavailableArray)
+																		}
+																	}
+
 																	if (inRTP === true) {
-																		//$(nTd).css('background-color', '#71da71')
+																		log("ready to play css", nTd)
+																		$(nTd).css('background-color', 'transparent')
 																	} else if (inPl === true) {
+																		log("playing css", nTd);
 																		$(nTd).css('background-color', '#ffffb3')
 																	} else if (inUnav === true) {
 																		$(nTd).css('background-color', '#ff8080')
+																	} else {
+																		$(nTd).css('background-color', 'transparent')
 																	}
 																}
 															
@@ -259,15 +271,27 @@ function getPostponedMatchesTable(){
 																	$(nTd).css('padding-left', '5px')
 																	$(nTd).css('text-align', 'left')
 																	//////log(sData)
-																	var inRTP = inArray(sData, playerNamesReadyToPlayArray)
-																	var inPl = inArray(sData, playerNamesCurrentlyPlayingArray)
-																	var inUnav = inArray(sData, playerNamesCurrentlyUnavailableArray)
+																	var inRTP = false;
+																	var inPl = false;
+																	var inUnav = false;
+																	var inRTP = getNewStatus("PM", "RTP", sData, oData)//inArray(sData, UM_playerNamesReadyToPlayArray)
+																	if (inRTP === false) {
+																		inPl = getNewStatus("PM", "PP", sData, oData)//inArray(sData, UM_playerNamesCurrentlyPlayingArray)
+																		if (inPl === false && inPl === false) {
+																			inUnav = getNewStatus("PM", "Unav", sData, oData)//inArray(sData, UM_playerNamesCurrentlyUnavailableArray)
+																		}
+																	}
+
 																	if (inRTP === true) {
-																		//$(nTd).css('background-color', '#71da71')
+																		log("ready to play css", nTd)
+																		$(nTd).css('background-color', 'transparent')
 																	} else if (inPl === true) {
+																		log("playing css", nTd);
 																		$(nTd).css('background-color', '#ffffb3')
 																	} else if (inUnav === true) {
 																		$(nTd).css('background-color', '#ff8080')
+																	} else {
+																		$(nTd).css('background-color', 'transparent')
 																	}
 																}											
 							},
@@ -279,32 +303,54 @@ function getPostponedMatchesTable(){
 																	$(nTd).css('padding-left', '5px')
 																	$(nTd).css('text-align', 'left')
 																	//////log(sData)
-																	var inRTP = inArray(sData, playerNamesReadyToPlayArray)
-																	var inPl = inArray(sData, playerNamesCurrentlyPlayingArray)
-																	var inUnav = inArray(sData, playerNamesCurrentlyUnavailableArray)
+																	var inRTP = false;
+																	var inPl = false;
+																	var inUnav = false;
+																	var inRTP = getNewStatus("PM", "RTP", sData, oData)//inArray(sData, UM_playerNamesReadyToPlayArray)
+																	if (inRTP === false) {
+																		inPl = getNewStatus("PM", "PP", sData, oData)//inArray(sData, UM_playerNamesCurrentlyPlayingArray)
+																		if (inPl === false && inPl === false) {
+																			inUnav = getNewStatus("PM", "Unav", sData, oData)//inArray(sData, UM_playerNamesCurrentlyUnavailableArray)
+																		}
+																	}
+
 																	if (inRTP === true) {
-																		//$(nTd).css('background-color', '#71da71')
+																		log("ready to play css", nTd)
+																		$(nTd).css('background-color', 'transparent')
 																	} else if (inPl === true) {
+																		log("playing css", nTd);
 																		$(nTd).css('background-color', '#ffffb3')
 																	} else if (inUnav === true) {
 																		$(nTd).css('background-color', '#ff8080')
+																	} else {
+																		$(nTd).css('background-color', 'transparent')
 																	}
 																}												
 							},
 							{ data: 'teamTwo2', fnCreatedCell:  function (nTd, sData, oData, iRow, iCol) {
 																	$(nTd).css('padding-left', '5px')
 																	$(nTd).css('text-align', 'left')
-																	//////log(sData)
-																	//////log("arrays:", playerNamesReadyToPlayArray, playerNamesCurrentlyPlayingArray, playerNamesCurrentlyUnavailableArray)
-																	var inRTP = inArray(sData, playerNamesReadyToPlayArray)
-																	var inPl = inArray(sData, playerNamesCurrentlyPlayingArray)
-																	var inUnav = inArray(sData, playerNamesCurrentlyUnavailableArray)
+																	var inRTP = false;
+																	var inPl = false;
+																	var inUnav = false;
+																	var inRTP = getNewStatus("PM", "RTP", sData, oData)//inArray(sData, UM_playerNamesReadyToPlayArray)
+																	if (inRTP === false) {
+																		inPl = getNewStatus("PM", "PP", sData, oData)//inArray(sData, UM_playerNamesCurrentlyPlayingArray)
+																		if (inPl === false && inPl === false) {
+																			inUnav = getNewStatus("PM", "Unav", sData, oData)//inArray(sData, UM_playerNamesCurrentlyUnavailableArray)
+																		}
+																	}
+
 																	if (inRTP === true) {
-																		//$(nTd).css('background-color', '#71da71')
+																		log("ready to play css", nTd)
+																		$(nTd).css('background-color', 'transparent')
 																	} else if (inPl === true) {
+																		log("playing css", nTd);
 																		$(nTd).css('background-color', '#ffffb3')
 																	} else if (inUnav === true) {
 																		$(nTd).css('background-color', '#ff8080')
+																	} else {
+																		$(nTd).css('background-color', 'transparent')
 																	}
 																}												
 							},

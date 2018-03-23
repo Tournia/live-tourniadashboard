@@ -374,7 +374,6 @@ function switchTableOnce(activeTable){
 }
 
 function switchTabOnce(){
-	
 	var activeTableContent = $('.tab-content').find('.tab-pane.active').attr('id')
 	var my_nextTableContent = $('.tab-content').find('.tab-pane.active').next().attr('id');
 	//log("in switch tab once; active:", activeTableContent, "next",my_nextTableContent)
@@ -462,16 +461,16 @@ function currentMatchesOnClick(){
 }*/
 
 function lengthMenu(ifPaging, data, rowsCount){
-			if(ifPaging === false){
-				////console.//log("false, all")
-				var my_counts = [[-1],["All"]]
-				return my_counts
-			} else {
-				if(rowsCount >= data.length){
-					var my_counts = [[-1],["All"]]
-				} else {
-					var my_counts = [[rowsCount,-1], [rowsCount,"All"]]
-				}
-				return my_counts
-			}
+	if(ifPaging === false){
+		////console.//log("false, all")
+		var my_counts = [[-1],["All"]]
+		return my_counts
+	} else {
+		if(rowsCount >= data.length){
+			var my_counts = [[-1],["All"]]
+		} else {
+			var my_counts = [[rowsCount,-1], [rowsCount,"All"]]
+		}
+		return my_counts
+	}
 }

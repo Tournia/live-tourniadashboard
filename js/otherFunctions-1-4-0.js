@@ -117,7 +117,81 @@ function findPlayersPlaying(playerArray, my_locationsList, playersPlayingObects)
 	return my_returns
 }
 
+function getNewStatus(table, array, playerName, singleMatch) {
+	var matchId = singleMatch.matchNr;
+	//log(array, playerName, singleMatch, matchId, my_upcomingMatches)
+	if (table === "UM") {
+		var match_object = findObject(my_upcomingMatches, matchId, "localId");
+	} else if (table === "PM") {
+		var match_object = findObject(my_unavPostponedMatches, matchId, "localId");
+	}
+		//log(UM_Object);
 
+	foundPlayer = false;
+	var myT1Players = match_object.team1.players
+	var myT2Players = match_object.team2.players
+	var position = 0
+	for (var key1 in myT1Players) {
+		var individual1Player = myT1Players[key1].name
+		var simpleName1 = individual1Player.replace(/".*"/, "").replace("  ", " ").replace("  ", " ").replace("  ", " ")
+		if (simpleName1 === playerName) {
+			var foundPlayer = true;
+			var ifReady = myT1Players[key1].ready;
+			if (ifReady === true) {
+				if (myT1Players[key1].currentlyPlaying === false) {
+					var playerReadyToPlay = true;
+					var playerPlaying = false;
+				} else {
+					var playerReadyToPlay = false;
+					var playerPlaying = true;
+				}
+				var playerUnavailable = false;
+			} else {
+				var playerReadyToPlay = false;
+				var playerPlaying = false;
+				var playerUnavailable = true;
+			}
+			break
+			break
+		}
+	}
+	if (foundPlayer === false) {
+		for (var key2 in myT2Players) {
+			var individual2Player = myT2Players[key2].name
+			var simpleName2 = individual2Player.replace(/".*"/, "").replace("  ", " ").replace("  ", " ").replace("  ", " ")
+			log(simpleName2)
+			if (simpleName2 === playerName) {
+				var ifReady = myT2Players[key2].ready;
+				if (ifReady === true) {
+					if (myT2Players[key2].currentlyPlaying === false) {
+						var playerReadyToPlay = true;
+						var playerPlaying = false;
+					} else {
+						var playerReadyToPlay = false;
+						var playerPlaying = true;
+					}
+					var playerUnavailable = false;
+				} else {
+					var playerReadyToPlay = false;
+					var playerPlaying = false;
+					var playerUnavailable = true;
+				}
+				break
+				break
+			}
+		}
+	}
+	var to_return
+	if (array === "RTP") {
+		to_return = playerReadyToPlay
+	} else if (array === "PP") {
+		to_return = playerPlaying;
+	} else if (array === "Unav") {
+		to_return = playerUnavailable;
+	}
+	log("new status for", matchId, playerName, array, to_return)
+	return to_return
+}
 
 function dynamicSort(property) {
     var sortOrder = 1;

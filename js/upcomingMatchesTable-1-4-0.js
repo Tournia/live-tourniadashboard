@@ -135,6 +135,9 @@ function getUpcomingMatchesTable(){
 			}*/
 				
 			//Put status in Table
+			
+
+
 			function getStatus(fullPlayerName, playerName, amountPlayers, playerCurrentlyPlaying, playerReady, TdInput, playerStatus){
 						if(playerCurrentlyPlaying === true){
 							playerNamesCurrentlyPlayinginMatchArray.push(playerName)
@@ -180,25 +183,36 @@ function getUpcomingMatchesTable(){
 					//////////log(playerNameTeam1, "ready:", t1PlayerReady)
 					var amountT1Players = my_upcomingMatches[um].team1.players.length
 					var Td1Input, t1PlayerStatus
-					var my_t1Input = getStatus(playerNickNameTeam1, playerNameTeam1, amountT1Players, t1PlayerCurrentlyPlaying, t1PlayerReady, Td1Input, t1PlayerStatus)
+					var simplePlayerName_1 = getStatus(playerNickNameTeam1, playerNameTeam1, amountT1Players, t1PlayerCurrentlyPlaying, t1PlayerReady, Td1Input, t1PlayerStatus)
+					var fullPlayerName_1 = playerNameTeam1
 
-			//tri.append(my_t1Input)
+				//tri.append(simplePlayerName_1)
 				if(my_upcomingMatches[um].team1.players.length === 1){
-					singleUMData.teamOne1 = my_t1Input
-					singleUMData.teamOne2 = ""
+					singleUMData.teamOne1 = simplePlayerName_1;
+					singleUMData.teamOne1FN = fullPlayerName_1;
+					singleUMData.teamOne2 = "";
+					singleUMData.teamOne2FN = "";
 				} else if(my_upcomingMatches[um].team1.players.length > 1 && my_T1count === 1){
-					singleUMData.teamOne1 = my_t1Input
-				} else if (my_upcomingMatches[um].team1.players.length > 1 && my_T1count === 2){
-					singleUMData.teamOne2 = my_t1Input
-				} else if(my_upcomingMatches[um].team1.name === "-"){
+					singleUMData.teamOne1 = simplePlayerName_1
+					singleUMData.teamOne2FN = fullPlayerName_1;
+				} else if (my_upcomingMatches[um].team1.players.length > 1 && my_T1count === 2) {
+					singleUMData.teamOne2 = simplePlayerName_1
+					singleUMData.teamOne2FN = fullPlayerName_1;
+				} else if (my_upcomingMatches[um].team1.name === "-") {
 					singleUMData.teamOne1 = "-"
+					singleUMData.teamOne1FN = "";
 					singleUMData.teamOne2 = ""
+					singleUMData.teamOne2FN = "";
 				}
 			}
 			if(my_upcomingMatches[um].team1.players.length === 0){
-					my_t1Input = "-"
-					singleUMData.teamOne1 = "-"
-					singleUMData.teamOne2 = ""
+				simplePlayerName_1 = "-"
+				fullPlayerName_1 = "-"
+				singleUMData.teamOne1 = "-"
+				singleUMData.teamOne1FN = "-"
+				singleUMData.teamOne2 = ""
+				singleUMData.teamOne2FN = "-"
+
 			}
 			//vs column
 			//tri.append("<td class='vsColumn'>" + "<b>vs.</b>" + "</td>");
@@ -216,28 +230,39 @@ function getUpcomingMatchesTable(){
 					//////////log(playerNameTeam2, "ready:", t2PlayerReady)
 					var amountT2Players = my_upcomingMatches[um].team2.players.length
 					var Td2Input, t2PlayerStatus
-					var my_t2Input = getStatus(playerNickNameTeam2, playerNameTeam2, amountT2Players, t2PlayerCurrentlyPlaying, t2PlayerReady, Td2Input, t2PlayerStatus)
-					if(my_upcomingMatches[um].team2.name === "-"){
+					var simplePlayerName_2 = getStatus(playerNickNameTeam2, playerNameTeam2, amountT2Players, t2PlayerCurrentlyPlaying, t2PlayerReady, Td2Input, t2PlayerStatus)
+				var fullPlayerName_2 = playerNickNameTeam2
+
+					if (my_upcomingMatches[um].team2.name === "-") {
 						log("empty")
-						my_t2Input = ""
+						simplePlayerName_2 = ""
 					}
-				//tri.append(my_t2Input);
+				//tri.append(simplePlayerName_2);
 				if(my_upcomingMatches[um].team2.players.length === 1){
-					singleUMData.teamTwo1 = my_t2Input
+					singleUMData.teamTwo1 = simplePlayerName_2;
+					singleUMData.teamTwo1FN = fullPlayerName_2;
 					singleUMData.teamTwo2 = ""
+					singleUMData.teamTwo2FN = ""
 				} else if(my_upcomingMatches[um].team2.players.length > 1 && my_T2count === 1){
-					singleUMData.teamTwo1 = my_t2Input
-				} else if (my_upcomingMatches[um].team2.players.length > 1 && my_T2count === 2){
-					singleUMData.teamTwo2 = my_t2Input
+					singleUMData.teamTwo1 = simplePlayerName_2
+					singleUMData.teamTwo1FN = fullPlayerName_2
+				} else if (my_upcomingMatches[um].team2.players.length > 1 && my_T2count === 2) {
+					singleUMData.teamTwo2 = simplePlayerName_2;
+					singleUMData.teamTwo2FN = fullPlayerName_2
 				} else if(my_upcomingMatches[um].team2.name === "-"){
 					singleUMData.teamTwo1 = "-"
+					singleUMData.teamTwo1FN = "-"
 					singleUMData.teamTwo2 = ""
+					singleUMData.teamTwo2FN = ""
 				}
 			}
 			if(my_upcomingMatches[um].team2.players.length === 0){
-					my_t2Input = "-"
-					singleUMData.teamTwo1 = "-"
-					singleUMData.teamTwo2 = ""
+				simplePlayerName_2 = "-"
+				fullPlayerName_2 = "-"
+				singleUMData.teamTwo1 = "-"
+				singleUMData.teamTwo1FN = "-"
+				singleUMData.teamTwo1 = "-"
+				singleUMData.teamTwo1FN = "-"
 			}
 				
 			//Status column
@@ -415,7 +440,9 @@ function getUpcomingMatchesTable(){
 				}
 			}
 		} /* */ /** end of for loop **/ /* */
-		
+
+		log("CP:", UM_playerNamesCurrentlyPlayingArray);
+		log("RTP:", UM_playerNamesReadyToPlayArray);
 		//adjust ExpectedTime
 		
 		if(showExpectedTimeColumn === true && AET === true){
@@ -479,6 +506,7 @@ function getUpcomingMatchesTable(){
 				} else {
 					var my_expectedTimeColumnName = expectedTimeColumnName(0); //set expected time column name
 				}*/
+
 				var my_UMTable = $('#upcomingMatchesTable').DataTable({
 					data: my_data,
 					paging: ifPaging,
@@ -513,27 +541,30 @@ function getUpcomingMatchesTable(){
 						{ data: 'teamOne1', fnCreatedCell:  function (nTd, sData, oData, iRow, iCol) {
 																$(nTd).css('padding-left', '5px')
 																$(nTd).css('text-align', 'left')
-																//log(sData)
-																var inRTP = inArray(sData, UM_playerNamesReadyToPlayArray)
-																var inPl = inArray(sData, UM_playerNamesCurrentlyPlayingArray)
-																var inUnav = inArray(sData, UM_playerNamesCurrentlyUnavailableArray)
-																var testArray = [];
-																testArray.push(inRTP, inPl, inUnav)
-																var counter = 0
-																for (var e in testArray){
-																	if(testArray[e] === true){
-																		counter ++;
+																//log(sData, oData)
+																
+
+																var inRTP = false;
+																var inPl = false;
+																var inUnav = false;
+																var inRTP = getNewStatus("UM", "RTP", sData, oData)//inArray(sData, UM_playerNamesReadyToPlayArray)
+																if (inRTP === false) {
+																	inPl = getNewStatus("UM", "PP", sData, oData)//inArray(sData, UM_playerNamesCurrentlyPlayingArray)
+																	if (inPl === false && inPl === false) {
+																		inUnav = getNewStatus("UM", "Unav", sData, oData)//inArray(sData, UM_playerNamesCurrentlyUnavailableArray)
 																	}
-																}
-																if(counter > 1){
-																	log(counter, "trues for", sData, inRTP, inPl, inUnav)
-																}
-																if (inRTP === true && inPl === false && inUnav === false) {
-																	//$(nTd).css('background-color', '#71da71')
-																} else if (inPl === true && inUnav === false) {
+																}																var testArray = [];
+																
+																if (inRTP === true) {
+																	log("ready to play css", nTd)
+																	$(nTd).css('background-color', 'transparent')
+																} else if (inPl === true){
+																	log("playing css", nTd);
 																	$(nTd).css('background-color', '#ffffb3')
 																} else if (inUnav === true) {
 																	$(nTd).css('background-color', '#ff8080')
+																} else {
+																	$(nTd).css('background-color', 'transparent')
 																}
 															}
 														
@@ -542,26 +573,27 @@ function getUpcomingMatchesTable(){
 																$(nTd).css('padding-left', '5px')
 																$(nTd).css('text-align', 'left')
 																//////log(sData)
-																var inRTP = inArray(sData, UM_playerNamesReadyToPlayArray)
-																var inPl = inArray(sData, UM_playerNamesCurrentlyPlayingArray)
-																var inUnav = inArray(sData, UM_playerNamesCurrentlyUnavailableArray)
-																var testArray = [];
-																testArray.push(inRTP, inPl, inUnav)
-																var counter = 0
-																for (var e in testArray){
-																	if(testArray[e] === true){
-																		counter ++;
+																var inRTP = false;
+																var inPl = false;
+																var inUnav = false;
+																var inRTP = getNewStatus("UM", "RTP", sData, oData)//inArray(sData, UM_playerNamesReadyToPlayArray)
+																if (inRTP === false) {
+																	inPl = getNewStatus("UM", "PP", sData, oData)//inArray(sData, UM_playerNamesCurrentlyPlayingArray)
+																	if (inPl === false && inPl === false) {
+																		inUnav = getNewStatus("UM", "Unav", sData, oData)//inArray(sData, UM_playerNamesCurrentlyUnavailableArray)
 																	}
-																}
-																if(counter > 1){
-																	log(counter, "trues for", sData, inRTP, inPl, inUnav)
-																}
-																if (inRTP === true && inPl === false && inUnav === false) {
-																	//$(nTd).css('background-color', '#71da71')
-																} else if (inPl === true && inUnav === false) {
+																}																var testArray = [];
+																
+																if (inRTP === true) {
+																	log("ready to play css", nTd)
+																	$(nTd).css('background-color', 'transparent')
+																} else if (inPl === true) {
+																	log("playing css", nTd);
 																	$(nTd).css('background-color', '#ffffb3')
 																} else if (inUnav === true) {
 																	$(nTd).css('background-color', '#ff8080')
+																} else {
+																	$(nTd).css('background-color', 'transparent')
 																}
 															}											
 						},
@@ -574,26 +606,27 @@ function getUpcomingMatchesTable(){
 																$(nTd).css('text-align', 'left')
 																//////log(sData)
 																//log("rtp", UM_playerNamesReadyToPlayArray, "pp", UM_playerNamesCurrentlyPlayingArray, UM_playerNamesCurrentlyUnavailableArray)
-																var inRTP = inArray(sData, UM_playerNamesReadyToPlayArray)
-																var inPl = inArray(sData, UM_playerNamesCurrentlyPlayingArray)
-																var inUnav = inArray(sData, UM_playerNamesCurrentlyUnavailableArray)
-																var testArray = [];
-																testArray.push(inRTP, inPl, inUnav)
-																var counter = 0
-																for (var e in testArray){
-																	if(testArray[e] === true){
-																		counter ++;
+																var inRTP = false;
+																var inPl = false;
+																var inUnav = false;
+																var inRTP = getNewStatus("UM", "RTP", sData, oData)//inArray(sData, UM_playerNamesReadyToPlayArray)
+																if (inRTP === false) {
+																	inPl = getNewStatus("UM", "PP", sData, oData)//inArray(sData, UM_playerNamesCurrentlyPlayingArray)
+																	if (inPl === false && inPl === false) {
+																		inUnav = getNewStatus("UM", "Unav", sData, oData)//inArray(sData, UM_playerNamesCurrentlyUnavailableArray)
 																	}
 																}
-																if(counter > 1){
-																	log(counter, "trues for", sData, inRTP, inPl, inUnav)
-																}
-																if (inRTP === true && inPl === false && inUnav === false) {
-																	//$(nTd).css('background-color', '#71da71')
-																} else if (inPl === true && inUnav === false) {
+																
+																if (inRTP === true) {
+																	log("ready to play css", nTd)
+																	$(nTd).css('background-color', 'transparent')
+																} else if (inPl === true) {
+																	log("playing css", nTd);
 																	$(nTd).css('background-color', '#ffffb3')
 																} else if (inUnav === true) {
 																	$(nTd).css('background-color', '#ff8080')
+																} else {
+																	$(nTd).css('background-color', 'transparent')
 																}
 															}												
 						},
@@ -602,28 +635,27 @@ function getUpcomingMatchesTable(){
 																$(nTd).css('text-align', 'left')
 																//////log(sData)
 																//////log("arrays:", UM_playerNamesReadyToPlayArray, UM_playerNamesCurrentlyPlayingArray, UM_playerNamesCurrentlyUnavailableArray)
-																var inRTP = inArray(sData, UM_playerNamesReadyToPlayArray)
-																var inPl = inArray(sData, UM_playerNamesCurrentlyPlayingArray)
-																var inUnav = inArray(sData, UM_playerNamesCurrentlyUnavailableArray)
-																var testArray = [];
-																testArray.push(inRTP, inPl, inUnav)
-																var counter = 0
-																for (var e in testArray){
-																	if(testArray[e] === true){
-																		counter ++;
+																var inRTP = false;
+																var inPl = false;
+																var inUnav = false;
+																var inRTP = getNewStatus("UM", "RTP", sData, oData)//inArray(sData, UM_playerNamesReadyToPlayArray)
+																if (inRTP === false) {
+																	inPl = getNewStatus("UM", "PP", sData, oData)//inArray(sData, UM_playerNamesCurrentlyPlayingArray)
+																	if (inPl === false && inPl === false) {
+																		inUnav = getNewStatus("UM", "Unav", sData, oData)//inArray(sData, UM_playerNamesCurrentlyUnavailableArray)
 																	}
 																}
-																if(counter > 1){
-																	log(counter, "trues for", sData, inRTP, inPl, inUnav)
-																}
 
-																//log("rtp", UM_playerNamesReadyToPlayArray, "pp", UM_playerNamesCurrentlyPlayingArray, UM_playerNamesCurrentlyUnavailableArray)
-																if (inRTP === true && inPl === false && inUnav === false) {
-																	//$(nTd).css('background-color', '#71da71')
-																} else if (inPl === true && inUnav === false) {
+																if (inRTP === true) {
+																	log("ready to play css", nTd)
+																	$(nTd).css('background-color', 'transparent')
+																} else if (inPl === true) {
+																	log("playing css", nTd);
 																	$(nTd).css('background-color', '#ffffb3')
 																} else if (inUnav === true) {
 																	$(nTd).css('background-color', '#ff8080')
+																} else {
+																	$(nTd).css('background-color', 'transparent')
 																}
 															},												
 						},
@@ -679,7 +711,7 @@ function getUpcomingMatchesTable(){
 		//paging		
 		if(ifPaging === true){
 			function resizeUMTable(){	
-				////log("resizing UM")
+				log("resizing UM")
 				var countUMRows = paginationConfig('upcomingMatchesTable')
 				////log("countUMRows", countUMRows)
 				my_upcomingMatchesTable.destroy()
@@ -705,7 +737,7 @@ function getUpcomingMatchesTable(){
 					if(my_UMDivHeight>= (availableUMTableHeight + my_paginationNavHeight + my_UMnotesHeight)) {
 						////log("overflow found in UM", my_UMDivHeight, availableUMTableHeight, UMremakeCount)
 						table.destroy()
-						UMremakeCount +=1
+						UMremakeCount += 1
 						var newRowsCount = origRowscount - UMremakeCount
 						//////log("UM table destroyed", UMremakeCount, origRowscount, newRowsCount)
 						//////log("newRowsCount", newRowsCount)

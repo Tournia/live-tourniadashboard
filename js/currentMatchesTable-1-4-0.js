@@ -41,6 +41,10 @@ function getCurrentMatchesTable(){
 			//tro.append("<td class='courtColumn'" + nowPlayingSpan + courtName + "</td>");
 		}
 		singleCMData.CourtName = courtName
+
+		if (singleCMData.CourtName === undefined) {
+			singleCMData.CourtName = "Unknown";
+		}
 		
 		//Pool Name
 		indivCourtObjCount = Object.keys(my_locationsList[m]).length 
