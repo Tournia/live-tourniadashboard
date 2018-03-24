@@ -2,7 +2,7 @@
 /*ifMobile variable needs to be defined in tournament.php*/
 
 sampleData = false //load data from online database or local sample data sets
-DEBUG_MODE = true //show console log
+DEBUG_MODE = false //show console log
 sendingDataToDatabase = false
 
 expectedTimesFunctionality = false //enable or disable expected Times functionality

@@ -118,8 +118,8 @@
 	<script src="js/playersRankingTable-1-4-2.js"></script>
 	<script src="js/playersTable-1-4-2.js"></script>
 	<script src="js/getAPIDataAndMakeTables-1-4-2.js"></script>
-	<script src="js/localSampleData-1-4-2.js"></script>
-	<script src="js/getAPIDataAndMakeTables_LOCAL-1-4-2.js"></script>
+	<!--<script src="js/localSampleData-1-4-2.js"></script>-->
+	<!--<script src="js/getAPIDataAndMakeTables_LOCAL-1-4-2.js"></script>-->
 	<script src="js/currentMatchesTable-1-4-2.js"></script>
 	<script src="js/expectedTimesScript-1-4-2.js"></script>
 	<script src="js/upcomingMatchesTable-1-4-2.js"></script>
