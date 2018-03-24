@@ -848,3 +848,14 @@ Transparent Button With Visible Text
 	height: 5px;
 	background-color: #43a73f;
 }
+
+#noTablesSetup {
+	margin-left: 50px;
+	margin-top: 200px;
+	font-size: 32px;
+	line-height: 1;
+}
+
+#noTablesSetup:hover {
+	cursor: pointer;
+}

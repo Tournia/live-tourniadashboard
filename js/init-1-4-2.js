@@ -161,7 +161,7 @@ var timeString = time.toString();
 	$("#settingsButtonDiv").click(function(){
 		//log("clicked on settings button")
 		placeVarsInput()
-		$("#settingsModal").modal();
+		openSettingsModal()
 	});
 	$("#statisticsButtonDiv").click(function(){
 		//log("clicked on settings button")

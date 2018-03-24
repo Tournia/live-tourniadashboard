@@ -76,7 +76,7 @@ function toggleCurrentMatchesTable(_checked){
 		document.getElementById("playingTimeColumn").disabled = false
 		document.getElementById("playingTimeColumn").checked = true
 		document.getElementById("predictedTimeColumn").disabled = false
-		document.getElementById("predictedTimeColumn").checked = true
+		document.getElementById("predictedTimeColumn").checked = false
 		document.getElementById("currentTime").value = 10
 		document.getElementById("currentTime").disabled = false
 
@@ -153,15 +153,15 @@ function togglePoolsOverviewTable(_checked){
 	if (_checked === true){
 		document.getElementById("ifGoogleSheetData").disabled = false
 		document.getElementById("myGSheetUrl").disabled = false
-		document.getElementById("predictedTimeColumn").checked = true
+		document.getElementById("predictedTimeColumn").checked = false
 		document.getElementById("showTotTeamsCb").disabled = false
-		document.getElementById("showTotTeamsCb").checked = true
+		document.getElementById("showTotTeamsCb").checked = false
 		document.getElementById("showRoundsNeededCb").disabled = false
-		document.getElementById("showRoundsNeededCb").checked = true
+		document.getElementById("showRoundsNeededCb").checked = false
 		document.getElementById("showRoundsCreatedCb").disabled = false
-		document.getElementById("showRoundsCreatedCb").checked = true
+		document.getElementById("showRoundsCreatedCb").checked = false
 		document.getElementById("showRoundsLeftCb").disabled = false
-		document.getElementById("showRoundsLeftCb").checked = true
+		document.getElementById("showRoundsLeftCb").checked = false
 		document.getElementById("showStatusCb").disabled = false
 		document.getElementById("showStatusCb").checked = true
 		document.getElementById("showByeDataCb").disabled = false
@@ -702,19 +702,24 @@ function getVars(){
 	my_settingsVarsObject.ifOrganizerViewPreset = my_IfOrganizerViewPreset
 }
 
-function checkVariables(){	
+function checkVariables() {
 	log("checking vars...")
 	my_settingsVarsArray = []
 	//my_settingsVarsObject = {}
 	document.getElementById("createPageLoader").style.display = ""
 	document.getElementById("GDataLoader").style.display = ""
 	getVars()
-	
+
 	var tournament_url = _tourniaUrl + my_tournamentId
 	var _tournamentInfoUrl = _tourniaApiUrl + my_tournamentId + "/tournament"
 	var poolsUrl = _tourniaApiUrl + my_tournamentId + "/pools"
 	log("set tournament id:", my_tournamentId, "localstorage:", localStorage.getItem("ls_my_tournamentId"))
-	if(my_tournamentId === ""){
+	if (document.getElementById("organizerPreset").checked === false && document.getElementById("viewerPreset").checked === false) {
+		alert("Select view preset (Organizer or Particpants)")
+		throw ("Select view preset (Organizer or Particpants)")
+	}
+
+	if (my_tournamentId === "") {
 		my_error = "No Tournament id is provided."
 		if_error = true;
 		my_errorHandling(my_error)	

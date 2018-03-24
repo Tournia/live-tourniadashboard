@@ -163,6 +163,19 @@ function tableConfigurations(){
 	} else {
 		document.getElementById("CM_notes").style.display = "";
 	}
+
+
+	if (countLeftTables === 0 && poolsTable === false) {
+
+		var noPoolsText = 'No Tables have been set up. Go to to <a onclick="openSettingsModal()">Setup</a> to select tables and settings. Do not forget to set the reload time if desired.'
+		$("#noTablesSetup").append(noPoolsText);
+		$("#noTablesSetup").css("margin-left", "50px");
+		$("#noTablesSetup").css("margin-top", "200px");
+	} else {
+		$("#noTablesSetup").empty();
+		$("#noTablesSetup").css("margin-left", "0px");
+		$("#noTablesSetup").css("margin-top", "0px");
+	}
 }
 
 function removeTables(){

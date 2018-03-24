@@ -76,7 +76,7 @@ function mobileSetup{
 	var version = "1-4-0"
 	var ifMobile = true
 	var mobileError = false
-	var DEBUG_MODE = true
+	var DEBUG_MODE = false
 
 	var loadFromUrl = true
 	var loadFromSetupWindow = false

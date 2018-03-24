@@ -415,3 +415,7 @@ function createProgressBar(tableId) {
 	var CM_pb = "<div id='myProgress'><div id='myBar'></div></div>";
 	$("#" + tableId + "_paginate").prepend(CM_pb);
 }
+
+function openSettingsModal() {
+	$("#settingsModal").modal();
+}

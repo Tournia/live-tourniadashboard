@@ -107,27 +107,27 @@
 	<!--<script type="text/javascript" src="js/libs/dataTables.js"></script>-->
 	<script type="text/javascript" src="js/libs/select2.js"></script>
  	
-	<script src="js/otherFunctions-1-4-0.js"></script>
-	<script src="js/globals-1-4-0.js"></script>
-	<script src="js/tablesHTML-1-4-1.js"></script>
-	<script src="js/setupFunctions-1-4-0.js"></script>
-	<script src="js/options-1-4-0.js"></script>
-	<script src="js/poolProperties-1-4-0.js"></script>
-	<script src="js/paginationFunctions-1-4-0.js"></script>
-	<script src="js/poolRankingsTable-1-4-0.js"></script>
-	<script src="js/playersRankingTable-1-4-0.js"></script>
-	<script src="js/playersTable-1-4-0.js"></script>
-	<script src="js/getAPIDataAndMakeTables-1-4-0.js"></script>
-	<script src="js/localSampleData-1-4-0.js"></script>
-	<script src="js/getAPIDataAndMakeTables_LOCAL-1-4-0.js"></script>
-	<script src="js/currentMatchesTable-1-4-0.js"></script>
-	<script src="js/expectedTimesScript-1-4-0.js"></script>
-	<script src="js/upcomingMatchesTable-1-4-0.js"></script>
-	<script src="js/postponedMatchesTable-1-4-0.js"></script>
-	<script src="js/playedMatchesTable-1-4-0.js"></script>
-	<script src="js/poolsOverviewTable-1-4-0.js"></script>
-	<script src="js/pageView-1-4-0.js"></script>
-	<script src="js/tableViews-1-4-0.js"></script>
+	<script src="js/otherFunctions-1-4-2.js"></script>
+	<script src="js/globals-1-4-2.js"></script>
+	<!--<script src="js/tablesHTML-1-4-2.js"></script>-->
+	<script src="js/setupFunctions-1-4-2.js"></script>
+	<script src="js/options-1-4-2.js"></script>
+	<script src="js/poolProperties-1-4-2.js"></script>
+	<script src="js/paginationFunctions-1-4-2.js"></script>
+	<script src="js/poolRankingsTable-1-4-2.js"></script>
+	<script src="js/playersRankingTable-1-4-2.js"></script>
+	<script src="js/playersTable-1-4-2.js"></script>
+	<script src="js/getAPIDataAndMakeTables-1-4-2.js"></script>
+	<script src="js/localSampleData-1-4-2.js"></script>
+	<script src="js/getAPIDataAndMakeTables_LOCAL-1-4-2.js"></script>
+	<script src="js/currentMatchesTable-1-4-2.js"></script>
+	<script src="js/expectedTimesScript-1-4-2.js"></script>
+	<script src="js/upcomingMatchesTable-1-4-2.js"></script>
+	<script src="js/postponedMatchesTable-1-4-2.js"></script>
+	<script src="js/playedMatchesTable-1-4-2.js"></script>
+	<script src="js/poolsOverviewTable-1-4-2.js"></script>
+	<script src="js/pageView-1-4-2.js"></script>
+	<script src="js/tableViews-1-4-2.js"></script>
  
 	 <script>
 		 function urlSetup() {
@@ -284,7 +284,7 @@
 		}
 		urlSetup()	  
 	</script>
-	 <script src="js/init-1-4-0.js"></script>
+	 <script src="js/init-1-4-2.js"></script>
 </head>
 <body bgcolor="#f3f2f0">
 
@@ -312,6 +312,7 @@
 		<div id="myClock"></div>
 	</div>
 	<div id="announcements"></div>
+	<div id="noTablesSetup"></div>
 	<!-- Modals -->
 	<!--Settings Modal -->
   <div class="modal fade" id="settingsModal" role="dialog">
@@ -369,7 +370,7 @@
 						<td>
 							<form>
 								<input type="radio" id="organizerPreset" name="tablePreset" class="radio" value="viewer" onchange="toggleOrganizerView(this.checked)">Organzier view<br>
-								<input type="radio" id="viewerPreset" name="tablePreset" class="radio" value="organizer" onchange="toggleViewerView(this.checked)" checked>Participants view
+								<input type="radio" id="viewerPreset" name="tablePreset" class="radio" value="organizer" onchange="toggleViewerView(this.checked)" >Participants view
 							</form>
 						</td>
 						<td>
