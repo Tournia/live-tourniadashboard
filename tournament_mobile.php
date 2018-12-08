@@ -155,27 +155,27 @@
 	-->
 	<script src="js/libs/select2.js"></script>
 
-	<script src="js/otherFunctions-1-4-2.js"></script>
-	<script src="js/globals-1-4-2.js"></script>
-	<script src="js/setupFunctions-1-4-2.js"></script>
-	<script src="js/options-1-4-2.js"></script>
-	<script src="js/poolProperties-1-4-2.js"></script>
-	<script src="js/paginationFunctions-1-4-2.js"></script>
-	<script src="js/poolRankingsTable-1-4-2.js"></script>
-	<script src="js/playersRankingTable-1-4-2.js"></script>
-	<script src="js/groupsRankingTable-1-4-2.js"></script>
-	<script src="js/playersTable-1-4-2.js"></script>
-	<script src="js/getAPIDataAndMakeTables-1-4-2.js"></script>
-	<!--<script src="js/localSampleData-1-4-2.js"></script>
-	<script src="js/getAPIDataAndMakeTables_LOCAL-1-4-2.js"></script>-->
-	<script src="js/currentMatchesTable-1-4-2.js"></script>
-	<!--<script src="js/expectedTimesScript-1-4-2.js"></script>-->
-	<script src="js/upcomingMatchesTable-1-4-2.js"></script>
-	<script src="js/postponedMatchesTable-1-4-2.js"></script>
-	<script src="js/playedMatchesTable-1-4-2.js"></script>
-	<script src="js/poolsOverviewTable-1-4-2.js"></script>
-	<script src="js/pageView-1-4-2.js"></script>
-	<script src="js/tableViews-1-4-2.js"></script>
+	<script src="js/otherFunctions-1-4-3.js"></script>
+	<script src="js/globals-1-4-3.js"></script>
+	<script src="js/setupFunctions-1-4-3.js"></script>
+	<script src="js/options-1-4-3.js"></script>
+	<script src="js/poolProperties-1-4-3.js"></script>
+	<script src="js/paginationFunctions-1-4-3.js"></script>
+	<script src="js/poolRankingsTable-1-4-3.js"></script>
+	<script src="js/playersRankingTable-1-4-3.js"></script>
+	<script src="js/groupsRankingTable-1-4-3.js"></script>
+	<script src="js/playersTable-1-4-3.js"></script>
+	<script src="js/getAPIDataAndMakeTables-1-4-3.js"></script>
+	<!--<script src="js/localSampleData-1-4-3.js"></script>
+	<script src="js/getAPIDataAndMakeTables_LOCAL-1-4-3.js"></script>-->
+	<script src="js/currentMatchesTable-1-4-3.js"></script>
+	<!--<script src="js/expectedTimesScript-1-4-3.js"></script>-->
+	<script src="js/upcomingMatchesTable-1-4-3.js"></script>
+	<script src="js/postponedMatchesTable-1-4-3.js"></script>
+	<script src="js/playedMatchesTable-1-4-3.js"></script>
+	<script src="js/poolsOverviewTable-1-4-3.js"></script>
+	<script src="js/pageView-1-4-3.js"></script>
+	<script src="js/tableViews-1-4-3.js"></script>
 	<script>
 	
 
@@ -295,7 +295,7 @@
 		}
 		urlSetup()
 	</script>
-	<script src="js/init-1-4-2.js"></script>
+	<script src="js/init-1-4-3.js"></script>
 </head>
 <body>
 <div id="parent">
