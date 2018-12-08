@@ -38,11 +38,11 @@ function displayTitle(){
 		//var ifPlayersViewPreset = (ifPlayersViewPreset === false
 		document.getElementById('TournamentUrlName').innerHTML = my_tournamentName
 		var ifDefaultannoucement = true
-		if(tournament_ID === "Helios-kersttoernooi-2017"){
+		if(tournament_ID === "Helios-kersttoernooi-2018"){
 			var tournament_shortcut = "helioskersttoernooi"
-		} else if (tournament_ID === "isbt-enschede-2017"){
+		} else if (tournament_ID === "isbt-enschede-2018"){
 			var tournament_shortcut = "isbtenschede"
-		} else if (tournament_ID === "bc-drop-shot-wintertoernooi-2018"){
+		} else if (tournament_ID === "bc-drop-shot-wintertoernooi-2019"){
 			var tournament_shortcut = "dropshot"
 			ifDefaultannoucement = false
 			var anouncementText = "Go to <i><u>bcdropshot.nl/live</u></i> to check everything on your mobile including upcoming matches, byes, results and rankings."
