@@ -15,7 +15,7 @@
 	<link rel="stylesheet" href="css/libs/select2.css" />
 	
 	<script>
-		var version = "1-4-2"
+		var version = "1-4-3"
 		var ifMobile = true
 		var mobileError = false
 		var DEBUG_MODE = false

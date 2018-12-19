@@ -50,6 +50,10 @@ function displayTitle(){
 			var tournament_shortcut = "utrecht"
 			ifDefaultannoucement = false
 			var anouncementText = "Go to <i><u>isbtutrecht.nl</u></i> to check everything on your mobile including upcoming matches, byes, results and rankings."
+		} else if(tournament_ID.includes("kerst") === true){ 
+			var tournament_shortcut = "helios"
+			ifDefaultannoucement = false
+			var anouncementText = "Go to <i><u>tourniadashboard.nl/"+tournament_shortcut+"</u></i> to check everything on your mobile including upcoming matches, byes, results and rankings."
 		} else {
 			var tournament_shortcut = tournament_ID
 		}

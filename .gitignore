@@ -53,3 +53,7 @@ expectedTimesLog_Helios-kersttoernooi-2017.php
 expectedTimesLog_isbt-enschede-2017.php
 FileZilla_log.log
 *.sqlite
+js/.htaccess
+*.map
+css/bootstrap.css
+css/libs/dataTables_bs.css

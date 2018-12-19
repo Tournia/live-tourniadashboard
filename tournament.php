@@ -6,7 +6,7 @@
 	<!--<meta http-equiv="refresh" content="60" >-->
 	<title>Tournia live dashboard</title>
 	<script type="text/javascript">
-		var version = "1-4-2"
+		var version = "1-4-3"
 		//checkBrowsers()
 		var sampleData
 		var DEBUG_MODE
@@ -86,7 +86,7 @@
 	 <!--<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.css">
 	 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.1.1/css/responsive.dataTables.min.css">
 	 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.2.4/css/buttons.dataTables.min.css">-->
-	 <!--<link rel="stylesheet" href="css/style.css" />-->
+	 <!--<link rel="stylesheet" href="css/style-1-4-3.css" />-->
  
 	 <!--<script src="https://code.jquery.com/jquery-1.12.4.js"></script>-->
 	 <!--<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>-->
