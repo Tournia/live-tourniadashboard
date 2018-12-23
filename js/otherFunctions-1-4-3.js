@@ -159,7 +159,7 @@ function getNewStatus(table, array, playerName, singleMatch) {
 		for (var key2 in myT2Players) {
 			var individual2Player = myT2Players[key2].name
 			var simpleName2 = individual2Player.replace(/".*"/, "").replace("  ", " ").replace("  ", " ").replace("  ", " ")
-			log(simpleName2)
+			//log(simpleName2)
 			if (simpleName2 === playerName) {
 				var ifReady = myT2Players[key2].ready;
 				if (ifReady === true) {
@@ -189,7 +189,7 @@ function getNewStatus(table, array, playerName, singleMatch) {
 	} else if (array === "Unav") {
 		to_return = playerUnavailable;
 	}
-	log("new status for", matchId, playerName, array, to_return)
+	//log("new status for", matchId, playerName, array, to_return)
 	return to_return
 }
 
@@ -326,8 +326,8 @@ function expectedTimeColumnName(value) {
 	if (showExpectedTimeColumn === false) {
 		my_name = 0;
 	}
-	if (my_name === 0) { //dsiabled expected Time
-		return 'expectedTime'
+	if (my_name === 0) { //dsabled expected Time
+		return 'noExpectedTime'
 	} else if (my_name === 1) {
 		return 'shiftNrExpectedTimeMinsStdDev';
 	} else if (my_name === 2) {

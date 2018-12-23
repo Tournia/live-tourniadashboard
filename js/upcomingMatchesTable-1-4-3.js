@@ -300,14 +300,13 @@ function getUpcomingMatchesTable(){
 			}*/
 				
 			//expected Times column
-			if (showExpectedTimeColumn === true) {
+            singleUMData.noExpectedTime = "";
+            if (showExpectedTimeColumn === true) {
 				var ET_returns = calculateExpectedTime(um, my_PoolName, poolPropertiesObject, singleUMData, nrOfCourts, my_statusText, playersNotReady, playersPlaying, UM_playerNamesCurrentlyPlayingArray_ET, playersPlayingObects, predictedTimeLeftofPlayingPlayersArray)
 
 				log("ET returns:", ET_returns)
 				var upcomingMatchInfo = ET_returns[0]
 				singleUMData = ET_returns[1]
-			} else {
-				singleUMData.expectedTime = "";
 			}
 			allUMdata.push(singleUMData)
 		
@@ -556,10 +555,10 @@ function getUpcomingMatchesTable(){
 																}																var testArray = [];
 																
 																if (inRTP === true) {
-																	log("ready to play css", nTd)
+																	//log("ready to play css", nTd)
 																	$(nTd).css('background-color', 'transparent')
 																} else if (inPl === true){
-																	log("playing css", nTd);
+																	//log("playing css", nTd);
 																	$(nTd).css('background-color', '#ffffb3')
 																} else if (inUnav === true) {
 																	$(nTd).css('background-color', '#ff8080')
@@ -585,10 +584,10 @@ function getUpcomingMatchesTable(){
 																}																var testArray = [];
 																
 																if (inRTP === true) {
-																	log("ready to play css", nTd)
+																	//log("ready to play css", nTd)
 																	$(nTd).css('background-color', 'transparent')
 																} else if (inPl === true) {
-																	log("playing css", nTd);
+																	//log("playing css", nTd);
 																	$(nTd).css('background-color', '#ffffb3')
 																} else if (inUnav === true) {
 																	$(nTd).css('background-color', '#ff8080')
@@ -618,10 +617,10 @@ function getUpcomingMatchesTable(){
 																}
 																
 																if (inRTP === true) {
-																	log("ready to play css", nTd)
+																	//log("ready to play css", nTd)
 																	$(nTd).css('background-color', 'transparent')
 																} else if (inPl === true) {
-																	log("playing css", nTd);
+																	//log("playing css", nTd);
 																	$(nTd).css('background-color', '#ffffb3')
 																} else if (inUnav === true) {
 																	$(nTd).css('background-color', '#ff8080')
@@ -647,10 +646,10 @@ function getUpcomingMatchesTable(){
 																}
 
 																if (inRTP === true) {
-																	log("ready to play css", nTd)
+																	//log("ready to play css", nTd)
 																	$(nTd).css('background-color', 'transparent')
 																} else if (inPl === true) {
-																	log("playing css", nTd);
+																	//log("playing css", nTd);
 																	$(nTd).css('background-color', '#ffffb3')
 																} else if (inUnav === true) {
 																	$(nTd).css('background-color', '#ff8080')

@@ -1,18 +1,26 @@
 //overrule variables
 /*ifMobile variable needs to be defined in tournament.php*/
 
-sampleData = false //load data from online database or local sample data sets
-DEBUG_MODE = false //show console log
+sampleData = true //load data from online database or local sample data sets
+DEBUG_MODE = true //show console log
 sendingDataToDatabase = false
 
-expectedTimesFunctionality = false //enable or disable expected Times functionality
+expectedTimesFunctionality = true //enable or disable expected Times functionality
 predictedTimesFunctionality = true //enable or disable predicted Times functionality
-expectedTimesDataTesting = false //always show upcoming matches table for expected time script testing
-	AET = false //adjust expected times
-	var my_expectedTimeColumnName = expectedTimeColumnName(0); 
-slowLoading = true //load all matches data for all info. Required for rounds left, bye data and players table
+expectedTimesDataTesting = true //always show upcoming matches table for expected time script testing
+	AET = true //adjust expected times
+if (expectedTimesFunctionality === false) {
+    var my_expectedTimeColumnName = expectedTimeColumnName(0)
+} else if (expectedTimesFunctionality === true && DEBUG_MODE === true) {
+    var my_expectedTimeColumnName = expectedTimeColumnName(1);
+} else if (expectedTimesFunctionality === true && DEBUG_MODE === false) {
+    var my_expectedTimeColumnName = expectedTimeColumnName(4);
+} else {
+    var my_expectedTimeColumnName = expectedTimeColumnName(0)
+}
+ slowLoading = true //load all matches data for all info. Required for rounds left, bye data and players table
 
-dataSetNr = 2 //ISBT Utrecht: 1-5; ISBT Amsterdam 1-9
+dataSetNr = 5 //ISBT Utrecht: 1-5; ISBT Amsterdam 1-9
 	//apply local datasets
 	//isbt Utrecht sample Data
 	var ifEmptyInput = false
@@ -370,3 +378,4 @@ var shift1rtp
 var shift1pp
 var nrOfCourts
 var freeCourtsAvailable
+var firstAltShift3
