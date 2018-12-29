@@ -859,3 +859,28 @@ Transparent Button With Visible Text
 #noTablesSetup:hover {
 	cursor: pointer;
 }
+
+#playerStatusBox {
+    display: inline-block;
+}
+#playerStatusText {
+    display: inline-block;
+}
+
+#creditsText {
+    text-align: left;
+}
+.credits {
+    font-size: 10px;
+    color: dimgrey;
+    text-align: left;
+    display: inline-block;
+}
+
+#contactUsText{
+    text-align: right;
+}
+
+a:link {
+    color: #43a73f
+}

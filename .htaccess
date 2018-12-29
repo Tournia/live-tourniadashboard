@@ -1,0 +1,33 @@
+DirectoryIndex tournament.php
+RewriteEngine On
+
+RewriteCond %{HTTPS} !=on
+RewriteRule ^.*$ https://%{SERVER_NAME}%{REQUEST_URI} [R=301,L]
+
+#Simpler URL access
+
+RewriteRule ^/(.*)$ https://www.tourniadashboard.nl/tournament.php?$1 [R=301,NC,L]
+
+#individual Tournaments
+
+#demo and tests
+Redirect 301 /demo https://www.tourniadashboard.nl/tournament.php?utrecht2016
+Redirect 301 /test/demo https://www.tourniadashboard.nl/test/tournament.php?utrecht2016
+Redirect 301 /utrecht2016 https://www.tourniadashboard.nl/tournament.php?utrecht2016
+
+#ISBT Enschede
+Redirect 301 /isbtenschede https://www.tourniadashboard.nl/tournament.php?isbt-enschede-2018
+Redirect 301 /enschede https://www.tourniadashboard.nl/tournament.php?isbt-enschede-2018
+Redirect 301 /diok https://www.tourniadashboard.nl/tournament.php?isbt-enschede-2018
+
+#dropshot
+Redirect 301 /dropshot https://www.tourniadashboard.nl/tournament.php?bc-drop-shot-wintertoernooi-2019
+
+#ISBT Utrecht
+Redirect 301 /utrecht2018 https://www.tourniadashboard.nl/tournament.php?isbt-utrecht-2019
+Redirect 301 /isbtutrecht https://www.tourniadashboard.nl/tournament.php?isbt-utrecht-2019
+Redirect 301 /utrecht https://www.tourniadashboard.nl/tournament.php?isbt-utrecht-2019
+
+#Helios kersttoernooi
+Redirect 301 /helios https://www.tourniadashboard.nl/tournament.php?sb-helios-kersttoernooi-2018
+Redirect 301 /sbhelios https://www.tourniadashboard.nl/tournament.php?sb-helios-kersttoernooi-2018

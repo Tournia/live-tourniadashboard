@@ -11,11 +11,12 @@
 	<!--<link rel="stylesheet" href="css/style.css" />-->
 	
 	<!--<link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">-->
-	<link rel="stylesheet" href="css/libs/jquery_mobile.css" />	
+	<link rel="stylesheet" href="css/libs/jquery_mobile-1-5-1.css" />	
 	<link rel="stylesheet" href="css/libs/select2.css" />
 	
 	<script>
-		var version = "1-4-3"
+		var version = "1-5-1"
+		var versionNr = "1.5.1"
 		var ifMobile = true
 		var mobileError = false
 		var DEBUG_MODE = false
@@ -155,27 +156,27 @@
 	-->
 	<script src="js/libs/select2.js"></script>
 
-	<script src="js/otherFunctions-1-4-3.js"></script>
-	<script src="js/globals-1-4-3.js"></script>
-	<script src="js/setupFunctions-1-4-3.js"></script>
-	<script src="js/options-1-4-3.js"></script>
-	<script src="js/poolProperties-1-4-3.js"></script>
-	<script src="js/paginationFunctions-1-4-3.js"></script>
-	<script src="js/poolRankingsTable-1-4-3.js"></script>
-	<script src="js/playersRankingTable-1-4-3.js"></script>
-	<script src="js/groupsRankingTable-1-4-3.js"></script>
-	<script src="js/playersTable-1-4-3.js"></script>
-	<script src="js/getAPIDataAndMakeTables-1-4-3.js"></script>
-	<!--<script src="js/localSampleData-1-4-3.js"></script>
-	<script src="js/getAPIDataAndMakeTables_LOCAL-1-4-3.js"></script>-->
-	<script src="js/currentMatchesTable-1-4-3.js"></script>
-	<!--<script src="js/expectedTimesScript-1-4-3.js"></script>-->
-	<script src="js/upcomingMatchesTable-1-4-3.js"></script>
-	<script src="js/postponedMatchesTable-1-4-3.js"></script>
-	<script src="js/playedMatchesTable-1-4-3.js"></script>
-	<script src="js/poolsOverviewTable-1-4-3.js"></script>
-	<script src="js/pageView-1-4-3.js"></script>
-	<script src="js/tableViews-1-4-3.js"></script>
+	<script src="js/otherFunctions-1-5-1.js"></script>
+	<script src="js/globals-1-5-1.js"></script>
+	<script src="js/setupFunctions-1-5-1.js"></script>
+	<script src="js/options-1-5-1.js"></script>
+	<script src="js/poolProperties-1-5-1.js"></script>
+	<script src="js/paginationFunctions-1-5-1.js"></script>
+	<script src="js/poolRankingsTable-1-5-1.js"></script>
+	<script src="js/playersRankingTable-1-5-1.js"></script>
+	<script src="js/groupsRankingTable-1-5-1.js"></script>
+	<script src="js/playersTable-1-5-1.js"></script>
+	<script src="js/getAPIDataAndMakeTables-1-5-1.js"></script>
+	<!--<script src="js/localSampleData-1-5-1.js"></script>
+	<script src="js/getAPIDataAndMakeTables_LOCAL-1-5-1.js"></script>-->
+	<script src="js/currentMatchesTable-1-5-1.js"></script>
+	<script src="js/expectedTimesScript-1-5-1.js"></script>
+	<script src="js/upcomingMatchesTable-1-5-1.js"></script>
+	<script src="js/postponedMatchesTable-1-5-1.js"></script>
+	<script src="js/playedMatchesTable-1-5-1.js"></script>
+	<script src="js/poolsOverviewTable-1-5-1.js"></script>
+	<script src="js/pageView-1-5-1.js"></script>
+	<script src="js/tableViews-1-5-1.js"></script>
 	<script>
 	
 
@@ -288,14 +289,23 @@
 			} else {
 				log("empty url")
 				mobileError = true
-				var tournamentID_input = prompt("No tournament found. Please provide a (correct) tournament id.\nOngoing or upcoming tournaments include:\n 'isbt-enschede-2017'\n'bc-drop-shot-wintertoernooi-2017'\n") //eg.: www.tourniadashboard.nl/utrecht2016")
+				var tournamentID_input = prompt("No tournament found. Please provide a (correct) tournament id.\nOngoing or upcoming tournaments include (their id's):\n\nisbt-enschede-2018\nbc-drop-shot-wintertoernooi-2019\nisbt-utrecht-2019\n") //eg.: www.tourniadashboard.nl/utrecht2016")
 				var tournament_url = "/tournament.php?" + tournamentID_input
 				window.location.href = tournament_url
 			} 		
 		}
 		urlSetup()
 	</script>
-	<script src="js/init-1-4-3.js"></script>
+	<script src="js/init-1-5-1.js"></script>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-131455748-1"></script>
+		<script>
+		  window.dataLayer = window.dataLayer || [];
+		  function gtag(){dataLayer.push(arguments);}
+		  gtag('js', new Date());
+
+		  gtag('config', 'UA-131455748-1');
+		</script>
 </head>
 <body>
 <div id="parent">
@@ -321,6 +331,7 @@
 				</table>
 				<div id="CM_notes" class="note">*Remaing times are based on average match durations per pool of 4 previous editions of ISBT Utrecht.</div>
 				<div id="currentMatchesLoader" class="loader" style="display: none"></div>
+			<div id="creditsTextCurrent"></div>
 			</div>
 		</div>
 		<div class="footer" data-role="footer">
@@ -368,6 +379,7 @@
 					<div id="ExpectedTimeLeftNote2" class="note">**There is an earlier upcoming match that has an unknown expected time. This may affect this expected time. Check the postponed matches tables if information is available about these matches.</div>
 				</div>
 				<div id="upcomingMatchesLoader" class="loader" style="display: none"></div>
+				<div id="creditsTextUpcoming"></div>
 		</div>
 	  </div>
 	   <div class="footer" data-role="footer">
@@ -411,6 +423,7 @@
 					</thead>
 				</table>
 				<div id="postponedMatchesLoader" class="loader" style="display: none"></div>
+				<div id="creditsTextPostponed"></div>
 			</div>
 		</div>
 		<div class="footer" data-role="footer">
@@ -446,7 +459,8 @@
 						</tr>
 					</thead>
 				</table>
-				<div id="poolsOverviewLoader" class="loader" style="display: none"></div> 
+				<div id="poolsOverviewLoader" class="loader" style="display: none"></div>
+				<div id="creditsTextOverviewPools"></div>
 			</div>
 		</div>
 		<div class="footer" data-role="footer">
@@ -468,13 +482,15 @@
 				<div id="resultsRankingsRbs">
 					<fieldset data-role="controlgroup" data-type="horizontal">
 						<form>
-							<label>
-								<input type="radio" name="resRankigsRbs" id="resultsRb" class="resultsRankingsRbs"checked>Results
-							</label>
 							<label for="rankingsRb">Rankings</label>
-							<input type="radio" name="resRankigsRbs" id="rankingsRb" class="resultsRankingsRbs">
+							<input type="radio" name="resRankigsRbs" id="rankingsRb" class="resultsRankingsRbs" checked>
+
 							<label for="playersRb">Players</label>
 							<input type="radio" name="resRankigsRbs" id="playersRb" class="resultsRankingsRbs">
+
+							<label for ="resultsRb">Results</label>
+							<input type="radio" name="resRankigsRbs" id="resultsRb" class="resultsRankingsRbs">
+							
 						</form>
 					</fieldset>
 				</div>
@@ -493,35 +509,7 @@
                         </ul>
                     </div>
                 </div>-->
-				
-				
-
-				<div id="matchResultsBox">
-					<h3>Match Results</h3>
-					<table id = "playedMatchesTable" class="display" width="100%">
-						<thead id="my_MRtHead">
-							<tr>
-								<td colspan="8" class="tableHeaders">Results</td>
-							</tr>
-							<tr>
-								<th rowspan="2" class="leftCol">Match nr.</th>
-								<th rowspan="2">Pool</th>
-								<th colspan="2" class="col">Team 1</th>
-								<th rowspan="2"class="col">Scores</th>
-								<th colspan="2" class="rightCol">Team 2</th>
-							</tr>
-							<tr>
-								<th class="showNone" style="display: none"></th>
-								<th class="showNone" style="display: none"></th>
-								<th class="showNone" style="display: none"></th>
-								<th class="showNone" style="display: none"></th>
-								<th class="showNone" style="display: none"></th>
-							</tr>
-						</thead>
-					</table>
-					<div id="playedMatchesLoader" class="loader" style="display: none"></div>
-				</div>
-				
+																			
 				<div id="rankingsBox">
 					<div id="rankingsRadioButtons">
 						<fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
@@ -620,6 +608,12 @@
 								<option></option>
 							</select>
 						</div>
+						<!--<br>
+						<div id="playerStatusBox">
+							<b>Current status:</b>
+							<div id="playerStatusText"></div>
+						</div>
+						<br>-->
 						<div id="playersTableBox">
 							<table id="playersTable" class="display" width="100%">
 								<thead id="my_PLAtHead">
@@ -641,9 +635,37 @@
 						</div>
 					<div id="playersLoader" class="loader" style="display: none"></div>
 				</div>
+
+				<div id="matchResultsBox">
+					<h3>Match Results</h3>
+					<table id = "playedMatchesTable" class="display" width="100%">
+						<thead id="my_MRtHead">
+							<tr>
+								<td colspan="8" class="tableHeaders">Results</td>
+							</tr>
+							<tr>
+								<th rowspan="2" class="leftCol">Match nr.</th>
+								<th rowspan="2">Pool</th>
+								<th colspan="2" class="col">Team 1</th>
+								<th rowspan="2"class="col">Scores</th>
+								<th colspan="2" class="rightCol">Team 2</th>
+							</tr>
+							<tr>
+								<th class="showNone" style="display: none"></th>
+								<th class="showNone" style="display: none"></th>
+								<th class="showNone" style="display: none"></th>
+								<th class="showNone" style="display: none"></th>
+								<th class="showNone" style="display: none"></th>
+							</tr>
+						</thead>
+					</table>
+					<div id="playedMatchesLoader" class="loader" style="display: none"></div>
+				</div>
+				<div id="creditsTextRankingsResults"></div>
 			</div>
 		</div>
 		<div class="footer" data-role="footer">
+			
 			<div data-role="navbar">
 			  <ul>
 				<li><a href="#currentMatches" class="navbar-button" data-prefetch="true" >Current matches</a></li>

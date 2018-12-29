@@ -18,7 +18,8 @@ function getUpcomingMatchesTable(){
 		 inReadyCount_UM = []
 		 inPlayCount_UM = []
 		 unavailable_UM = []
-		 Playing	= false
+         freeCourtsAtStartCount = 0
+         Playing = false
 		
 		 inFirstCount_UM = 0
 		 inSecondCount_UM = 0
@@ -30,7 +31,9 @@ function getUpcomingMatchesTable(){
 		 shiftStartTime = 0
 		 upcomingMatchInfoObjectsShift = []
 		 shift1upcomingMatchInfoObjects = []
-		 ppUpcomingMatchInfoObjects = []
+         shift1ppUpcomingMatchInfoObjects = []
+         tempshift1ppUpcomingMatchInfoObjects = []
+         ppUpcomingMatchInfoObjects = []
 		 rtpUpcomingMatchInfoObjects = []
 		 addIndex = 0
 		 shift1ppCount = 0
@@ -40,7 +43,8 @@ function getUpcomingMatchesTable(){
 		 shift1pp = 0
 		 nrOfCourts = availableLocationsCount
 		 freeCourtsAvailable = 0
-		
+         assignedFreeCourts = 0
+        
 		var UM_loopStartLog = []
 		var UM_loopStopLog = []
 		if(firstLoad === true){
@@ -59,7 +63,8 @@ function getUpcomingMatchesTable(){
 		
 		for(pt = 0; pt < predictedTimeLeftArray.length; pt++){
 			if(predictedTimeLeftArray[pt].timeLeft === 0){
-				freeCourtsAvailable +=1
+                freeCourtsAvailable += 1
+                 
 			}
 		}
 		////////log("available nr. of courts:", nrOfCourts)
@@ -300,16 +305,21 @@ function getUpcomingMatchesTable(){
 			}*/
 				
 			//expected Times column
-			if (showExpectedTimeColumn === true) {
-				var ET_returns = calculateExpectedTime(um, my_PoolName, poolPropertiesObject, singleUMData, nrOfCourts, my_statusText, playersNotReady, playersPlaying, UM_playerNamesCurrentlyPlayingArray_ET, playersPlayingObects, predictedTimeLeftofPlayingPlayersArray)
+            singleUMData.noExpectedTime = "";
+            if (showExpectedTimeColumn === true) {
+                var ET_returns = calculateExpectedTime(um, my_PoolName, poolPropertiesObject, singleUMData, nrOfCourts, my_statusText, playersNotReady, playersPlaying, UM_playerNamesCurrentlyPlayingArray_ET, playersPlayingObects, predictedTimeLeftofPlayingPlayersArray)
 
-				log("ET returns:", ET_returns)
-				var upcomingMatchInfo = ET_returns[0]
-				singleUMData = ET_returns[1]
-			} else {
-				singleUMData.expectedTime = "";
-			}
-			allUMdata.push(singleUMData)
+                log("ET returns:", ET_returns)
+                var upcomingMatchInfo = ET_returns[0]
+                singleUMData = ET_returns[1]
+            } else {
+                singleUMData.shiftNrExpectedTimeMinsStdDev = ""
+                singleUMData.shiftNrExpectedTimeSecs = ""
+                singleUMData.StdDevExpectedTime = ""
+                singleUMData.namedExpectedTime = ""
+            }
+            allUMdata.push(singleUMData)
+
 		
 			//check expected Times
 			//start log
@@ -359,7 +369,7 @@ function getUpcomingMatchesTable(){
 
 				my_currentStartSingleStringsObject.reloadDataTimeInterval = reloadDataTimeSecs
 				if (ifUnavailableS === false) {
-					my_startArray.push(tournamentName, reloadDataCount, processIDS, start, my_matchLocalId, myPoolname, isoCurrentTimeS, firstExpectedTime, ifReadytoPlayS, ifPlayerPlayingS, ifUnavailableS, reloadDataTimeSecs, lastRefreshTimeLog, expectedTimestartTimeDifferenceS, timeDifferenceSecsS, tournament_ID)
+					my_startArray.push(/*tournament_ID,*/tournamentName, reloadDataCount, processIDS, start, my_matchLocalId, myPoolname, isoCurrentTimeS, firstExpectedTime, ifReadytoPlayS, ifPlayerPlayingS, ifUnavailableS, reloadDataTimeSecs, lastRefreshTimeLog, expectedTimestartTimeDifferenceS, timeDifferenceSecsS)
 
 					my_currentStringObjectsArray.push(my_currentStartSingleStringsObject)
 					mycurrentLocalIDArray.push(my_matchLocalId)
@@ -408,7 +418,7 @@ function getUpcomingMatchesTable(){
 					//log("intermediate:", um)
 					var umNrStr = um.toString()
 					processIDI = "umNr" + umNrStr + "_" + my_matchLocalId
-					my_intermediatArray.push(tournamentName, reloadDataCount, processIDI, "intermediate", my_matchLocalId, myPoolname, isoCurrentTimeS, firstExpectedTime, ifReadytoPlayS, ifPlayerPlayingS, ifUnavailableS, reloadDataTimeSecs, lastRefreshTimeLog, expectedTimestartTimeDifferenceS, timeDifferenceSecsS, tournament_ID)
+					my_intermediatArray.push(/*tournament_ID,*/ tournamentName, reloadDataCount, processIDI, "intermediate", my_matchLocalId, myPoolname, isoCurrentTimeS, firstExpectedTime, ifReadytoPlayS, ifPlayerPlayingS, ifUnavailableS, reloadDataTimeSecs, lastRefreshTimeLog, expectedTimestartTimeDifferenceS, timeDifferenceSecsS)
 					var my_intermediatString = my_intermediatArray.join(";")
 					//log(my_intermediatString)
 					my_currentStringsArray.push(my_intermediatString)
@@ -556,10 +566,10 @@ function getUpcomingMatchesTable(){
 																}																var testArray = [];
 																
 																if (inRTP === true) {
-																	log("ready to play css", nTd)
+																	//log("ready to play css", nTd)
 																	$(nTd).css('background-color', 'transparent')
 																} else if (inPl === true){
-																	log("playing css", nTd);
+																	//log("playing css", nTd);
 																	$(nTd).css('background-color', '#ffffb3')
 																} else if (inUnav === true) {
 																	$(nTd).css('background-color', '#ff8080')
@@ -585,10 +595,10 @@ function getUpcomingMatchesTable(){
 																}																var testArray = [];
 																
 																if (inRTP === true) {
-																	log("ready to play css", nTd)
+																	//log("ready to play css", nTd)
 																	$(nTd).css('background-color', 'transparent')
 																} else if (inPl === true) {
-																	log("playing css", nTd);
+																	//log("playing css", nTd);
 																	$(nTd).css('background-color', '#ffffb3')
 																} else if (inUnav === true) {
 																	$(nTd).css('background-color', '#ff8080')
@@ -618,10 +628,10 @@ function getUpcomingMatchesTable(){
 																}
 																
 																if (inRTP === true) {
-																	log("ready to play css", nTd)
+																	//log("ready to play css", nTd)
 																	$(nTd).css('background-color', 'transparent')
 																} else if (inPl === true) {
-																	log("playing css", nTd);
+																	//log("playing css", nTd);
 																	$(nTd).css('background-color', '#ffffb3')
 																} else if (inUnav === true) {
 																	$(nTd).css('background-color', '#ff8080')
@@ -647,10 +657,10 @@ function getUpcomingMatchesTable(){
 																}
 
 																if (inRTP === true) {
-																	log("ready to play css", nTd)
+																	//log("ready to play css", nTd)
 																	$(nTd).css('background-color', 'transparent')
 																} else if (inPl === true) {
-																	log("playing css", nTd);
+																	//log("playing css", nTd);
 																	$(nTd).css('background-color', '#ffffb3')
 																} else if (inUnav === true) {
 																	$(nTd).css('background-color', '#ff8080')
@@ -955,7 +965,7 @@ function getUpcomingMatchesTable(){
 										my_currentFinishSingleStringsObject.expectedTimeDifference = expectedTimeDifferenceF
 										my_currentFinishSingleStringsObject.timeDifferenceSecs = timeDifferenceSecsF
 
-										my_stopArray.push(tournamentName, reloadDataCount, processIDF, stop, my_localID, poolnameF, isoCurrentTimeF, lastExpectedTime, ifReadytoPlayF, ifPlayerPlayingF, ifUnavailableF, reloadDataTimeSecs, lastRefreshTimeLog, expectedTimeDifferenceF, timeDifferenceSecsF, tournament_ID)
+										my_stopArray.push(/*tournament_ID,*/ tournamentName, reloadDataCount, processIDF, stop, my_localID, poolnameF, isoCurrentTimeF, lastExpectedTime, ifReadytoPlayF, ifPlayerPlayingF, ifUnavailableF, reloadDataTimeSecs, lastRefreshTimeLog, expectedTimeDifferenceF, timeDifferenceSecsF)
 										
 										
 										completeStopObjets.push(my_currentFinishSingleStringsObject)
@@ -992,5 +1002,8 @@ function getUpcomingMatchesTable(){
 		} catch (err){
 			log(err)
 		}
-document.getElementById("upcomingMatchesLoader").style.display = "none"
+    document.getElementById("upcomingMatchesLoader").style.display = "none"
+    if (ifMobile == true) {
+        $("#creditsTextUpcoming").append(creditsTextAppendText)
+    }
 }

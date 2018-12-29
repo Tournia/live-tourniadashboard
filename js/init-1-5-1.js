@@ -4,7 +4,7 @@ var timeString = time.toString();
 
 
  $( function() { /**init**/
-	$.ajaxSetup({ cache: true });
+	$.ajaxSetup({ /*cache: true*/ });
 	
 	/*customized CSS**/	
 	if(urlData[0] === "demo"){
@@ -21,7 +21,6 @@ var timeString = time.toString();
 	
 	/*check Browser*/
 	checkBrowsers()
-	
 	/*show clock */
 	if(ifMobile === false){
 		displayTime();
@@ -37,9 +36,9 @@ var timeString = time.toString();
 		})
 		
 		if(startSetupWindow === true){
-		$('#settingsModal').modal('show')
-		}
-		
+		    $('#settingsModal').modal('show')
+        }
+        $("#creditsText").append(creditsTextAppendText)
 		placeVarsInput()
 	} else { //mobile === true
 		//$('table.display').DataTable()
@@ -55,8 +54,11 @@ var timeString = time.toString();
 		document.getElementById("poolRankingsBox").style.display = ""
 		document.getElementById("playersRankingBox").style.display = "none"
 		document.getElementById("groupsRankingBox").style.display = "none"
-		document.getElementById("rankingsBox").style.display = "none"
-		document.getElementById("playersBox").style.display = "none"
+		document.getElementById("rankingsBox").style.display = ""
+        document.getElementById("playersBox").style.display = "none"
+        document.getElementById("matchResultsBox").style.display = "none"       
+
+        $("#creditsTextRankingsResults").append(creditsTextAppendText)
 	}
 	
 	/*settings page*/
@@ -219,7 +221,8 @@ var timeString = time.toString();
 	$('#playerSelector').on("select2:select", function(e) { 
 		var my_player = e.params.data.name
 		//log(my_pool, my_poolId)
-		removeTable("playersTable", 2)
+        getPlayerStatus(my_player)
+        removeTable("playersTable", 2)
 		getPlayersTable(my_player)
 	});
 	

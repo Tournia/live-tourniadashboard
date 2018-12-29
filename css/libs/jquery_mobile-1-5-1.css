@@ -986,14 +986,14 @@ legend, .ui-input-text input, .ui-input-search input {
 	background-color: #f9f9f9;
 	border-color: #bbb;
 	color: #333;
-	text-shadow: 0 1px 0 #f3f3f3
+	/*text-shadow: none*/
 }
 
 	.ui-body-a, .ui-page-theme-a .ui-body-inherit, html .ui-bar-a .ui-body-inherit, html .ui-body-a .ui-body-inherit, html body .ui-group-theme-a .ui-body-inherit, html .ui-panel-page-container-a {
 		background-color: #fff;
 		border-color: #ddd;
 		color: #333;
-		text-shadow: 0 1px 0 #f3f3f3
+		/*text-shadow: none*/
 	}
 
 .ui-body-a {
@@ -1022,21 +1022,21 @@ legend, .ui-input-text input, .ui-input-search input {
 	background-color: #f6f6f6;
 	border-color: #ddd;
 	color: #333;
-	text-shadow: 0 1px 0 #f3f3f3
+	text-shadow: none
 }
 
 	.ui-page-theme-a .ui-btn:hover, html .ui-bar-a .ui-btn:hover, html .ui-body-a .ui-btn:hover, html body .ui-group-theme-a .ui-btn:hover, html head + body .ui-btn.ui-btn-a:hover {
 		background-color: #ededed;
 		border-color: #ddd;
 		color: #333;
-		text-shadow: 0 1px 0 #f3f3f3
+		text-shadow: none
 	}
 
 	.ui-page-theme-a .ui-btn:active, html .ui-bar-a .ui-btn:active, html .ui-body-a .ui-btn:active, html body .ui-group-theme-a .ui-btn:active, html head + body .ui-btn.ui-btn-a:active {
 		background-color: #e8e8e8;
 		border-color: #ddd;
 		color: #333;
-		text-shadow: 0 1px 0 #f3f3f3
+		text-shadow: none
 	}
 
 	.ui-page-theme-a .ui-btn.ui-btn-active, html .ui-bar-a .ui-btn.ui-btn-active, html .ui-body-a .ui-btn.ui-btn-active, html body .ui-group-theme-a .ui-btn.ui-btn-active, html head + body .ui-btn.ui-btn-a.ui-btn-active, .ui-page-theme-a .ui-checkbox-on:after, html .ui-bar-a .ui-checkbox-on:after, html .ui-body-a .ui-checkbox-on:after, html body .ui-group-theme-a .ui-checkbox-on:after, .ui-btn.ui-checkbox-on.ui-btn-a:after, .ui-page-theme-a .ui-flipswitch-active, html .ui-bar-a .ui-flipswitch-active, html .ui-body-a .ui-flipswitch-active, html body .ui-group-theme-a .ui-flipswitch-active, html body .ui-flipswitch.ui-bar-a.ui-flipswitch-active, .ui-page-theme-a .ui-slider-track .ui-btn-active, html .ui-bar-a .ui-slider-track .ui-btn-active, html .ui-body-a .ui-slider-track .ui-btn-active, html body .ui-group-theme-a .ui-slider-track .ui-btn-active, html body div.ui-slider-track.ui-body-a .ui-btn-active {

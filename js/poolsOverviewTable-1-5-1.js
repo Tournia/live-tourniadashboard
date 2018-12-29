@@ -535,5 +535,8 @@ function getPoolsOverviewTable(){
 			}
 		//$('#poolsOverviewTable').append(tr);
 		}
-document.getElementById("poolsOverviewLoader").style.display = "none"	
+    document.getElementById("poolsOverviewLoader").style.display = "none"
+    if (ifMobile == true) {
+        $("#creditsTextOverviewPools").append(creditsTextAppendText)
+    }
 } // end pools Overview Table function

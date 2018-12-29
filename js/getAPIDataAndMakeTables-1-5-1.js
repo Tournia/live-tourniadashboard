@@ -8,7 +8,8 @@ function checkForAPIChange(){
 		if(updateCount != prevUpdateCount){
 			ifAPIChangeDetected = true
 		} else {
-			ifAPIChangeDetected = false
+            ifAPIChangeDetected = false
+            log("no change detected")
 		}
 		prevUpdateCount = updateCount
 		//log("change detected:", ifAPIChangeDetected)
@@ -251,7 +252,7 @@ function _4AgetCurrentMatchesData(){
 				stopLoaders()
 				alert("There are no courts set up. Please add locations in the Control>settings tab.")
 				
-				throw Error("There are no courts set up. Please add locations in the Control>settings tab.")
+				//throw Error("There are no courts set up. Please add locations in the Control>settings tab.")
 			} else {}
 		})
 }

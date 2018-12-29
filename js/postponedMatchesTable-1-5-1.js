@@ -254,10 +254,10 @@ function getPostponedMatchesTable(){
 																	}
 
 																	if (inRTP === true) {
-																		log("ready to play css", nTd)
+																		//log("ready to play css", nTd)
 																		$(nTd).css('background-color', 'transparent')
 																	} else if (inPl === true) {
-																		log("playing css", nTd);
+																		//log("playing css", nTd);
 																		$(nTd).css('background-color', '#ffffb3')
 																	} else if (inUnav === true) {
 																		$(nTd).css('background-color', '#ff8080')
@@ -283,10 +283,10 @@ function getPostponedMatchesTable(){
 																	}
 
 																	if (inRTP === true) {
-																		log("ready to play css", nTd)
+																		//log("ready to play css", nTd)
 																		$(nTd).css('background-color', 'transparent')
 																	} else if (inPl === true) {
-																		log("playing css", nTd);
+																		//log("playing css", nTd);
 																		$(nTd).css('background-color', '#ffffb3')
 																	} else if (inUnav === true) {
 																		$(nTd).css('background-color', '#ff8080')
@@ -315,10 +315,10 @@ function getPostponedMatchesTable(){
 																	}
 
 																	if (inRTP === true) {
-																		log("ready to play css", nTd)
+																		//log("ready to play css", nTd)
 																		$(nTd).css('background-color', 'transparent')
 																	} else if (inPl === true) {
-																		log("playing css", nTd);
+																		//log("playing css", nTd);
 																		$(nTd).css('background-color', '#ffffb3')
 																	} else if (inUnav === true) {
 																		$(nTd).css('background-color', '#ff8080')
@@ -342,10 +342,10 @@ function getPostponedMatchesTable(){
 																	}
 
 																	if (inRTP === true) {
-																		log("ready to play css", nTd)
+																		//log("ready to play css", nTd)
 																		$(nTd).css('background-color', 'transparent')
 																	} else if (inPl === true) {
-																		log("playing css", nTd);
+																		//log("playing css", nTd);
 																		$(nTd).css('background-color', '#ffffb3')
 																	} else if (inUnav === true) {
 																		$(nTd).css('background-color', '#ff8080')
@@ -508,5 +508,8 @@ function getPostponedMatchesTable(){
 						}
 				}*/
 			}
-document.getElementById("postponedMatchesLoader").style.display = "none"
+    document.getElementById("postponedMatchesLoader").style.display = "none"
+    if (ifMobile == true) {
+        $("#creditsTextPostponed").append(creditsTextAppendText)
+    }
 }

@@ -550,7 +550,7 @@ function getCurrentMatchesTable(){
 									}
 								})
 							} else {
-								ifAPIChangeDetected = true
+								ifAPIChangeDetected = false
 								temprefreshTimeout = setTimeout(function(){
 								removeTables()}, 1000)
 							}								
@@ -572,5 +572,8 @@ function getCurrentMatchesTable(){
 		
 	}
 
-document.getElementById("currentMatchesLoader").style.display = "none"
+    document.getElementById("currentMatchesLoader").style.display = "none"
+    if (ifMobile == true) {
+        $("#creditsTextCurrent").append(creditsTextAppendText)
+    }
 }

@@ -254,8 +254,8 @@ function setrefreshTablesInterval(){
 						} else { }
 					})
 				} else {
-					ifAPIChangeDetected = true
-					removeTables()
+					ifAPIChangeDetected = false
+					//removeTables()
 				}					
 				
 				/*var findActiveTabTimeout = setTimeout(function(){

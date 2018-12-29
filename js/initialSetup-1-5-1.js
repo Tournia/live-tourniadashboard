@@ -1,5 +1,5 @@
 function initialSetup(){
-	var version = "1-4-0"
+	var version = "1-4-3"
 	//checkBrowsers()
 	var sampleData
 	var DEBUG_MODE
@@ -39,7 +39,7 @@ function initialSetup(){
 	}
 	if(urlData[0] === "demo" || urlData[0] === "utrecht2016"){
 		sampleData = true
-		sendingDataToDatabase = false
+		//sendingDataToDatabase = false
 		
 		var dataSetNr =  1 // 1-4
 		if(typeof isNaN(dataSetNr) === true || dataSetNr < 1 || dataSetNr > 4){
@@ -48,7 +48,7 @@ function initialSetup(){
 	}
 	if(urlData[0] === "isbtamsterdam" || urlData[0] === "isbt-amsterdam-2017"){
 		sampleData = true
-		sendingDataToDatabase = false
+		//sendingDataToDatabase = false
 		
 		var dataSetNr =  4 //1-9
 		if(typeof isNaN(dataSetNr) === true || dataSetNr < 1 || dataSetNr > 9){
@@ -73,7 +73,7 @@ function initialSetup(){
 
 
 function mobileSetup{
-	var version = "1-4-0"
+	var version = "1-4-3"
 	var ifMobile = true
 	var mobileError = false
 	var DEBUG_MODE = false

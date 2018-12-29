@@ -5,14 +5,11 @@ function calculateExpectedTime(um, my_PoolName, poolPropertiesObject, singleUMDa
 		var totalUmCount = my_upcomingMatches.length
 		var shiftsCount = Math.ceil(totalUmCount / nrOfCourts) //count the amount of shifts that are needed to play all upcoming matches with the current amount of available courts. 
 		
-		var timeBetweenMatches = 2 * 60 // time used for expected times between matches
+		var timeBetweenMatches = 1 * 60 // time used for expected times between matches
 		var pauseTime = 5 * 60 //time used for expected times and player is still playing
 		
-		var inCount = false //is match counted in expected times?
 		var inShift = [] // create dynamic variable to create the right amount of shift variables tat check if match is in the Xth shift
-		var shiftCount = 0
 		for(s = 1; s <= shiftsCount; s++){
-			var my_shiftNumber = s
 			//inShift[my_shiftNr] = false; //is match counted in shift nr for expected times?
 		}
 		var secondpart = false
@@ -30,11 +27,8 @@ function calculateExpectedTime(um, my_PoolName, poolPropertiesObject, singleUMDa
 		var inPlayCount = false //is match counted in expected times while players are playing?
 		var inUnavailable = false // is match NOT counted in expected times because players are unavailable?
 		var my_finalExpectedTimeSecs = ""
-		var stars = ""
-		var showShift1Text = true
-		
-		
-		
+        var stars = ""
+
 		log("\n-----------------------------------\n\nprocessing upcoming match number", upcomingMatchNr, my_PoolName)
 		if(inCount_UM.length === 0){
 			log("in first creating variables")
@@ -71,7 +65,6 @@ function calculateExpectedTime(um, my_PoolName, poolPropertiesObject, singleUMDa
 		if(upcomingMatchNr <= nrOfCourts + unavailable_UM[1]){ // look at first shift of upcoming matches excluding posptoned match that fits nr of available courts 
 			secondpart = false
 			if(upcomingMatchNr === nrOfCourts + unavailable_UM[1]){
-				showShift1Text = true
 			}
 			shiftNr = 1
 			upcomingMatchInfo.shiftNumber = shiftNr
@@ -80,25 +73,25 @@ function calculateExpectedTime(um, my_PoolName, poolPropertiesObject, singleUMDa
 			log("in shiftNr:", shiftNr)
 			if(totUnavailable_UM > 0){
 				stars = "**" //adds note about this match.
-			} else {
-			}
+            }
+
 			upcomingMatchInfo.stars = stars
 			singleUMData.stars = stars
 			
 			if(my_statusText === readyToPlay){
 				if(upcomingMatchNr === nrOfCourts + unavailable_UM[1]){
-					showShift1Text = false
 				}
 				log("in Shift 1 ready to play")
 				log("free courts available:", freeCourtsAvailable)
-				inCount = true; inTotCount_UM +=1; inCount_UM[shiftNr] +=1; inReadyCount_UM[shiftNr]+=1
+                inTotCount_UM +=1; inCount_UM[shiftNr] +=1; inReadyCount_UM[shiftNr]+=1
 				inFirstCount = true; inFirstCount_UM +=1
 				upcomingMatchInfo.readyToPlay = true
 				if(freeCourtsAvailable > 0){
 					log("free court available")
 					var my_expectedTime = "free court available"
 					freeCourt = true
-					stars = ""
+                    freeCourtsAtStartCount +=1
+                    stars = ""
 					freeCourtsAvailable -=1
 					var my_stdDevTime = timeBetweenMatches
 					
@@ -113,46 +106,114 @@ function calculateExpectedTime(um, my_PoolName, poolPropertiesObject, singleUMDa
 					my_totalTime.UMNr = upcomingMatchNr
 					my_totalTime.totalTime = Math.ceil(0 + (poolPropertiesObject.avgTime))
 					my_totalTime.stdDev = poolPropertiesObject.stdDev 
-					upcomingMatchInfo.totalTime = my_totalTime
+                    my_totalTime.expectedTime = 0
+
+                    upcomingMatchInfo.totalTime = my_totalTime
 					totalTimesArray[shiftNr].push(my_totalTime)
 					
 					shift1upcomingMatchInfoObjects.push(upcomingMatchInfo)
 					rtpUpcomingMatchInfoObjects.push(upcomingMatchInfo)
 					my_finalExpectedTimeSecs = my_expectedTime
 				} else {
-					var my_expectedTime = predictedTimeLeftArray[inCount_UM[shiftNr] - 1].timeLeft + timeBetweenMatches
-					var my_stdDevTime = predictedTimeLeftArray[inCount_UM[shiftNr] - 1].stdDev
-					expectedTimesArray[shiftNr].push(my_expectedTime)
-					upcomingMatchInfo.expectedTime = my_expectedTime
-					upcomingMatchInfo.predictedTime = poolPropertiesObject
-					upcomingMatchInfo.stdDevTime = my_stdDevTime
-					predictedTimesArray[shiftNr].push(poolPropertiesObject.avgTime)
-					
-					var my_totalTime = {}
-					my_totalTime.UMNr = upcomingMatchNr
-					my_totalTime.totalTime = Math.ceil(my_expectedTime + (poolPropertiesObject.avgTime))
-					my_totalTime.stdDev = poolPropertiesObject.stdDev 
-					upcomingMatchInfo.totalTime = my_totalTime
-					
-					totalTimesArray[shiftNr].push(my_totalTime)
-					
-					shift1upcomingMatchInfoObjects.push(upcomingMatchInfo)
-					rtpUpcomingMatchInfoObjects.push(upcomingMatchInfo)
-					
-					my_finalExpectedTimeSecs = Math.ceil(my_expectedTime)
-				}
+                    var my_expectedTime = predictedTimeLeftArray[inCount_UM[shiftNr] - 1].timeLeft + timeBetweenMatches
+                    var my_stdDevTime = predictedTimeLeftArray[inCount_UM[shiftNr] - 1].stdDev
+                        
+                    upcomingMatchInfo.predictedTime = poolPropertiesObject
+                        
+                    predictedTimesArray[shiftNr].push(poolPropertiesObject.avgTime)
+
+                    var my_totalTime = {}
+                    my_totalTime.UMNr = upcomingMatchNr
+                    my_totalTime.totalTime = Math.ceil(my_expectedTime + (poolPropertiesObject.avgTime))
+                    my_totalTime.stdDev = poolPropertiesObject.stdDev
+                    my_totalTime.expectedTime = my_expectedTime
+
+                    upcomingMatchInfo.totalTime = my_totalTime
+
+
+                    //my_finalExpectedTimeSecs = Math.ceil(my_expectedTime)
+                        
+                    if (freeCourtsAtStartCount > 0 && tempshift1ppUpcomingMatchInfoObjects.length > 0) { //players playing before this upcoming match
+                        var tempArray = []
+                        for (obj in tempshift1ppUpcomingMatchInfoObjects) {
+                            if (tempshift1ppUpcomingMatchInfoObjects[obj].freeCourtAssignment == true) {
+                                tempArray.push(tempshift1ppUpcomingMatchInfoObjects[obj])
+                            }
+                        }
+                        my_potentialExpectedTime = tempArray[0].freeCourtExpectedTime
+                        my_potentialStdDevTime = tempArray[0].freeCourtExpectedStdDevTime
+                        if (my_potentialExpectedTime < my_expectedTime) {
+                            log("in smaller with free courts")
+                            my_expectedTime = my_potentialExpectedTime
+                            my_stdDevTime = my_potentialStdDevTime
+                            my_totalTime.totalTime = Math.ceil(my_expectedTime + (poolPropertiesObject.avgTime))
+                            my_totalTime.stdDev = poolPropertiesObject.stdDev
+                            my_totalTime.expectedTime = my_expectedTime
+
+
+                            upcomingMatchInfo.totalTime = my_totalTime
+                            tempshift1ppUpcomingMatchInfoObjects.shift()
+                        }
+                    } else if (tempshift1ppUpcomingMatchInfoObjects>0){ //no free courts assigned to playing players but playing players before
+                        for (obj in tempshift1ppUpcomingMatchInfoObjects) {
+                            if (tempshift1ppUpcomingMatchInfoObjects[obj].freeCourtAssignment == true) {
+                                tempArray.push(tempshift1ppUpcomingMatchInfoObjects[obj])
+                            }
+                        }
+                        my_potentialExpectedTime = tempArray[0].freeCourtExpectedTime
+                        my_potentialStdDevTime = tempArray[0].freeCourtExpectedStdDevTime
+                        if (my_potentialExpectedTime < my_expectedTime) {
+                            log("im smaller")
+                            my_expectedTime = my_potentialExpectedTime
+                            my_stdDevTime = my_potentialStdDevTime
+                            my_totalTime.totalTime = Math.ceil(my_expectedTime + (poolPropertiesObject.avgTime))
+                            my_totalTime.stdDev = poolPropertiesObject.stdDev
+                            my_totalTime.expectedTime = my_expectedTime
+
+                            upcomingMatchInfo.totalTime = my_totalTime
+                            tempshift1ppUpcomingMatchInfoObjects.shift()
+                        }
+                    }
+
+                    expectedTimesArray[shiftNr].push(my_expectedTime)
+                    upcomingMatchInfo.expectedTime = my_expectedTime
+                    upcomingMatchInfo.stdDevTime = my_stdDevTime
+                    my_finalExpectedTimeSecs = Math.ceil(my_expectedTime)
+                    log(my_finalExpectedTimeSecs)
+                    totalTimesArray[shiftNr].push(my_totalTime)
+
+                    shift1upcomingMatchInfoObjects.push(upcomingMatchInfo)
+                    rtpUpcomingMatchInfoObjects.push(upcomingMatchInfo)
+                }
 			} else if(my_statusText === playersCurrentlyPlaying){
 				if(upcomingMatchNr === nrOfCourts + unavailable_UM[1]){
-					showShift1Text = false
 				}
 				log("in shift 1 player playing")
-				inCount = true; inTotCount_UM +=1; inCount_UM[1] +=1
+                inTotCount_UM +=1; inCount_UM[1] +=1
 				inFirstCount = true; inFirstCount_UM +=1
 				inPlayCount = true; inPlayCount_UM[shiftNr] +=1
 				upcomingMatchInfo.playersPlaying = true; Playing = true;
-				log("playing player names:", playerNamesCurrentlyPlayingArray)
+                upcomingMatchInfo.freeCourtAssignment = false
+                //log("playing player names:", playerNamesCurrentlyPlayingArray)
 				var my_freeCourtExpectedTime = predictedTimeLeftArray[inCount_UM[1] - 1].timeLeft + timeBetweenMatches // needed if this will be higher than expected time with predicted time
 				var my_freeCourtstdDevTime = predictedTimeLeftArray[inCount_UM[shiftNr] - 1].stdDev
+
+                if (freeCourtsAvailable > 0 /*&& assignedFreeCourts < freeCourtsAtStartCount */&& my_freeCourtExpectedTime == timeBetweenMatches) {
+                    var fc = 1
+                    while (my_freeCourtExpectedTime <= timeBetweenMatches) {
+                        var my_newFreeCourtExpectedTime = predictedTimeLeftArray[inCount_UM[1] - 1 + fc].timeLeft + timeBetweenMatches // needed if this will be higher than expected time with predicted time
+                        var my_newFreeCourtstdDevTime = predictedTimeLeftArray[inCount_UM[shiftNr] - 1 + fc].stdDev
+                        log("new free time:", my_newFreeCourtExpectedTime)
+                        assignedFreeCourts += 1
+                        fc += 1
+                        my_freeCourtExpectedTime += my_newFreeCourtExpectedTime - my_freeCourtExpectedTime
+                    }
+                    if (fc > 1) {
+                        upcomingMatchInfo.freeCourtAssignment = true
+                        my_freeCourtExpectedTime = my_newFreeCourtExpectedTime
+                        my_freeCourtstdDevTime = my_newFreeCourtstdDevTime
+                    }
+                }
 
 				var my_predictedTimeReturns = findPlayersPlaying(playerNamesCurrentlyPlayingArray, my_locationsList, playersPlayingObects, predictedTimeLeftofPlayingPlayersArray)
 				var my_predictedTime = my_predictedTimeReturns[0]
@@ -171,8 +232,14 @@ function calculateExpectedTime(um, my_PoolName, poolPropertiesObject, singleUMDa
 				}
 				my_finalExpectedTimeSecs = Math.ceil(my_expectedTime)
 				upcomingMatchInfo.UMCount1 = inCount_UM[1]
-				
-				upcomingMatchInfo.expectedTime = my_expectedTime
+
+                upcomingMatchInfo.predictedExpectedTime = my_predictedExpectedTime
+                upcomingMatchInfo.predictedExpectedStdDevTime = my_predictedStdDevTime
+
+                upcomingMatchInfo.freeCourtExpectedTime = my_freeCourtExpectedTime
+                upcomingMatchInfo.freeCourtExpectedStdDevTime = my_freeCourtstdDevTime
+
+                upcomingMatchInfo.expectedTime = my_expectedTime
 				upcomingMatchInfo.stdDevTime = my_stdDevTime
 				expectedTimesArray[shiftNr].push(my_expectedTime)
 				upcomingMatchInfo.predictedTime = poolPropertiesObject
@@ -182,16 +249,19 @@ function calculateExpectedTime(um, my_PoolName, poolPropertiesObject, singleUMDa
 				my_totalTime.UMNr = upcomingMatchNr
 				my_totalTime.totalTime = Math.ceil(my_expectedTime + (poolPropertiesObject.avgTime))
 				my_totalTime.stdDev = poolPropertiesObject.stdDev
-				
+                my_totalTime.expectedTime = my_expectedTime 
+
 				upcomingMatchInfo.totalTime = my_totalTime
 				totalTimesArray[shiftNr].push(my_totalTime)
 				
 				shift1upcomingMatchInfoObjects.push(upcomingMatchInfo)
-				playersPlayingExpectedTimesArray.push(my_expectedTime)
-				ppUpcomingMatchInfoObjects.push(upcomingMatchInfo)
+                shift1ppUpcomingMatchInfoObjects.push(upcomingMatchInfo)
+                tempshift1ppUpcomingMatchInfoObjects.push(upcomingMatchInfo)
+
+                playersPlayingExpectedTimesArray.push(my_expectedTime)
+                ppUpcomingMatchInfoObjects.push(upcomingMatchInfo)
 			} else if(my_statusText === playersUnavailable){
 				if(upcomingMatchNr === nrOfCourts + unavailable_UM[1]){
-					showShift1Text = false
 				}
 				upcomingMatchInfo.playersUnavailable = true
 				log("in shift 1 player unavailable")
@@ -269,7 +339,6 @@ function calculateExpectedTime(um, my_PoolName, poolPropertiesObject, singleUMDa
 				
 				log("predicted times array(" + predictedTimeLeftArray.length + "):", predictedTimeLeftArray)
 				
-				var inFirstUM = false
 				prevShiftNr = shiftNr - 1
 				
 				var prevShiftUpperBound = ((prevShiftNr * nrOfCourts) + (totUnavailable_UM - unavailable_UM[shiftNr]))
@@ -290,7 +359,7 @@ function calculateExpectedTime(um, my_PoolName, poolPropertiesObject, singleUMDa
 					
 					if(my_statusText === readyToPlay){
 						log("in Shift", shiftNr, "ready to play")
-						inCount = true; inTotCount_UM +=1; inCount_UM[shiftNr] +=1; inReadyCount_UM[shiftNr] +=1;
+                        inTotCount_UM +=1; inCount_UM[shiftNr] +=1; inReadyCount_UM[shiftNr] +=1;
 						upcomingMatchInfo.readyToPlay = true
 						if(freeCourtsAvailable > 0){
 							var my_expectedTime = "free court available"
@@ -310,7 +379,9 @@ function calculateExpectedTime(um, my_PoolName, poolPropertiesObject, singleUMDa
 							my_totalTime.UMNr = upcomingMatchNr
 							my_totalTime.totalTime = Math.ceil(0 + (poolPropertiesObject.avgTime))
 							my_totalTime.stdDev = poolPropertiesObject.stdDev 
-							upcomingMatchInfo.totalTime = my_totalTime
+                            my_totalTime.expectedTime = 0
+
+                            upcomingMatchInfo.totalTime = my_totalTime
 							totalTimesArray[shiftNr].push(my_totalTime)
 													
 							upcomingMatchInfoObjectsShift[shiftNr].push(upcomingMatchInfo)
@@ -429,7 +500,9 @@ function calculateExpectedTime(um, my_PoolName, poolPropertiesObject, singleUMDa
 												my_totalTime.UMNr = upcomingMatchNr
 												my_totalTime.totalTime = my_AddedExpectedTime + my_AddedPredictedTime
 												my_totalTime.stdDev = poolPropertiesObject.stdDev
-												totalTimesArray[shiftNr].push(my_totalTime)
+                                                my_totalTime.expectedTime = my_AddedExpectedTime
+
+                                                totalTimesArray[shiftNr].push(my_totalTime)
 
 												//totalTimesArray.sort(function(a, b){return a-b})
 												log(expectedTimesArray[shiftNr], predictedTimesArray[shiftNr], totalTimesArray[shiftNr])
@@ -453,15 +526,17 @@ function calculateExpectedTime(um, my_PoolName, poolPropertiesObject, singleUMDa
 										var my_stdDevTime = stdDevPrevMatches + stdDevLastMatch
 									}
 								} else { // > shift 3
-									log("players ready in shift Nr.:", shiftNr)
-									log(prevShiftNr, totalTimesArray[prevShiftNr][inCount_UM[shiftNr] - 1])
+                                    log("players ready in shift Nr.:", shiftNr)
+                                    //log(totalTimesArray[prevShiftNr], inCount_UM[shiftNr])
+
+                                    //log(prevShiftNr, totalTimesArray[prevShiftNr][inCount_UM[shiftNr] - 1])
 									var my_expectedTime = shiftStartTime + ((totalTimesArray[prevShiftNr][inCount_UM[shiftNr] - 1].totalTime) - shiftStartTime) + timeBetweenMatches
 									
 									var stdDevPrevMatchesObject = allUMdata.find(x => x.UMNr === totalTimesArray[prevShiftNr][inCount_UM[shiftNr] - 1].UMNr)
 									
 									var stdDevPrevMatches = stdDevPrevMatchesObject.stdDevTime
 									var stdDevLastMatch = totalTimesArray[prevShiftNr][inCount_UM[shiftNr] - 1].stdDev
-									log(totalTimesArray[prevShiftNr][inCount_UM[shiftNr] - 1], stdDevPrevMatchesObject, stdDevPrevMatches, stdDevLastMatch)
+									//log(totalTimesArray[prevShiftNr][inCount_UM[shiftNr] - 1], stdDevPrevMatchesObject, stdDevPrevMatches, stdDevLastMatch)
 
 									var my_stdDevTime = stdDevPrevMatches + stdDevLastMatch
 								}
@@ -481,7 +556,9 @@ function calculateExpectedTime(um, my_PoolName, poolPropertiesObject, singleUMDa
 						var my_totalTime = {}
 						my_totalTime.UMNr = upcomingMatchNr
 						my_totalTime.totalTime = Math.ceil((my_expectedTime) + (my_predictedPlayingTime))
-						my_totalTime.stdDev = poolPropertiesObject.stdDev 
+                        my_totalTime.stdDev = poolPropertiesObject.stdDev
+                        my_totalTime.expectedTime = my_expectedTime
+
 						totalTimesArray[shiftNr].push(my_totalTime)
 						totalTimesArray[shiftNr].sort(function(a, b){return a.totalTime - b.totalTime})
 						
@@ -491,7 +568,7 @@ function calculateExpectedTime(um, my_PoolName, poolPropertiesObject, singleUMDa
 						my_finalExpectedTimeSecs = Math.ceil(my_expectedTime)					
 					} else if(my_statusText === playersCurrentlyPlaying){
 						log("in shift " + shiftNr +" player playing")
-						inCount = true;	inCount_UM[shiftNr] +=1; inTotCount_UM +=1
+	                    inCount_UM[shiftNr] +=1; inTotCount_UM +=1
 						inPlayCount = true;	inPlayCount_UM[shiftNr] +=1
 						upcomingMatchInfo.playersPlaying = true
 
@@ -536,10 +613,11 @@ function calculateExpectedTime(um, my_PoolName, poolPropertiesObject, singleUMDa
 											
 											var my_totalTime = {}
 											my_totalTime.UMNr = upcomingMatchNr
-											my_totalTime.totalTime = poolPropertiesObject.avgTime + my_playingExpectedTime
+                                            my_totalTime.totalTime = my_playingExpectedTime + poolPropertiesObject.avgTime
 											log(my_totalTime, my_totalTime.totalTime)
 											my_totalTime.stdDev = poolPropertiesObject.stdDev
-											
+                                            my_totalTime.expectedTime = my_playingExpectedTime
+
 											upcomingMatchInfo.totalTime = my_totalTime	
 											rtpUpcomingMatchInfoObjects.push(upcomingMatchInfo)
 											
@@ -563,12 +641,12 @@ function calculateExpectedTime(um, my_PoolName, poolPropertiesObject, singleUMDa
 									} else {
 										log("shift 2 match follows regular pattern after playing matches")
 										var my_rtpTotalTime = rtpUpcomingMatchInfoObjects[shift1rtp].totalTime.totalTime 
-										var my_expectedTime = /*shiftStartTime + */my_rtpTotalTime + timeBetweenMatches
+                                        var my_expectedTime = shiftStartTime + my_rtpTotalTime + timeBetweenMatches
 										
 										var stdDevPrevMatchesObject = allUMdata.find(x => x.UMNr === rtpUpcomingMatchInfoObjects[shift1rtp].totalTime.UMNr)
 										var stdDevPrevMatches = stdDevPrevMatchesObject.stdDevTime
 										var stdDevLastMatch = rtpUpcomingMatchInfoObjects[shift1rtp].totalTime.stdDev
-										var my_stdDevTime = stdDevPrevMatches + stdDevLastMatch
+                                        var my_stdDevTime = stdDevPrevMatches + stdDevLastMatch
 									}
 								} else {									
 									log("shift 1 has no players playing")
@@ -612,7 +690,9 @@ function calculateExpectedTime(um, my_PoolName, poolPropertiesObject, singleUMDa
 											my_totalTime.UMNr = upcomingMatchNr
 											my_totalTime.totalTime = my_AddedExpectedTime + my_AddedPredictedTime
 											my_totalTime.stdDev = poolPropertiesObject.stdDev 
-											totalTimesArray[shiftNr].push(my_totalTime)
+                                            my_totalTime.expectedTime + my_AddedExpectedTime
+
+                                            totalTimesArray[shiftNr].push(my_totalTime)
 											
 											
 											//totalTimesArray.sort(function(a, b){return a-b})
@@ -635,7 +715,7 @@ function calculateExpectedTime(um, my_PoolName, poolPropertiesObject, singleUMDa
 							} else { //> shift 3
 								log("players playing in shift Nr.:", shiftNr)
 								log(shiftStartTime/60)
-								var my_readyExpectedTime = shiftStartTime + ((totalTimesArray[prevShiftNr][inCount_UM[shiftNr] - 1].totalTime) - shiftStartTime) + timeBetweenMatches
+								var my_readyExpectedTime = ((totalTimesArray[prevShiftNr][inCount_UM[shiftNr] - 1].totalTime) - shiftStartTime) + timeBetweenMatches
 								
 								var stdDevPrevMatchesObject = allUMdata.find(x => x.UMNr === totalTimesArray[prevShiftNr][inCount_UM[shiftNr] - 1].UMNr)
 								var stdDevPrevMatches = stdDevPrevMatchesObject.stdDevTime
@@ -644,21 +724,23 @@ function calculateExpectedTime(um, my_PoolName, poolPropertiesObject, singleUMDa
 							}
 						}
 						
-							//var my_readyExpectedTime =  shiftStartTime + ((totalTimesArray[prevShiftNr][inCount_UM[shiftNr] - 1]) - shiftStartTime) + timeBetweenMatches
+						//var my_readyExpectedTime =  shiftStartTime + ((totalTimesArray[prevShiftNr][inCount_UM[shiftNr] - 1]) - shiftStartTime) + timeBetweenMatches
 						/*if(shiftStartTime > averageMatchTimes[my_PoolName].time){
 							
 						}*/
-						if(my_readyExpectedTime >= my_predictedTime){
+                        log(totalTimesArray[prevShiftNr][inCount_UM[shiftNr] - 1], "readyExpectedTime:", my_readyExpectedTime, "predictedTime:", my_predictedTime)
+
+                        if (my_readyExpectedTime >= my_predictedTime) {
 							log("players are ready before upcoming match is expected")
 							var my_predictedExpectedTime = my_readyExpectedTime - shiftStartTime//- my_predictedTime //shiftStartTime is removed becuase it is aready in the readyExpectedTime.
-							var my_predictedstdDevTime = my_readyStdDevTime
+							var my_predictedStdDevTime = my_readyStdDevTime
 						} else {
 							log("upcoming match is expected before players are ready")
 							var my_predictedExpectedTime = my_predictedTime + pauseTime + timeBetweenMatches
 							var my_predictedStdDevTime =  my_predictedStdDevTime
 						}
 						
-						log(my_stdDevTime)
+						//log(my_stdDevTime)
 						if(my_freeCourtExpectedTime >= my_predictedExpectedTime){ // if free court expected time is higher than predicted time, free court expected time will be my expected time 
 							log("court is first free")
 							var my_expectedTime = shiftStartTime + my_freeCourtExpectedTime
@@ -686,7 +768,8 @@ function calculateExpectedTime(um, my_PoolName, poolPropertiesObject, singleUMDa
 						my_totalTime.UMNr = upcomingMatchNr
 						my_totalTime.totalTime = Math.ceil(my_expectedTime + (poolPropertiesObject.avgTime))
 						my_totalTime.stdDev = poolPropertiesObject.stdDev 
-						
+                        my_totalTime.expectedTime = my_expectedTime
+
 						upcomingMatchInfo.totalTime = my_totalTime
 						totalTimesArray[shiftNr].push(my_totalTime)
 						totalTimesArray[shiftNr].sort(function(a, b){return a.totalTime - b.totalTime})
@@ -718,13 +801,24 @@ function calculateExpectedTime(um, my_PoolName, poolPropertiesObject, singleUMDa
 						smallestExpectedTimesArray[shiftNr].sort(function(a, b){return a-b})
 						if(shiftNr === 2 && altshift2ppCount > 0){
 							log("in playing startshift")
-							shiftStartTime += ((totalTimesArray[shiftNr][0].totalTime))
+                            shiftStartTime += ((totalTimesArray[shiftNr][0].totalTime))
 							log(shiftStartTime)
-						} else {
-							log("in normal startshift")
-							shiftStartTime += ((totalTimesArray[shiftNr][0].totalTime))
+                        } else if (shiftNr === 3 && altshift2ppCount > 0) {
+                            log("in alternate shift 3 startshift")
+                            log("creating altShift3")
+                            var startSlice = totalTimesArray[2].length - (totalTimesArray[2].length - nrOfCourts)
+                            //log(totalTimesArray[2].length, nrOfCourts, startSlice)
+                            var addArray = totalTimesArray[2].slice(startSlice)
+                            //log(addArray)
+                            for (el in addArray) {
+                                totalTimesArray[3].push(addArray[el])
+                            }
+                            totalTimesArray[3].sort(function (a, b) { return a.totalTime - b.totalTime })
+                            log("NEW shift 3", totalTimesArray[3].length, totalTimesArray[3])
+                            shiftStartTime += ((totalTimesArray[3][0].totalTime)) - shiftStartTime
+                        } else { 
+                            shiftStartTime += ((totalTimesArray[shiftNr][0].totalTime))
 						}
-						
 						log("going to shiftNr.", shiftNr + 1, "with shiftStartTime:", (Math.ceil(shiftStartTime / 60)), "mins.")							
 					} else {
 						log("remaining in shiftNr.", shiftNr)
@@ -766,7 +860,7 @@ function calculateExpectedTime(um, my_PoolName, poolPropertiesObject, singleUMDa
 		//log(my_stdDevTime)
 		var extraExpectedTimeNames = namedExpectedTime(my_PoolName, my_finalExpectedTimeMins, my_stdDevTime)
 		
-		var my_namedFinalExpectedTimeMins = extraExpectedTimeNames[0]
+		var my_namedFinalExpectedTime = extraExpectedTimeNames[0]
 		var finalStdDeviationTime = extraExpectedTimeNames[1]
 		//log(finalStdDeviationTime)
 		//expected times properties
@@ -794,14 +888,14 @@ function calculateExpectedTime(um, my_PoolName, poolPropertiesObject, singleUMDa
 				singleUMData.StdDevExpectedTime = "free court available"
 				
 			} else {
-				//tri.append("<td class='expectedTimeColumn'>"+my_namedFinalExpectedTimeMins+" mins."+stars+"</td>");
+				//tri.append("<td class='expectedTimeColumn'>"+my_namedFinalExpectedTime+" mins."+stars+"</td>");
 				singleUMData.expectedTimeSecs = my_finalExpectedTimeSecs
 				singleUMData.shiftNrExpectedTimeSecs = my_shiftNr + my_finalExpectedTimeSecs + stars
 				singleUMData.expectedTimeMins = my_finalExpectedTimeMins
 				singleUMData.shiftNrExpectedTimeSecsMins = my_shiftNr +my_finalExpectedTimeSecs+" secs., "+my_finalExpectedTimeMins +" mins."+ stars
 				singleUMData.shiftNrExpectedTimeMins = my_shiftNr +my_finalExpectedTimeMins + " mins." + stars
 				singleUMData.shiftNrExpectedTimeMinsStdDev = my_shiftNr +my_finalExpectedTimeMins + " mins. ±" + Math.ceil(my_stdDevTime/60) + stars
-				singleUMData.namedExpectedTime = my_namedFinalExpectedTimeMins + " mins." + stars
+				singleUMData.namedExpectedTime = my_namedFinalExpectedTime + stars
 				singleUMData.StdDevExpectedTime = finalStdDeviationTime + " mins." + stars
 			}
 		}
@@ -840,7 +934,7 @@ function calculateExpectedTime(um, my_PoolName, poolPropertiesObject, singleUMDa
 		singleUMData.shiftNrExpectedTimeMins =  "" + " ± " + ""
 		singleUMData.shiftNrExpectedTimeSecs = "" + " ± " + ""
 		singleUMData.shiftNrExpectedTimeSecsMins = "" + " ± " + ""
-
+        singleUMData.namedExpectedTime = "unknown"
 		var my_returns = [upcomingMatchInfo, singleUMData]
 		return my_returns
 	}
@@ -883,7 +977,7 @@ function adjustExpectedTimes(allUpcomingMatchInfoObjects, allUMdata){
 				rtpObjects[objNr].stdDevTime_ad = rtpObjects[objNr].stdDevTime
 				
 				var extraExpectedTimeNames = namedExpectedTime(rtpObjects[objNr].poolName, rtpObjects[objNr].expectedTimeMins_ad, rtpObjects[objNr].stdDevTime) 
-				rtpObjects[objNr].NamedExpectedTime_ad = extraExpectedTimeNames[0] + " mins." + rtpObjects[objNr].stars
+				rtpObjects[objNr].NamedExpectedTime_ad = extraExpectedTimeNames[0] + rtpObjects[objNr].stars
 				rtpObjects[objNr].StdDevExpectedTime_ad = extraExpectedTimeNames[1] + " mins." + rtpObjects[objNr].stars
 				
 			}
@@ -917,26 +1011,28 @@ function adjustExpectedTimes(allUpcomingMatchInfoObjects, allUMdata){
 	}
 }
 
-function namedExpectedTime(my_PoolName, my_finalExpectedTimeMins, my_stdDevTime){
+function namedExpectedTime(my_PoolName, my_finalExpectedTime, my_stdDevTime){
 	//named Expected Time
 	//log(my_finalExpectedTimeMins)
-	if(my_finalExpectedTimeMins <= 5){
-		var my_namedFinalExpectedTimeMins = "a few"
-	} else if(my_finalExpectedTimeMins > 5 && my_finalExpectedTimeMins <= 15){
-		var my_namedFinalExpectedTimeMins = "5-15"
-	} else if(my_finalExpectedTimeMins > 15 && my_finalExpectedTimeMins <= 30){
-		var my_namedFinalExpectedTimeMins = "15-30"
-	} else if(my_finalExpectedTimeMins > 30 && my_finalExpectedTimeMins <= 45){
-		var my_namedFinalExpectedTimeMins = "30-45"
-	} else if(my_finalExpectedTimeMins > 45 && my_finalExpectedTimeMins <= 60){
-		var my_namedFinalExpectedTimeMins = "45-60"
-	} else if(my_finalExpectedTimeMins > 60 && my_finalExpectedTimeMins <= 90){
-		var my_namedFinalExpectedTimeMins = "60-90"
-	} else if(my_finalExpectedTimeMins > 90 && my_finalExpectedTimeMins <= 120){
-		var my_namedFinalExpectedTimeMins = "90-120"
-	} else if(my_finalExpectedTimeMins > 120){
-		var my_namedFinalExpectedTimeMins = ">120"
-	}
+    if (my_finalExpectedTime <= 5) {
+        var my_namedFinalExpectedTime = "a few mins."
+    } else if (my_finalExpectedTime > 5 && my_finalExpectedTime <= 15) {
+        var my_namedFinalExpectedTime = "5-15 mins."
+    } else if (my_finalExpectedTime > 15 && my_finalExpectedTime <= 30) {
+        var my_namedFinalExpectedTime = "15-30 mins."
+    } else if (my_finalExpectedTime > 30 && my_finalExpectedTime <= 45) {
+        var my_namedFinalExpectedTime = "30-45 mins."
+    } else if (my_finalExpectedTime > 45 && my_finalExpectedTime <= 60) {
+        var my_namedFinalExpectedTime = "45-60 mins."
+    } else if (my_finalExpectedTime > 60 && my_finalExpectedTime <= 90) {
+        var my_namedFinalExpectedTime = "1-1.5 hour"
+    } else if (my_finalExpectedTime > 90 && my_finalExpectedTime <= 120) {
+        var my_namedFinalExpectedTime = "1.5-2 hours"
+    } else if (my_finalExpectedTime > 120) {
+        var my_namedFinalExpectedTime = ">2 hours"
+    } else {
+        var my_namedFinalExpectedTime = "unknown"
+    }
 	
 	//if MSA or MSB
 	function checkPoolName(poolName){
@@ -955,14 +1051,14 @@ function namedExpectedTime(my_PoolName, my_finalExpectedTimeMins, my_stdDevTime)
 	}
 	var ifMSAorMSB = checkPoolName(my_PoolName)
 	if(ifMSAorMSB === true && my_finalExpectedTimeMins < 10){
-		my_namedFinalExpectedTimeMins = "0-10"
+		my_namedFinalExpectedTime = "0-10"
 	}
 	//stdDeviation  Expected Time
 	//log(my_stdDevTime)
 	var finalStdDeviationTime = my_finalExpectedTimeMins +  " ± " + (Math.ceil(my_stdDevTime/60))//(Math.ceil((poolProperties[pool].stdDev)/60)) 
 	//log(finalStdDeviationTime)
 	//returns
-	var my_returns = [my_namedFinalExpectedTimeMins, finalStdDeviationTime]
+	var my_returns = [my_namedFinalExpectedTime, finalStdDeviationTime]
 	
 	return my_returns
 }

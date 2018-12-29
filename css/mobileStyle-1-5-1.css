@@ -180,3 +180,24 @@ div.tab button.active {
 .ui-page-theme-a .ui-radio-on:after, html .ui-bar-a .ui-radio-on:after, html .ui-body-a .ui-radio-on:after, html body .ui-group-theme-a .ui-radio-on:after, .ui-btn.ui-radio-on.ui-btn-a:after {
     border-color: #3c7539;
 }
+
+#playerStatusBox {
+    display: inline-block;
+}
+
+#playerStatusText {
+    display: inline-block;
+}
+
+.credits{
+    font-size: 10px;
+    color: dimgrey
+}
+
+#contactUsText {
+    font-size: 10px;
+}
+
+a:link {
+    color: #43a73f 
+}

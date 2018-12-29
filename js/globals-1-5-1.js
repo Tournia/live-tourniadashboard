@@ -1,18 +1,32 @@
 //overrule variables
 /*ifMobile variable needs to be defined in tournament.php*/
 
+if (ifMobile == false) {
+    var creditsTextAppendText = '<div class="credits"><br><br>Tourniadashboard, v. ' + versionNr + '.<br>This website makes use of the Tournia API. Developed by Jelle Stuurman, 2018.</div><div id="contactUsText" ><a href="mailto:info@tourniadashboard.nl?subject=Tournia%20dashboard%20support" target="_top">Contact for help</a></div>'
+} else {
+    var creditsTextAppendText = '<div class="credits"><br><br>Tourniadashboard, v. ' + versionNr + '.<br>This website makes use of the Tournia API. Developed by Jelle Stuurman, 2018. <a href="mailto:info@tourniadashboard.nl?subject=Tournia%20dashboard%20support" target="_top">Contact</a></div>'
+}
 sampleData = false //load data from online database or local sample data sets
-DEBUG_MODE = false //show console log
+DEBUG_MODE = false
+//show console log
 sendingDataToDatabase = false
 
 expectedTimesFunctionality = false //enable or disable expected Times functionality
 predictedTimesFunctionality = true //enable or disable predicted Times functionality
 expectedTimesDataTesting = false //always show upcoming matches table for expected time script testing
 	AET = false //adjust expected times
-	var my_expectedTimeColumnName = expectedTimeColumnName(0); 
-slowLoading = true //load all matches data for all info. Required for rounds left, bye data and players table
+if (expectedTimesFunctionality === false) {
+    var my_expectedTimeColumnName = expectedTimeColumnName(0)
+} else if (expectedTimesFunctionality === true && DEBUG_MODE === true) {
+    var my_expectedTimeColumnName = expectedTimeColumnName(1);
+} else if (expectedTimesFunctionality === true && DEBUG_MODE === false) {
+    var my_expectedTimeColumnName = expectedTimeColumnName(4);
+} else {
+    var my_expectedTimeColumnName = expectedTimeColumnName(0)
+}
+ slowLoading = true //load all matches data for all info. Required for rounds left, bye data and players table
 
-dataSetNr = 2 //ISBT Utrecht: 1-5; ISBT Amsterdam 1-9
+dataSetNr = 1//ISBT Utrecht: 1-5; ISBT Amsterdam 1-9
 	//apply local datasets
 	//isbt Utrecht sample Data
 	var ifEmptyInput = false
@@ -68,9 +82,9 @@ if(expectedTimesDataTesting === true){
 
 if(runLocal === false){
 	expectedTimesDataTesting = false;
-	DEBUG_MODE = false;
+	//DEBUG_MODE = true;
 } else{
-	sendingDataToDatabase = false
+	//sendingDataToDatabase = true
 }
 
 if(ifMobile === true){
@@ -348,6 +362,7 @@ var inCount_UM
 var inReadyCount_UM
 var inPlayCount_UM
 var unavailable_UM
+var freeCourtsAtStartCount
 var Playing
 
 var inFirstCount_UM
@@ -360,6 +375,8 @@ var smallestExpectedTimesArray
 var shiftStartTime
 var upcomingMatchInfoObjectsShift
 var shift1upcomingMatchInfoObjects
+var shift1ppUpcomingMatchInfoObjects
+var tempshift1ppUpcomingMatchInfoObjects
 var ppUpcomingMatchInfoObjects
 var rtpUpcomingMatchInfoObjects
 var addIndex
@@ -369,4 +386,4 @@ var altshift2ppCount
 var shift1rtp
 var shift1pp
 var nrOfCourts
-var freeCourtsAvailable
+var assignedFreeCourts

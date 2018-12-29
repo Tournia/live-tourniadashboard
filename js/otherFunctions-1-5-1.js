@@ -10,6 +10,7 @@ function findObject(array, key, prop){
 	return my_object;
 }
 
+
 function inObject(array, key, prop){
 	prop = (typeof prop === 'undefined') ? 'name' : prop;    
 
@@ -60,7 +61,6 @@ function removeStringFromArray(array, string){
 		}
 	}
 }
-
 
 function findPlayersPlaying(playerArray, my_locationsList, playersPlayingObects){
 	for (var pl  = 0; pl < playerArray.length; pl++){
@@ -159,7 +159,7 @@ function getNewStatus(table, array, playerName, singleMatch) {
 		for (var key2 in myT2Players) {
 			var individual2Player = myT2Players[key2].name
 			var simpleName2 = individual2Player.replace(/".*"/, "").replace("  ", " ").replace("  ", " ").replace("  ", " ")
-			log(simpleName2)
+			//log(simpleName2)
 			if (simpleName2 === playerName) {
 				var ifReady = myT2Players[key2].ready;
 				if (ifReady === true) {
@@ -189,8 +189,16 @@ function getNewStatus(table, array, playerName, singleMatch) {
 	} else if (array === "Unav") {
 		to_return = playerUnavailable;
 	}
-	log("new status for", matchId, playerName, array, to_return)
+	//log("new status for", matchId, playerName, array, to_return)
 	return to_return
+}
+
+function getPlayerStatus(playerName) {
+    log(playerName)
+
+    var my_status = 
+    $("#playerStatusText").empty()
+    $("#playerStatusText").append(my_status)
 }
 
 function dynamicSort(property) {
@@ -286,7 +294,7 @@ var isChrome = !!window.chrome && !!window.chrome.webstore;
 var isBlink = (isChrome || isOpera) && !!window.CSS;
 
 if(isIE === true || isEdge === true || isOpera === true || isSafari === true){
-		msg = "You are using the Internet Explorer, Microsoft Edge, Safari, or the Opera browser. Fr now, this website is only optimized for Google Chrome or Mozilla Firefox."
+		msg = "You are using the Internet Explorer, Microsoft Edge, Safari, or the Opera browser. For now, this website is only optimized for Google Chrome or Mozilla Firefox."
 	  alert(msg)
 	  throw new Error(msg);
 }
@@ -325,9 +333,10 @@ function expectedTimeColumnName(value) {
 	var my_name = value;
 	if (showExpectedTimeColumn === false) {
 		my_name = 0;
-	}
-	if (my_name === 0) { //dsiabled expected Time
-		return 'expectedTime'
+    }
+
+	if (my_name === 0) { //dsabled expected Time
+		return 'noExpectedTime'
 	} else if (my_name === 1) {
 		return 'shiftNrExpectedTimeMinsStdDev';
 	} else if (my_name === 2) {
@@ -335,15 +344,18 @@ function expectedTimeColumnName(value) {
 	} else if (my_name === 3) {
 		return 'StdDevExpectedTime';
 	} else if (my_name === 4) {
-		return 'namedExpectedTimeMins';
+		return 'namedExpectedTime';
 	}
 }
 
 function sendTimesLog(){
   if(sendingDataToDatabase === true){
-	 var databaseUrl = "expectedTimesLog_"+tournament_ID+".php"
-	 log('sending times log data..')
-	  //log("data to send to database:", UM_loopLogStrings)
+      var databaseUrl = "expectedTimesLog_" + tournament_ID + ".php"
+      if (tournament_ID === "isbt-enschede-2018") {
+          databaseUrl = "expectedTimesLog_" + "isbtenschede2018" + ".php"
+      }
+      log('sending times log data to:', databaseUrl, '...')
+	  log("data to send to database:", UM_loopLogStrings)
 	  var UM_loopLogJSON = JSON.stringify(UM_loopLogStrings)
 		$.ajax({
 		  type: "POST",
@@ -405,10 +417,6 @@ function checkDST(){
 		return this.getTimezoneOffset() < this.stdTimezoneOffset();
 	}
 return DST}
-
-function mailTo(){
-	window.open("mailto:jellejstuurman@gmail.com?subject=Tournia dashboard support",'_blank')
-}
 
 function createProgressBar(tableId) {
 	log(tableId)
