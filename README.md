@@ -1,4 +1,6 @@
-# Live-Dashboard v 1.4
+# Live-Dashboard v 1.5.1
+29-12-2018
+
 This live dashbaord shows extended information about current, upcoming, postponed matches and it gives an overview of the pools. Dashboard is fully adjustments what should be shown on the screen. This dashboard makes use of the Tournia API.
 
 Dashboard is created using on client-side JavaScript.
