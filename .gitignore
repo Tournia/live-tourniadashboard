@@ -57,3 +57,4 @@ js/.htaccess
 *.map
 css/bootstrap.css
 css/libs/dataTables_bs.css
+/expectedTimesLog_isbt-enschede-2018.php

@@ -6,7 +6,8 @@
 	<!--<meta http-equiv="refresh" content="60" >-->
 	<title>Tournia live dashboard</title>
 	<script type="text/javascript">
-		var version = "1-4-3"
+		var version = "1-5-1"
+		var versionNr = "1.5.1"
 		//checkBrowsers()
 		var sampleData
 		var DEBUG_MODE
@@ -86,7 +87,7 @@
 	 <!--<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.css">
 	 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.1.1/css/responsive.dataTables.min.css">
 	 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.2.4/css/buttons.dataTables.min.css">-->
-	 <!--<link rel="stylesheet" href="css/style-1-4-3.css" />-->
+	 <!--<link rel="stylesheet" href="css/style-1-5-1.css" />-->
  
 	 <!--<script src="https://code.jquery.com/jquery-1.12.4.js"></script>-->
 	 <!--<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>-->
@@ -107,27 +108,27 @@
 	<!--<script type="text/javascript" src="js/libs/dataTables.js"></script>-->
 	<script type="text/javascript" src="js/libs/select2.js"></script>
  	
-	<script src="js/otherFunctions-1-4-3.js"></script>
-	<script src="js/globals-1-4-3.js"></script>
-	<!--<script src="js/tablesHTML-1-4-3.js"></script>-->
-	<script src="js/setupFunctions-1-4-3.js"></script>
-	<script src="js/options-1-4-3.js"></script>
-	<script src="js/poolProperties-1-4-3.js"></script>
-	<script src="js/paginationFunctions-1-4-3.js"></script>
-	<script src="js/poolRankingsTable-1-4-3.js"></script>
-	<script src="js/playersRankingTable-1-4-3.js"></script>
-	<script src="js/playersTable-1-4-3.js"></script>
-	<script src="js/getAPIDataAndMakeTables-1-4-3.js"></script>
-	<script src="js/localSampleData-1-4-3.js"></script>
-	<script src="js/getAPIDataAndMakeTables_LOCAL-1-4-3.js"></script>
-	<script src="js/currentMatchesTable-1-4-3.js"></script>
-	<script src="js/expectedTimesScript-1-4-3.js"></script>
-	<script src="js/upcomingMatchesTable-1-4-3.js"></script>
-	<script src="js/postponedMatchesTable-1-4-3.js"></script>
-	<script src="js/playedMatchesTable-1-4-3.js"></script>
-	<script src="js/poolsOverviewTable-1-4-3.js"></script>
-	<script src="js/pageView-1-4-3.js"></script>
-	<script src="js/tableViews-1-4-3.js"></script>
+	<script src="js/otherFunctions-1-5-1.js"></script>
+	<script src="js/globals-1-5-1.js"></script>
+	<!--<script src="js/tablesHTML-1-5-1.js"></script>-->
+	<script src="js/setupFunctions-1-5-1.js"></script>
+	<script src="js/options-1-5-1.js"></script>
+	<script src="js/poolProperties-1-5-1.js"></script>
+	<script src="js/paginationFunctions-1-5-1.js"></script>
+	<script src="js/poolRankingsTable-1-5-1.js"></script>
+	<script src="js/playersRankingTable-1-5-1.js"></script>
+	<script src="js/playersTable-1-5-1.js"></script>
+	<script src="js/getAPIDataAndMakeTables-1-5-1.js"></script>
+	<script src="js/localSampleData-1-5-1.js"></script>
+	<script src="js/getAPIDataAndMakeTables_LOCAL-1-5-1.js"></script>
+	<script src="js/currentMatchesTable-1-5-1.js"></script>
+	<script src="js/expectedTimesScript-1-5-1.js"></script>
+	<script src="js/upcomingMatchesTable-1-5-1.js"></script>
+	<script src="js/postponedMatchesTable-1-5-1.js"></script>
+	<script src="js/playedMatchesTable-1-5-1.js"></script>
+	<script src="js/poolsOverviewTable-1-5-1.js"></script>
+	<script src="js/pageView-1-5-1.js"></script>
+	<script src="js/tableViews-1-5-1.js"></script>
  
 	 <script>
 		 function urlSetup() {
@@ -284,7 +285,18 @@
 		}
 		urlSetup()	  
 	</script>
-	 <script src="js/init-1-4-3.js"></script>
+	 <script src="js/init-1-5-1.js"></script>
+	 
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-131455748-1"></script>
+		<script>
+		  window.dataLayer = window.dataLayer || [];
+		  function gtag(){dataLayer.push(arguments);}
+		  gtag('js', new Date());
+
+		  gtag('config', 'UA-131455748-1');
+		</script>
+
 </head>
 <body bgcolor="#f3f2f0">
 
@@ -499,7 +511,8 @@
 				</form>
 				<div id="createPageLoader" class="saveLoader" style="display: none"></div>
 			</div>
-			<p>Need help? <a href="#" onclick="mailTo()">Contact us</a></p>
+			<div id="creditsText"></div>
+			</div>
         </div>
       </div>
     </div>
